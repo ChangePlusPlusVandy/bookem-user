@@ -1,11 +1,12 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-// clientPromise is used to connect to our mongoDB database
-import clientPromise from 'lib/mongodb';
+// dbConnect is used to connect to our mongoDB database (via mongoose)
+import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
+import Users from 'models/Users';
 
 /**
  * /api/dummy:
@@ -47,13 +48,10 @@ export default async function handler(
     case 'GET':
       try {
         // connect to our database
-        const client = await clientPromise;
-
-        // automatically connect to db based on .env URL
-        const db = client.db();
+        await dbConnect();
 
         // do action on db. in this case, we are retrieving all documents from the collection
-        const users = await db.collection('dummyCollection').find({}).toArray();
+        const users = await Users.find();
 
         // return the result of the action
         res.status(200).json(users);
@@ -69,7 +67,7 @@ export default async function handler(
     case 'POST':
       try {
         // connect to our database
-        const client = await clientPromise;
+        const client = await dbConnect();
 
         // automatically connect to db based on .env URL
         const db = client.db();
