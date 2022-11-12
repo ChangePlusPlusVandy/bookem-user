@@ -28,7 +28,7 @@ export const authOptions = {
         const user = await db.collection('users').findOne({ email });
 
         if (!user) return null;
-        return { ...user, id: '123' };
+        return { ...user, id: user._id.toString() };
       },
     }),
     GoogleProvider({
