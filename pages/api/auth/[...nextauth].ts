@@ -7,15 +7,22 @@ import GoogleProvider from 'next-auth/providers/google';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import clientPromise from 'lib/mongodb';
 import bcrypt from 'bcrypt';
+import { SessionStrategy } from 'next-auth/core/types';
+
+const sessionStrategy: SessionStrategy = 'jwt';
 
 export const authOptions = {
   // configure adaptor to mongoDB database using mongoose
   adapter: MongoDBAdapter(clientPromise),
+  session: {
+    strategy: sessionStrategy,
+  },
   providers: [
     // Credentials docs: https://next-auth.js.org/providers/credentials
     CredentialsProvider({
+      id: 'credentials',
       // The name to display on the sign in form (e.g. "Sign in with...")
-      name: 'Credentials',
+      name: 'credentials',
       credentials: {
         email: {
           label: 'Email',
@@ -56,6 +63,35 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET || '',
     }),
   ],
+  // callbacks: {
+  //   async session(session: { user: UserData; token: any }, token: any) {
+  //     //session.accessToken = token.accessToken;
+  //     console.log('Session token');
+  //     console.log(token);
+  //     if (userAccount !== null) {
+  //       session.user = userAccount;
+  //     } else if (typeof token !== typeof undefined) {
+  //       session.token = token;
+  //     }
+  //     console.log('session callback returning');
+  //     console.log(session);
+  //     return session;
+  //   },
+  //   async jwt(
+  //     token: { user: any },
+  //     user: any,
+  //     account: any,
+  //     profile: any,
+  //     isNewUser: any
+  //   ) {
+  //     console.log('JWT Token User');
+  //     console.log(token.user);
+  //     if (typeof user !== typeof undefined) {
+  //       token.user = user;
+  //     }
+  //     return token;
+  //   },
+  // },
 };
 
 export default NextAuth(authOptions);
