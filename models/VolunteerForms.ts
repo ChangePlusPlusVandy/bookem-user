@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 // VolunteerFormSchema describes what our documents should look like in our VolunteerForm collections
 const VolunteerFormSchema = new mongoose.Schema({
-  userId: { type: mongoose.Types.ObjectId, required: true },
+  userId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
   isApproved: { type: Boolean, default: false, required: true },
   emergencyContact: {
     firstName: { type: String, required: true },
