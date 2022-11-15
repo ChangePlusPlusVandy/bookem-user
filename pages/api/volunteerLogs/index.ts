@@ -8,15 +8,14 @@ import dbConnect from 'lib/dbConnect';
 import { getSession } from 'next-auth/react';
 import VolunteerLogs from 'models/VolunteerLogs';
 import Users from 'models/Users';
-import { VolunteerLogData } from 'types/database';
 
 /**
- * /api/volunteerEvents/:
+ * /api/VolunteerLogs/:
  *  get:
- *    description: Get all volunteer events from a certain user
+ *    description: Get all volunteer logs from a certain user
  *      200:
  *        description: Success
- *        content: JSON object of all volunteer events from a certain user
+ *        content: JSON object of all volunteer logs from a certain user
  *      500:
  *        description: Error
  *        content: JSON object of error
@@ -41,7 +40,7 @@ export default async function handler(
       try {
 
         const email = session.user?.email;
-
+        
         // Connect to the database
         await dbConnect();
 
