@@ -38,24 +38,25 @@ export default async function handler(
   switch (req.method) {
     case 'GET':
       try {
-
         const email = session.user?.email;
-        
+
         // Connect to the database
         await dbConnect();
 
-        const user:any= await Users.findOne({email: email});
+        const user: any = await Users.findOne({ email: email });
 
         // If the user doesn't exist, return an error
         if (!user) {
           res.status(422).json({ message: 'This user does not exist' });
           throw new Error('This user does not exist');
-        }  
+        }
 
         const usersId = user._id;
 
         // get all volunteerEvents from collection that match the user's Id
-        const volunteerLogs: any = await VolunteerLogs.find({userId:usersId});
+        const volunteerLogs: any = await VolunteerLogs.find({
+          userId: usersId,
+        });
 
         // return the result
         res.status(200).json(volunteerLogs);
@@ -69,9 +70,9 @@ export default async function handler(
       break;
 
     default:
-        res.status(405).json({
-            error: 'Sorry, only GET requests are supported',
-        });
-        break;
-    }
+      res.status(405).json({
+        error: 'Sorry, only GET requests are supported',
+      });
+      break;
+  }
 }
