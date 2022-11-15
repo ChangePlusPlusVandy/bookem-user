@@ -18,8 +18,8 @@ export interface UserData {
 
 export interface VolunteerLogData {
   _id: mongoose.Types.ObjectId;
-  school: string;
-  teacher: string;
+  school?: string;
+  teacher?: string;
   date: Date;
   hours: number;
   userId: mongoose.Types.ObjectId;
