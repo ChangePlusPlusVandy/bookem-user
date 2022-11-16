@@ -42,5 +42,6 @@ export interface VolunteerFormData {
   workStatus?: string;
   employer?: string;
   opportunities?: Array<string>;
-  createDate?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
