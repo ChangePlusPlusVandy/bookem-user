@@ -26,6 +26,7 @@ export interface VolunteerLogData {
   userId: mongoose.Types.ObjectId;
   feedback?: string;
   numBooks?: number;
+  createdAt: Date;
 }
 
 export interface VolunteerFormData {
