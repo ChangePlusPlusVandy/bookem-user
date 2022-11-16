@@ -43,7 +43,7 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        const user: any = await Users.findOne({ email: email });
+        const user = await Users.findOne({ email: email });
 
         // If the user doesn't exist, return an error
         if (!user) {
@@ -54,7 +54,7 @@ export default async function handler(
         const usersId = user._id;
 
         // get all volunteerEvents from collection that match the user's Id
-        const volunteerLogs: any = await VolunteerLogs.find({
+        const volunteerLogs = await VolunteerLogs.find({
           userId: usersId,
         });
 
