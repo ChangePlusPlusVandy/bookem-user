@@ -13,7 +13,8 @@ export interface UserData {
   sourceHeardFrom: string;
   ethnicity: string;
   gender: string;
-  createDate?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface VolunteerLogData {
