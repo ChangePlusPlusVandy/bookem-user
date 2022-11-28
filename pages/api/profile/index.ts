@@ -25,7 +25,7 @@ export default async function handler (
             const email = session.user?.email;
 
             try {
-                const user = await Users.find({email: email});
+                const user = await Users.findOne({email: email});
                 res.status(200).json(user);
             } catch (e) {
                 console.error('An error has occurred in index.ts', e);
