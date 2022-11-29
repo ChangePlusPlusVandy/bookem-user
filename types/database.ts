@@ -29,7 +29,7 @@ export interface VolunteerLogData {
   createdAt: Date;
 }
 
-export interface VolunteerFormData {
+export interface VolunteerApplicationData {
   _id: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
   isApproved?: boolean;

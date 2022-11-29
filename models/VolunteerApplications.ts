@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 
-// VolunteerFormSchema describes what our documents should look like in our VolunteerForm collections
-const VolunteerFormSchema = new mongoose.Schema(
+// VolunteerApplicationSchema describes what our documents should look like in our VolunteerApplication collections
+const VolunteerApplicationSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Types.ObjectId, ref: 'User', required: true },
     isApproved: { type: Boolean, default: false, required: true },
@@ -21,9 +21,9 @@ const VolunteerFormSchema = new mongoose.Schema(
       createdAt: 'createdAt',
       updatedAt: 'updatedAt',
     },
-    collection: 'volunteerForms',
+    collection: 'volunteerApplications',
   }
 );
 
-export default mongoose.models.VolunteerForm ||
-  mongoose.model('VolunteerForm', VolunteerFormSchema);
+export default mongoose.models.VolunteerApplication ||
+  mongoose.model('VolunteerApplication', VolunteerApplicationSchema);
