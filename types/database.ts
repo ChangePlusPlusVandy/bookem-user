@@ -13,7 +13,8 @@ export interface UserData {
   sourceHeardFrom: string;
   ethnicity: string;
   gender: string;
-  createDate?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export interface VolunteerLogData {
@@ -25,9 +26,10 @@ export interface VolunteerLogData {
   userId: mongoose.Types.ObjectId;
   feedback?: string;
   numBooks?: number;
+  createdAt: Date;
 }
 
-export interface VolunteerFormData {
+export interface VolunteerApplicationData {
   _id: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
   isApproved?: boolean;
@@ -40,5 +42,6 @@ export interface VolunteerFormData {
   workStatus?: string;
   employer?: string;
   opportunities?: Array<string>;
-  createDate?: Date;
+  createdAt: Date;
+  updatedAt: Date;
 }
