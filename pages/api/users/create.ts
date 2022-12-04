@@ -13,12 +13,6 @@ export default async function handler(
       const { email, password, name , phone, address, isVolunteer, 
         isDonor, isRequester, sourceHeardFrom, ethnicity, gender } = req.body;
 
-      // Check if the user's email and password are valid
-      if (!email || !email.includes('@') || !password) {
-        res.status(422).json({ message: 'Invalid input' });
-        throw new Error('Invalid input');
-      }
-
       // Connect to the database
       await dbConnect();
 
