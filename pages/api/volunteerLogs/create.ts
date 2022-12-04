@@ -7,6 +7,7 @@ import dbConnect from 'lib/dbConnect';
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
 import Users from 'models/Users';
+import VolunteerLogs from 'models/VolunteerLogs';
 
 /**
  * /api/volunteerLogs/create:
@@ -36,7 +37,7 @@ export default async function handler(
     return;
   }
 
-  if (!date || !hours || !numBooks) {
+  if (!hours || !numBooks) {
     res.status(422).json({ message: 'Invalid input' });
     throw new Error('Invalid input');
   }
@@ -45,7 +46,7 @@ export default async function handler(
     case 'POST':
       try {
         // connect to our database
-        const client = await dbConnect();
+        await dbConnect();
         const email = session.user?.email;
 
         const user = await Users.findOne({ email: email });
@@ -58,28 +59,22 @@ export default async function handler(
 
         const usersId = user._id;
 
-        // automatically connect to db based on .env URL
-        const db = client.db();
-
         // construct the object we want to insert into our database
-        const newLog = {
-          school: school,
-          teacher: teacher,
-          date: date,
-          hours: hours,
+        const status = await VolunteerLogs.create({
+          school,
+          teacher,
+          date,
+          hours,
           userId: usersId,
-          feedback: feedback,
-          numBooks: numBooks,
-        };
-
-        // do action on db. in this case, we are inserting a new document into dummyCollection
-        await db.collection('volunteerLogs').insertOne(newLog);
+          feedback,
+          numBooks,
+        });
 
         // return the result of the action
         res
           .status(200)
           .json(
-            'Successfully inserted the document into the volunteerLogs collection'
+            'Successfully inserted the log into the volunteerLogs collection'
           );
       } catch (e) {
         // if there is an error, print and return the error
