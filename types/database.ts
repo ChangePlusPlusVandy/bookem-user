@@ -29,19 +29,9 @@ export interface VolunteerLogData {
   createdAt: Date;
 }
 
-export interface VolunteerApplicationData {
+export interface VolunteerProgramApplicationData {
   _id: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
-  isApproved?: boolean;
-  emergencyContact: {
-    firstName: string;
-    lastName: string;
-    phone: string;
-    relationship: string;
-  };
-  workStatus?: string;
-  employer?: string;
-  opportunities?: Array<string>;
-  createdAt: Date;
-  updatedAt: Date;
+  programId: mongoose.Types.ObjectId;
+  formData: mongoose.Schema.Types.Mixed;
 }
