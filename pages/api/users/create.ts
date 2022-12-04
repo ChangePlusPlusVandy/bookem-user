@@ -10,7 +10,8 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       // Get the user's email and password from the request body
-      const { email, password, name } = req.body;
+      const { email, password, name , phone, address, isVolunteer, 
+        isDonor, isRequester, sourceHeardFrom, ethnicity, gender } = req.body;
 
       // Check if the user's email and password are valid
       if (!email || !email.includes('@') || !password) {
@@ -38,6 +39,14 @@ export default async function handler(
         name,
         email,
         password: hashedPassword,
+        phone,
+        address,
+        isVolunteer,
+        isDonor,
+        isRequester, 
+        sourceHeardFrom,
+        ethnicity,
+        gender
       });
 
       // Return the status of the user creation
