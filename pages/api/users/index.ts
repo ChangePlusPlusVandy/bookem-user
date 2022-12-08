@@ -22,6 +22,9 @@ export default async function handler(
     case 'GET':
       const email = session.user?.email;
 
+      // Connect to the database
+      await dbConnect();
+
       try {
         const user = await Users.findOne({ email: email });
         res.status(200).json(user);
