@@ -9,6 +9,15 @@ import { getSession } from 'next-auth/react';
 import Users from 'models/Users';
 import VolunteerLogs from 'models/VolunteerLogs';
 
+interface DataType {
+  school: string;
+  teacher: string;
+  date: Date;
+  hours: number;
+  feedback: string;
+  numBooks: number;
+}
+
 /**
  * /api/volunteerLogs/create:
  *  post:
@@ -28,8 +37,6 @@ export default async function handler(
   // check that user is authenticated
   const session = await getSession({ req });
 
-  const { school, teacher, date, hours, feedback, numBooks } = req.body;
-
   if (!session) {
     res.status(401).json({
       error: 'You are unauthorized to perform this action. Please login first',
@@ -37,9 +44,16 @@ export default async function handler(
     return;
   }
 
-  if (!hours || !numBooks) {
-    res.status(422).json({ message: 'Invalid input' });
-    throw new Error('Invalid input');
+  const volunteerLog = req.body as DataType;
+
+  if (!volunteerLog.hours) {
+    res.status(422).json({ message: 'Missing hours in request body.' });
+    throw new Error('Invalid input. Missing hours in request body.');
+  }
+
+  if (!volunteerLog.numBooks) {
+    res.status(422).json({ message: 'Missing numBooks in request body.' });
+    throw new Error('Invalid input. Missing numBooks in request body.');
   }
 
   switch (req.method) {
@@ -61,13 +75,8 @@ export default async function handler(
 
         // construct the object we want to insert into our database
         const status = await VolunteerLogs.create({
-          school,
-          teacher,
-          date,
-          hours,
+          ...volunteerLog,
           userId: usersId,
-          feedback,
-          numBooks,
         });
 
         // return the result of the action
@@ -81,7 +90,8 @@ export default async function handler(
         console.error('An error has occurred in volunteerLogs/create.ts', e);
         res.status(500).json({
           error:
-            'Sorry, an error occurred while connecting/inserting to the database',
+            'Sorry, an error occurred while connecting/inserting to the database: ',
+          message: '' + e,
         });
       }
       break;
