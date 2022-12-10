@@ -26,19 +26,32 @@ export interface VolunteerLogData {
   createdAt: Date;
 }
 
-export interface VolunteerApplicationData {
+export interface VolunteerProgramApplicationData {
   _id: mongoose.Types.ObjectId;
   userId: mongoose.Types.ObjectId;
-  isApproved?: boolean;
-  emergencyContact: {
-    firstName: string;
-    lastName: string;
-    phone: string;
-    relationship: string;
-  };
-  workStatus?: string;
-  employer?: string;
-  opportunities?: Array<string>;
+  programId: mongoose.Types.ObjectId;
+  formData: mongoose.Schema.Types.Mixed;
+  createdAt: Date;
+}
+
+export interface VolunteerLogData {
+  _id: mongoose.Types.ObjectId;
+  school?: string;
+  teacher?: string;
+  date: Date;
+  hours: number;
+  userId: mongoose.Types.ObjectId;
+  feedback?: string;
+  numBooks?: number;
+  createdAt: Date;
+}
+
+export interface VolunteerProgramData {
+  _id: mongoose.Types.ObjectId;
+  name: string;
+  description: string;
+  schools?: string[];
+  programDate: Date;
   createdAt: Date;
   updatedAt: Date;
 }
