@@ -3,6 +3,17 @@ import { hash } from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Users from 'models/Users';
 
+interface User {
+  name: string;
+  email: string;
+  password: string;
+  phone: string;
+  address: string;
+  sourceHeardFrom: string;
+  ethnicity: string;
+  gender: string;
+}
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
@@ -10,14 +21,13 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       // Get the user's email and password from the request body
-      const { email, password, name , phone, address, isVolunteer, 
-        isDonor, isRequester, sourceHeardFrom, ethnicity, gender } = req.body;
+      const userData:User = req.body;
 
       // Connect to the database
       await dbConnect();
 
       // Check if the user already exists in database
-      const checkExisting = await Users.findOne({ email });
+      const checkExisting = await Users.findOne({ email:userData.email });
 
       // If the user already exists, return an error
       if (checkExisting) {
@@ -26,22 +36,10 @@ export default async function handler(
       }
 
       // Hash the user's password
-      const hashedPassword = await hash(password, 12);
+      const hashedPassword = await hash(userData.password, 12);
 
       // Create a new user in the database
-      const status = await Users.create({
-        name,
-        email,
-        password: hashedPassword,
-        phone,
-        address,
-        isVolunteer,
-        isDonor,
-        isRequester, 
-        sourceHeardFrom,
-        ethnicity,
-        gender
-      });
+      const status = await Users.create({...userData, password: hashedPassword});
 
       // Return the status of the user creation
       res.status(201).json({ message: 'User created', ...status });
