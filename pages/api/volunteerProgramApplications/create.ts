@@ -18,9 +18,8 @@ interface VolunteerProgramApplication {
 
 export default async function handler(
   req: NextApiRequest,
-  res: NextApiResponse<any>  
-) 
-{
+  res: NextApiResponse<any>
+) {
   const session = await getSession({ req });
 
   if (!session) {
@@ -32,13 +31,13 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST':
-        const applicationData:VolunteerProgramApplication = req.body;
-        const status = await VolunteerProgramApplications.create(applicationData);
-        await dbConnect();
-        res.status(201).json({ message: 'Application created', ...status });
+      const applicationData: VolunteerProgramApplication = req.body;
+      const status = await VolunteerProgramApplications.create(applicationData);
+      await dbConnect();
+      res.status(201).json({ message: 'Application created', ...status });
       break;
     default:
-        res.status(400).json({ message: 'Invalid request method' });
-        break;
+      res.status(400).json({ message: 'Invalid request method' });
+      break;
   }
 }

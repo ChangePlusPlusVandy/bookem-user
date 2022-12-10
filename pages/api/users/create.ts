@@ -21,13 +21,13 @@ export default async function handler(
   switch (req.method) {
     case 'POST':
       // Get the user's email and password from the request body
-      const userData:User = req.body;
+      const userData: User = req.body;
 
       // Connect to the database
       await dbConnect();
 
       // Check if the user already exists in database
-      const checkExisting = await Users.findOne({ email:userData.email });
+      const checkExisting = await Users.findOne({ email: userData.email });
 
       // If the user already exists, return an error
       if (checkExisting) {
@@ -39,7 +39,10 @@ export default async function handler(
       const hashedPassword = await hash(userData.password, 12);
 
       // Create a new user in the database
-      const status = await Users.create({...userData, password: hashedPassword});
+      const status = await Users.create({
+        ...userData,
+        password: hashedPassword,
+      });
 
       // Return the status of the user creation
       res.status(201).json({ message: 'User created', ...status });

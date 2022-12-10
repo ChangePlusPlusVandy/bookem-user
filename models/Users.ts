@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema(
     address: { type: String, required: true },
     isVolunteer: { type: Boolean, default: false, required: true },
     isDonor: { type: Boolean, default: false, required: true },
-    isRequester: { type: Boolean, default: false, required: true }, 
+    isRequester: { type: Boolean, default: false, required: true },
     sourceHeardFrom: { type: String, required: true },
     ethnicity: { type: String, required: true },
     gender: { type: String, required: true },
