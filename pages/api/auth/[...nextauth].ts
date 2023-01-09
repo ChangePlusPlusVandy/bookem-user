@@ -1,6 +1,6 @@
 // NextAuth documentation: https://next-auth.js.org/getting-started/example
 import dbConnect from 'lib/dbConnect';
-import Users from 'models/Users';
+import Users from 'bookem-shared/src/models/Users';
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
@@ -42,7 +42,7 @@ export const authOptions = {
         await dbConnect();
 
         // check if user's email exists in database
-        const user = await Users.findOne({ email });
+        const user: any = await Users.findOne({ email });
 
         // if user does not exist, return null
         if (!user) return null;

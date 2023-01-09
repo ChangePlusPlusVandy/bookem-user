@@ -1,7 +1,7 @@
 import dbConnect from 'lib/dbConnect';
 import { hash } from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import Users from 'models/Users';
+import Users from 'bookem-shared/src/models/Users';
 
 export default async function handler(
   req: NextApiRequest,

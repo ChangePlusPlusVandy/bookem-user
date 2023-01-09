@@ -6,8 +6,8 @@ import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
-import VolunteerLogs from 'models/VolunteerLogs';
-import Users from 'models/Users';
+import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
+import Users from 'bookem-shared/src/models/Users';
 
 /**
  * /api/VolunteerLogs/:
