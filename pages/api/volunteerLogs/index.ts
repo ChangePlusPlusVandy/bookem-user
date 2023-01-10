@@ -7,13 +7,10 @@ import dbConnect from 'lib/dbConnect';
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
 
-// mongoose is used to create types for our models
-import mongoose from 'mongoose';
-
 // import the models and types we need
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
 import Users from 'bookem-shared/src/models/Users';
-import { UserData } from 'bookem-shared/src/types/database';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
 
 /**
  * /api/VolunteerLogs/:
