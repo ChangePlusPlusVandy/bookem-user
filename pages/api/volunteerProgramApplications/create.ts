@@ -1,20 +1,8 @@
 import dbConnect from 'lib/dbConnect';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import mongoose from 'mongoose';
 import { getSession } from 'next-auth/react';
-import VolunteerProgramApplications from 'models/VolunteerProgramApplications';
-
-interface VolunteerProgramApplication {
-  emergencyContact: {
-    firstName: string;
-    lastName: string;
-    phone: string;
-    relationship: string;
-  };
-  workStatus?: string;
-  employer?: string;
-  opportunities?: Array<string>;
-}
+import VolunteerProgramApplications from 'bookem-shared/src/models/VolunteerProgramApplications';
+import { VolunteerProgramData } from 'bookem-shared/src/types/database';
 
 export default async function handler(
   req: NextApiRequest,
@@ -31,9 +19,16 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST':
-      const applicationData: VolunteerProgramApplication = req.body;
-      const status = await VolunteerProgramApplications.create(applicationData);
+      // start a try catch block to catch any errors in parsing the request body
+      const applicationData = req.body as VolunteerProgramData;
+
+      // Connect to the database
       await dbConnect();
+
+      // create the application in the database
+      const status = await VolunteerProgramApplications.create(applicationData);
+
+      // return the status of the application
       res.status(201).json({ message: 'Application created', ...status });
       break;
     default:
