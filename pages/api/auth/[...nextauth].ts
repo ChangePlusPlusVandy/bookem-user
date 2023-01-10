@@ -42,7 +42,7 @@ export const authOptions = {
         await dbConnect();
 
         // check if user's email exists in database
-        const user: any = await Users.findOne({ email });
+        const user = await Users.findOne({ email });
 
         // if user does not exist, return null
         if (!user) return null;

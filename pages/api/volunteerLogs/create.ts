@@ -8,15 +8,7 @@ import dbConnect from 'lib/dbConnect';
 import { getSession } from 'next-auth/react';
 import Users from 'bookem-shared/src/models/Users';
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
-
-interface DataType {
-  school: string;
-  teacher: string;
-  date: Date;
-  hours: number;
-  feedback: string;
-  numBooks: number;
-}
+import { VolunteerLogData } from 'bookem-shared/src/types/database';
 
 /**
  * /api/volunteerLogs/create:
@@ -44,7 +36,7 @@ export default async function handler(
     return;
   }
 
-  const volunteerLog = req.body as DataType;
+  const volunteerLog = req.body as VolunteerLogData;
 
   if (!volunteerLog.hours) {
     res.status(422).json({ message: 'Missing hours in request body.' });

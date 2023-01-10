@@ -6,8 +6,19 @@ import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
+
+// mongoose is used to create types for our models
+import mongoose from 'mongoose';
+
+// import the models and types we need
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
 import Users from 'bookem-shared/src/models/Users';
+import { UserData } from 'bookem-shared/src/types/database';
+
+// creating a new interface that extend UserData and adds the field _id
+interface QueriedUserData extends UserData {
+  _id: mongoose.Types.ObjectId;
+}
 
 /**
  * /api/VolunteerLogs/:
@@ -43,7 +54,9 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        const user = await Users.findOne({ email: email });
+        const user: QueriedUserData | null = await Users.findOne({
+          email: email,
+        });
 
         // If the user doesn't exist, return an error
         if (!user) {
