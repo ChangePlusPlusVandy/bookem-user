@@ -6,7 +6,8 @@ import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
-import Users from 'models/Users';
+import Users from 'bookem-shared/src/models/Users';
+import { QueriedUserData, UserData } from 'bookem-shared/src/types/database';
 
 /**
  * /api/dummy:
@@ -51,7 +52,7 @@ export default async function handler(
         await dbConnect();
 
         // do action on db. in this case, we are retrieving all documents from the collection
-        const users = await Users.find();
+        const users = (await Users.find()) as QueriedUserData[];
 
         // return the result of the action
         res.status(200).json(users);
@@ -73,8 +74,15 @@ export default async function handler(
         const db = client.db();
 
         // construct the object we want to insert into our database
-        const objToInsert = {
+        const objToInsert: UserData = {
           name: 'John Doe',
+          email: 'johndoe@bookem.com',
+          password: 'password',
+          phone: '123-456-7890',
+          address: '2301 Vanderbilt Pl, Nashville, TN 37235',
+          sourceHeardFrom: 'social media',
+          ethnicity: 'native american',
+          gender: 'male',
         };
 
         // do action on db. in this case, we are inserting a new document into dummyCollection

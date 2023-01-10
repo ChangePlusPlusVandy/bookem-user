@@ -6,17 +6,14 @@ import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
-import Users from 'models/Users';
-import VolunteerLogs from 'models/VolunteerLogs';
 
-interface DataType {
-  school: string;
-  teacher: string;
-  date: Date;
-  hours: number;
-  feedback: string;
-  numBooks: number;
-}
+// import the models and types we need
+import Users from 'bookem-shared/src/models/Users';
+import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
+import {
+  VolunteerLogData,
+  QueriedUserData,
+} from 'bookem-shared/src/types/database';
 
 /**
  * /api/volunteerLogs/create:
@@ -44,16 +41,22 @@ export default async function handler(
     return;
   }
 
-  const volunteerLog = req.body as DataType;
+  // start a try catch block to catch any errors in parsing the request body
+  const volunteerLog = req.body as VolunteerLogData;
 
   if (!volunteerLog.hours) {
-    res.status(422).json({ message: 'Missing hours in request body.' });
+    res.status(400).json({ message: 'Missing hours in request body.' });
     throw new Error('Invalid input. Missing hours in request body.');
   }
 
   if (!volunteerLog.numBooks) {
-    res.status(422).json({ message: 'Missing numBooks in request body.' });
+    res.status(400).json({ message: 'Missing numBooks in request body.' });
     throw new Error('Invalid input. Missing numBooks in request body.');
+  }
+
+  if (!volunteerLog.date) {
+    res.status(400).json({ message: 'Missing date in request body.' });
+    throw new Error('Invalid input. Missing date in request body.');
   }
 
   switch (req.method) {
@@ -63,7 +66,9 @@ export default async function handler(
         await dbConnect();
         const email = session.user?.email;
 
-        const user = await Users.findOne({ email: email });
+        const user = (await Users.findOne({
+          email: email,
+        })) as QueriedUserData;
 
         // If the user doesn't exist, return an error
         if (!user) {
@@ -74,7 +79,7 @@ export default async function handler(
         const usersId = user._id;
 
         // construct the object we want to insert into our database
-        const status = await VolunteerLogs.create({
+        await VolunteerLogs.create({
           ...volunteerLog,
           userId: usersId,
         });

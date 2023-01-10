@@ -1,6 +1,6 @@
 // NextAuth documentation: https://next-auth.js.org/getting-started/example
 import dbConnect from 'lib/dbConnect';
-import Users from 'models/Users';
+import Users from 'bookem-shared/src/models/Users';
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';

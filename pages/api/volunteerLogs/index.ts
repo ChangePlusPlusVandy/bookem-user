@@ -6,8 +6,11 @@ import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
-import VolunteerLogs from 'models/VolunteerLogs';
-import Users from 'models/Users';
+
+// import the models and types we need
+import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
+import Users from 'bookem-shared/src/models/Users';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
 
 /**
  * /api/VolunteerLogs/:
@@ -43,7 +46,9 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        const user = await Users.findOne({ email: email });
+        const user = (await Users.findOne({
+          email: email,
+        })) as QueriedUserData;
 
         // If the user doesn't exist, return an error
         if (!user) {
