@@ -4,17 +4,6 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import Users from 'bookem-shared/src/models/Users';
 import { QueriedUserData } from 'bookem-shared/src/types/database';
 
-interface User {
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-  address: string;
-  sourceHeardFrom: string;
-  ethnicity: string;
-  gender: string;
-}
-
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>
