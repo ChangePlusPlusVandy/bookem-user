@@ -4,6 +4,7 @@ import dbConnect from 'lib/dbConnect';
 
 import { getSession } from 'next-auth/react';
 import Users from 'bookem-shared/src/models/Users';
+import { UserData } from 'bookem-shared/src/types/database';
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,7 +27,7 @@ export default async function handler(
       await dbConnect();
 
       try {
-        const user = await Users.findOne({ email: email });
+        const user = (await Users.findOne({ email: email })) as UserData;
         res.status(200).json(user);
       } catch (e) {
         console.error('An error has occurred in index.ts', e);

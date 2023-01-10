@@ -15,11 +15,6 @@ import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
 import Users from 'bookem-shared/src/models/Users';
 import { UserData } from 'bookem-shared/src/types/database';
 
-// creating a new interface that extend UserData and adds the field _id
-interface QueriedUserData extends UserData {
-  _id: mongoose.Types.ObjectId;
-}
-
 /**
  * /api/VolunteerLogs/:
  *  get:
@@ -54,9 +49,9 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        const user: QueriedUserData | null = await Users.findOne({
+        const user = (await Users.findOne({
           email: email,
-        });
+        })) as QueriedUserData;
 
         // If the user doesn't exist, return an error
         if (!user) {

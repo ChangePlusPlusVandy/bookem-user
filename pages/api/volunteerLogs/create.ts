@@ -6,9 +6,14 @@ import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';
+
+// import the models and types we need
 import Users from 'bookem-shared/src/models/Users';
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
-import { VolunteerLogData } from 'bookem-shared/src/types/database';
+import {
+  VolunteerLogData,
+  QueriedUserData,
+} from 'bookem-shared/src/types/database';
 
 /**
  * /api/volunteerLogs/create:
@@ -36,62 +41,77 @@ export default async function handler(
     return;
   }
 
-  const volunteerLog = req.body as VolunteerLogData;
+  try {
+    // start a try catch block to catch any errors in parsing the request body
+    const volunteerLog = req.body as VolunteerLogData;
 
-  if (!volunteerLog.hours) {
-    res.status(422).json({ message: 'Missing hours in request body.' });
-    throw new Error('Invalid input. Missing hours in request body.');
-  }
+    if (!volunteerLog.hours) {
+      res.status(400).json({ message: 'Missing hours in request body.' });
+      throw new Error('Invalid input. Missing hours in request body.');
+    }
 
-  if (!volunteerLog.numBooks) {
-    res.status(422).json({ message: 'Missing numBooks in request body.' });
-    throw new Error('Invalid input. Missing numBooks in request body.');
-  }
+    if (!volunteerLog.numBooks) {
+      res.status(400).json({ message: 'Missing numBooks in request body.' });
+      throw new Error('Invalid input. Missing numBooks in request body.');
+    }
 
-  switch (req.method) {
-    case 'POST':
-      try {
-        // connect to our database
-        await dbConnect();
-        const email = session.user?.email;
+    if (!volunteerLog.date) {
+      res.status(400).json({ message: 'Missing date in request body.' });
+      throw new Error('Invalid input. Missing date in request body.');
+    }
 
-        const user = await Users.findOne({ email: email });
+    switch (req.method) {
+      case 'POST':
+        try {
+          // connect to our database
+          await dbConnect();
+          const email = session.user?.email;
 
-        // If the user doesn't exist, return an error
-        if (!user) {
-          res.status(422).json({ message: 'This user does not exist' });
-          throw new Error('This user does not exist');
+          const user = (await Users.findOne({
+            email: email,
+          })) as QueriedUserData;
+
+          // If the user doesn't exist, return an error
+          if (!user) {
+            res.status(422).json({ message: 'This user does not exist' });
+            throw new Error('This user does not exist');
+          }
+
+          const usersId = user._id;
+
+          // construct the object we want to insert into our database
+          await VolunteerLogs.create({
+            ...volunteerLog,
+            userId: usersId,
+          });
+
+          // return the result of the action
+          res
+            .status(200)
+            .json(
+              'Successfully inserted the log into the volunteerLogs collection'
+            );
+        } catch (e) {
+          // if there is an error, print and return the error
+          console.error('An error has occurred in volunteerLogs/create.ts', e);
+          res.status(500).json({
+            error:
+              'Sorry, an error occurred while connecting/inserting to the database: ',
+            message: '' + e,
+          });
         }
+        break;
 
-        const usersId = user._id;
-
-        // construct the object we want to insert into our database
-        const status = await VolunteerLogs.create({
-          ...volunteerLog,
-          userId: usersId,
+      default:
+        res.status(405).json({
+          error: 'Sorry, only POST requests are supported',
         });
-
-        // return the result of the action
-        res
-          .status(200)
-          .json(
-            'Successfully inserted the log into the volunteerLogs collection'
-          );
-      } catch (e) {
-        // if there is an error, print and return the error
-        console.error('An error has occurred in volunteerLogs/create.ts', e);
-        res.status(500).json({
-          error:
-            'Sorry, an error occurred while connecting/inserting to the database: ',
-          message: '' + e,
-        });
-      }
-      break;
-
-    default:
-      res.status(405).json({
-        error: 'Sorry, only POST requests are supported',
-      });
-      break;
+        break;
+    }
+  } catch (e) {
+    res.status(500).json({
+      error: 'Sorry, an error occurred while parsing the request: ',
+      e,
+    });
   }
 }
