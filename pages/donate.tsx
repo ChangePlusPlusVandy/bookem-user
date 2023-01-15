@@ -1,7 +1,10 @@
 import React from 'react';
 
-const Donate = () => {
+const DonatePage = () => {
   return <div>Donate</div>;
 };
 
-export default Donate;
+export default DonatePage;
+
+// perform automatic redirection to login page if user not logged in.
+export { getServerSideProps } from '@/lib/getServerSideProps';
