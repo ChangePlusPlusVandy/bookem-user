@@ -6,14 +6,14 @@ import Image from 'next/image';
 const Container = styled.div`
   height: 100%;
   width: 100%;
-  background-color: pink;
+  background-color: white;
   padding: 40px;
 `;
 
 const GreetingContainer = styled.div`
   color: lightblue;
   height: fit-content;
-  background-color: lightblue;
+  background-color: white;
 `;
 
 const Greeting = styled.p`
@@ -34,7 +34,7 @@ const InfoIcon = styled.div`
 const StatsContainer = styled.div`
   height: fit-content;
   margin-top: 49px;
-  background-color: lightgreen;
+  background-color: white;
 `;
 
 const StatsHeader = styled.p`
@@ -49,14 +49,14 @@ const StatsHeader = styled.p`
 
 const StatsFlex = styled.div`
   height: fit-content;
-  background-color: lightgreen;
+  background-color: white;
   display: flex;
   justify-content: space-evenly;
 `;
 
 const StatsFlexChild = styled.div`
   flex: 1;
-  background-color: yellow;
+  background-color: white;
   margin: 10px;
   padding: 10px;
   text-align: center;
