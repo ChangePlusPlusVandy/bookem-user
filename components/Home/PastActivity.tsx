@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const PastActivity = () => {
-  return (
-    <div>PastActivity</div>
-  )
-}
+  return <div>PastActivity</div>;
+};
 
-export default PastActivity
+export default PastActivity;
