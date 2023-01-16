@@ -1,7 +1,19 @@
+import MainDashboard from '@/components/Home/MainDashboard';
 import React from 'react';
 
+const userData = {
+  name: 'Carol He',
+  hoursVolunteered: 10,
+  booksShared: 5,
+  dollarsDonated: 100,
+};
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <MainDashboard userData={userData} />
+    </>
+  );
 };
 
 export default HomePage;
