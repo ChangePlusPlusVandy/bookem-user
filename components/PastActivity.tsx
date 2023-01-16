@@ -1,44 +1,40 @@
 import React from 'react';
 import styled from 'styled-components';
+import PastActivityEvent from './PastActivityEvent';
 
-// vertical list of past events (another component)
+// vertical list of sample past events (another component)
 
-const Div = styled.div`
+const Container = styled.div`
     background-color: #D9D9D9;
     height: 100%;
     width: 15em;
     overflowY: auto;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-evenly;
 `
 
-const Header = styled.h2 `
+const Header = styled.p `
+    font-family: 'Inter';
     font-size: 25px;
-    margin-top: 40px;
+    margin-top: 50px;
     text-align: center;
     font-weight: 400;
 `
 
 const PastActivity = () => {
-    const styles = {
-        h2: {
-            fontSize: "25px",
-            marginTop: "40px",
-            textAlign: "center",
-            fontWeight: "400",
-        },
-        event: {
-            backgroundColor: "#FFFFFF",
-            height: "8em",
-            width: "6em",
-            margin: "0 auto"
-        },
-    };
-    return <Div>
+    return <Container>
         <Header>Past activity</Header>
         <ul>
-            
+            <PastActivityEvent></PastActivityEvent>
+            <PastActivityEvent></PastActivityEvent>
+            <PastActivityEvent></PastActivityEvent>
+            <PastActivityEvent></PastActivityEvent>
+            <PastActivityEvent></PastActivityEvent>
+            <PastActivityEvent></PastActivityEvent>
         </ul>
-    </Div>
+    </Container>
 }
 
 export default PastActivity;
