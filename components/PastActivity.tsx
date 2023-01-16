@@ -1,18 +1,25 @@
 import React from 'react';
+import styled from 'styled-components';
 
 // vertical list of past events (another component)
 
-const UpcomingEvents = () => {
+const Div = styled.div`
+    background-color: #D9D9D9;
+    height: 100%;
+    width: 15em;
+    overflowY: auto;
+    padding: 10px;
+`
+
+const Header = styled.h2 `
+    font-size: 25px;
+    margin-top: 40px;
+    text-align: center;
+    font-weight: 400;
+`
+
+const PastActivity = () => {
     const styles = {
-        div: {
-            backgroundColor: "#D9D9D9",
-            height: "100vh",
-            position: "absolute",
-            right: "0px",
-            padding: "10px",
-            width: "15em",
-            overflowY: "auto",
-        },
         h2: {
             fontSize: "25px",
             marginTop: "40px",
@@ -26,26 +33,12 @@ const UpcomingEvents = () => {
             margin: "0 auto"
         },
     };
-    return <div style={styles.div}>
-        <h2 style={styles.h2}>Past activity</h2>
+    return <Div>
+        <Header>Past activity</Header>
         <ul>
-            <div style={styles.event}>
-                <h4>Event 1</h4>
-            </div>
-            <div style={styles.event}>
-                <h4>Event 2</h4>
-            </div>
-            <div style={styles.event}>
-                <h4>Event 3</h4>
-            </div>
-            <div style={styles.event}>
-                <h4>Event 4</h4>
-            </div>
-            <div style={styles.event}>
-                <h4>Event 5</h4>
-            </div>
+            
         </ul>
-    </div>
+    </Div>
 }
 
-export default UpcomingEvents;
+export default PastActivity;
