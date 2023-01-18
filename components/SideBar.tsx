@@ -17,18 +17,16 @@ const SideBarBox = styled.div`
 
 const IconBox = styled.div``;
 
-const IconLink = styled(Link)<{ hoveredsrc?: string }>`
+const IconLink = styled(Link)<{ hoveredsrc: string }>`
   display: inline-block;
   padding: 25px 0px 25px 0px;
   width: 100%;
   &:hover,
   &:focus {
     background-color: #d9d9d9;
-  }
-
-  &:hover,
-  &:focus > div {
-    src: ${props => props.hoveredsrc};
+    img {
+      content: url(${props => props.hoveredsrc});
+    }
   }
 `;
 
