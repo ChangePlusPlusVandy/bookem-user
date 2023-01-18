@@ -6,9 +6,9 @@ import PastActivityEvent from './PastActivityEvent';
 
 const Container = styled.div`
     background-color: #D9D9D9;
-    height: 100%;
     width: 15em;
-    overflowY: auto;
+    height: 100%;
+    overflow-y: auto;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -16,7 +16,7 @@ const Container = styled.div`
 `
 
 const Header = styled.p `
-    font-family: 'Inter';
+    font-family: "Inter";
     font-size: 25px;
     margin-top: 50px;
     text-align: center;
