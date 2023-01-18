@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import styled from 'styled-components';
-import PastActivityEvent from './PastActivityEvent';
+const PastActivityEvent = React.lazy(() => import('./PastActivityEvent'));
 
 // vertical list of sample past events (another component)
 
@@ -26,13 +26,14 @@ const Header = styled.p `
 const PastActivity = () => {
     return <Container>
         <Header>Past activity</Header>
-        <ul>
+        <ul><Suspense fallback = {<Header>Please Wait...</Header>}>
             <PastActivityEvent></PastActivityEvent>
             <PastActivityEvent></PastActivityEvent>
             <PastActivityEvent></PastActivityEvent>
             <PastActivityEvent></PastActivityEvent>
             <PastActivityEvent></PastActivityEvent>
             <PastActivityEvent></PastActivityEvent>
+        </Suspense>
         </ul>
     </Container>
 }

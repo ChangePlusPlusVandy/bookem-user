@@ -25,11 +25,7 @@ const EventText = styled.p `
     margin-bottom: 10px;
 `
 
-
-// TODO: hard code a volunteerProgram into the file
-
-
-const PastActivityEvent = ({volunteerProgramData} : any) => {
+const PastActivityEvent = () => {
     return (
         <EventContainter>
             <EventImage>
