@@ -7,17 +7,21 @@ import testImg from './pretty.jpeg';
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    width: 45vw;
+    width: 50vw;
     height: 100vh;
-    background: gray;
+    background: #dbdbdb;
     padding-top: 60px;
     padding-bottom: 60px;
-    gap: 4vh;
+    padding-left: 80px;
+    padding-right: 80px;
+    gap: 2vh;
 `;
 
 const ImgContainer = styled.div`
     position: relative;
     width: 75%;
+    min-height: 120px;
+    min-width: 200px;
     height: 25vw;
     background: white;
     margin-left: auto;
@@ -26,13 +30,14 @@ const ImgContainer = styled.div`
 
 const Info = styled.div`
     width: 75%;
-    height: 7vw;
+    height: 9vw;
+    min-width: 200px;
     background: white;
     margin-left: auto;
     margin-right: auto;
     background: white;
     font-size: 10px;
-    padding: 5px;
+    overflow:hidden;
 `;
 
 const Img = styled.img`
@@ -41,13 +46,12 @@ const Img = styled.img`
 `;
 
 const HeaderFont = styled.p`
-    background: green;
-    font-size: 20px;
+    font-size: 25px;
     margin: 4px;
+    font-weight: bold;
 `;
 
 const InfoFont = styled.p`
-    background: red;
     font-size: 15px;
     margin: 4px;
 `;
@@ -59,6 +63,7 @@ const LeftDisplay = () => {
             <Image
                 src={"/pretty.png"}
                 layout="fill"
+                objectFit='cover'
                 alt="oops">
             </Image>
         </ImgContainer>
@@ -67,23 +72,23 @@ const LeftDisplay = () => {
                 Info 1
             </HeaderFont>
             <InfoFont>
-              information
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sapien, fermentum a mauris sit amet, tincidunt dapibus justo. Proin elementum magna vitae mollis vestibulum.
             </InfoFont>
         </Info>
         <Info>
             <HeaderFont>
-                Info 1
+                Info 2
             </HeaderFont>
             <InfoFont>
-              information
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sapien, fermentum a mauris sit amet, tincidunt dapibus justo. Proin elementum magna vitae mollis vestibulum.
             </InfoFont>
         </Info>
         <Info>
             <HeaderFont>
-                Info 1
+                Info 3
             </HeaderFont>
             <InfoFont>
-              information
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum velit sapien, fermentum a mauris sit amet, tincidunt dapibus justo. Proin elementum magna vitae mollis vestibulum.
             </InfoFont>
         </Info>
     </Container>
