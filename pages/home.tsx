@@ -1,4 +1,4 @@
-import { SideBar } from '@/components/Home/SideBar';
+import { SideBar } from '@/components/SideBar';
 import MainDashboard from '@/components/Home/MainDashboard';
 import React from 'react';
 
