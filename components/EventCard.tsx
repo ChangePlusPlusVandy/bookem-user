@@ -6,18 +6,6 @@ interface RatioProp {
   ratio: number;
 }
 
-const sizeMap = new Map<string, number>([
-  ['large', 328 / 328],
-  ['medium', 300 / 328],
-  ['small', 250 / 328],
-]);
-
-const toRatio = (size: string): number => {
-  let ratio = sizeMap.get(size);
-  if (ratio !== undefined) return ratio;
-  else return 1;
-};
-
 const Container = styled.div<RatioProp>`
   background-color: orange;
   width: ${props => props.ratio * 328}px;
@@ -90,54 +78,67 @@ const InfoFlexChild = styled.div<RatioProp>`
   line-height: ${props => props.ratio * 22}px;
 `;
 
-// TODO: CREATE USERDATA OBJECT
+const sizeMap = new Map<string, number>([
+  ['large', 328 / 328],
+  ['medium', 300 / 328],
+  ['small', 250 / 328],
+]);
+
+const toRatio = (size: string): number => {
+  let ratio = sizeMap.get(size);
+  if (ratio !== undefined) return ratio;
+  else return 1;
+};
 
 const EventCard: React.FC<{ eventData: any; size: string }> = ({
   eventData,
   size,
-}) => (
-  <Container ratio={toRatio(size)}>
-    <EventImage ratio={toRatio(size)}>
-      <Image
-        src="/eventImage.png"
-        alt="Event image icon"
-        width={`${Math.round(toRatio(size) * 138)}`}
-        height={`${Math.round(toRatio(size) * 138)}`}
-      />
-    </EventImage>
-    <Name ratio={toRatio(size)}>{eventData.name}</Name>
-
-    <AddressContainer ratio={toRatio(size)}>
-      <AddressIcon>
+}) => {
+  const ratio = toRatio(size);
+  return (
+    <Container ratio={ratio}>
+      <EventImage ratio={ratio}>
         <Image
-          src="/map.png"
-          alt="Map icon"
-          width={`${Math.round(toRatio(size) * 21)}`}
-          height={`${Math.round(toRatio(size) * 23.99)}`}
+          src="/eventImage.png"
+          alt="Event image icon"
+          width={`${Math.round(ratio * 138)}`}
+          height={`${Math.round(ratio * 138)}`}
         />
-      </AddressIcon>
-      {eventData.address}
-    </AddressContainer>
+      </EventImage>
+      <Name ratio={ratio}>{eventData.name}</Name>
 
-    <InfoContainer ratio={toRatio(size)}>
-      <ClockIcon>
-        <Image
-          src="/clock.png"
-          alt="Clock icon"
-          width={`${Math.round(toRatio(size) * 21.27)}`}
-          height={`${Math.round(toRatio(size) * 22.14)}`}
-        />
-      </ClockIcon>
+      <AddressContainer ratio={ratio}>
+        <AddressIcon>
+          <Image
+            src="/map.png"
+            alt="Map icon"
+            width={`${Math.round(ratio * 21)}`}
+            height={`${Math.round(ratio * 23.99)}`}
+          />
+        </AddressIcon>
+        {eventData.address}
+      </AddressContainer>
 
-      <InfoFlex>
-        <InfoFlexChild ratio={toRatio(size)}>{eventData.date}</InfoFlexChild>
-        <InfoFlexChild ratio={toRatio(size)}>{eventData.time}</InfoFlexChild>
-        <InfoFlexChild ratio={toRatio(size)}>
-          {eventData.numSpots} spots
-        </InfoFlexChild>
-      </InfoFlex>
-    </InfoContainer>
-  </Container>
-);
+      <InfoContainer ratio={ratio}>
+        <ClockIcon>
+          <Image
+            src="/clock.png"
+            alt="Clock icon"
+            width={`${Math.round(ratio * 21.27)}`}
+            height={`${Math.round(ratio * 22.14)}`}
+          />
+        </ClockIcon>
+
+        <InfoFlex>
+          <InfoFlexChild ratio={ratio}>{eventData.date}</InfoFlexChild>
+          <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild>
+          <InfoFlexChild ratio={ratio}>
+            {eventData.numSpots} spots
+          </InfoFlexChild>
+        </InfoFlex>
+      </InfoContainer>
+    </Container>
+  );
+};
 
 export default EventCard;
