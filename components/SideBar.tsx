@@ -4,6 +4,9 @@ import React from 'react';
 import styled from 'styled-components';
 import { UserIcon } from './Home/UserIcon';
 
+/**
+ * Container of sidebar
+ */
 const SideBarBox = styled.div`
   display: flex;
   position: absolute;
@@ -16,8 +19,15 @@ const SideBarBox = styled.div`
   background-color: #6d6d6d;
 `;
 
+/**
+ * Container of icon
+ */
 const IconBox = styled.div``;
 
+/**
+ * Make each icon a link
+ * @hoveredsrc src of the img when hovered or focused
+ */
 const IconLink = styled(Link)<{ hoveredsrc: string }>`
   display: inline-block;
   padding: 25px 0px 25px 0px;
@@ -31,12 +41,27 @@ const IconLink = styled(Link)<{ hoveredsrc: string }>`
   }
 `;
 
+/**
+ * Icon image
+ */
+const Icon = styled(Image)``;
+
+/**
+ * Icon Param container.
+ * Used to create icons through iteration
+ * @defaultSrc src of the icon when not selected or hovered
+ * @hoveredSrc src of the icon when selected or hovered
+ * @linkTo where the link of icon directs to
+ */
 interface IconParams {
   defaultSrc: string;
   hoveredSrc: string;
   linkTo: string;
 }
 
+/**
+ * List of IconParams
+ */
 const iconParamList: IconParams[] = [
   {
     defaultSrc: '/sidebar/home-white.png',
@@ -65,8 +90,14 @@ const iconParamList: IconParams[] = [
   },
 ];
 
-const Icon = styled(Image)``;
+/**
+ * Default width of icons
+ */
 const iconWidth = 41.25;
+
+/**
+ * Default height of icons
+ */
 const iconHeight = 42.47;
 
 export const SideBar = () => {
@@ -76,6 +107,8 @@ export const SideBar = () => {
         <IconBox>
           <UserIcon />
         </IconBox>
+
+        {/* Iterate through iconParamList to display icons */}
         {iconParamList.map(iconParam => {
           return (
             <IconBox key={iconParam.defaultSrc}>
