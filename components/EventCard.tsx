@@ -7,7 +7,7 @@ interface RatioProp {
 }
 
 const Container = styled.div<RatioProp>`
-  background-color: orange;
+  background-color: white;
   width: ${props => props.ratio * 328}px;
   height: ${props => props.ratio * 328}px;
   border-radius: 10px;
@@ -21,7 +21,7 @@ const EventImage = styled.div<RatioProp>`
 `;
 
 const Name = styled.div<RatioProp>`
-  background-color: pink;
+  background-color: white;
   margin-top: ${props => props.ratio * 29}px;
   height: ${props => props.ratio * 40.45}px;
   font-family: 'Inter';
@@ -34,7 +34,7 @@ const Name = styled.div<RatioProp>`
 const AddressContainer = styled.div<RatioProp>`
   height: fit-content;
   margin-top: ${props => props.ratio * 13}px;
-  background-color: lightblue;
+  background-color: white;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -50,7 +50,7 @@ const AddressIcon = styled.div`
 const InfoContainer = styled.div<RatioProp>`
   height: fit-content;
   margin-top: ${props => props.ratio * 13}px;
-  background-color: lightgreen;
+  background-color: white;
 `;
 
 const ClockIcon = styled.div`
@@ -60,14 +60,13 @@ const ClockIcon = styled.div`
 
 const InfoFlex = styled.div`
   height: fit-content;
-  background-color: yellow;
+  background-color: white;
   display: flex;
   justify-content: space-between;
 `;
 
 const InfoFlexChild = styled.div<RatioProp>`
-  flex: 1;
-  background-color: violet;
+  background-color: white;
   flex: 0 1 auto;
   text-align: center;
   vertical-align: middle;

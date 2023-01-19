@@ -1,5 +1,6 @@
 import React from 'react';
 import EventCard from '../EventCard';
+import styled from 'styled-components';
 
 const eventData = {
   name: 'Distribute books (BNFK)',
@@ -9,12 +10,35 @@ const eventData = {
   numSpots: 11,
 };
 
+const Container = styled.div`
+  height: fit-content;
+  width: 100%;
+  background: #d9d9d9;
+  padding: 35px;
+  border-radius: 10px;
+  white-space: nowrap;
+`;
+
+const Events = styled.div`
+  display: inline-block;
+`;
+
 const UpcomingEvents = () => {
   return (
-    <div>
-      Upcoming Events
-      <EventCard eventData={eventData} size={'large'} />
-    </div>
+    <Container>
+      <Events>Large Event Card </Events>
+      <Events>
+        <EventCard eventData={eventData} size={'large'} />
+      </Events>
+      <Events> Medium Event Card </Events>
+      <Events>
+        <EventCard eventData={eventData} size={'medium'} />
+      </Events>
+      <Events> Small Event Card </Events>
+      <Events>
+        <EventCard eventData={eventData} size={'small'} />
+      </Events>
+    </Container>
   );
 };
 
