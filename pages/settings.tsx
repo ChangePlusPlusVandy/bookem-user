@@ -1,7 +1,13 @@
+import { SideBar } from '@/components/SideBar';
 import React from 'react';
 
 const SettingsPage = () => {
-  return <div>Settings</div>;
+  return (
+    <div>
+      <SideBar />
+      Settings
+    </div>
+  );
 };
 
 export default SettingsPage;

@@ -6,11 +6,12 @@ import { UserIcon } from './Home/UserIcon';
 
 const SideBarBox = styled.div`
   display: flex;
+  position: absolute;
   flex-direction: column;
   align-items: stretch;
   text-align: center;
   justify-content: space-between;
-  width: 156px;
+  width: 120px;
   height: 100vh;
   background-color: #6d6d6d;
 `;
