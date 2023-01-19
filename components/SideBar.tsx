@@ -33,28 +33,34 @@ const IconLink = styled(Link)<{ hoveredsrc: string }>`
 interface IconParams {
   defaultSrc: string;
   hoveredSrc: string;
+  linkTo: string;
 }
 
 const iconParamList: IconParams[] = [
   {
     defaultSrc: '/sidebar/home-white.png',
     hoveredSrc: '/sidebar/home-black.png',
+    linkTo: '/home',
   },
   {
     defaultSrc: '/sidebar/hand-shake-white.png',
     hoveredSrc: '/sidebar/hand-shake-black.png',
+    linkTo: '/volunteer',
   },
   {
     defaultSrc: '/sidebar/currency-dollar-white.png',
     hoveredSrc: '/sidebar/currency-dollar-black.png',
+    linkTo: '/donate',
   },
   {
     defaultSrc: '/sidebar/book-open-white.png',
     hoveredSrc: '/sidebar/book-open-black.png',
+    linkTo: '/request',
   },
   {
     defaultSrc: '/sidebar/setting-white.png',
     hoveredSrc: '/sidebar/setting-black.png',
+    linkTo: '/settings',
   },
 ];
 
@@ -72,7 +78,9 @@ export const SideBar = () => {
         {iconParamList.map(iconParam => {
           return (
             <IconBox key={iconParam.defaultSrc}>
-              <IconLink href="#" hoveredsrc={iconParam.hoveredSrc}>
+              <IconLink
+                href={iconParam.linkTo}
+                hoveredsrc={iconParam.hoveredSrc}>
                 <Icon
                   src={iconParam.defaultSrc}
                   alt=""
