@@ -89,9 +89,13 @@ const toRatio = (size: string): number => {
   else return 1;
 };
 
-const EventCard: React.FC<{ eventData: any; size: string }> = ({
+const EventCard = ({
   eventData,
   size,
+}: {
+  // TODO: change type of eventData
+  eventData: any;
+  size: string;
 }) => {
   const ratio = toRatio(size);
   return (
