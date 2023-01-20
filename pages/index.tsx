@@ -9,16 +9,16 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-    {status === 'loading' && <div>Loading...</div>}
-    {!session && <LoginPage1 />}
-    {session && (
-      <>
-        <div>You have signed in as {session.user?.email}</div>
-        <button onClick={() => signOut()}>Sign out</button>
-      </>
-    )}
-  </div>
-  )
+      {status === 'loading' && <div>Loading...</div>}
+      {!session && <LoginPage1 />}
+      {session && (
+        <>
+          <div>You have signed in as {session.user?.email}</div>
+          <button onClick={() => signOut()}>Sign out</button>
+        </>
+      )}
+    </div>
+  );
 }
 
 // perform automatic redirection to login page if user not logged in.
