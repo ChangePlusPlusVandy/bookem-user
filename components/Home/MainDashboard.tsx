@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import PastActivity from './PastActivity';
+import UpcomingEvents from './UpcomingEvents';
 import Image from 'next/image';
 
 const Container = styled.div`
@@ -84,7 +84,7 @@ const StatsDescription = styled.p`
   color: #000000;
 `;
 
-const PastActivityContainer = styled.div`
+const UpcomingEventsContainer = styled.div`
   margin-top: 40px;
 `;
 
@@ -119,9 +119,9 @@ const MainDashboard = ({ userData }: any) => {
         </StatsFlex>
       </StatsContainer>
 
-      <PastActivityContainer>
-        <PastActivity />
-      </PastActivityContainer>
+      <UpcomingEventsContainer>
+        <UpcomingEvents />
+      </UpcomingEventsContainer>
     </Container>
   );
 };
