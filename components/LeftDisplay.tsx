@@ -1,8 +1,6 @@
-import { prettyDOM } from '@testing-library/react';
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
-import testImg from './pretty.jpeg';
 
 const Container = styled.div`
   display: flex;
@@ -10,45 +8,24 @@ const Container = styled.div`
   width: 50vw;
   height: 100vh;
   background: #dbdbdb;
-  padding-top: 60px;
-  padding-bottom: 60px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding: 60px calc(50vw - 40%);
   gap: 2vh;
 `;
 
 const ImgContainer = styled.div`
   position: relative;
-  width: 75%;
+  width: 85%;
+  height: 55vw;
   min-height: 200px;
   min-width: 120px;
-  height: 55vw;
   margin-left: auto;
   margin-right: auto;
-`;
-
-const Info = styled.div`
-  width: 75%;
-  height: 30%;
-  min-width: 200px;
-  min-height: 38px;
-  margin-left: auto;
-  margin-right: auto;
-  font-size: 10px;
-  overflow: hidden;
-  font-family: arial;
-`;
-
-const Img = styled.img`
-  cursor: pointer;
-  width: 100%;
 `;
 
 const HeaderFont = styled.p`
   font-size: 25px;
   margin: 4px;
   font-weight: bold;
-  font-family: ;
 `;
 
 const InfoFont = styled.p`
@@ -60,36 +37,26 @@ const LeftDisplay = () => {
   return (
     <Container>
       <ImgContainer>
-        <Image
-          src={'/pretty.png'}
-          layout="fill"
-          objectFit="cover"
-          alt="oops"></Image>
+        <Image src={'/pretty.png'} fill alt="BookEm Background"></Image>
       </ImgContainer>
-      <Info>
-        <HeaderFont>Info 1</HeaderFont>
-        <InfoFont>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          velit sapien, fermentum a mauris sit amet, tincidunt dapibus justo.
-          Proin elementum magna vitae mollis vestibulum.
-        </InfoFont>
-      </Info>
-      <Info>
-        <HeaderFont>Info 2</HeaderFont>
-        <InfoFont>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          velit sapien, fermentum a mauris sit amet, tincidunt dapibus justo.
-          Proin elementum magna vitae mollis vestibulum.
-        </InfoFont>
-      </Info>
-      <Info>
-        <HeaderFont>Info 3</HeaderFont>
-        <InfoFont>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-          velit sapien, fermentum a mauris sit amet, tincidunt dapibus justo.
-          Proin elementum magna vitae mollis vestibulum.
-        </InfoFont>
-      </Info>
+
+      <HeaderFont>Volunteer</HeaderFont>
+      <InfoFont>
+        Browser for events and activities happening in your community and log
+        volunteer hours and keep track of progress!
+      </InfoFont>
+
+      <HeaderFont>Donate</HeaderFont>
+      <InfoFont>
+        Donate books to us and we will distribute them to those in need in your
+        community!
+      </InfoFont>
+
+      <HeaderFont>Request</HeaderFont>
+      <InfoFont>
+        Request books on behalf of your school or organization and we will
+        arrange an event to distribute them!
+      </InfoFont>
     </Container>
   );
 };

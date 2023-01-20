@@ -9,9 +9,12 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      {session && (
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      )}
+      {!session && <Component {...pageProps} />}
     </SessionProvider>
   );
 }
