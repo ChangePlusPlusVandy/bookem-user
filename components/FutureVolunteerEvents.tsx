@@ -24,7 +24,7 @@ type EventType = {
 
 const feedsource: EventType[] = [
   {
-    source: '/eventIcon.png',
+    source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
@@ -33,7 +33,7 @@ const feedsource: EventType[] = [
     id: 0,
   },
   {
-    source: '/eventIcon.png',
+    source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
@@ -42,7 +42,7 @@ const feedsource: EventType[] = [
     id: 1,
   },
   {
-    source: '/eventIcon.png',
+    source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
@@ -51,7 +51,7 @@ const feedsource: EventType[] = [
     id: 2,
   },
   {
-    source: '/eventIcon.png',
+    source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
@@ -60,7 +60,7 @@ const feedsource: EventType[] = [
     id: 3,
   },
   {
-    source: '/eventIcon.png',
+    source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
@@ -79,7 +79,7 @@ const FutureVolunteerEvents = () => {
         <NavLeft>Future volunteer Events</NavLeft>
         <NavRight>
           <Image
-            src="/filterIcon.png"
+            src="/filter-icon.png"
             alt="Filter icon"
             width="25"
             height="25"

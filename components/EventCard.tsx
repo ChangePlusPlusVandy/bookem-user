@@ -104,7 +104,7 @@ const EventCard = ({
     <Container ratio={ratio}>
       <EventImage ratio={ratio}>
         <Image
-          src="/eventImage.png"
+          src="/event-image.png"
           alt="Event image icon"
           width={`${Math.round(ratio * 138)}`}
           height={`${Math.round(ratio * 138)}`}
