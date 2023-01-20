@@ -1,7 +1,12 @@
 import React from 'react';
+import VolunteerDashboard from '@/components/Volunteer/VolunteerDashboard';
 
 const VolunteerPage = () => {
-  return <div>VolunteerPage</div>;
+  return (
+    <>
+      <VolunteerDashboard />
+    </>
+  );
 };
 
 export default VolunteerPage;
