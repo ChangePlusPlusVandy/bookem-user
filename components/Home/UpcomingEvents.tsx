@@ -30,7 +30,7 @@ const UpcomingEvents = () => {
       {[...Array(10)].map((_, i) => (
         // TODO: iterate through real data instead of dummy data
         <Events>
-          <EventCard eventData={eventData} size={'large'} />
+          <EventCard eventData={eventData} size={'large'} key={i} />
         </Events>
       ))}
     </Container>
