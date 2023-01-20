@@ -30,7 +30,7 @@ const PastActivityEvent = () => {
     <EventContainter>
       <EventImage>
         <Image
-          src="/fillerimage.png"
+          src="/filler-icon.png"
           alt="Event picture"
           width="60"
           height="60"
