@@ -12,6 +12,8 @@ const Container = styled.div<RatioProp>`
   height: ${props => props.ratio * 328}px;
   border-radius: 10px;
   padding: ${props => props.ratio * 17}px;
+  margin: ${props => props.ratio * 17}px;
+  border: 1px solid black;
 `;
 
 const EventImage = styled.div<RatioProp>`
@@ -95,7 +97,7 @@ const EventCard = ({
 }: {
   // TODO: change type of eventData
   eventData: any;
-  size: string;
+  size: 'large' | 'medium' | 'small';
 }) => {
   const ratio = toRatio(size);
   return (
