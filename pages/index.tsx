@@ -5,6 +5,8 @@ import LoginPage from './login';
 export default function Home() {
   const { data: session, status } = useSession();
 
+  // TODO: after session loaded redirect to /home
+
   return (
     <div className={styles.container}>
       {status === 'loading' && <div>Loading...</div>}
