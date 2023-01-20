@@ -4,6 +4,7 @@ import UpcomingEvents from './UpcomingEvents';
 import Image from 'next/image';
 import {
   Container,
+  DashboardLayout,
   Greeting,
   GreetingContainer,
   InfoIcon,
@@ -15,42 +16,47 @@ import {
   StatsNumber,
   UpcomingEventsContainer,
 } from '@/styles/dashboard.styles';
+import PastActivity from '@/components/Home/PastActivity';
 
 const MainDashboard = ({ userData }: any) => {
   return (
-    <Container>
-      <GreetingContainer>
-        <Greeting>Hello {userData.name}, how&apos;s your day?</Greeting>
-      </GreetingContainer>
+    <DashboardLayout>
+      <Container>
+        <GreetingContainer>
+          <Greeting>Hello {userData.name}, how&apos;s your day?</Greeting>
+        </GreetingContainer>
 
-      <InfoIcon>
-        <Image src="/info.png" alt="Info icon" width="44" height="44" />
-      </InfoIcon>
+        <InfoIcon>
+          <Image src="/info.png" alt="Info icon" width="44" height="44" />
+        </InfoIcon>
 
-      <StatsContainer>
-        <StatsHeader>Your accomplishments at a glance:</StatsHeader>
-        <StatsFlex>
-          <StatsFlexChild>
-            <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-            <StatsDescription>Hours volunteered</StatsDescription>
-          </StatsFlexChild>
+        <StatsContainer>
+          <StatsHeader>Your accomplishments at a glance:</StatsHeader>
+          <StatsFlex>
+            <StatsFlexChild>
+              <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
+              <StatsDescription>Hours volunteered</StatsDescription>
+            </StatsFlexChild>
 
-          <StatsFlexChild>
-            <StatsNumber>{userData.booksShared}</StatsNumber>
-            <StatsDescription>Books shared (requested?)</StatsDescription>
-          </StatsFlexChild>
+            <StatsFlexChild>
+              <StatsNumber>{userData.booksShared}</StatsNumber>
+              <StatsDescription>Books shared (requested?)</StatsDescription>
+            </StatsFlexChild>
 
-          <StatsFlexChild>
-            <StatsNumber>{userData.dollarsDonated}</StatsNumber>
-            <StatsDescription>Dollars donated</StatsDescription>
-          </StatsFlexChild>
-        </StatsFlex>
-      </StatsContainer>
+            <StatsFlexChild>
+              <StatsNumber>{userData.dollarsDonated}</StatsNumber>
+              <StatsDescription>Dollars donated</StatsDescription>
+            </StatsFlexChild>
+          </StatsFlex>
+        </StatsContainer>
 
-      <UpcomingEventsContainer>
-        <UpcomingEvents />
-      </UpcomingEventsContainer>
-    </Container>
+        <UpcomingEventsContainer>
+          <UpcomingEvents />
+        </UpcomingEventsContainer>
+      </Container>
+
+      <PastActivity />
+    </DashboardLayout>
   );
 };
 

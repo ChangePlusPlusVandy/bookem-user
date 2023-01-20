@@ -2,7 +2,7 @@ import React from 'react';
 import EventCard from '../EventCard';
 import styled from 'styled-components';
 
-const eventData = {
+export const dummyEventData = {
   name: 'Distribute books (BNFK)',
   address: '3593 Cedar Rd. Nashville',
   date: '11/25',
@@ -30,7 +30,7 @@ const UpcomingEvents = () => {
       {[...Array(10)].map((_, i) => (
         // TODO: iterate through real data instead of dummy data
         <Events>
-          <EventCard eventData={eventData} size={'large'} key={i} />
+          <EventCard eventData={dummyEventData} size={'large'} key={i} />
         </Events>
       ))}
     </Container>

@@ -2,7 +2,7 @@ import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import styled from 'styled-components';
-import { UserIcon } from './Home/UserIcon';
+import { UserIcon } from '@/components/UserIcon';
 
 /**
  * Container of sidebar
@@ -22,7 +22,9 @@ const SideBarBox = styled.div`
 /**
  * Container of icon
  */
-const IconBox = styled.div``;
+const IconBox = styled.div`
+  padding-top: 20px;
+`;
 
 /**
  * Make each icon a link

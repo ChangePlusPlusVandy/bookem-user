@@ -1,10 +1,17 @@
 import styled from 'styled-components';
 
+export const DashboardLayout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 24vw;
+`;
+
 export const Container = styled.div`
-  height: 100%;
+  height: 100vh;
   width: 100%;
   background-color: white;
   padding: 40px;
+  overflow-y: scroll;
+  position: relative;
 `;
 
 export const GreetingContainer = styled.div`

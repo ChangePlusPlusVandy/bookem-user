@@ -1,5 +1,5 @@
 import React from 'react';
-import FutureVolunteerEvents from '@/components/FutureVolunteerEvents';
+import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
   Container,
   Greeting,
