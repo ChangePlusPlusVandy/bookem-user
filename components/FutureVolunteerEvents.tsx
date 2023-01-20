@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { useState } from 'react';
 
 type EventType = {
   source: string;
@@ -45,6 +46,7 @@ const SearchBar = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
+  position: relative;
 `;
 
 const Input = styled.input`
@@ -59,9 +61,14 @@ const Input = styled.input`
   font-size: 14px;
   font-weight: 300;
   text-align: left;
-  background: #fafafa;
+  background: #d9d9d9;
   width: 92%;
   margin: auto;
+
+  background-image: url(searchIcon.png);
+  background-repeat: no-repeat;
+  background-size: 25px;
+  background-position: 5px;
 
   &:active,
   &:focus {
@@ -190,6 +197,8 @@ const ImagesWrapper = styled.div`
 `;
 
 const FutureVolunteerEvents = () => {
+  const [query, setQuery] = useState('');
+
   return (
     <Container>
       <NavHeader>
@@ -205,13 +214,28 @@ const FutureVolunteerEvents = () => {
       </NavHeader>
 
       <SearchBar>
-        <Input type="text" placeholder="Search" />
+        <Input
+          type="text"
+          placeholder="Search events"
+          onChange={event => setQuery(event.target.value)}
+        />
       </SearchBar>
 
       <ImagesWrapper>
-        {feedsource.map(item => (
-          <Events event={item} key={item.id} />
-        ))}
+        {feedsource
+          .filter(event => {
+            if (query === '') {
+              //if query is empty
+              return event;
+            } else if (event.name.toLowerCase().includes(query.toLowerCase())) {
+              //returns filtered array
+              window.alert(event.name);
+              return event;
+            }
+          })
+          .map(item => (
+            <Events event={item} key={item.id} />
+          ))}
       </ImagesWrapper>
     </Container>
   );
