@@ -13,6 +13,54 @@ type EventType = {
   id: number;
 };
 
+const feedsource: EventType[] = [
+  {
+    source: '/eventIcon.png',
+    name: 'Distribute books (BNFK)',
+    location: '3593 Cedar Rd. Nashville',
+    date: '11/25',
+    time: '9:30 AM',
+    availability: '11 spots',
+    id: 0,
+  },
+  {
+    source: '/eventIcon.png',
+    name: 'Distribute books (BNFK)',
+    location: '3593 Cedar Rd. Nashville',
+    date: '11/25',
+    time: '9:30 AM',
+    availability: '11 spots',
+    id: 1,
+  },
+  {
+    source: '/eventIcon.png',
+    name: 'Distribute books (BNFK)',
+    location: '3593 Cedar Rd. Nashville',
+    date: '11/25',
+    time: '9:30 AM',
+    availability: '11 spots',
+    id: 2,
+  },
+  {
+    source: '/eventIcon.png',
+    name: 'Distribute books (BNFK)',
+    location: '3593 Cedar Rd. Nashville',
+    date: '11/25',
+    time: '9:30 AM',
+    availability: '11 spots',
+    id: 3,
+  },
+  {
+    source: '/eventIcon.png',
+    name: 'Distribute books (BNFK)',
+    location: '3593 Cedar Rd. Nashville',
+    date: '11/25',
+    time: '9:30 AM',
+    availability: '11 spots',
+    id: 4,
+  },
+];
+
 const Container = styled.div`
   background-color: white;
   width: 100%;
@@ -117,7 +165,15 @@ const Img = styled.img`
   border: 1px solid #6b6b6b;
 `;
 
-function Events({ event }: { event: EventType }) {
+const ImagesWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  width: 60%;
+  justify-content: center;
+  margin: auto;
+`;
+
+const Events = ({ event }: { event: EventType }) => {
   return (
     <ImgContainer>
       <Img src={event.source} />
@@ -135,63 +191,7 @@ function Events({ event }: { event: EventType }) {
       </ImgMeta>
     </ImgContainer>
   );
-}
-
-const feedsource: EventType[] = [
-  {
-    source: '/eventIcon.png',
-    name: 'Distribute books (BNFK)',
-    location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
-    time: '9:30 AM',
-    availability: '11 spots',
-    id: 0,
-  },
-  {
-    source: '/eventIcon.png',
-    name: 'Distribute books (BNFK)',
-    location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
-    time: '9:30 AM',
-    availability: '11 spots',
-    id: 1,
-  },
-  {
-    source: '/eventIcon.png',
-    name: 'Distribute books (BNFK)',
-    location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
-    time: '9:30 AM',
-    availability: '11 spots',
-    id: 2,
-  },
-  {
-    source: '/eventIcon.png',
-    name: 'Distribute books (BNFK)',
-    location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
-    time: '9:30 AM',
-    availability: '11 spots',
-    id: 3,
-  },
-  {
-    source: '/eventIcon.png',
-    name: 'Distribute books (BNFK)',
-    location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
-    time: '9:30 AM',
-    availability: '11 spots',
-    id: 4,
-  },
-];
-
-const ImagesWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  width: 60%;
-  justify-content: center;
-  margin: auto;
-`;
+};
 
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
