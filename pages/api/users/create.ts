@@ -42,7 +42,6 @@ export default async function handler(
 
         // Create a new user in the database
         const status = await Users.create({
-          ...user,
           name,
           email,
           password: hashedPassword,
