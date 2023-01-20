@@ -7,7 +7,7 @@ const PastActivityEvent = React.lazy(() => import('./PastActivityEvent'));
 const Container = styled.div`
   background-color: #d9d9d9;
   width: 15em;
-  height: 100%;
+  height: 100vh;
   overflow-y: auto;
   padding: 10px;
   display: flex;
