@@ -14,10 +14,9 @@ type EventType = {
 };
 
 const Container = styled.div`
-  background-color: pink;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
+  background-color: white;
   width: 100%;
-  height: 800px;
+  height: 100%;
 `;
 
 const NavHeader = styled.div`
@@ -112,7 +111,6 @@ const ImgMeta = styled.div`
 const Img = styled.img`
   cursor: pointer;
   width: 100%;
-  background-color: yellow;
   padding: 80px;
   padding-top: 20px;
   border-radius: 7px;
@@ -188,7 +186,6 @@ const feedsource: EventType[] = [
 ];
 
 const ImagesWrapper = styled.div`
-  background-color: orange;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   width: 60%;
@@ -229,7 +226,6 @@ const FutureVolunteerEvents = () => {
               return event;
             } else if (event.name.toLowerCase().includes(query.toLowerCase())) {
               //returns filtered array
-              window.alert(event.name);
               return event;
             }
           })
