@@ -9,7 +9,7 @@ export async function getServerSideProps(context: GetSessionParams) {
   if (!session) {
     return {
       redirect: {
-        destination: '/LoginPage1',
+        destination: '/login',
         permanent: false,
       },
     };

@@ -1,6 +1,22 @@
 import React from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { getSession, GetSessionParams, signIn } from 'next-auth/react';
+import {
+  Button,
+  Container,
+  ContentContainer,
+  ExternalPrompt,
+  Footer,
+  IconButton,
+  IconContainer,
+  Input,
+  LittleText,
+  LoginForm,
+  LoginHeader,
+  RightContainer,
+  SubmitButton,
+} from '@/styles/login.styles';
+import LeftDisplay from '@/components/LeftDisplay';
 
 const LoginPage = () => {
   // React hook form.
@@ -24,17 +40,42 @@ const LoginPage = () => {
   };
 
   return (
-    <>
-      <div>Logging you in</div>
+    <Container>
+      <LeftDisplay />
+      <RightContainer>
+        <ContentContainer>
+          <LoginHeader>Logging you in</LoginHeader>
+          <LoginForm
+            id="loginForm"
+            onSubmit={handleSubmit(data => handleLogin(data))}>
+            <Input
+              {...register('email', { required: true })}
+              placeholder="Email or Username"></Input>
+            <Input
+              {...register('password', { required: true })}
+              type="password"
+              placeholder="Password"></Input>
+            {errors.email && <span>Email is required</span>}
+            {errors.password && <span>Password is required</span>}
+          </LoginForm>
+          <ExternalPrompt>
+            ----------------- Or log in with -----------------
+          </ExternalPrompt>
+          <IconContainer>
+            <IconButton />
+            <IconButton />
+            <IconButton />
+            <IconButton />
+          </IconContainer>
+          <SubmitButton form="loginForm" type="submit" value="Log in" />
+        </ContentContainer>
 
-      <form onSubmit={handleSubmit(data => handleLogin(data))}>
-        <input {...register('email', { required: true })} />
-        <input {...register('password', { required: true })} type="password" />
-        {errors.email && <span>Email is required</span>}
-        {errors.password && <span>Password is required</span>}
-        <input type="submit" />
-      </form>
-    </>
+        <Footer>
+          <LittleText>New here? Come join us!</LittleText>
+          <Button>Create Account</Button>
+        </Footer>
+      </RightContainer>
+    </Container>
   );
 };
 
@@ -53,10 +94,10 @@ export async function getServerSideProps(context: GetSessionParams) {
     };
   }
 
-  // // If the user is not logged in, show the login page.
-  // return {
-  //   props: {
-  //     session,
-  //   },
-  // };
+  // If the user is not logged in, show the login page.
+  return {
+    props: {
+      session,
+    },
+  };
 }
