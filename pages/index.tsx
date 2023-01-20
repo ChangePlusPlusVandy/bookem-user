@@ -1,7 +1,6 @@
 import { useSession, signOut } from 'next-auth/react';
 import styles from '@/styles/Home.module.css';
 import LoginPage from './login';
-import FutureVolunteerEvents from '@/components/FutureVolunteerEvents';
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -12,9 +11,8 @@ export default function Home() {
       {!session && <LoginPage />}
       {session && (
         <>
-          {/* <div>You have signed in as {session.user?.email}</div>
-          <button onClick={() => signOut()}>Sign out</button> */}
-          <FutureVolunteerEvents />
+          <div>You have signed in as {session.user?.email}</div>
+          <button onClick={() => signOut()}>Sign out</button>
         </>
       )}
     </div>
