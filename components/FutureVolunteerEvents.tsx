@@ -107,7 +107,7 @@ const FutureVolunteerEvents = () => {
             }
           })
           .map(item => (
-            <EventCard eventData={item} size="medium" />
+            <EventCard eventData={item} size="medium" key={item.id} />
           ))}
       </ImagesWrapper>
     </Container>
