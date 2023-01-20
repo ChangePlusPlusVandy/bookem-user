@@ -27,18 +27,12 @@ const Events = styled.div`
 const UpcomingEvents = () => {
   return (
     <Container>
-      <Events>Large Event Card </Events>
-      <Events>
-        <EventCard eventData={eventData} size={'large'} />
-      </Events>
-      <Events> Medium Event Card </Events>
-      <Events>
-        <EventCard eventData={eventData} size={'medium'} />
-      </Events>
-      <Events> Small Event Card </Events>
-      <Events>
-        <EventCard eventData={eventData} size={'small'} />
-      </Events>
+      {[...Array(10)].map((_, i) => (
+        // TODO: iterate through real data instead of dummy data
+        <Events>
+          <EventCard eventData={eventData} size={'large'} />
+        </Events>
+      ))}
     </Container>
   );
 };
