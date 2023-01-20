@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DonatePage = () => {
-  return <div>Donate</div>;
+  return <>Donate</>;
 };
 
 export default DonatePage;
