@@ -1,25 +1,22 @@
-import { useSession, signOut } from 'next-auth/react';
-import styles from '@/styles/Home.module.css';
-import LoginPage from './login';
+import MainDashboard from '@/components/Home/MainDashboard';
+import React from 'react';
 
-export default function Home() {
-  const { data: session, status } = useSession();
+const userData = {
+  name: 'Carol He',
+  hoursVolunteered: 10,
+  booksShared: 5,
+  dollarsDonated: 100,
+};
 
-  // TODO: after session loaded redirect to /home
-
+const HomePage = () => {
   return (
-    <div className={styles.container}>
-      {status === 'loading' && <div>Loading...</div>}
-      {!session && <LoginPage />}
-      {session && (
-        <>
-          <div>You have signed in as {session.user?.email}</div>
-          <button onClick={() => signOut()}>Sign out</button>
-        </>
-      )}
-    </div>
+    <>
+      <MainDashboard userData={userData} />
+    </>
   );
-}
+};
+
+export default HomePage;
 
 // perform automatic redirection to login page if user not logged in.
 export { getServerSideProps } from '@/lib/getServerSideProps';

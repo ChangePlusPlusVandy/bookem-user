@@ -68,7 +68,7 @@ const iconParamList: IconParams[] = [
   {
     defaultSrc: '/sidebar/home-white.png',
     hoveredSrc: '/sidebar/home-black.png',
-    linkTo: '/home',
+    linkTo: '/',
   },
   {
     defaultSrc: '/sidebar/hand-shake-white.png',
