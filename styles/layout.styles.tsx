@@ -7,11 +7,15 @@ const Container = styled.div`
   display: flex;
 `;
 
+const Subcontainer = styled.div`
+  width: calc(100vw - 120px);
+`;
+
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container>
       <SideBar />
-      {children}
+      <Subcontainer>{children}</Subcontainer>
     </Container>
   );
 };
