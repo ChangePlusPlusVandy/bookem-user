@@ -53,10 +53,10 @@ export async function getServerSideProps(context: GetSessionParams) {
     };
   }
 
-  // If the user is not logged in, show the login page.
-  return {
-    props: {
-      session,
-    },
-  };
+  // // If the user is not logged in, show the login page.
+  // return {
+  //   props: {
+  //     session,
+  //   },
+  // };
 }

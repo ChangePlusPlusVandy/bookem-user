@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import LeftDisplay from './LeftDisplay';
+import LeftDisplay from '../components/LeftDisplay';
 
 import { FieldValues, useForm } from 'react-hook-form';
 import { getSession, GetSessionParams, signIn } from 'next-auth/react';
@@ -96,7 +96,21 @@ const Input = styled.input`
 `;
 
 const SubmitButton = styled.input`
-`;
+    font-size: 17px;
+    background: #dbdbdb;
+    border: none;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 35px;
+    padding-right: 35px;
+    border-radius: 14px;
+    &:hover {
+      background-color: green;
+    }
+    width: 275px;
+    margin-left: auto;
+    margin-right: auto;
+    `;
 
 const IconButton = styled.button`
     height: 40px;
@@ -146,8 +160,10 @@ export default function LoginPage1() {
             <LoginHeader>Logging you in</LoginHeader>
             <LoginForm 
               id = "loginForm" onSubmit={handleSubmit(data => handleLogin(data))}> 
-              <Input placeholder='Email or Username'></Input>
-              <Input placeholder='Password'></Input>
+              <Input {...register('email', { required: true })} placeholder='Email or Username'></Input>
+              <Input {...register('password', { required: true })} type="password" placeholder='Password'></Input>
+              {errors.email && <span>Email is required</span>}
+              {errors.password && <span>Password is required</span>}
             </LoginForm>
             <ExternalPrompt>
               ----------------- Or log in with -----------------
@@ -158,9 +174,7 @@ export default function LoginPage1() {
               <IconButton></IconButton>
               <IconButton></IconButton>
             </IconContainer>
-            <Button>
-                  Log in
-            </Button>
+            <SubmitButton form = "loginForm" type = "submit" value = "Log in"/>
           </ContentContainer>
     
           <Footer>
@@ -172,4 +186,25 @@ export default function LoginPage1() {
         </RightContainer>
     </Container>
   )
+}
+
+export async function getServerSideProps(context: GetSessionParams) {
+  const session = await getSession(context);
+
+  // If the user is already logged in, redirect to the home page.
+  if (session) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true,
+      },
+    };
+  }
+
+  // If the user is not logged in, show the login page.
+  return {
+    props: {
+      session,
+    },
+  };
 }
