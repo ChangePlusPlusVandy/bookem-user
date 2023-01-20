@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Image from 'next/image';
 import testImg from './pretty.jpeg';
 
+
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -20,25 +21,25 @@ const Container = styled.div`
 const ImgContainer = styled.div`
     position: relative;
     width: 75%;
-    min-height: 120px;
-    min-width: 200px;
-    height: 25vw;
-    background: white;
+    min-height: 200px;
+    min-width: 120px;
+    height: 55vw;
     margin-left: auto;
     margin-right: auto;
 `;
 
 const Info = styled.div`
     width: 75%;
-    height: 9vw;
+    height: 30%;
     min-width: 200px;
-    background: white;
+    min-height: 38px;
     margin-left: auto;
     margin-right: auto;
-    background: white;
     font-size: 10px;
     overflow:hidden;
+    font-family: arial;
 `;
+
 
 const Img = styled.img`
   cursor: pointer;
@@ -49,6 +50,7 @@ const HeaderFont = styled.p`
     font-size: 25px;
     margin: 4px;
     font-weight: bold;
+    font-family: 
 `;
 
 const InfoFont = styled.p`
