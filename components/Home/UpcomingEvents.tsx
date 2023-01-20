@@ -17,6 +17,7 @@ const Container = styled.div`
   padding: 35px;
   border-radius: 10px;
   white-space: nowrap;
+  overflow-x: auto;
 `;
 
 const Events = styled.div`
