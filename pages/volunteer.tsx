@@ -1,13 +1,7 @@
-import { SideBar } from '@/components/SideBar';
 import React from 'react';
 
 const VolunteerPage = () => {
-  return (
-    <div>
-      <SideBar />
-      VolunteerPage
-    </div>
-  );
+  return <>Volunteer</>;
 };
 
 export default VolunteerPage;

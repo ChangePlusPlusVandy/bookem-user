@@ -9,7 +9,7 @@ import { UserIcon } from './Home/UserIcon';
  */
 const SideBarBox = styled.div`
   display: flex;
-  position: absolute;
+  position: relative;
   flex-direction: column;
   align-items: stretch;
   text-align: center;
@@ -102,30 +102,26 @@ const iconHeight = 42.47;
 
 export const SideBar = () => {
   return (
-    <>
-      <SideBarBox>
-        <IconBox>
-          <UserIcon />
-        </IconBox>
+    <SideBarBox>
+      <IconBox>
+        <UserIcon />
+      </IconBox>
 
-        {/* Iterate through iconParamList to display icons */}
-        {iconParamList.map(iconParam => {
-          return (
-            <IconBox key={iconParam.defaultSrc}>
-              <IconLink
-                href={iconParam.linkTo}
-                hoveredsrc={iconParam.hoveredSrc}>
-                <Icon
-                  src={iconParam.defaultSrc}
-                  alt=""
-                  width={iconWidth}
-                  height={iconHeight}
-                />
-              </IconLink>
-            </IconBox>
-          );
-        })}
-      </SideBarBox>
-    </>
+      {/* Iterate through iconParamList to display icons */}
+      {iconParamList.map(iconParam => {
+        return (
+          <IconBox key={iconParam.defaultSrc}>
+            <IconLink href={iconParam.linkTo} hoveredsrc={iconParam.hoveredSrc}>
+              <Icon
+                src={iconParam.defaultSrc}
+                alt=""
+                width={iconWidth}
+                height={iconHeight}
+              />
+            </IconLink>
+          </IconBox>
+        );
+      })}
+    </SideBarBox>
   );
 };

@@ -1,4 +1,3 @@
-import { SideBar } from '@/components/SideBar';
 import MainDashboard from '@/components/Home/MainDashboard';
 import React from 'react';
 
@@ -12,7 +11,6 @@ const userData = {
 const HomePage = () => {
   return (
     <>
-      <SideBar />
       <MainDashboard userData={userData} />
     </>
   );

@@ -6,7 +6,6 @@ import Image from 'next/image';
 const Container = styled.div`
   height: 100%;
   width: 100%;
-  background-color: white;
   padding: 40px;
 `;
 

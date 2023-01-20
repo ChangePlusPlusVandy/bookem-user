@@ -1,13 +1,7 @@
-import { SideBar } from '@/components/SideBar';
 import React from 'react';
 
 const RequestPage = () => {
-  return (
-    <div>
-      <SideBar />
-      Request
-    </div>
-  );
+  return <>Request</>;
 };
 
 export default RequestPage;

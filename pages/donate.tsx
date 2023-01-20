@@ -1,13 +1,7 @@
-import { SideBar } from '@/components/SideBar';
 import React from 'react';
 
 const DonatePage = () => {
-  return (
-    <div>
-      <SideBar />
-      Donate
-    </div>
-  );
+  return <>Donate</>;
 };
 
 export default DonatePage;
