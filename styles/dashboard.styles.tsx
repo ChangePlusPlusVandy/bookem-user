@@ -41,7 +41,7 @@ export const InfoIcon = styled.div`
 
 export const StatsContainer = styled.div`
   height: fit-content;
-  margin-top: 49px;
+  margin-top: 50px;
   background-color: white;
 `;
 
@@ -55,14 +55,14 @@ export const StatsHeader = styled.p`
   color: #000000;
 `;
 
-export const Flex = styled.div`
+export const StatsFlex = styled.div`
   height: fit-content;
   display: flex;
   justify-content: space-evenly;
 `;
 
 export const FlexChild = styled.div`
-  flex: 1;
+  flex: 0 1 auto;
   margin: 10px;
   padding: 10px;
   text-align: center;
@@ -88,38 +88,4 @@ export const StatsDescription = styled.p`
   line-height: 19px;
   text-align: center;
   color: #000000;
-`;
-
-export const LogButton = styled.button`
-  width: 222px;
-  height: 74px;
-  background: #6d6d6d;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 30px;
-  color: #ffffff;
-`;
-
-export const PastActivityButton = styled.button`
-  width: 222px;
-  height: 74px;
-  background: #d6d6d6;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 30px;
-  color: #000000;
-`;
-
-export const VolunteerButtonsContainer = styled.div`
-  margin-top: 80px;
 `;

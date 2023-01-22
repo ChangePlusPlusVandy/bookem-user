@@ -10,7 +10,7 @@ import {
   InfoIcon,
   StatsContainer,
   StatsDescription,
-  Flex,
+  StatsFlex,
   FlexChild,
   StatsHeader,
   StatsNumber,
@@ -32,7 +32,7 @@ const MainDashboard = ({ userData }: any) => {
 
         <StatsContainer>
           <StatsHeader>Your accomplishments at a glance:</StatsHeader>
-          <Flex>
+          <StatsFlex>
             <FlexChild>
               <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
               <StatsDescription>Hours volunteered</StatsDescription>
@@ -47,7 +47,7 @@ const MainDashboard = ({ userData }: any) => {
               <StatsNumber>{userData.dollarsDonated}</StatsNumber>
               <StatsDescription>Dollars donated</StatsDescription>
             </FlexChild>
-          </Flex>
+          </StatsFlex>
         </StatsContainer>
 
         <UpcomingEventsContainer>
