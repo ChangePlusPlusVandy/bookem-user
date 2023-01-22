@@ -8,8 +8,11 @@ const Container = styled.div`
   width: 50vw;
   height: 100vh;
   background: #dbdbdb;
-  padding: 60px calc(50vw - 40%);
-  gap: 2vh;
+  padding-top: 130px;
+  padding-left: 120px;
+  padding-right: 120px;
+  gap: 1vh;
+  overflow-y:auto
 `;
 
 const ImgContainer = styled.div`
@@ -25,12 +28,20 @@ const ImgContainer = styled.div`
 const HeaderFont = styled.p`
   font-size: 25px;
   margin: 4px;
+  width: 85%;
   font-weight: bold;
+  font-family: arial;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const InfoFont = styled.p`
   font-size: 15px;
-  margin: 4px;
+  width: 85%;
+  margin-top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: arial;
 `;
 
 const LeftDisplay = () => {
