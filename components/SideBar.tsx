@@ -32,17 +32,24 @@ const IconBox = styled.div`
  * Make each icon a link
  * @hoveredsrc src of the img when hovered or focused
  */
-const IconLink = styled(Link)<{ hoveredsrc: string; backgroundColor: string }>`
+const IconLink = styled(Link)<{
+  hoveredSrc: string;
+  backgroundColor: string;
+  imgSrc: string;
+}>`
   display: inline-block;
   padding: 25px 0px 25px 0px;
   width: 100%;
-  background-color: ${props => props.backgroundColor}
+  background-color: ${props => props.backgroundColor};
+  img {
+    content: url(${props => props.imgSrc});
+  }
   // &:hover {
   //   background-color: #d9d9d9;
   //   img {
-  //     content: url(${props => props.hoveredsrc});
+  //     content: url(${props => props.hoveredSrc});
   //   }
-  }
+  // }
 `;
 
 /**
@@ -119,9 +126,14 @@ export const SideBar = () => {
           <IconBox key={iconParam.defaultSrc}>
             <IconLink
               href={iconParam.linkTo}
-              hoveredsrc={iconParam.hoveredSrc}
+              hoveredSrc={iconParam.hoveredSrc}
               backgroundColor={
                 activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
+              }
+              imgSrc={
+                activeRoute === iconParam.linkTo
+                  ? iconParam.hoveredSrc
+                  : iconParam.defaultSrc
               }>
               <Icon
                 src={iconParam.defaultSrc}
