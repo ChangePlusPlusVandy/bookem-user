@@ -10,7 +10,7 @@ const Background = styled.div`
   z-index: 10;
   background: black;
   display: flex;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.4);
 `;
 
 const Container = styled.div`
@@ -18,8 +18,8 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
-  height: 80%;
+  width: 85%;
+  height: 85%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -49,6 +49,7 @@ type Props = {
   hidePopup: () => void;
   children: JSX.Element;
 };
+
 export const PopupWindow = ({ hidePopup, children }: Props) => {
   return (
     <Background>
