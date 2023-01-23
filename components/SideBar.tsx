@@ -1,9 +1,8 @@
 import Image, { StaticImageData } from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { UserIcon } from '@/components/UserIcon';
-import { useRouter } from 'next/router';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 
 /**
@@ -31,6 +30,8 @@ const IconBox = styled.div`
 /**
  * Make each icon a link
  * @hoveredsrc src of the img when hovered or focused
+ * @backgroundColor The background color of the link according to the route
+ * @imgSrc The src of the icon according to the route
  */
 const IconLink = styled(Link)<{
   hoveredSrc: string;
@@ -112,7 +113,6 @@ export const SideBar = () => {
     },
   ]);
   const activeRoute = useActiveRoute();
-  const router = useRouter();
 
   return (
     <SideBarBox>
@@ -124,17 +124,21 @@ export const SideBar = () => {
       {iconParamList.map(iconParam => {
         return (
           <IconBox key={iconParam.defaultSrc}>
+            {/* Link that wraps around the icon */}
             <IconLink
               href={iconParam.linkTo}
               hoveredSrc={iconParam.hoveredSrc}
+              // Dynamically assign the background color according to the current route
               backgroundColor={
                 activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
               }
+              // Dynamically assign the src of the icon according to the current route
               imgSrc={
                 activeRoute === iconParam.linkTo
                   ? iconParam.hoveredSrc
                   : iconParam.defaultSrc
               }>
+              {/* Icon image with default src */}
               <Icon
                 src={iconParam.defaultSrc}
                 alt=""
