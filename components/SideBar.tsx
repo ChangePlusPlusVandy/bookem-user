@@ -44,12 +44,12 @@ const IconLink = styled(Link)<{
   img {
     content: url(${props => props.imgSrc});
   }
-  // &:hover {
-  //   background-color: #d9d9d9;
-  //   img {
-  //     content: url(${props => props.hoveredSrc});
-  //   }
-  // }
+  &:hover {
+    background-color: #d9d9d9;
+    img {
+      content: url(${props => props.hoveredSrc});
+    }
+  }
 `;
 
 /**
