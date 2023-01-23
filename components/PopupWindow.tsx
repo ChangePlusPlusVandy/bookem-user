@@ -44,14 +44,16 @@ const CloseButton = styled.button`
   color: #dbdbdb;
   font-size: 30px;
 `;
-export const PopupWindow = (
-  { children }: { children: React.ReactNode },
-  hidePopup: () => void
-) => {
+
+type Props = {
+  hidePopup: () => void;
+  children: JSX.Element;
+};
+export const PopupWindow = ({ hidePopup, children }: Props) => {
   return (
     <Background>
       <Container>
-        <CloseButton>&#215;</CloseButton>
+        <CloseButton onClick={hidePopup}>&#215;</CloseButton>
         {children}
       </Container>
     </Background>

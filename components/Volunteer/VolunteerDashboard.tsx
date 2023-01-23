@@ -24,7 +24,7 @@ const VolunteerDashboard = ({ userData }: any) => {
       <button onClick={handleShowPopup}>Open popup</button>
 
       {showPopup ? (
-        <PopupWindow>
+        <PopupWindow hidePopup={hidePopup}>
           {/* insert popup content here */}
           <LeftDisplay></LeftDisplay>
         </PopupWindow>
