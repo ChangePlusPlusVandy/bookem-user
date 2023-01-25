@@ -44,6 +44,7 @@ const SubmitButton = styled.input`
   width: 100px;
   height: 40px;
   border-radius: 10px;
+  cursor: pointer;
 `;
 
 const CustomForm = () => {
