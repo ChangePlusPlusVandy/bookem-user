@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import styled from 'styled-components';
 
 const Background = styled.div`
@@ -51,9 +51,32 @@ type Props = {
 };
 
 export const PopupWindow = ({ hidePopup, children }: Props) => {
+  const wrapperRef = useRef(null);
+  useOutsideAlerter(wrapperRef);
+
+  function useOutsideAlerter(ref: React.RefObject<HTMLElement>) {
+    useEffect(() => {
+      /**
+       * Alert if clicked on outside of element
+       */
+      function handleClickOutside(event: any) {
+        if (ref.current && !ref.current.contains(event.target)) {
+          console.log('you have clicked outside');
+          hidePopup();
+        }
+      }
+      // Bind the event listener
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => {
+        // Unbind the event listener on clean up
+        document.removeEventListener('mousedown', handleClickOutside);
+      };
+    }, [ref]);
+  }
+
   return (
     <Background>
-      <Container>
+      <Container ref={wrapperRef}>
         <CloseButton onClick={hidePopup}>&#215;</CloseButton>
         {children}
       </Container>

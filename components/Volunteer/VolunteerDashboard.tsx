@@ -15,25 +15,24 @@ const VolunteerDashboard = ({ userData }: any) => {
   function handleShowPopup() {
     setShowPopup(true);
   }
-
+  
   function hidePopup() {
     setShowPopup(false);
   }
+
   return (
     <Container>
-      <button onClick={handleShowPopup}>Open popup</button>
-
+      <button onClick={handleShowPopup}>Open popup</button>{' '}
+      {/*assign onClick as prop to open button */}
       {showPopup ? (
         <PopupWindow hidePopup={hidePopup}>
-          {/* insert popup content here */}
+          {/* insert popup content instead of LeftDisplay */}
           <LeftDisplay></LeftDisplay>
         </PopupWindow>
       ) : null}
-
       <GreetingContainer>
         <Greeting>Volunteer</Greeting>
       </GreetingContainer>
-
       <FutureVolunteerEvents />
     </Container>
   );
