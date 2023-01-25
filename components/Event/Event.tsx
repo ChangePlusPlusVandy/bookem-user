@@ -10,13 +10,18 @@ const EventBox = styled.div`
   height: 100vh;
   padding: 82px 80px 80px 66.5px;
 `;
+const MiddleBox = styled.div`
+  background-color: gray;
+`;
 
 const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
   return (
     <>
-      <Header />
       <EventBox>
-        <BookIcon />
+        <Header />
+        <MiddleBox>
+          <BookIcon />
+        </MiddleBox>
       </EventBox>
     </>
   );

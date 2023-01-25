@@ -7,6 +7,7 @@ const BookIcon = () => {
     width: 248px;
     height: 248px;
     border-radius: 50%;
+    margin-top: 62px;
     border: 10px solid #5a5a5a;
     display: flex;
     align-items: center;
@@ -17,7 +18,7 @@ const BookIcon = () => {
   return (
     <>
       <IconContainer>
-        <Icon src="/event/bookmark.png" alt="" width={84.7} height={97.41} />
+        <Icon src="/event/bookmark.png" alt="" width={135} height={135} />
       </IconContainer>
     </>
   );
