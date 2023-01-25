@@ -12,7 +12,7 @@ const Container = styled.div`
   padding-left: 120px;
   padding-right: 120px;
   gap: 1vh;
-  overflow-y:auto
+  overflow-y: auto;
 `;
 
 const ImgContainer = styled.div`

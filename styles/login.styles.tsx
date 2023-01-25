@@ -17,7 +17,7 @@ export const RightContainer = styled.div`
   gap: 4vh;
   padding-left: 15vh;
   padding-right: 15vh;
-  overflow-y:auto;
+  overflow-y: auto;
 `;
 
 export const LoginForm = styled.form`
@@ -54,7 +54,7 @@ export const Footer = styled.div`
   width: 50vw;
   height: 17vh;
   background: gray;
-  overflow-y:auto;
+  overflow-y: auto;
 `;
 export const ExternalPrompt = styled.p`
   padding-top: 8px;
