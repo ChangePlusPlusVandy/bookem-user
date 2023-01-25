@@ -56,36 +56,56 @@ const CustomForm = () => {
         <List>
           <FormHeader>Please select one program</FormHeader>
           <FormLabel>
-            <input type="radio" name="first-page"></input>
+            <input {...register('Program')} type="radio" value="RIF"></input>
             Reading is Fundamental (RIF)
           </FormLabel>
           <FormLabel>
-            <input type="radio" name="first-page"></input>
+            <input {...register('Program')} type="radio" value="RFR"></input>
             Ready for Reading (RFR)
           </FormLabel>
           <FormLabel>
-            <input type="radio" name="first-page"></input>
+            <input {...register('Program')} type="radio" value="BFNK"></input>
             Books for Nashville Kids (BFNK)
           </FormLabel>
           <FormLabel>Please log volunteer hours</FormLabel>
-          <FormInput type="text" placeholder="# of hours"></FormInput>
+          <FormInput
+            {...register('Number of Hours')}
+            type="text"
+            placeholder="# of hours"></FormInput>
           <FormLabel>Date of visit</FormLabel>
-          <FormInput type="text" placeholder="MM/DD/YYYY"></FormInput>
+          <FormInput
+            {...register('Date of Visit')}
+            type="text"
+            placeholder="MM/DD/YYYY"></FormInput>
           <FormLabel>How many books did you help distribute, if any?</FormLabel>
-          <FormInput type="text" placeholder="# of books"></FormInput>
+          <FormInput
+            {...register('Number of Books')}
+            type="text"
+            placeholder="# of books"></FormInput>
           <FormLabel>Anything else you&apos;d like to share?</FormLabel>
-          <LargeFormInput placeholder="Comment here..."></LargeFormInput>
+          <LargeFormInput
+            {...register('Comment')}
+            placeholder="Comment here..."></LargeFormInput>
           <FormLabel>Would you like to share this comment?</FormLabel>
           <FormLabel>
-            <input type="radio" name="third-page"></input>
+            <input
+              type="radio"
+              {...register('Share Comment')}
+              value="Yes"></input>
             Yes
           </FormLabel>
           <FormLabel>
-            <input type="radio" name="third-page"></input>
+            <input
+              type="radio"
+              {...register('Share Comment')}
+              value="Anonymous"></input>
             Yes, but anonymously
           </FormLabel>
           <FormLabel>
-            <input type="radio" name="third-page"></input>
+            <input
+              type="radio"
+              {...register('Share Comment')}
+              value="No"></input>
             No
           </FormLabel>
           <SubmitButton type="submit"></SubmitButton>
