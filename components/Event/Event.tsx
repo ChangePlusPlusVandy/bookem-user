@@ -1,8 +1,9 @@
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import React from 'react';
 import styled from 'styled-components';
-import Header from '../Header';
+import Header from './Header';
 import BookIcon from './BookIcon';
+import ProgramName from './ProgramName';
 
 const EventBox = styled.div`
   background-color: pink;
@@ -11,7 +12,8 @@ const EventBox = styled.div`
   padding: 82px 80px 80px 66.5px;
 `;
 const MiddleBox = styled.div`
-  background-color: gray;
+  display: flex;
+  background-color: #e4ebf7;
 `;
 
 const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
@@ -21,6 +23,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
         <Header />
         <MiddleBox>
           <BookIcon />
+          <ProgramName programName={event.name} />
         </MiddleBox>
       </EventBox>
     </>
