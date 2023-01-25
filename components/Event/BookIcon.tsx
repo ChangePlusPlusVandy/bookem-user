@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image';
 
-export const BookIcon = () => {
+const BookIcon = () => {
   const IconContainer = styled.div`
     width: 248px;
     height: 248px;
@@ -22,3 +22,5 @@ export const BookIcon = () => {
     </>
   );
 };
+
+export default BookIcon;
