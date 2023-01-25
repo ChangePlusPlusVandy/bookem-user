@@ -4,15 +4,16 @@ import Image from 'next/image';
 
 export const BookIcon = () => {
   const IconContainer = styled.div`
-    width: 281px;
-    height: 281px;
+    width: 248px;
+    height: 248px;
     border-radius: 50%;
-    border: 2px solid black;
+    border: 10px solid #5a5a5a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `;
 
-  const Icon = styled(Image)`
-    text-align: center;
-  `;
+  const Icon = styled(Image)``;
   return (
     <>
       <IconContainer>
