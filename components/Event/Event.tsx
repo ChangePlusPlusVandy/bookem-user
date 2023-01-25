@@ -1,6 +1,7 @@
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import React from 'react';
 import styled from 'styled-components';
+import Header from '../Header';
 import BookIcon from './BookIcon';
 
 const EventBox = styled.div`
@@ -13,6 +14,7 @@ const EventBox = styled.div`
 const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
   return (
     <>
+      <Header />
       <EventBox>
         <BookIcon />
       </EventBox>
