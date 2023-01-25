@@ -2,53 +2,53 @@ import React from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 
+const FormBox = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const FormHeader = styled.legend`
+  font-weight: bold;
+`;
+
+const List = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 10px 0;
+`;
+
+const FormLabel = styled.label`
+  margin-top: 20px;
+`;
+
+const FormInput = styled.input`
+  margin-top: 20px;
+  border-radius: 10px;
+  height: 25px;
+`;
+
+const LargeFormInput = styled.textarea`
+  margin-top: 20px;
+  border-radius: 10px;
+  width: 400px;
+  height: 100px;
+  font-family: 'Times New Roman', serif;
+  font-size: 1em;
+`;
+
+const SubmitButton = styled.input`
+  margin-left: 150px;
+  margin-top: 40px;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+`;
+
 const CustomForm = () => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => console.log(data);
-
-  const FormBox = styled.div`
-    display: flex;
-    justify-content: center;
-  `;
-
-  const FormHeader = styled.legend`
-    font-weight: bold;
-  `;
-
-  const List = styled.ul`
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 10px 0;
-  `;
-
-  const FormLabel = styled.label`
-    margin-top: 20px;
-  `;
-
-  const FormInput = styled.input`
-    margin-top: 20px;
-    border-radius: 10px;
-    height: 25px;
-  `;
-
-  const LargeFormInput = styled.textarea`
-    margin-top: 20px;
-    border-radius: 10px;
-    width: 400px;
-    height: 100px;
-    font-family: 'Times New Roman', serif;
-    font-size: 1em;
-  `;
-
-  const SubmitButton = styled.input`
-    margin-left: 150px;
-    margin-top: 40px;
-    width: 100px;
-    height: 40px;
-    border-radius: 10px;
-  `;
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
