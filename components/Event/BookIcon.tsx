@@ -9,7 +9,9 @@ const BookIcon = () => {
     justify-content: center;
     align-self: center;
     width: 248px;
+    min-width: 248px;
     height: 248px;
+    min-height: 248px;
     border-radius: 50%;
     border: 10px solid #5a5a5a;
   `;
