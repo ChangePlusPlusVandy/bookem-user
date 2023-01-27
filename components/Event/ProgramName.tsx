@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const ProgramNameBox = styled.div`
   margin-left: 82px;
-  height: 220px;
+  height: auto;
 `;
 
 const NameAndSpot = styled.p`
@@ -13,7 +13,19 @@ const NameAndSpot = styled.p`
   line-height: 50px;
 `;
 
-const SignupButton = styled.button``;
+const SignupButton = styled.button`
+  width: 135px;
+  padding: 10px 10px 10px 10px;
+  background: #5a5a5a;
+  border-radius: 10px;
+  cursor: pointer;
+  color: white;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+`;
 const ProgramName = ({ programName }: { programName: string }) => {
   return (
     <>
