@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Header from './Header';
 import BookIcon from './BookIcon';
 import ProgramName from './ProgramName';
+import TimeAndPlace from './TimeAndPlace';
 
 const EventBox = styled.div`
   background-color: pink;
@@ -13,6 +14,7 @@ const EventBox = styled.div`
 `;
 const MiddleBox = styled.div`
   display: flex;
+  margin-top: 62px;
   background-color: #e4ebf7;
 `;
 
@@ -25,6 +27,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
           <BookIcon />
           <ProgramName programName={event.name} />
         </MiddleBox>
+        <TimeAndPlace programDate={event.programDate} />
       </EventBox>
     </>
   );
