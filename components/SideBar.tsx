@@ -34,21 +34,21 @@ const IconBox = styled.div`
  * @imgSrc The src of the icon according to the route
  */
 const IconLink = styled(Link)<{
-  hoveredSrc: string;
-  backgroundColor: string;
-  imgSrc: string;
+  hoveredsrc: string;
+  backgroundcolor: string;
+  imgsrc: string;
 }>`
   display: inline-block;
   padding: 25px 0px 25px 0px;
   width: 100%;
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.backgroundcolor};
   img {
-    content: url(${props => props.imgSrc});
+    content: url(${props => props.imgsrc});
   }
   &:hover {
     background-color: #d9d9d9;
     img {
-      content: url(${props => props.hoveredSrc});
+      content: url(${props => props.hoveredsrc});
     }
   }
 `;
@@ -127,13 +127,13 @@ export const SideBar = () => {
             {/* Link that wraps around the icon */}
             <IconLink
               href={iconParam.linkTo}
-              hoveredSrc={iconParam.hoveredSrc}
+              hoveredsrc={iconParam.hoveredSrc}
               // Dynamically assign the background color according to the current route
-              backgroundColor={
+              backgroundcolor={
                 activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
               }
               // Dynamically assign the src of the icon according to the current route
-              imgSrc={
+              imgsrc={
                 activeRoute === iconParam.linkTo
                   ? iconParam.hoveredSrc
                   : iconParam.defaultSrc
