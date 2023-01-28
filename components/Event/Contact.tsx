@@ -11,18 +11,32 @@ const ContactBox = styled.div`
 
 const ContactHeader = styled.div``;
 
+/**
+ * Contains Icon + text
+ */
 const IconBox = styled.div``;
 
 const Icon = styled(Image)``;
 
 const IconText = styled.span``;
 
+/**
+ * Parameter of each icon + text box
+ * @src src for the icon image
+ * @text text associated with that icon
+ */
 interface IconParams {
   src: string;
   text: string;
 }
 
+/**
+ * Contain Contact info
+ */
 const Contact = () => {
+  /**
+   * List of icon params
+   */
   const iconParamList: IconParams[] = [
     {
       src: '/event/phone.png',
@@ -39,8 +53,9 @@ const Contact = () => {
   return (
     <>
       <ContactBox>
-        <ContactHeader></ContactHeader>
+        <ContactHeader>Contact</ContactHeader>
 
+        {/* Iterate through iconParamList to generate multiple icon + text box */}
         {iconParamList.map(iconParam => {
           return (
             <IconBox key={iconParam.src}>

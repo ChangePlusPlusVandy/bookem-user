@@ -6,11 +6,13 @@ import styled from 'styled-components';
 const HeaderBox = styled.div`
   display: flex;
   height: 48px;
-  background-color: lightblue;
+  // background-color: lightblue;
 `;
 
+/**
+ * Arrow Image as a link
+ */
 const ArrowLink = styled(Link)``;
-
 const ArrowImg = styled(Image)``;
 
 const EventDetailText = styled.span`
@@ -21,6 +23,10 @@ const EventDetailText = styled.span`
   font-weight: 400;
   font-size: 40px;
 `;
+
+/**
+ * Contain the Header Event Detail
+ */
 const Header = () => {
   return (
     <>

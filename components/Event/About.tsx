@@ -18,6 +18,10 @@ const AboutContent = styled.div`
   margin-top: 10px;
 `;
 
+/**
+ * Contains the program description
+ * @param description Description of the current event
+ */
 const About = ({ description }: { description: string }) => {
   return (
     <>

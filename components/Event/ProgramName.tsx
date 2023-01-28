@@ -26,6 +26,11 @@ const SignupButton = styled.button`
   font-size: 30px;
   line-height: 36px;
 `;
+
+/**
+ * Contain the Program name and sign up button
+ * @param programName
+ */
 const ProgramName = ({ programName }: { programName: string }) => {
   return (
     <>

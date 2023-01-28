@@ -9,14 +9,19 @@ const TimeAndPlaceBox = styled.div`
   align-items: center;
   height: 50px;
   margin-top: 20px;
-  background-color: #faffdb;
+  // background-color: #faffdb;
 `;
 
+/**
+ * Contains the Icon + text
+ */
 const IconBox = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Icon = styled(Image)``;
+
 const IconText = styled.span`
   margin-left: 30px;
   font-family: 'Inter';
@@ -26,14 +31,27 @@ const IconText = styled.span`
   line-height: 22px;
 `;
 
+/**
+ * Parameter of each icon + text box
+ * @src src for the icon image
+ * @text text associated with that icon
+ */
 interface IconParams {
   src: string;
   text: string;
 }
 
+/**
+ * Contain Program's date and location
+ * @param programDate
+ */
 const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
   const iconWidth = 50;
   const iconHeight = 50;
+
+  /**
+   * List of icon params
+   */
   const iconParamList: IconParams[] = [
     {
       src: '/event/calendar.png',
@@ -55,6 +73,7 @@ const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
   return (
     <>
       <TimeAndPlaceBox>
+        {/* Iterate through iconParamList to produce a list of icon + text */}
         {iconParamList.map(iconParam => {
           return (
             <IconBox key={iconParam.src}>
