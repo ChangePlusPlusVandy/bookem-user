@@ -5,20 +5,31 @@ import styled from 'styled-components';
 const ContactBox = styled.div`
   width: 500px;
   height: 200px;
-  margin-left: 100px;
-  background-color: #d2aae6;
+  // background-color: #d2aae6;
 `;
 
-const ContactHeader = styled.div``;
+const ContactHeader = styled.div`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+`;
 
 /**
  * Contains Icon + text
  */
-const IconBox = styled.div``;
+const IconBox = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+`;
 
 const Icon = styled(Image)``;
 
-const IconText = styled.span``;
+const IconText = styled.span`
+  margin-left: 5px;
+`;
 
 /**
  * Parameter of each icon + text box

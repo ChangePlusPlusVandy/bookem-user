@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const AboutBox = styled.div`
   width: 700px;
   height: 200px;
-  background-color: #dcfae3;
+  // background-color: #dcfae3;
 `;
 
 const AboutHeader = styled.div`

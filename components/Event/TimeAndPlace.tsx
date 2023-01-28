@@ -67,7 +67,7 @@ const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
     },
     {
       src: '/event/map-pin.png',
-      text: '',
+      text: '3593 Cedar Rd. Nashville',
     },
   ];
   return (
