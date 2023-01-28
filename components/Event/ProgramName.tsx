@@ -6,7 +6,7 @@ const ProgramNameBox = styled.div`
   height: auto;
 `;
 
-const NameAndSpot = styled.p`
+const NameAndSpot = styled.div`
   font-family: 'Inter';
   font-style: normal;
   font-size: 30px;
@@ -15,6 +15,7 @@ const NameAndSpot = styled.p`
 
 const SignupButton = styled.button`
   width: 135px;
+  margin-top: 60px;
   padding: 10px 10px 10px 10px;
   background: #5a5a5a;
   border-radius: 10px;

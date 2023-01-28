@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 const ContactBox = styled.div`
   width: 500px;
-  height: 200px;
+  margin-left: 147px;
   // background-color: #d2aae6;
 `;
 
@@ -16,19 +16,27 @@ const ContactHeader = styled.div`
   line-height: 36px;
 `;
 
+const BigIconBox = styled.div`
+  margin-top: 49px;
+`;
+
 /**
  * Contains Icon + text
  */
 const IconBox = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin-bottom: 35px;
 `;
 
 const Icon = styled(Image)``;
 
 const IconText = styled.span`
-  margin-left: 5px;
+  margin-left: 37px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
 `;
 
 /**
@@ -65,21 +73,22 @@ const Contact = () => {
     <>
       <ContactBox>
         <ContactHeader>Contact</ContactHeader>
-
-        {/* Iterate through iconParamList to generate multiple icon + text box */}
-        {iconParamList.map(iconParam => {
-          return (
-            <IconBox key={iconParam.src}>
-              <Icon
-                src={iconParam.src}
-                alt=""
-                width={iconWidth}
-                height={iconHeight}
-              />
-              <IconText>{iconParam.text}</IconText>
-            </IconBox>
-          );
-        })}
+        <BigIconBox>
+          {/* Iterate through iconParamList to generate multiple icon + text box */}
+          {iconParamList.map(iconParam => {
+            return (
+              <IconBox key={iconParam.src}>
+                <Icon
+                  src={iconParam.src}
+                  alt=""
+                  width={iconWidth}
+                  height={iconHeight}
+                />
+                <IconText>{iconParam.text}</IconText>
+              </IconBox>
+            );
+          })}
+        </BigIconBox>
       </ContactBox>
     </>
   );

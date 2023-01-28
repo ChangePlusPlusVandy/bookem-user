@@ -5,7 +5,7 @@ import styled from 'styled-components';
 const TimeAndPlaceBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   height: 50px;
   margin-top: 20px;
@@ -17,17 +17,18 @@ const TimeAndPlaceBox = styled.div`
  */
 const IconBox = styled.div`
   display: flex;
+  margin-right: 200px;
   align-items: center;
 `;
 
 const Icon = styled(Image)``;
 
 const IconText = styled.span`
-  margin-left: 30px;
+  margin-left: 46px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 23px;
+  font-size: 18px;
   line-height: 22px;
 `;
 
