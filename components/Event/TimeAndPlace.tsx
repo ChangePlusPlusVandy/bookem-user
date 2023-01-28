@@ -17,7 +17,6 @@ const TimeAndPlaceBox = styled.div`
  */
 const IconBox = styled.div`
   display: flex;
-  margin-right: 200px;
   align-items: center;
 `;
 
