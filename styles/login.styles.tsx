@@ -37,6 +37,7 @@ export const Button = styled.button`
   border-radius: 14px;
   &:hover {
     background-color: green;
+    cursor: pointer;
   }
   width: 275px;
   margin-left: auto;
@@ -104,6 +105,7 @@ export const SubmitButton = styled.input`
   border-radius: 14px;
   &:hover {
     background-color: green;
+    cursor: pointer;
   }
   width: 275px;
   margin-left: auto;
@@ -118,6 +120,7 @@ export const IconButton = styled.button`
   border: 0px;
   &:hover {
     background-color: green;
+    cursor: pointer;
   }
 `;
 
