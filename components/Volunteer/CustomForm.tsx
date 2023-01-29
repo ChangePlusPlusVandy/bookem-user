@@ -72,17 +72,23 @@ const CustomForm = () => {
           <FormInput
             {...register('Number of Hours')}
             type="text"
-            placeholder="# of hours"></FormInput>
+            placeholder="# of hours"
+            pattern="^[1-9]\d*(\.\d+)?$"
+            title="Input must be a number"></FormInput>
           <FormLabel>Date of visit</FormLabel>
           <FormInput
             {...register('Date of Visit')}
             type="text"
-            placeholder="MM/DD/YYYY"></FormInput>
+            placeholder="MM/DD/YYYY"
+            pattern="^((0|1)\d{1})\/((0|1|2)\d{1})\/((19|20)\d{2})"
+            title="Input must be in MM/DD/YYYY format"></FormInput>
           <FormLabel>How many books did you help distribute, if any?</FormLabel>
           <FormInput
             {...register('Number of Books')}
             type="text"
-            placeholder="# of books"></FormInput>
+            placeholder="# of books"
+            pattern="^[0-9]*$"
+            title="Input must be a whole number"></FormInput>
           <FormLabel>Anything else you&apos;d like to share?</FormLabel>
           <LargeFormInput
             {...register('Comment')}
