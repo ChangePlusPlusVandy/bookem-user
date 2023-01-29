@@ -6,7 +6,7 @@ import {
   Greeting,
   GreetingContainer,
 } from '@/styles/dashboard.styles';
-import LeftDisplay from '../LeftDisplay';
+import LeftDisplay from '../LeftDisplay'; //remove this when not testing
 import { useState } from 'react';
 
 const VolunteerDashboard = ({ userData }: any) => {
