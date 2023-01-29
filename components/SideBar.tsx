@@ -1,52 +1,7 @@
-import Image, { StaticImageData } from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
 import { UserIcon } from '@/components/UserIcon';
-
-/**
- * Container of sidebar
- */
-const SideBarBox = styled.div`
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  align-items: stretch;
-  text-align: center;
-  justify-content: space-between;
-  width: 120px;
-  height: 100vh;
-  background-color: #6d6d6d;
-`;
-
-/**
- * Container of icon
- */
-const IconBox = styled.div`
-  padding-top: 20px;
-`;
-
-/**
- * Make each icon a link
- * @hoveredsrc src of the img when hovered or focused
- */
-const IconLink = styled(Link)<{ hoveredsrc: string }>`
-  display: inline-block;
-  padding: 25px 0px 25px 0px;
-  width: 100%;
-  &:hover,
-  &:focus {
-    background-color: #d9d9d9;
-    img {
-      content: url(${props => props.hoveredsrc});
-    }
-  }
-`;
-
-/**
- * Icon image
- */
-const Icon = styled(Image)``;
+import { useActiveRoute } from '@/lib/useActiveRoute';
+import { Icon, IconBox, IconLink, SideBarBox } from '@/styles/sidebar.styles';
 
 /**
  * Icon Param container.
@@ -62,9 +17,19 @@ interface IconParams {
 }
 
 /**
+ * Default width of icons
+ */
+const iconWidth = 41.25;
+
+/**
+ * Default height of icons
+ */
+const iconHeight = 42.47;
+
+/**
  * List of IconParams
  */
-const iconParamList: IconParams[] = [
+const iconParamList = [
   {
     defaultSrc: '/sidebar/home-white.png',
     hoveredSrc: '/sidebar/home-black.png',
@@ -92,17 +57,9 @@ const iconParamList: IconParams[] = [
   },
 ];
 
-/**
- * Default width of icons
- */
-const iconWidth = 41.25;
-
-/**
- * Default height of icons
- */
-const iconHeight = 42.47;
-
 export const SideBar = () => {
+  const activeRoute = useActiveRoute();
+
   return (
     <SideBarBox>
       <IconBox>
@@ -113,7 +70,21 @@ export const SideBar = () => {
       {iconParamList.map(iconParam => {
         return (
           <IconBox key={iconParam.defaultSrc}>
-            <IconLink href={iconParam.linkTo} hoveredsrc={iconParam.hoveredSrc}>
+            {/* Link that wraps around the icon */}
+            <IconLink
+              href={iconParam.linkTo}
+              hoveredSrc={iconParam.hoveredSrc}
+              // Dynamically assign the background color according to the current route
+              backgroundColor={
+                activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
+              }
+              // Dynamically assign the src of the icon according to the current route
+              imgSrc={
+                activeRoute === iconParam.linkTo
+                  ? iconParam.hoveredSrc
+                  : iconParam.defaultSrc
+              }>
+              {/* Icon image with default src */}
               <Icon
                 src={iconParam.defaultSrc}
                 alt=""

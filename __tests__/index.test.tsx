@@ -4,7 +4,21 @@ import VolunteerPage from '@/pages/volunteer';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import HomePage from '../pages';
+
+// mock next-auth
 jest.mock('next-auth/react');
+
+// mock next router
+jest.mock('next/router', () => ({
+  useRouter() {
+    return {
+      route: '/',
+      pathname: '',
+      query: '',
+      asPath: '',
+    };
+  },
+}));
 
 describe('Home', () => {
   it('home page rendered correctly', () => {
