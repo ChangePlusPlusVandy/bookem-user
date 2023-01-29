@@ -34,7 +34,7 @@ export const PopupWindow = ({ hidePopup, children }: Props) => {
     <Background>
       <Container ref={wrapperRef}>
         <CloseButton onClick={hidePopup}>&#215;</CloseButton>
-        {children}
+
       </Container>
     </Background>
   );

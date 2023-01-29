@@ -22,7 +22,7 @@ const VolunteerDashboard = ({ userData }: any) => {
 
   return (
     <Container>
-      <button onClick={handleShowPopup}>Open popup</button>{' '}
+      {/* <button onClick={handleShowPopup}>Open popup</button>{' '} */}
       {/*assign onClick as prop to open button */}
       {showPopup ? (
         <PopupWindow hidePopup={hidePopup}>
