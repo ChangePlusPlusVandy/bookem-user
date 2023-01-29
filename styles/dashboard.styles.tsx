@@ -58,14 +58,12 @@ export const StatsHeader = styled.p`
 
 export const StatsFlex = styled.div`
   height: fit-content;
-  background-color: white;
   display: flex;
   justify-content: space-evenly;
 `;
 
-export const StatsFlexChild = styled.div`
-  flex: 1;
-  background-color: white;
+export const FlexChild = styled.div`
+  flex: 0 1 auto;
   margin: 10px;
   padding: 10px;
   text-align: center;

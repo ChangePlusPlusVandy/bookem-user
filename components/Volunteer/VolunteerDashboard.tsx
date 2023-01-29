@@ -1,13 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PopupWindow } from '../PopupWindow';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
-  Container,
   Greeting,
   GreetingContainer,
+  StatsFlex,
+  FlexChild,
+  StatsNumber,
+  StatsDescription,
 } from '@/styles/dashboard.styles';
-import LeftDisplay from '../LeftDisplay';
-import { useState } from 'react';
+import {
+  DashboardContainer,
+  LogButton,
+  PastActivityButton,
+  VolunteerButtonsContainer,
+  VolunteerButtonsFlex,
+  VolunteerStatsContainer,
+} from '@/styles/volunteerDashboard.styles';
 
 const VolunteerDashboard = ({ userData }: any) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -21,20 +30,44 @@ const VolunteerDashboard = ({ userData }: any) => {
   }
 
   return (
-    <Container>
-      {/* <button onClick={handleShowPopup}>Open popup</button>{' '} */}
-      {/*assign onClick as prop to open button */}
-      {showPopup ? (
-        <PopupWindow hidePopup={hidePopup}>
-          {/* insert popup content instead of LeftDisplay */}
-          <LeftDisplay></LeftDisplay>
-        </PopupWindow>
-      ) : null}
-      <GreetingContainer>
-        <Greeting>Volunteer</Greeting>
-      </GreetingContainer>
+    <>
+      <DashboardContainer>
+        <GreetingContainer>
+          <Greeting>Volunteer</Greeting>
+        </GreetingContainer>
+
+        <VolunteerButtonsContainer>
+          <VolunteerButtonsFlex>
+            <FlexChild>
+              <LogButton>Log hours</LogButton>
+            </FlexChild>
+            <FlexChild>
+              <PastActivityButton>See past activity</PastActivityButton>
+            </FlexChild>
+          </VolunteerButtonsFlex>
+        </VolunteerButtonsContainer>
+
+        <VolunteerStatsContainer>
+          <StatsFlex>
+            <FlexChild>
+              <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
+              <StatsDescription>Hours volunteered</StatsDescription>
+            </FlexChild>
+
+            <FlexChild>
+              <StatsNumber>{userData.booksDistributed}</StatsNumber>
+              <StatsDescription>Books distributed</StatsDescription>
+            </FlexChild>
+
+            <FlexChild>
+              <StatsNumber>{userData.eventsAssisted}</StatsNumber>
+              <StatsDescription>Events assisted</StatsDescription>
+            </FlexChild>
+          </StatsFlex>
+        </VolunteerStatsContainer>
+      </DashboardContainer>
       <FutureVolunteerEvents />
-    </Container>
+    </>
   );
 };
 
