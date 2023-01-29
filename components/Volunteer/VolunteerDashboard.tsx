@@ -1,4 +1,5 @@
 import React from 'react';
+import { PopupWindow } from '../PopupWindow';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
   Greeting,
@@ -18,6 +19,16 @@ import {
 } from '@/styles/volunteerDashboard.styles';
 
 const VolunteerDashboard = ({ userData }: any) => {
+  const [showPopup, setShowPopup] = useState(false);
+
+  function handleShowPopup() {
+    setShowPopup(true);
+  }
+
+  function hidePopup() {
+    setShowPopup(false);
+  }
+
   return (
     <>
       <DashboardContainer>
