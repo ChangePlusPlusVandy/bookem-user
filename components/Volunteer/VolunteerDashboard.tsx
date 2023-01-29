@@ -1,5 +1,6 @@
 import React from 'react';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
+import WindowFlow from '@/components/WindowFlow';
 import {
   Container,
   Greeting,
@@ -13,7 +14,8 @@ const VolunteerDashboard = ({ userData }: any) => {
         <Greeting>Volunteer</Greeting>
       </GreetingContainer>
 
-      <FutureVolunteerEvents />
+      {/* <FutureVolunteerEvents /> */}
+      <WindowFlow children={undefined} />
     </Container>
   );
 };

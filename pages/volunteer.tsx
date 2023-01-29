@@ -1,10 +1,12 @@
 import React from 'react';
 import VolunteerDashboard from '@/components/Volunteer/VolunteerDashboard';
+import WindowFlow from '@/components/WindowFlow';
 
 const VolunteerPage = () => {
   return (
     <>
       <VolunteerDashboard />
+      <WindowFlow children={undefined} />
     </>
   );
 };
