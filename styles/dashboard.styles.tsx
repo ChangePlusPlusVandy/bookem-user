@@ -9,7 +9,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100%;
   background-color: white;
-  padding: 40px;
+  padding: 20px 40px;
   overflow-y: scroll;
   position: relative;
 `;
@@ -29,20 +29,21 @@ export const Greeting = styled.p`
   color: black;
 `;
 
-export const UpcomingEventsContainer = styled.div`
-  margin-top: 40px;
-`;
+export const UpcomingEventsContainer = styled.div``;
 
 export const InfoIcon = styled.div`
   position: absolute;
   top: 82px;
   right: 50px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StatsContainer = styled.div`
   height: fit-content;
-  margin-top: 49px;
-  background-color: white;
+  margin-top: 15px;
 `;
 
 export const StatsHeader = styled.p`
