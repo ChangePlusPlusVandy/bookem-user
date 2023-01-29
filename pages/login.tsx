@@ -17,6 +17,8 @@ import {
   SubmitButton,
 } from '@/styles/login.styles';
 import LeftDisplay from '@/components/LeftDisplay';
+import { useActiveRoute } from '@/lib/useActiveRoute';
+import Link from 'next/link';
 
 const LoginPage = () => {
   // React hook form.
@@ -72,7 +74,9 @@ const LoginPage = () => {
 
         <Footer>
           <LittleText>New here? Come join us!</LittleText>
-          <Button>Create Account</Button>
+          <Link href={'/register'}>
+            <Button>Create Account</Button>
+          </Link>
         </Footer>
       </RightContainer>
     </Container>

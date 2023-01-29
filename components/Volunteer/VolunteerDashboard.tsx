@@ -17,6 +17,7 @@ import {
   VolunteerButtonsFlex,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
+import LeftDisplay from '../LeftDisplay';
 
 const VolunteerDashboard = ({ userData }: any) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -32,6 +33,12 @@ const VolunteerDashboard = ({ userData }: any) => {
   return (
     <>
       <DashboardContainer>
+        {showPopup ? (
+          <PopupWindow hidePopup={hidePopup}>
+            {/* insert popup content instead of LeftDisplay */}
+            <LeftDisplay></LeftDisplay>
+          </PopupWindow>
+        ) : null}
         <GreetingContainer>
           <Greeting>Volunteer</Greeting>
         </GreetingContainer>
@@ -39,7 +46,7 @@ const VolunteerDashboard = ({ userData }: any) => {
         <VolunteerButtonsContainer>
           <VolunteerButtonsFlex>
             <FlexChild>
-              <LogButton>Log hours</LogButton>
+              <LogButton onClick={handleShowPopup}>Log hours</LogButton>
             </FlexChild>
             <FlexChild>
               <PastActivityButton>See past activity</PastActivityButton>
