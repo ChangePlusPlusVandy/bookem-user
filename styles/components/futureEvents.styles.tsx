@@ -24,8 +24,8 @@ export const NavRight = styled.div`
   width: 50%;
   text-align: right;
 
-  svg {
-    margin-right: 20px;
+  img {
+    cursor: pointer;
   }
 `;
 
