@@ -14,12 +14,12 @@ const IconContainer = styled.div`
   border-radius: 50%;
   border: 10px solid #5a5a5a;
 `;
+const Icon = styled(Image)``;
 
 /**
  * Contains the circle + the book icon
  */
 const BookIcon = () => {
-  const Icon = styled(Image)``;
   return (
     <>
       <IconContainer>
