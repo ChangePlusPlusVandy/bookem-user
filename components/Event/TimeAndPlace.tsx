@@ -23,7 +23,7 @@ const IconBox = styled.div`
 const Icon = styled(Image)``;
 
 const IconText = styled.span`
-  margin-left: 46px;
+  margin-left: 20px;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
