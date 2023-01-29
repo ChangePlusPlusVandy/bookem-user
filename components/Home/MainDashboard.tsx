@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import UpcomingEvents from './UpcomingEvents';
 import Image from 'next/image';
 import {
@@ -48,6 +47,11 @@ const MainDashboard = ({ userData }: any) => {
               <StatsDescription>Dollars donated</StatsDescription>
             </StatsFlexChild>
           </StatsFlex>
+        </StatsContainer>
+
+        <StatsContainer>
+          <StatsHeader>Your events</StatsHeader>
+          {/* TODO: add a filter icon on the right */}
         </StatsContainer>
 
         <UpcomingEventsContainer>
