@@ -72,7 +72,9 @@ const LoginPage = () => {
 
         <Footer>
           <LittleText>New here? Come join us!</LittleText>
-          <Button>Create Account</Button>
+          <Button onClick={() => (window.location.href = '/register')}>
+            Create Account
+          </Button>
         </Footer>
       </RightContainer>
     </Container>
