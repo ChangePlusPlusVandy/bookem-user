@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { PopupWindow } from '../PopupWindow';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
+import Image from 'next/image';
 import {
   Greeting,
   GreetingContainer,
@@ -12,7 +13,8 @@ import {
 import {
   DashboardContainer,
   LogButton,
-  PastActivityButton,
+  HistoryButton,
+  ButtonIcon,
   VolunteerButtonsContainer,
   VolunteerButtonsFlex,
   VolunteerStatsContainer,
@@ -39,10 +41,30 @@ const VolunteerDashboard = ({ userData }: any) => {
         <VolunteerButtonsContainer>
           <VolunteerButtonsFlex>
             <FlexChild>
-              <LogButton>Log hours</LogButton>
+              <LogButton>
+                <ButtonIcon>
+                  <Image
+                    src="/pencil.png"
+                    alt="Pencil icon"
+                    width="50"
+                    height="50"
+                  />
+                </ButtonIcon>
+                Log Hours
+              </LogButton>
             </FlexChild>
             <FlexChild>
-              <PastActivityButton>See past activity</PastActivityButton>
+              <HistoryButton>
+                <ButtonIcon>
+                  <Image
+                    src="/history-clock.png"
+                    alt="Clock with arrow icon"
+                    width="50"
+                    height="50"
+                  />
+                </ButtonIcon>
+                See History
+              </HistoryButton>
             </FlexChild>
           </VolunteerButtonsFlex>
         </VolunteerButtonsContainer>
