@@ -45,6 +45,11 @@ export default async function handler(
           name,
           email,
           password: hashedPassword,
+          phone: user.phone,
+          address: user.address,
+          sourceHeardFrom: user.sourceHeardFrom,
+          ethnicity: user.ethnicity,
+          gender: user.gender,
         });
 
         // Return the status of the user creation
