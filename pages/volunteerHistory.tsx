@@ -13,9 +13,18 @@ const Header = styled.h2`
   font-weight: 400;
 `;
 
+const Description = styled.p`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  margin-left: 35px;
+`;
+
 const Icon = styled(Image)`
   position: absolute;
-  margin-left: 20px;
+  margin-left: 30px;
   margin-top: 45px;
 `;
 
@@ -23,7 +32,7 @@ const IconLink = styled(Link)``;
 
 const MainContainer = styled.div`
   height: 639px;
-  width: 1218px;
+  width: 1150px;
   margin-top: 50px;
   margin: auto;
   background-color: #d9d9d9;
@@ -40,6 +49,7 @@ const VolunteerHistoryPage = () => {
         <Icon src="/back-arrow.png" alt="Go Back" width="40" height="40" />
       </IconLink>
       <Header>Volunteer History</Header>
+      <Description>Click on event to see specific details</Description>
       <MainContainer>
         <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
         <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>

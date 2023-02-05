@@ -173,7 +173,7 @@ const LongEventCard = ({
             />
           </CheckmarkIcon>
           <InfoFlexChild ratio={ratio}>
-            {eventData.numSpots} books donated
+            {eventData.numSpots} books distributed
           </InfoFlexChild>
         </InfoFlex>
       </InfoContainer>
