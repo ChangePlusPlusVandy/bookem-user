@@ -22,7 +22,7 @@ import {
 } from '@/styles/volunteerDashboard.styles';
 
 const VolunteerDashboard = ({ userData }: any) => {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true);
 
   function handleShowPopup() {
     setShowPopup(true);
@@ -31,6 +31,18 @@ const VolunteerDashboard = ({ userData }: any) => {
   function hidePopup() {
     setShowPopup(false);
   }
+
+  return (
+    <>
+      {showPopup ? (
+        <PopupWindow hidePopup={hidePopup}>
+          <WindowFlow>{}</WindowFlow>
+        </PopupWindow>
+      ) : (
+        <></>
+      )}
+    </>
+  );
 
   return (
     <>

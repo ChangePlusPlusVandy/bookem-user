@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import VolunteerDashboard from '@/components/Volunteer/VolunteerDashboard';
 import WindowFlow from '@/components/WindowFlow';
+import PopupWindow from '@/components/PopupWindow';
 
 const userData = {
   name: 'Carol He',
@@ -16,7 +17,6 @@ const VolunteerPage = () => {
   return (
     <>
       <VolunteerDashboard userData={userData} />
-      <WindowFlow children={undefined} />
     </>
   );
 };
