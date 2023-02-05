@@ -1,3 +1,4 @@
+import LogHoursForm from '@/components/Forms/LogHoursForm';
 import '@/styles/globals.css';
 import { Layout } from '@/styles/layout.styles';
 import { SessionProvider } from 'next-auth/react';
@@ -10,9 +11,10 @@ export default function App({
   return (
     <SessionProvider session={session}>
       {session && (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        // <Layout>
+        //   <Component {...pageProps} />
+        // </Layout>
+        <LogHoursForm></LogHoursForm>
       )}
       {!session && <Component {...pageProps} />}
     </SessionProvider>

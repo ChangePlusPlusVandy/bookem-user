@@ -42,9 +42,11 @@ export default async function handler(
   }
 
   // start a try catch block to catch any errors in parsing the request body
-  const volunteerLog = req.body as VolunteerLogData;
+  const volunteerLog = JSON.parse(req.body) as VolunteerLogData;
+  console.log(volunteerLog);
 
   if (!volunteerLog.hours) {
+    console.log(volunteerLog);
     res.status(400).json({ message: 'Missing hours in request body.' });
     throw new Error('Invalid input. Missing hours in request body.');
   }
