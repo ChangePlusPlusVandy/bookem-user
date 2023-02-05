@@ -3,6 +3,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { dummyEventData } from '../components/Home/UpcomingEvents';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Header = styled.h2`
   font-family: 'Inter';
@@ -12,11 +13,13 @@ const Header = styled.h2`
   font-weight: 400;
 `;
 
-const BackArrow = styled.button`
+const Icon = styled(Image)`
   position: absolute;
-  margin-top: 50px;
-  margin-left: 25px;
+  margin-left: 20px;
+  margin-top: 45px;
 `;
+
+const IconLink = styled(Link)``;
 
 const MainContainer = styled.div`
   height: 639px;
@@ -33,9 +36,9 @@ const MainContainer = styled.div`
 const VolunteerHistoryPage = () => {
   return (
     <>
-      <BackArrow onClick={event => (window.location.href = '/volunteer')}>
-        <Image src="/back-arrow.png" alt="Go Back" height="20" width="20" />
-      </BackArrow>
+      <IconLink href="/volunteer">
+        <Icon src="/back-arrow.png" alt="Go Back" width="40" height="40" />
+      </IconLink>
       <Header>Volunteer History</Header>
       <MainContainer>
         <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
