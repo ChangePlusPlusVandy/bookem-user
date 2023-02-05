@@ -26,7 +26,13 @@ const RegisterPage = () => {
       password: 'somethingrandomidkwhattodohere',
       phone: data.phone,
       address:
-        data.streetAddress + ', ' + data.city + ', ' + data.state + data.zip,
+        data.streetAddress +
+        ', ' +
+        data.city +
+        ', ' +
+        data.state +
+        ' ' +
+        data.zip,
       sourceHeardFrom: 'somethingrandomidkwhattodohere',
       ethnicity: 'somethingrandomidkwhattodohere',
       gender: 'somethingrandomidkwhattodohere',
