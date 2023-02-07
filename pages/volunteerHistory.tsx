@@ -56,14 +56,13 @@ const VolunteerHistoryPage = () => {
       <Description>Click on event to see specific details</Description>
       <MainContainer>
         {/* TODO: replace dummy data with actual data from backend */}
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
-        <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        <LongEventCard eventData={dummyEventData}></LongEventCard>
       </MainContainer>
     </>
   );
