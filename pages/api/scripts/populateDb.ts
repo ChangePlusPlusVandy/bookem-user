@@ -17,8 +17,8 @@ if (process.env.NODE_ENV !== 'development')
  * It will delete All data from Users, VolunteerLogs
  * and repopulate them with dummy data
  */
-const NUM_OF_USERS = 10;
-const NUM_OF_LOGS_PER_USER = 15;
+const NUM_OF_USERS = 100;
+const NUM_OF_LOGS_PER_USER = 20;
 const NUM_OF_SCHOOLS = 40;
 
 // arrays for dummy data
