@@ -10,7 +10,7 @@ import {
   StatsContainer,
   StatsDescription,
   StatsFlex,
-  StatsFlexChild,
+  FlexChild,
   StatsHeader,
   StatsNumber,
   UpcomingEventsContainer,
@@ -32,20 +32,20 @@ const MainDashboard = ({ userData }: any) => {
         <StatsContainer>
           <StatsHeader>Your accomplishments at a glance:</StatsHeader>
           <StatsFlex>
-            <StatsFlexChild>
+            <FlexChild>
               <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
               <StatsDescription>Hours volunteered</StatsDescription>
-            </StatsFlexChild>
+            </FlexChild>
 
-            <StatsFlexChild>
+            <FlexChild>
               <StatsNumber>{userData.booksShared}</StatsNumber>
               <StatsDescription>Books shared (requested?)</StatsDescription>
-            </StatsFlexChild>
+            </FlexChild>
 
-            <StatsFlexChild>
+            <FlexChild>
               <StatsNumber>{userData.dollarsDonated}</StatsNumber>
               <StatsDescription>Dollars donated</StatsDescription>
-            </StatsFlexChild>
+            </FlexChild>
           </StatsFlex>
         </StatsContainer>
 

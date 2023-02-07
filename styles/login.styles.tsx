@@ -17,6 +17,7 @@ export const RightContainer = styled.div`
   gap: 4vh;
   padding-left: 15vh;
   padding-right: 15vh;
+  overflow-y: auto;
 `;
 
 export const LoginForm = styled.form`
@@ -36,6 +37,7 @@ export const Button = styled.button`
   border-radius: 14px;
   &:hover {
     background-color: green;
+    cursor: pointer;
   }
   width: 275px;
   margin-left: auto;
@@ -43,16 +45,17 @@ export const Button = styled.button`
 `;
 
 export const Footer = styled.div`
-  position: absolute;
+  position: fixed;
   justify-content: top;
   align-items: center;
   display: flex;
   flex-direction: column;
-  left: 0px;
+  left: 50%;
   bottom: 0px;
   width: 50vw;
   height: 17vh;
   background: gray;
+  overflow-y: auto;
 `;
 export const ExternalPrompt = styled.p`
   padding-top: 8px;
@@ -102,6 +105,7 @@ export const SubmitButton = styled.input`
   border-radius: 14px;
   &:hover {
     background-color: green;
+    cursor: pointer;
   }
   width: 275px;
   margin-left: auto;
@@ -116,6 +120,7 @@ export const IconButton = styled.button`
   border: 0px;
   &:hover {
     background-color: green;
+    cursor: pointer;
   }
 `;
 
