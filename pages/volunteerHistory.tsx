@@ -1,7 +1,7 @@
 import LongEventCard from '@/components/LongEventCard';
 import React from 'react';
 import styled from 'styled-components';
-import { dummyEventData } from '../components/Home/UpcomingEvents';
+import { dummyEventData } from '@/components/Home/UpcomingEvents';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -28,8 +28,6 @@ const Icon = styled(Image)`
   margin-top: 45px;
 `;
 
-const IconLink = styled(Link)``;
-
 const MainContainer = styled.div`
   height: 639px;
   width: 1150px;
@@ -45,12 +43,13 @@ const MainContainer = styled.div`
 const VolunteerHistoryPage = () => {
   return (
     <>
-      <IconLink href="/volunteer">
+      <Link href="/volunteer">
         <Icon src="/back-arrow.png" alt="Go Back" width="40" height="40" />
-      </IconLink>
+      </Link>
       <Header>Volunteer History</Header>
       <Description>Click on event to see specific details</Description>
       <MainContainer>
+        {/* TODO: replace dummy data with actual data from backend */}
         <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
         <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
         <LongEventCard eventData={dummyEventData} size="medium"></LongEventCard>
