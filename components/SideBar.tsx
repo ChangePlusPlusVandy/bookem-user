@@ -7,12 +7,12 @@ import { Icon, IconBox, IconLink, SideBarBox } from '@/styles/sidebar.styles';
  * Icon Param container.
  * Used to create icons through iteration
  * @defaultSrc src of the icon when not selected or hovered
- * @hoveredSrc src of the icon when selected or hovered
+ * @hoveredsrc src of the icon when selected or hovered
  * @linkTo where the link of icon directs to
  */
 interface IconParams {
   defaultSrc: string;
-  hoveredSrc: string;
+  hoveredsrc: string;
   linkTo: string;
 }
 

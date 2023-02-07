@@ -14,11 +14,12 @@ import {
   DashboardContainer,
   LogButton,
   HistoryButton,
-  ButtonIcon,
+  ButtonIcon as ButtonIcon,
   VolunteerButtonsContainer,
   VolunteerButtonsFlex,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
+import Link from 'next/link';
 
 const VolunteerDashboard = ({ userData }: any) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -54,7 +55,7 @@ const VolunteerDashboard = ({ userData }: any) => {
               </LogButton>
             </FlexChild>
             <FlexChild>
-              <HistoryButton>
+              <HistoryButton href="/volunteerHistory">
                 <ButtonIcon>
                   <Image
                     src="/history-clock.png"

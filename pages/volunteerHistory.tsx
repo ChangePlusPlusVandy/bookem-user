@@ -9,7 +9,6 @@ const Header = styled.h2`
   font-family: 'Inter';
   font-size: 25px;
   margin-top: 50px;
-  margin-left: 100px;
   font-weight: 400;
 `;
 
@@ -22,10 +21,15 @@ const Description = styled.p`
   margin-left: 35px;
 `;
 
-const Icon = styled(Image)`
-  position: absolute;
-  margin-left: 30px;
-  margin-top: 45px;
+const IconLink = styled(Link)`
+  margin-top: 35px;
+  margin-right: 10px;
+`;
+const HeaderContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 20px;
 `;
 
 const MainContainer = styled.div`
@@ -43,10 +47,12 @@ const MainContainer = styled.div`
 const VolunteerHistoryPage = () => {
   return (
     <>
-      <Link href="/volunteer">
-        <Icon src="/back-arrow.png" alt="Go Back" width="40" height="40" />
-      </Link>
-      <Header>Volunteer History</Header>
+      <HeaderContainer>
+        <IconLink href="/volunteer">
+          <Image src="/back-arrow.png" alt="Go Back" width="40" height="40" />
+        </IconLink>
+        <Header>Volunteer History</Header>
+      </HeaderContainer>
       <Description>Click on event to see specific details</Description>
       <MainContainer>
         {/* TODO: replace dummy data with actual data from backend */}
