@@ -11,10 +11,9 @@ export default function App({
   return (
     <SessionProvider session={session}>
       {session && (
-        // <Layout>
-        //   <Component {...pageProps} />
-        // </Layout>
-        <LogHoursForm></LogHoursForm>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       )}
       {!session && <Component {...pageProps} />}
     </SessionProvider>
