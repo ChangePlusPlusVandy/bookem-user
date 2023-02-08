@@ -2,12 +2,92 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { UserData } from 'bookem-shared/src/types/database';
+import LeftDisplay from '@/components/LeftDisplay';
 
-const Header = styled.div``;
+interface Props {
+  width?: string;
+  margin?: string;
+}
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+`;
+
+const RightContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  height: 100vh;
+  background: white;
+  padding-top: 7vh;
+  gap: 4vh;
+  padding-left: 19vh;
+  padding-right: 19vh;
+  overflow-y: auto;
+`;
+
+const Header = styled.div`
+  margin-bottom: 4vh;
+  padding: 1vh;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 36px;
+  color: #000000;
+`;
+
+const SectionContainer = styled.div<Props>`
+  margin-bottom: ${props => props.margin};
+`;
+
+const SectionHeader = styled.div`
+  padding: 1vh;
+  padding-bottom: 1.2vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+`;
 
 const Form = styled.form``;
 
-const Input = styled.input``;
+const InputFlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 1vh;
+`;
+
+const InputContainer = styled.div`
+  padding: 1vh;
+`;
+
+const Input = styled.input<Props>`
+  outline: 0;
+  border-width: 0 0 1px;
+  border-bottom: 1px solid #c1c1c1;
+  width: ${props => props.width};
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  ::placeholder {
+    color: #a4a4a4;
+  }
+`;
+
+const ButtonContainer = styled.div`
+  padding: 1vh;
+`;
 
 const NextButton = styled.input``;
 
@@ -40,46 +120,12 @@ const formatPhoneNumber = (value: string) => {
   )}-${phoneNumber.slice(6, 10)}`;
 };
 
-const formatBirthday = (value: string) => {
-  if (!value) return value;
-
-  const birthday: string = value.replace(/[^\d]/g, '');
-
-  const birthdayLength: number = birthday.length;
-
-  if (birthdayLength == 1) return birthday;
-
-  if (birthdayLength == 2) {
-    return `${birthday.slice(0, 2)}-`;
-  }
-
-  if (birthdayLength == 3) {
-    return `${birthday.slice(0, 2)}-${birthday.slice(2)}`;
-  }
-
-  if (birthdayLength == 4) {
-    return `${birthday.slice(0, 2)}-${birthday.slice(2)}-`;
-  }
-
-  return `${birthday.slice(0, 2)}-${birthday.slice(2, 4)}-${birthday.slice(
-    4,
-    8
-  )}`;
-};
-
 const RegisterPage = () => {
   // phone number handling
   const [phoneValue, setPhoneValue] = useState('');
   const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
     setPhoneValue(formattedPhoneNumber);
-  };
-
-  // birthday handling
-  const [birthdayValue, setBirthdayValue] = useState('');
-  const handleBirthday = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formattedBirthday = formatBirthday(e.target.value);
-    setBirthdayValue(formattedBirthday);
   };
 
   // form handling
@@ -128,54 +174,86 @@ const RegisterPage = () => {
   const page = 1;
   if (page == 1)
     return (
-      <>
-        <Header>Tell us about yourself!</Header>
-        <Form id="registerPage1" onSubmit={handleSubmit(onSubmit)}>
-          <Input
-            {...register('firstName', { required: true })}
-            placeholder="First name"></Input>
-          <Input
-            {...register('lastName', { required: true })}
-            placeholder="Last name"></Input>
-          <Input
-            {...register('birthday', { required: true })}
-            placeholder="Date of birth (MM-DD-YYY)"
-            onChange={e => handleBirthday(e)}
-            value={birthdayValue}></Input>
-          <Input
-            {...register('phone', { required: true })}
-            placeholder="Phone number"
-            onChange={e => handlePhone(e)}
-            value={phoneValue}></Input>
-          <Input
-            {...register('email', { required: true })}
-            placeholder="Email Address"></Input>
-          <Input
-            {...register('streetAddress', { required: true })}
-            placeholder="Street address"></Input>
-          <Input
-            {...register('city', { required: true })}
-            placeholder="City"></Input>
-          <Input
-            {...register('state', { required: true })}
-            placeholder="State"></Input>
-          <Input
-            {...register('zip', { required: true })}
-            placeholder="Zip code"></Input>
+      <Container>
+        <LeftDisplay />
+        <RightContainer>
+          <Header>Tell us about yourself!</Header>
+          <Form id="registerPage1" onSubmit={handleSubmit(onSubmit)}>
+            <SectionContainer margin={'5vh'}>
+              <SectionHeader>Basic Information</SectionHeader>
+              <InputFlexContainer>
+                <Input
+                  {...register('firstName', { required: true })}
+                  placeholder="First name"
+                  width={'45%'}></Input>
+                <Input
+                  {...register('lastName', { required: true })}
+                  placeholder="Last name"
+                  width={'45%'}></Input>
+              </InputFlexContainer>
+            </SectionContainer>
 
-          {errors.firstName && <span>First name is required</span>}
-          {errors.lastName && <span>Last name is required</span>}
-          {errors.birthday && <span>Date of birth is required</span>}
-          {errors.phone && <span>Phone number is required</span>}
-          {errors.email && <span>Email address is required</span>}
-          {errors.streetAddress && <span>Street address is required</span>}
-          {errors.city && <span>City is required</span>}
-          {errors.state && <span>State is required</span>}
-          {errors.zip && <span>Zip code is required</span>}
+            <SectionContainer margin={'5vh'}>
+              <SectionHeader>Contact</SectionHeader>
+              <InputContainer>
+                <Input
+                  {...register('phone', { required: true })}
+                  placeholder="Phone number"
+                  onChange={e => handlePhone(e)}
+                  value={phoneValue}
+                  width={'100%'}></Input>
+              </InputContainer>
+              <InputContainer>
+                <Input
+                  {...register('email', { required: true })}
+                  placeholder="Email Address"
+                  width={'100%'}></Input>
+              </InputContainer>
+            </SectionContainer>
 
-          <NextButton form="registerPage1" type="submit" value="" />
-        </Form>
-      </>
+            <SectionContainer>
+              <SectionHeader>Address</SectionHeader>
+
+              <InputContainer>
+                <Input
+                  {...register('streetAddress', { required: true })}
+                  placeholder="Street address"
+                  width={'100%'}></Input>
+              </InputContainer>
+
+              <InputFlexContainer>
+                <Input
+                  {...register('city', { required: true })}
+                  placeholder="City"
+                  width={'45%'}></Input>
+                <Input
+                  {...register('state', { required: true })}
+                  placeholder="State"
+                  width={'45%'}></Input>
+              </InputFlexContainer>
+
+              <InputContainer>
+                <Input
+                  {...register('zip', { required: true })}
+                  placeholder="Zip code"
+                  width={'45%'}></Input>
+              </InputContainer>
+            </SectionContainer>
+            <ButtonContainer>
+              <NextButton form="registerPage1" type="submit" value="Submit" />
+            </ButtonContainer>
+
+            {errors.firstName && <span>First name is required</span>}
+            {errors.lastName && <span>Last name is required</span>}
+            {errors.phone && <span>Phone number is required</span>}
+            {errors.email && <span>Email address is required</span>}
+            {errors.streetAddress && <span>Street address is required</span>}
+            {errors.city && <span>City is required</span>}
+            {errors.state && <span>State is required</span>}
+            {errors.zip && <span>Zip code is required</span>}
+          </Form>
+        </RightContainer>
+      </Container>
     );
 };
 
