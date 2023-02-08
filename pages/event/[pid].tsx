@@ -15,6 +15,9 @@ const EventDetail = () => {
     programDate: new Date('October 20, 2014 11:13:00'),
     createdAt: new Date(),
     updatedAt: new Date(),
+    users: [new mongoose.Types.ObjectId()],
+    hasForm: false,
+    category: 'RFR',
   });
   useEffect(() => {
     //Fetch the data using pid
@@ -25,6 +28,9 @@ const EventDetail = () => {
       programDate: new Date('October 13, 2014 11:13:00'),
       createdAt: new Date(),
       updatedAt: new Date(),
+      users: [new mongoose.Types.ObjectId()],
+      hasForm: false,
+      category: 'RFR',
     });
   }, [pid]);
 
@@ -36,3 +42,6 @@ const EventDetail = () => {
 };
 
 export default EventDetail;
+
+// perform automatic redirection to login page if user not logged in.
+export { getServerSideProps } from '@/lib/getServerSideProps';
