@@ -57,6 +57,18 @@ export default async function handler(
         // Create a bulk insert operation for Users
         const bulkUsers = Users.collection.initializeUnorderedBulkOp();
 
+        // Add our test user
+        bulkUsers.insert({
+          name: 'Bookem User',
+          email: process.env.TEST_EMAIL || 'test_user@bookem.org',
+          password: await hash(process.env.TEST_USER_PASSWD || '', 12),
+          phone: '615-555-5555',
+          address: faker.address.streetAddress(),
+          ethnicity: faker.helpers.arrayElement(ETHNICITY),
+          gender: faker.helpers.arrayElement(GENDERS),
+          programs: [],
+        });
+
         // Insert NUM_OF_USERS users into the database
         for (let i = 0; i < NUM_OF_USERS; i++) {
           bulkUsers.insert({
