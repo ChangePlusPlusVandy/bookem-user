@@ -11,6 +11,7 @@ import {
   NavRight,
   SearchBar,
 } from '@/styles/components/futureEvents.styles';
+import { StatsHeader } from '@/styles/dashboard.styles';
 
 type EventType = {
   source: string;
@@ -76,7 +77,9 @@ const FutureVolunteerEvents = () => {
   return (
     <Container>
       <NavHeader>
-        <NavLeft>Future volunteer Events</NavLeft>
+        <NavLeft>
+          <StatsHeader>Future volunteer events</StatsHeader>
+        </NavLeft>
         <NavRight>
           <Image
             src="/filter-icon.png"
