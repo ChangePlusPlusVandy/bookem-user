@@ -21,9 +21,10 @@ export const NavLeft = styled.div`
 `;
 
 export const NavRight = styled.div`
+  position: relative;
   width: 50%;
+  justify-content: end;
   text-align: right;
-
   img {
     cursor: pointer;
   }

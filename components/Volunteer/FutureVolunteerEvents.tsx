@@ -12,6 +12,8 @@ import {
   SearchBar,
 } from '@/styles/components/futureEvents.styles';
 import { StatsHeader } from '@/styles/dashboard.styles';
+import FilterEventsPopup from './FilterEventsPopup';
+import styled from 'styled-components';
 
 type EventType = {
   source: string;
@@ -71,8 +73,24 @@ const feedsource: EventType[] = [
   },
 ];
 
+const ButtonContainer = styled.div`
+  display: flex;
+`;
+
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
+
+  const [showPopup, setShowPopup] = useState(false);
+
+  const [buttonRight, setButtonRight] = useState(0);
+  const [buttonTop, setButtonTop] = useState(0);
+  function handleShowPopup() {
+    setShowPopup(true);
+  }
+
+  function hidePopup() {
+    setShowPopup(false);
+  }
 
   return (
     <Container>
@@ -81,12 +99,17 @@ const FutureVolunteerEvents = () => {
           <StatsHeader>Future volunteer events</StatsHeader>
         </NavLeft>
         <NavRight>
-          <Image
-            src="/filter-icon.png"
-            alt="Filter icon"
-            width="25"
-            height="25"
-          />
+          {showPopup ? (
+            <FilterEventsPopup hidePopup={hidePopup}></FilterEventsPopup>
+          ) : null}
+          <button onClick={handleShowPopup}>
+            <Image
+              src="/filter-icon.png"
+              alt="Filter icon"
+              width="25"
+              height="25"
+            />
+          </button>
         </NavRight>
       </NavHeader>
 
