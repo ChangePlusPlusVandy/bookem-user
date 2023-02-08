@@ -35,9 +35,10 @@ const Name = styled.div`
 `;
 
 const AddressContainer = styled.div`
+  position: absolute;
   height: fit-content;
   margin-top: ${(300 / 328) * 16}px;
-  margin-left: ${(300 / 328) * 20}px;
+  margin-left: ${(300 / 328) * 300}px;
   background-color: white;
   font-family: 'Inter';
   font-style: normal;
@@ -48,30 +49,34 @@ const AddressContainer = styled.div`
 
 const AddressIcon = styled.div`
   float: left;
+  position: absolute;
   margin-left: 50px;
   margin-right: 8px;
 `;
 
 const InfoContainer = styled.div`
+  position: absolute;
   height: fit-content;
   margin-top: ${(300 / 328) * 16}px;
-  margin-left: ${(300 / 328) * 20}px;
+  margin-left: ${(300 / 328) * 400}px;
   background-color: white;
 `;
 
 const ClockIcon = styled.div`
+  position: absolute;
   float: left;
-  margin-left: 50px;
+  margin-left: 350px;
 `;
 
 const CalendarIcon = styled.div`
   float: left;
-  margin-left: 50px;
+  margin-left: 150px;
 `;
 
 const CheckmarkIcon = styled.div`
+  position: absolute;
   float: left;
-  margin-left: 50px;
+  margin-left: 520px;
 `;
 
 const InfoFlex = styled.div`
@@ -95,12 +100,55 @@ const InfoFlexChild = styled.div`
   line-height: ${(300 / 328) * 22}px;
 `;
 
+const Time = styled.div`
+  position: absolute;
+  background-color: white;
+  flex: 0 1 auto;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 380px;
+  font-size: ${(300 / 328) * 18}px;
+  line-height: ${(300 / 328) * 22}px;
+  white-space: nowrap;
+`;
+
+const Books = styled.div`
+  position: absolute;
+  background-color: white;
+  flex: 0 1 auto;
+  text-align: center;
+  vertical-align: middle;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  margin-left: 550px;
+  margin-right: ${(300 / 328) * 8}px;
+  font-size: ${(300 / 328) * 18}px;
+  line-height: ${(300 / 328) * 22}px;
+  white-space: nowrap;
+`;
+
+function formatAMPM(date: { getHours: () => any; getMinutes: () => any }) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'PM' : 'AM';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
+}
+
 const LongEventCard = ({
   eventData,
 }: {
   // TODO: change type of eventData
   eventData: any;
 }) => {
+  const date = new Date(eventData.programDate);
   return (
     <Container>
       <EventImage>
@@ -122,7 +170,8 @@ const LongEventCard = ({
             height={`${Math.round((300 / 328) * 23.99)}`}
           />
         </AddressIcon>
-        {eventData.address}
+        {/* TODO: school not showing - probably because its "schools" in Schema but "school" in MongoDB*/}
+        {eventData.school}
       </AddressContainer>
 
       <InfoContainer>
@@ -135,7 +184,7 @@ const LongEventCard = ({
               height={`${Math.round((300 / 328) * 23.99)}`}
             />
           </CalendarIcon>
-          <InfoFlexChild>{eventData.date}</InfoFlexChild>
+          <InfoFlexChild>{date.toDateString()}</InfoFlexChild>
           <ClockIcon>
             <Image
               src="/clock.png"
@@ -144,7 +193,7 @@ const LongEventCard = ({
               height={`${Math.round((300 / 328) * 22.14)}`}
             />
           </ClockIcon>
-          <InfoFlexChild>{eventData.time}</InfoFlexChild>
+          <Time>{formatAMPM(date)}</Time>
           <CheckmarkIcon>
             <Image
               src="/checkmark.png"
@@ -153,7 +202,10 @@ const LongEventCard = ({
               height={`${Math.round((300 / 328) * 23.99)}`}
             />
           </CheckmarkIcon>
-          <InfoFlexChild>{eventData.numSpots} books distributed</InfoFlexChild>
+          <Books>
+            {/* TODO: add data for number of books distributed*/}X books
+            distributed
+          </Books>
         </InfoFlex>
       </InfoContainer>
     </Container>

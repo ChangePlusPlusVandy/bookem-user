@@ -1,9 +1,10 @@
 import LongEventCard from '@/components/LongEventCard';
 import React from 'react';
 import styled from 'styled-components';
-import { dummyEventData } from '@/components/Home/UpcomingEvents';
 import Image from 'next/image';
 import Link from 'next/link';
+import useSWR from 'swr';
+import { VolunteerProgramData } from 'bookem-shared/src/types/database';
 
 const Header = styled.h2`
   font-family: 'Inter';
@@ -44,7 +45,18 @@ const MainContainer = styled.div`
   overflow-x: hidden;
 `;
 
+const fetcher = (url: string) => fetch(url).then(res => res.json());
+
 const VolunteerHistoryPage = () => {
+  const { data, error, isLoading } = useSWR<VolunteerProgramData[]>(
+    '/api/volunteerPrograms/',
+    fetcher
+  );
+
+  if (error) return <div>Failed to load users</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (!data) return null;
+
   return (
     <>
       <HeaderContainer>
@@ -55,14 +67,15 @@ const VolunteerHistoryPage = () => {
       </HeaderContainer>
       <Description>Click on event to see specific details</Description>
       <MainContainer>
-        {/* TODO: replace dummy data with actual data from backend */}
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
-        <LongEventCard eventData={dummyEventData}></LongEventCard>
+        {data.map(event => (
+          <LongEventCard
+            key={event.name}
+            eventData={{
+              name: event.name,
+              school: event.schools,
+              programDate: event.programDate,
+            }}></LongEventCard>
+        ))}
       </MainContainer>
     </>
   );
