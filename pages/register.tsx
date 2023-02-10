@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { UserData } from 'bookem-shared/src/types/database';
 import LeftDisplay from '@/components/LeftDisplay';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Props {
   width?: string;
@@ -442,7 +443,11 @@ const RegisterPage = () => {
               rightArrowHandler
             )}
           </Form>
-          <button onClick={() => onFinished()}>Let&apos;s Go</button>
+          <button>
+            <Link href="/" onClick={() => onFinished()}>
+              Let&apos;s Go
+            </Link>
+          </button>
         </RightContainer>
       </Container>
     );
