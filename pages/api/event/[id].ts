@@ -24,6 +24,12 @@ export default async function handler(
   } = req;
 
   switch (method) {
+    /**
+     * @route GET /api/event/[id]
+     * @desc Get program by id
+     * @req id, user
+     * @res QueriedVolunteerProgramData
+     */
     case 'GET':
       try {
         await dbConnect();
