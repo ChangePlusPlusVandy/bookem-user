@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import { UserData } from 'bookem-shared/src/types/database';
 import LeftDisplay from '@/components/LeftDisplay';
+import Image from 'next/image';
 
 interface Props {
   width?: string;
   margin?: string;
+  page?: number;
 }
 
 const Container = styled.div`
@@ -23,6 +25,7 @@ const RightContainer = styled.div`
   height: 100vh;
   background: white;
   padding-top: 7vh;
+  padding-bottom: 7vh;
   gap: 4vh;
   padding-left: 19vh;
   padding-right: 19vh;
@@ -85,47 +88,171 @@ const Input = styled.input<Props>`
   }
 `;
 
-const ButtonContainer = styled.div`
-  padding: 1vh;
+const DotsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 130px;
+  margin-left: 130px;
 `;
 
-const NextButton = styled.input``;
+const DotsFlex = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+  position: absolute;
+  transform: translate(0%, 83.3%);
+`;
+
+const LeftArrow = styled.div`
+  float: left;
+`;
+
+const RightArrow = styled.div`
+  float: right;
+`;
+
+const ProgressContainer = styled.div`
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-bottom: 5vh;
+  position: absolute;
+  bottom: 0;
+  width: fit-content;
+  align-items: center;
+`;
 
 // adapted from https://tomduffytech.com/how-to-format-phone-number-in-react/
 const formatPhoneNumber = (value: string) => {
-  // if input value is falsy eg if the user deletes the input, then just return
   if (!value) return value;
 
-  // clean the input for any non-digit values.
   const phoneNumber: string = value.replace(/[^\d]/g, '');
-
-  // phoneNumberLength is used to know when to apply our formatting for the phone number
   const phoneNumberLength: number = phoneNumber.length;
 
-  // we need to return the value with no formatting if its less then four digits
-  // this is to avoid weird behavior that occurs if you  format the area code to early
   if (phoneNumberLength < 4) return phoneNumber;
 
-  // if phoneNumberLength is greater than 4 and less the 7 we start to return
-  // the formatted number
   if (phoneNumberLength < 7) {
     return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
   }
 
-  // finally, if the phoneNumberLength is greater then seven, we add the last
-  // bit of formatting and return it.
   return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
     3,
     6
   )}-${phoneNumber.slice(6, 10)}`;
 };
 
+// registration form progress handling
+const formatPageDots = (currentPage: number) => {
+  const pages = [1, 2, 3, 4];
+  const listDots = pages.map(page => {
+    if (page == currentPage)
+      return (
+        <Image
+          src="/black-dot.png"
+          alt="Dot for current page"
+          width="12"
+          height="12"
+          key={page}
+        />
+      );
+    return (
+      <Image
+        src="/white-dot.png"
+        alt="Dot for other page"
+        width="12"
+        height="12"
+        key={page}
+      />
+    );
+  });
+  return (
+    <DotsContainer>
+      <DotsFlex>{listDots}</DotsFlex>
+    </DotsContainer>
+  );
+};
+
+// format register progress
+const formatProgress = (
+  currentPage: number,
+  form: string,
+  leftArrowHandler: Function,
+  rightArrowHandler: Function
+) => {
+  return (
+    <ProgressContainer>
+      <LeftArrow>
+        {Number(currentPage) != 1 ? (
+          <input
+            form={form}
+            type="image"
+            src="/left-arrow.png"
+            height="20px"
+            width="10px"
+            alt="Button for previous page"
+            onClick={() => leftArrowHandler()}
+          />
+        ) : null}
+      </LeftArrow>
+      {formatPageDots(currentPage)}
+      <RightArrow>
+        {Number(currentPage) != 4 ? (
+          <input
+            form={form}
+            type="image"
+            src="/right-arrow.png"
+            height="20px"
+            width="10px"
+            alt="Button for next page"
+            onClick={() => rightArrowHandler()}
+          />
+        ) : null}
+      </RightArrow>
+    </ProgressContainer>
+  );
+};
+
+// send api request to create user
+const createUser = async (userData: UserData) => {
+  try {
+    const res = await fetch('/api/users/create', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(userData),
+    });
+    console.log(res);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 const RegisterPage = () => {
+  // user data
+  const [user, setUser] = useState({
+    page: 1,
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+  });
+
   // phone number handling
   const [phoneValue, setPhoneValue] = useState('');
   const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
     setPhoneValue(formattedPhoneNumber);
+  };
+
+  // arrow button handling
+  let nextPage = user.page;
+  const leftArrowHandler = () => {
+    nextPage = nextPage - 1;
+  };
+
+  const rightArrowHandler = () => {
+    nextPage = nextPage + 1;
   };
 
   // form handling
@@ -135,50 +262,58 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data: any) => {
-    // make data fit the UserData schema type
+  const onSubmitPage1 = (data: any) => {
+    user.page = nextPage;
+    user.name = data.firstName + ' ' + data.lastName;
+    user.email = data.email;
+    user.phone = data.phone;
+    user.address =
+      data.streetAddress +
+      ', ' +
+      data.city +
+      ', ' +
+      data.state +
+      ' ' +
+      data.zip;
+    console.log(user);
+  };
+
+  const onSubmitPage2 = (data: any) => {
+    console.log(data);
+    user.page = nextPage;
+  };
+
+  const onSubmitPage3 = (data: any) => {
+    console.log(data);
+    user.page = nextPage;
+  };
+
+  const onSubmitPage4 = (data: any) => {
+    console.log(data);
+    user.page = nextPage;
+  };
+
+  const onFinished = () => {
     const userData: UserData = {
-      name: data.firstName + ' ' + data.lastName,
-      email: data.email,
+      name: user.name,
+      email: user.email,
       password: 'somethingrandomidkwhattodohere',
-      phone: data.phone,
-      address:
-        data.streetAddress +
-        ', ' +
-        data.city +
-        ', ' +
-        data.state +
-        ' ' +
-        data.zip,
+      phone: user.phone,
+      address: user.address,
       sourceHeardFrom: 'somethingrandomidkwhattodohere',
       ethnicity: 'somethingrandomidkwhattodohere',
       gender: 'somethingrandomidkwhattodohere',
     };
-
-    // send api request to create User
-    try {
-      const res = await fetch('/api/users/create', {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-      console.log(res);
-    } catch (err) {
-      console.log(err);
-    }
+    createUser(userData);
   };
 
-  // registration page select
-  const page = 1;
-  if (page == 1)
+  if (user.page == 1)
     return (
       <Container>
         <LeftDisplay />
         <RightContainer>
           <Header>Tell us about yourself!</Header>
-          <Form id="registerPage1" onSubmit={handleSubmit(onSubmit)}>
+          <Form id="registerPage1" onSubmit={handleSubmit(onSubmitPage1)}>
             <SectionContainer margin={'5vh'}>
               <SectionHeader>Basic Information</SectionHeader>
               <InputFlexContainer>
@@ -239,9 +374,6 @@ const RegisterPage = () => {
                   width={'45%'}></Input>
               </InputContainer>
             </SectionContainer>
-            <ButtonContainer>
-              <NextButton form="registerPage1" type="submit" value="Submit" />
-            </ButtonContainer>
 
             {errors.firstName && <span>First name is required</span>}
             {errors.lastName && <span>Last name is required</span>}
@@ -251,7 +383,66 @@ const RegisterPage = () => {
             {errors.city && <span>City is required</span>}
             {errors.state && <span>State is required</span>}
             {errors.zip && <span>Zip code is required</span>}
+
+            {formatProgress(
+              user.page,
+              'registerPage1',
+              leftArrowHandler,
+              rightArrowHandler
+            )}
           </Form>
+        </RightContainer>
+      </Container>
+    );
+  else if (user.page == 2)
+    return (
+      <Container>
+        <LeftDisplay />
+        <RightContainer>
+          <Header>Next up</Header>
+          <Form id="registerPage2" onSubmit={handleSubmit(onSubmitPage2)}>
+            {formatProgress(
+              user.page,
+              'registerPage2',
+              leftArrowHandler,
+              rightArrowHandler
+            )}
+          </Form>
+        </RightContainer>
+      </Container>
+    );
+  else if (user.page == 3)
+    return (
+      <Container>
+        <LeftDisplay />
+        <RightContainer>
+          <Header>Almost there</Header>
+          <Form id="registerPage3" onSubmit={handleSubmit(onSubmitPage3)}>
+            {formatProgress(
+              user.page,
+              'registerPage3',
+              leftArrowHandler,
+              rightArrowHandler
+            )}
+          </Form>
+        </RightContainer>
+      </Container>
+    );
+  else if (user.page == 4)
+    return (
+      <Container>
+        <LeftDisplay />
+        <RightContainer>
+          <Header>Review Information</Header>
+          <Form id="registerPage4" onSubmit={handleSubmit(onSubmitPage4)}>
+            {formatProgress(
+              user.page,
+              'registerPage4',
+              leftArrowHandler,
+              rightArrowHandler
+            )}
+          </Form>
+          <button onClick={() => onFinished()}>Let&apos;s Go</button>
         </RightContainer>
       </Container>
     );
