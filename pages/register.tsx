@@ -177,8 +177,8 @@ const formatPageDots = (currentPage: number) => {
 const formatProgress = (
   currentPage: number,
   form: string,
-  leftArrowHandler: Function,
-  rightArrowHandler: Function
+  handleLeftArrow: Function,
+  handleRightArrow: Function
 ) => {
   return (
     <ProgressContainer>
@@ -191,7 +191,7 @@ const formatProgress = (
             height="20px"
             width="10px"
             alt="Button for previous page"
-            onClick={() => leftArrowHandler()}
+            onClick={() => handleLeftArrow()}
           />
         ) : null}
       </LeftArrow>
@@ -205,7 +205,7 @@ const formatProgress = (
             height="20px"
             width="10px"
             alt="Button for next page"
-            onClick={() => rightArrowHandler()}
+            onClick={() => handleRightArrow()}
           />
         ) : null}
       </RightArrow>
@@ -248,11 +248,11 @@ const RegisterPage = () => {
 
   // arrow button handling
   let nextPage = user.page;
-  const leftArrowHandler = () => {
+  const handleLeftArrow = () => {
     nextPage = nextPage - 1;
   };
 
-  const rightArrowHandler = () => {
+  const handleRightArrow = () => {
     nextPage = nextPage + 1;
   };
 
@@ -388,8 +388,8 @@ const RegisterPage = () => {
             {formatProgress(
               user.page,
               'registerPage1',
-              leftArrowHandler,
-              rightArrowHandler
+              handleLeftArrow,
+              handleRightArrow
             )}
           </Form>
         </RightContainer>
@@ -405,8 +405,8 @@ const RegisterPage = () => {
             {formatProgress(
               user.page,
               'registerPage2',
-              leftArrowHandler,
-              rightArrowHandler
+              handleLeftArrow,
+              handleRightArrow
             )}
           </Form>
         </RightContainer>
@@ -422,8 +422,8 @@ const RegisterPage = () => {
             {formatProgress(
               user.page,
               'registerPage3',
-              leftArrowHandler,
-              rightArrowHandler
+              handleLeftArrow,
+              handleRightArrow
             )}
           </Form>
         </RightContainer>
@@ -439,8 +439,8 @@ const RegisterPage = () => {
             {formatProgress(
               user.page,
               'registerPage4',
-              leftArrowHandler,
-              rightArrowHandler
+              handleLeftArrow,
+              handleRightArrow
             )}
           </Form>
           <button>
