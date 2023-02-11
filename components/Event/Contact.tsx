@@ -5,19 +5,14 @@ import styled from 'styled-components';
 const ContactBox = styled.div`
   width: 500px;
   margin-left: 147px;
-  // background-color: #d2aae6;
 `;
 
 const ContactHeader = styled.div`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 36px;
 `;
 
 const BigIconBox = styled.div`
-  margin-top: 49px;
+  margin-top: 40px;
 `;
 
 /**
@@ -26,16 +21,13 @@ const BigIconBox = styled.div`
 const IconBox = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 35px;
+  margin-bottom: 30px;
 `;
 
 const Icon = styled(Image)``;
 
 const IconText = styled.span`
   margin-left: 37px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
   font-size: 18px;
 `;
 

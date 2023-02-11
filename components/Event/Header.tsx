@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const HeaderBox = styled.div`
   display: flex;
   height: 48px;
-  // background-color: lightblue;
 `;
 
 /**
@@ -16,11 +15,7 @@ const ArrowLink = styled(Link)``;
 const ArrowImg = styled(Image)``;
 
 const EventDetailText = styled.span`
-  align-items: center;
-  margin-left: 38.5px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
+  margin-left: 38px;
   font-size: 40px;
 `;
 
