@@ -1,4 +1,3 @@
-import LogHoursForm from '@/components/Forms/LogHoursForm';
 import '@/styles/globals.css';
 import { Layout } from '@/styles/layout.styles';
 import { SessionProvider } from 'next-auth/react';
