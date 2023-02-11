@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
-import { dummyEventData } from './UpcomingEvents';
+import { dummyEventData } from '@/components/Home/UpcomingEvents';
 const EventCard = React.lazy(() => import('@/components/EventCard'));
 
 // vertical list of sample past events (another component)
