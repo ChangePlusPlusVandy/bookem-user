@@ -21,7 +21,6 @@ const Container = styled.div`
 `;
 
 const Header = styled.p`
-  font-family: 'Inter';
   font-size: 25px;
   margin-top: 50px;
   text-align: center;

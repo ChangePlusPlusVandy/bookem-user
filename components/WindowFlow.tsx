@@ -53,27 +53,21 @@ const ImageWrapper = styled.div`
 `;
 
 const WindowFlow = ({ children }: { children: React.ReactNode }) => {
-  // a variable for the page header alongside names for the pages
-  // this is an input into this Windowflow component
+  // the available pages
   const pages = ['Event', 'Program', 'More Information'];
   const numPages = pages.length;
 
   const [currentPage, setCurrentPage] = useState(1);
 
+  // useEffect to update the color of the navigation circle
   useEffect(() => {
-    // if it's increment, then we only need to change the lement at index and index + 1
-    // if decrement then we only need to change the element at index - 1 and index
-    //
-    // for each of our pages
     pages.forEach((page, index) => {
       // get the document element
       const currPage = document.getElementById((index + 1).toString());
 
-      if (!currPage) {
-        return;
-      }
+      if (!currPage) return;
 
-      // if current page (then we need to set background to black)
+      // if current page (then set background to black)
       if (index == currentPage - 1) {
         currPage.style.backgroundColor = 'black';
         currPage.style.color = 'white';
@@ -104,9 +98,9 @@ const WindowFlow = ({ children }: { children: React.ReactNode }) => {
           return (
             <>
               <PageNum id={(index + 1).toString()}>{index + 1}</PageNum>
-              <PageTitle>{pages[index]}</PageTitle>
+              <PageTitle>{page}</PageTitle>
 
-              {index < pages.length - 1 ? (
+              {index < pages.length - 1 && (
                 <ImageWrapper>
                   <Image
                     src="/line.png"
@@ -115,10 +109,10 @@ const WindowFlow = ({ children }: { children: React.ReactNode }) => {
                     height="1"
                   />
                 </ImageWrapper>
-              ) : null}
+              )}
 
               <ButtonLeft>
-                {currentPage > 1 ? (
+                {currentPage > 1 && (
                   <Button onClick={navigateBack}>
                     <Image
                       src="/arrow-left.png"
@@ -127,10 +121,10 @@ const WindowFlow = ({ children }: { children: React.ReactNode }) => {
                       height="40"
                     />
                   </Button>
-                ) : null}
+                )}
               </ButtonLeft>
               <ButtonRight>
-                {currentPage < pages.length ? (
+                {currentPage < pages.length && (
                   <Button onClick={navigateForward}>
                     <Image
                       src="/arrow-right.png"
@@ -139,12 +133,13 @@ const WindowFlow = ({ children }: { children: React.ReactNode }) => {
                       height="40"
                     />
                   </Button>
-                ) : null}
+                )}
               </ButtonRight>
             </>
           );
         })}
       </PageNumHeader>
+      {children}
     </Container>
   );
 };

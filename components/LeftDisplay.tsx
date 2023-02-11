@@ -26,7 +26,6 @@ const HeaderFont = styled.p`
   margin: 4px;
   width: 85%;
   font-weight: bold;
-  font-family: arial;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -37,7 +36,6 @@ const InfoFont = styled.p`
   margin-top: 0px;
   margin-left: auto;
   margin-right: auto;
-  font-family: arial;
 `;
 
 const LeftDisplay = () => {
