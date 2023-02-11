@@ -7,8 +7,6 @@ const ProgramNameBox = styled.div`
 `;
 
 const NameAndSpot = styled.div`
-  font-family: 'Inter';
-  font-style: normal;
   font-size: 30px;
   line-height: 50px;
 `;

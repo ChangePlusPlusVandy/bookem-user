@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const AboutBox = styled.div`
   width: 700px;
-  // background-color: #dcfae3;
 `;
 
 const AboutHeader = styled.div`
