@@ -21,5 +21,18 @@ export default async function handler(
           console.log('User not authenticated');
         }
       }
+    case 'POST':
+      try {
+        await authenticateUser(req, res);
+        res.json({ message: 'Test POST' });
+      } catch (error: any) {
+        if (
+          error.message.includes(
+            'Cannot set headers after they are sent to the client'
+          )
+        ) {
+          console.log('User not authenticated');
+        }
+      }
   }
 }
