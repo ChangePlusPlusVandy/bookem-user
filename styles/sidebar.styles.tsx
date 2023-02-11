@@ -26,28 +26,28 @@ export const IconBox = styled.div`
 
 /**
  * Make each icon a link
- * @hoveredSrc src of the img when hovered or focused
- * @backgroundColor The background color of the link according to the route
- * @imgSrc The src of the icon according to the route
+ * @hoveredsrc src of the img when hovered or focused
+ * @backgroundcolor The background color of the link according to the route
+ * @imgsrc The src of the icon according to the route
  */
 export const IconLink = styled(Link)<{
-  hoveredSrc: string;
-  backgroundColor: string;
-  imgSrc: string;
+  hoveredsrc: string;
+  backgroundcolor: string;
+  imgsrc: string;
 }>`
   display: inline-block;
   padding: 25px 0px 25px 0px;
   width: 100%;
-  background-color: ${props => props.backgroundColor};
+  background-color: ${props => props.backgroundcolor};
 
   img {
-    content: url(${props => props.imgSrc});
+    content: url(${props => props.imgsrc});
   }
 
   &:hover {
     background-color: #d9d9d9;
     img {
-      content: url(${props => props.hoveredSrc});
+      content: url(${props => props.hoveredsrc});
     }
   }
 `;

@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import VolunteerDashboard from '@/components/Volunteer/VolunteerDashboard';
 
 const userData = {

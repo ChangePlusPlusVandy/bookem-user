@@ -21,7 +21,6 @@ export const GreetingContainer = styled.div`
 `;
 
 export const Greeting = styled.p`
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
@@ -48,7 +47,6 @@ export const StatsContainer = styled.div`
 
 export const StatsHeader = styled.p`
   margin-bottom: 29px;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -72,7 +70,6 @@ export const FlexChild = styled.div`
 
 export const StatsNumber = styled.p`
   margin: 0;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
@@ -82,7 +79,6 @@ export const StatsNumber = styled.p`
 
 export const StatsDescription = styled.p`
   margin: 0;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

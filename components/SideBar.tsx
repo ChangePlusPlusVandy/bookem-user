@@ -7,12 +7,12 @@ import { Icon, IconBox, IconLink, SideBarBox } from '@/styles/sidebar.styles';
  * Icon Param container.
  * Used to create icons through iteration
  * @defaultSrc src of the icon when not selected or hovered
- * @hoveredSrc src of the icon when selected or hovered
+ * @hoveredsrc src of the icon when selected or hovered
  * @linkTo where the link of icon directs to
  */
 interface IconParams {
   defaultSrc: string;
-  hoveredSrc: string;
+  hoveredsrc: string;
   linkTo: string;
 }
 
@@ -32,27 +32,27 @@ const iconHeight = 42.47;
 const iconParamList = [
   {
     defaultSrc: '/sidebar/home-white.png',
-    hoveredSrc: '/sidebar/home-black.png',
+    hoveredsrc: '/sidebar/home-black.png',
     linkTo: '/',
   },
   {
     defaultSrc: '/sidebar/hand-shake-white.png',
-    hoveredSrc: '/sidebar/hand-shake-black.png',
+    hoveredsrc: '/sidebar/hand-shake-black.png',
     linkTo: '/volunteer',
   },
   {
     defaultSrc: '/sidebar/currency-dollar-white.png',
-    hoveredSrc: '/sidebar/currency-dollar-black.png',
+    hoveredsrc: '/sidebar/currency-dollar-black.png',
     linkTo: '/donate',
   },
   {
     defaultSrc: '/sidebar/book-open-white.png',
-    hoveredSrc: '/sidebar/book-open-black.png',
+    hoveredsrc: '/sidebar/book-open-black.png',
     linkTo: '/request',
   },
   {
     defaultSrc: '/sidebar/setting-white.png',
-    hoveredSrc: '/sidebar/setting-black.png',
+    hoveredsrc: '/sidebar/setting-black.png',
     linkTo: '/settings',
   },
 ];
@@ -73,15 +73,15 @@ export const SideBar = () => {
             {/* Link that wraps around the icon */}
             <IconLink
               href={iconParam.linkTo}
-              hoveredSrc={iconParam.hoveredSrc}
+              hoveredsrc={iconParam.hoveredsrc}
               // Dynamically assign the background color according to the current route
-              backgroundColor={
+              backgroundcolor={
                 activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
               }
               // Dynamically assign the src of the icon according to the current route
-              imgSrc={
+              imgsrc={
                 activeRoute === iconParam.linkTo
-                  ? iconParam.hoveredSrc
+                  ? iconParam.hoveredsrc
                   : iconParam.defaultSrc
               }>
               {/* Icon image with default src */}
