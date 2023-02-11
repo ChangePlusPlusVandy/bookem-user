@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PopupWindow } from '../PopupWindow';
+import { PopupWindow } from '@/components/PopupWindow';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
   Greeting,
@@ -17,7 +17,7 @@ import {
   VolunteerButtonsFlex,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
-import LeftDisplay from '../LeftDisplay';
+import LeftDisplay from '@/components/LeftDisplay';
 
 const VolunteerDashboard = ({ userData }: any) => {
   const [showPopup, setShowPopup] = useState(false);

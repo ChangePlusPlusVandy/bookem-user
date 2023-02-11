@@ -3,7 +3,7 @@ import LoginPage from '@/pages/login';
 import VolunteerPage from '@/pages/volunteer';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import HomePage from '../pages';
+import HomePage from 'pages/index';
 
 // mock next-auth
 jest.mock('next-auth/react');
