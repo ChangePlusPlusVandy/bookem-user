@@ -9,37 +9,45 @@ export const DashboardContainer = styled.div`
 `;
 
 export const LogButton = styled.button`
-  width: 222px;
-  height: 74px;
   background: #6d6d6d;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 10px;
-  &:hover {
-    cursor: pointer;
-  }
+  width: 350px;
+  height: 88px;
+  padding: 19px;
+  padding-top: 25px;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 30px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
   color: #ffffff;
+
+  display: flex;
+  align-items: center;
 `;
 
-export const PastActivityButton = styled.button`
-  width: 222px;
-  height: 74px;
-  background: #d6d6d6;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+export const ButtonIcon = styled.div`
+  float: left;
+  margin-right: 40px;
+`;
+
+export const HistoryButton = styled.button`
+  width: 350px;
+  height: 88px;
+  padding: 19px;
+  padding-top: 25px;
+
+  background: #e3e3e3;
   border-radius: 10px;
-  &:hover {
-    cursor: pointer;
-  }
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 700;
-  font-size: 25px;
-  line-height: 30px;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
   color: #000000;
+
+  display: flex;
+  align-items: center;
 `;
 
 export const VolunteerButtonsContainer = styled.div`
@@ -51,7 +59,7 @@ export const VolunteerButtonsFlex = styled.div`
   height: fit-content;
   display: flex;
   justify-content: space-evenly;
-  @media (max-width: 650px) {
+  @media (max-width: 960px) {
     flex-direction: column;
   }
 `;
