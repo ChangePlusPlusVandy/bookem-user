@@ -8,21 +8,17 @@ const Container = styled.div`
   width: 50vw;
   height: 100vh;
   background: #dbdbdb;
-  padding-top: 130px;
-  padding-left: 120px;
-  padding-right: 120px;
-  gap: 1vh;
+  padding: 50px 40px;
   overflow-y: auto;
 `;
 
 const ImgContainer = styled.div`
   position: relative;
   width: 85%;
-  height: 55vw;
+  height: 60vw;
   min-height: 200px;
   min-width: 120px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 `;
 
 const HeaderFont = styled.p`
@@ -48,7 +44,11 @@ const LeftDisplay = () => {
   return (
     <Container>
       <ImgContainer>
-        <Image src={'/pretty.png'} fill alt="BookEm Background"></Image>
+        <Image
+          src={'/bookemkids.png'}
+          fill
+          style={{ objectFit: 'cover' }}
+          alt="BookEm Background"></Image>
       </ImgContainer>
 
       <HeaderFont>Volunteer</HeaderFont>

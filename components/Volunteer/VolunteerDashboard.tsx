@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PopupWindow } from '../PopupWindow';
+import { PopupWindow } from '@/components/PopupWindow';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import Image from 'next/image';
 import {
@@ -19,6 +19,7 @@ import {
   VolunteerButtonsFlex,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
+import LeftDisplay from '@/components/LeftDisplay';
 
 const VolunteerDashboard = ({ userData }: any) => {
   const [showPopup, setShowPopup] = useState(false);
@@ -34,6 +35,12 @@ const VolunteerDashboard = ({ userData }: any) => {
   return (
     <>
       <DashboardContainer>
+        {showPopup ? (
+          <PopupWindow hidePopup={hidePopup}>
+            {/* insert popup content instead of LeftDisplay */}
+            <LeftDisplay></LeftDisplay>
+          </PopupWindow>
+        ) : null}
         <GreetingContainer>
           <Greeting>Volunteer</Greeting>
         </GreetingContainer>

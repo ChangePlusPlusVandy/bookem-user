@@ -13,11 +13,6 @@ export const RightContainer = styled.div`
   width: 50vw;
   height: 100vh;
   background: white;
-  padding-top: 20vh;
-  gap: 4vh;
-  padding-left: 15vh;
-  padding-right: 15vh;
-  overflow-y: auto;
 `;
 
 export const LoginForm = styled.form`
@@ -46,7 +41,6 @@ export const Button = styled.button`
 
 export const Footer = styled.div`
   position: fixed;
-  justify-content: top;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -55,22 +49,30 @@ export const Footer = styled.div`
   width: 50vw;
   height: 17vh;
   background: gray;
-  overflow-y: auto;
+  background-color: teal;
 `;
+
 export const ExternalPrompt = styled.p`
   padding-top: 8px;
   color: gray;
   font-family: arial;
   font-size: 13px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
+  border-bottom: 1px solid #000;
+  line-height: 0.1em;
+  text-align: center;
+
+  span {
+    background: #fff;
+    padding: 0 10px;
+  }
 `;
+
 export const ContentContainer = styled.div`
   display: flex;
-  gap: 20px;
   flex-direction: column;
+  padding: 35% 15% 0% 15%;
 `;
+
 export const LoginHeader = styled.div`
   margin-right: auto;
   font-size: 30px;
@@ -80,11 +82,9 @@ export const LoginHeader = styled.div`
 `;
 
 export const IconContainer = styled.div`
-  margin-left: auto;
-  margin-right: auto;
+  margin: 15px auto;
   display: flex;
   gap: 20px;
-  padding-bottom: 30px;
 `;
 
 export const Input = styled.input`
@@ -98,18 +98,14 @@ export const SubmitButton = styled.input`
   font-size: 17px;
   background: #dbdbdb;
   border: none;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  padding-left: 35px;
-  padding-right: 35px;
+  padding: 12px 35px;
   border-radius: 14px;
   &:hover {
     background-color: green;
     cursor: pointer;
   }
-  width: 275px;
-  margin-left: auto;
-  margin-right: auto;
+  width: 80%;
+  margin: 0 auto;
 `;
 
 export const IconButton = styled.button`
@@ -126,7 +122,6 @@ export const IconButton = styled.button`
 
 export const LittleText = styled.p`
   padding-top: 8px;
-  padding-bottom: 8px;
   color: white;
   font-family: arial;
   font-size: 13px;

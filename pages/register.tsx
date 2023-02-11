@@ -304,6 +304,7 @@ const RegisterPage = () => {
       sourceHeardFrom: 'somethingrandomidkwhattodohere',
       ethnicity: 'somethingrandomidkwhattodohere',
       gender: 'somethingrandomidkwhattodohere',
+      programs: [],
     };
     createUser(userData);
   };

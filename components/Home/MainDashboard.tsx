@@ -1,5 +1,5 @@
 import React from 'react';
-import UpcomingEvents from './UpcomingEvents';
+import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import Image from 'next/image';
 import {
   Container,
