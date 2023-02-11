@@ -1,12 +1,18 @@
 import React from 'react';
-import { Container, RightContainer } from '@/styles/register.styles';
+import {
+  Container,
+  RightContainer,
+  ContentContainer,
+} from '@/styles/login.styles';
 import LeftDisplay from '@/components/LeftDisplay';
 
 const RegisterPage = () => {
   return (
     <Container>
       <LeftDisplay></LeftDisplay>
-      <RightContainer>Register Flow Goes Here</RightContainer>
+      <RightContainer>
+        <ContentContainer>Register Flow go here</ContentContainer>
+      </RightContainer>
     </Container>
   );
 };
