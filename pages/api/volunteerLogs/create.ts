@@ -46,7 +46,6 @@ export default async function handler(
   console.log(volunteerLog);
 
   if (!volunteerLog.hours) {
-    console.log(volunteerLog);
     res.status(400).json({ message: 'Missing hours in request body.' });
     throw new Error('Invalid input. Missing hours in request body.');
   }
