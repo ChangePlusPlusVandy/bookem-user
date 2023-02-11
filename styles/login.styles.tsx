@@ -55,7 +55,6 @@ export const Footer = styled.div`
 export const ExternalPrompt = styled.p`
   padding-top: 8px;
   color: gray;
-  font-family: arial;
   font-size: 13px;
   border-bottom: 1px solid #000;
   line-height: 0.1em;
@@ -77,7 +76,6 @@ export const LoginHeader = styled.div`
   margin-right: auto;
   font-size: 30px;
   font-weight: bold;
-  font-family: arial;
   margin-bottom: 30px;
 `;
 
@@ -123,6 +121,5 @@ export const IconButton = styled.button`
 export const LittleText = styled.p`
   padding-top: 8px;
   color: white;
-  font-family: arial;
   font-size: 13px;
 `;
