@@ -7,13 +7,12 @@ const IconContainer = styled.div`
   align-items: center;
   justify-content: center;
   align-self: center;
-  width: 248px;
-  min-width: 248px;
-  height: 248px;
-  min-height: 248px;
+  width: max(17vw, 150px);
+  height: max(17vw, 150px);
   border-radius: 50%;
   border: 10px solid #5a5a5a;
 `;
+
 const Icon = styled(Image)``;
 
 /**
@@ -21,11 +20,9 @@ const Icon = styled(Image)``;
  */
 const BookIcon = () => {
   return (
-    <>
-      <IconContainer>
-        <Icon src="/event/bookmark.png" alt="" width={135} height={135} />
-      </IconContainer>
-    </>
+    <IconContainer>
+      <Icon src="/event/bookmark.png" alt="" width={120} height={120} />
+    </IconContainer>
   );
 };
 

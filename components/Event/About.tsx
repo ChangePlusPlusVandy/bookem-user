@@ -7,11 +7,7 @@ const AboutBox = styled.div`
 `;
 
 const AboutHeader = styled.div`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 36px;
 `;
 const AboutContent = styled.div`
   margin-top: 33px;

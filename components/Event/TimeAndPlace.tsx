@@ -9,7 +9,6 @@ const TimeAndPlaceBox = styled.div`
   align-items: center;
   height: 50px;
   margin-top: 20px;
-  // background-color: #faffdb;
 `;
 
 /**
@@ -24,11 +23,7 @@ const Icon = styled(Image)``;
 
 const IconText = styled.span`
   margin-left: 20px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
   font-size: 18px;
-  line-height: 22px;
 `;
 
 /**
@@ -70,24 +65,23 @@ const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
       text: '3593 Cedar Rd. Nashville',
     },
   ];
+
   return (
-    <>
-      <TimeAndPlaceBox>
-        {/* Iterate through iconParamList to produce a list of icon + text */}
-        {iconParamList.map(iconParam => {
-          return (
-            <IconBox key={iconParam.src}>
-              <Icon
-                src={iconParam.src}
-                alt=""
-                width={iconWidth}
-                height={iconHeight}></Icon>
-              <IconText>{iconParam.text}</IconText>
-            </IconBox>
-          );
-        })}
-      </TimeAndPlaceBox>
-    </>
+    <TimeAndPlaceBox>
+      {/* Iterate through iconParamList to produce a list of icon + text */}
+      {iconParamList.map(iconParam => {
+        return (
+          <IconBox key={iconParam.src}>
+            <Icon
+              src={iconParam.src}
+              alt=""
+              width={iconWidth}
+              height={iconHeight}></Icon>
+            <IconText>{iconParam.text}</IconText>
+          </IconBox>
+        );
+      })}
+    </TimeAndPlaceBox>
   );
 };
 
