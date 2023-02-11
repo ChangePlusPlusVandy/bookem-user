@@ -8,11 +8,7 @@ const Container = styled.div`
   width: 50vw;
   height: 100vh;
   background: #dbdbdb;
-  padding-top: 120px;
-  padding-left: 130px;
-  padding-right: 130px;
-  padding-bottom: 30px;
-  gap: 1vh;
+  padding: 50px 40px;
   overflow-y: auto;
 `;
 
@@ -22,9 +18,7 @@ const ImgContainer = styled.div`
   height: 60vw;
   min-height: 200px;
   min-width: 120px;
-  margin-left: auto;
-  margin-right: auto;
-  overflow: hidden;
+  margin: 0 auto;
 `;
 
 const HeaderFont = styled.p`
