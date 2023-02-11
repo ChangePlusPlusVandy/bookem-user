@@ -1,67 +1,36 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
-import { Container } from '@/styles/components/futureEvents.styles';
+import {
+  PageNum,
+  PageTitle,
+  PageNumHeader,
+  ButtonRight,
+  ButtonLeft,
+  ArrowButton,
+  ImageWrapper,
+  SubmitButton,
+  ButtonCenter,
+  BottomContainer,
+} from '@/styles/components/windowFlow.styles';
 
-const PageNum = styled.div`
-  border-radius: 50px;
-  border: solid 1px black;
-  height: 50px;
-  width: 50px;
-  margin: 0 10px 10px 10px;
-  padding-left: 20px;
-  padding-top: 15px;
-  display: flex;
-`;
-
-const PageTitle = styled.div`
-  padding-top: 15px;
-`;
-
-const PageNumHeader = styled.div`
-  display: flex;
-  margin: 0 auto;
-  margin-top: 15px;
-  width: 90%;
-  justify-content: center;
-`;
-
-const ButtonRight = styled.div`
-  bottom: 30px;
-  position: absolute;
-  right: 30px;
-`;
-const ButtonLeft = styled.div`
-  bottom: 30px;
-  position: absolute;
-  left: 30px;
-`;
-
-const Button = styled.button`
-  background: transparent;
-  border: transparent;
-  cursor: pointer;
-  border-radius: 50%;
-  border: 2px solid black;
-  padding: 0 2px;
-`;
-
-const ImageWrapper = styled.div`
-  padding-top: 10px;
-  padding-left: 20px;
-`;
-
-const WindowFlow = ({ children }: { children: React.ReactNode }) => {
-  // the available pages
-  const pages = ['Event', 'Program', 'More Information'];
+const WindowFlow = ({
+  pages,
+  children,
+}: {
+  // the array of strings at the top of the window flow
+  pages: string[];
+  // the children component to render inside of window flow
+  children: React.ReactNode;
+}) => {
   const numPages = pages.length;
 
+  // set the current page to 1
   const [currentPage, setCurrentPage] = useState(1);
 
   // useEffect to update the color of the navigation circle
   useEffect(() => {
-    pages.forEach((page, index) => {
+    pages.forEach((_, index) => {
       // get the document element
       const currPage = document.getElementById((index + 1).toString());
 
@@ -80,19 +49,17 @@ const WindowFlow = ({ children }: { children: React.ReactNode }) => {
   }, [currentPage]);
 
   const navigateBack = () => {
-    if (currentPage <= numPages && currentPage > 1) {
+    if (currentPage <= numPages && currentPage > 1)
       setCurrentPage(currentPage - 1);
-    }
   };
 
   const navigateForward = () => {
-    if (currentPage >= 0 && currentPage < numPages) {
+    if (currentPage >= 0 && currentPage < numPages)
       setCurrentPage(currentPage + 1);
-    }
   };
 
   return (
-    <Container>
+    <>
       <PageNumHeader>
         {pages.map((page, index) => {
           return (
@@ -110,37 +77,43 @@ const WindowFlow = ({ children }: { children: React.ReactNode }) => {
                   />
                 </ImageWrapper>
               )}
-
-              <ButtonLeft>
-                {currentPage > 1 && (
-                  <Button onClick={navigateBack}>
-                    <Image
-                      src="/arrow-left.png"
-                      alt="Left arrow"
-                      width="40"
-                      height="40"
-                    />
-                  </Button>
-                )}
-              </ButtonLeft>
-              <ButtonRight>
-                {currentPage < pages.length && (
-                  <Button onClick={navigateForward}>
-                    <Image
-                      src="/arrow-right.png"
-                      alt="Right arrow"
-                      width="40"
-                      height="40"
-                    />
-                  </Button>
-                )}
-              </ButtonRight>
             </>
           );
         })}
+        <BottomContainer>
+          {currentPage > 1 && (
+            <ButtonLeft>
+              <ArrowButton onClick={navigateBack}>
+                <Image
+                  src="/arrow-left.png"
+                  alt="Left arrow"
+                  width="40"
+                  height="40"
+                />
+              </ArrowButton>
+            </ButtonLeft>
+          )}
+          {currentPage == pages.length && (
+            <ButtonCenter>
+              <SubmitButton>Submit</SubmitButton>
+            </ButtonCenter>
+          )}
+          {currentPage < pages.length && (
+            <ButtonRight>
+              <ArrowButton onClick={navigateForward}>
+                <Image
+                  src="/arrow-right.png"
+                  alt="Right arrow"
+                  width="40"
+                  height="40"
+                />
+              </ArrowButton>
+            </ButtonRight>
+          )}
+        </BottomContainer>
       </PageNumHeader>
       {children}
-    </Container>
+    </>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { PopupWindow } from '@/components/PopupWindow';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
-import WindowFlow from '@/components/WindowFlow';
 import Image from 'next/image';
 import {
   Greeting,
@@ -17,76 +16,51 @@ import {
   HistoryButton,
   ButtonIcon,
   VolunteerButtonsContainer,
-  VolunteerButtonsFlex,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
-import LeftDisplay from '@/components/LeftDisplay';
+import WindowFlow from '@/components/WindowFlow';
 
 const VolunteerDashboard = ({ userData }: any) => {
-  const [showPopup, setShowPopup] = useState(true);
-
-  function handleShowPopup() {
-    setShowPopup(true);
-  }
-
-  function hidePopup() {
-    setShowPopup(false);
-  }
-
-  return (
-    <>
-      {showPopup ? (
-        <PopupWindow hidePopup={hidePopup}>
-          <WindowFlow>{}</WindowFlow>
-        </PopupWindow>
-      ) : (
-        <></>
-      )}
-    </>
-  );
+  const [showPopup, setShowPopup] = useState(false);
 
   return (
     <>
       <DashboardContainer>
-        {showPopup ? (
-          <PopupWindow hidePopup={hidePopup}>
-            {/* insert popup content instead of LeftDisplay */}
-            <LeftDisplay></LeftDisplay>
+        {showPopup && (
+          <PopupWindow hidePopup={() => setShowPopup(false)}>
+            <WindowFlow pages={['Event', 'Program', 'Numbers', 'Comments']}>
+              {/* TODO: add children for Log Hours */}
+              Add forms below
+            </WindowFlow>
           </PopupWindow>
-        ) : null}
+        )}
         <GreetingContainer>
           <Greeting>Volunteer</Greeting>
         </GreetingContainer>
 
         <VolunteerButtonsContainer>
-          <VolunteerButtonsFlex>
-            <FlexChild>
-              <LogButton>
-                <ButtonIcon>
-                  <Image
-                    src="/pencil.png"
-                    alt="Pencil icon"
-                    width="50"
-                    height="50"
-                  />
-                </ButtonIcon>
-                Log Hours
-              </LogButton>
-            </FlexChild>
-            <FlexChild>
-              <HistoryButton>
-                <ButtonIcon>
-                  <Image
-                    src="/history-clock.png"
-                    alt="Clock with arrow icon"
-                    width="50"
-                    height="50"
-                  />
-                </ButtonIcon>
-                See History
-              </HistoryButton>
-            </FlexChild>
-          </VolunteerButtonsFlex>
+          <LogButton onClick={() => setShowPopup(true)}>
+            <ButtonIcon>
+              <Image
+                src="/pencil.png"
+                alt="Pencil icon"
+                width="50"
+                height="50"
+              />
+            </ButtonIcon>
+            Log Hours
+          </LogButton>
+          <HistoryButton>
+            <ButtonIcon>
+              <Image
+                src="/history-clock.png"
+                alt="Clock with arrow icon"
+                width="50"
+                height="50"
+              />
+            </ButtonIcon>
+            See History
+          </HistoryButton>
         </VolunteerButtonsContainer>
 
         <VolunteerStatsContainer>
