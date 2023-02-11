@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import UpcomingEvents from './UpcomingEvents';
+import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import Image from 'next/image';
 import {
   Container,
@@ -11,7 +10,7 @@ import {
   StatsContainer,
   StatsDescription,
   StatsFlex,
-  StatsFlexChild,
+  FlexChild,
   StatsHeader,
   StatsNumber,
   UpcomingEventsContainer,
@@ -33,21 +32,26 @@ const MainDashboard = ({ userData }: any) => {
         <StatsContainer>
           <StatsHeader>Your accomplishments at a glance:</StatsHeader>
           <StatsFlex>
-            <StatsFlexChild>
+            <FlexChild>
               <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
               <StatsDescription>Hours volunteered</StatsDescription>
-            </StatsFlexChild>
+            </FlexChild>
 
-            <StatsFlexChild>
+            <FlexChild>
               <StatsNumber>{userData.booksShared}</StatsNumber>
               <StatsDescription>Books shared (requested?)</StatsDescription>
-            </StatsFlexChild>
+            </FlexChild>
 
-            <StatsFlexChild>
+            <FlexChild>
               <StatsNumber>{userData.dollarsDonated}</StatsNumber>
               <StatsDescription>Dollars donated</StatsDescription>
-            </StatsFlexChild>
+            </FlexChild>
           </StatsFlex>
+        </StatsContainer>
+
+        <StatsContainer>
+          <StatsHeader>Your events</StatsHeader>
+          {/* TODO: add a filter icon on the right */}
         </StatsContainer>
 
         <UpcomingEventsContainer>

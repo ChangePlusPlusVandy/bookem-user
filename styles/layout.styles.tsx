@@ -9,6 +9,7 @@ const Container = styled.div`
 
 const Subcontainer = styled.div`
   width: calc(100vw - 120px);
+  overflow-y: scroll;
 `;
 
 export const Layout = ({ children }: { children: React.ReactNode }) => {

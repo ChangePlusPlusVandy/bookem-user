@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import styled from 'styled-components';
-import { dummyEventData } from './UpcomingEvents';
+import { dummyEventData } from '@/components/Home/UpcomingEvents';
 const EventCard = React.lazy(() => import('@/components/EventCard'));
 
 // vertical list of sample past events (another component)
@@ -21,7 +21,6 @@ const Container = styled.div`
 `;
 
 const Header = styled.p`
-  font-family: 'Inter';
   font-size: 25px;
   margin-top: 50px;
   text-align: center;

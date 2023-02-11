@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
-import EventCard from '../EventCard';
+import EventCard from '@/components/EventCard';
 import {
   Container,
   ImagesWrapper,
@@ -11,6 +11,7 @@ import {
   NavRight,
   SearchBar,
 } from '@/styles/components/futureEvents.styles';
+import { StatsHeader } from '@/styles/dashboard.styles';
 
 type EventType = {
   source: string;
@@ -76,7 +77,9 @@ const FutureVolunteerEvents = () => {
   return (
     <Container>
       <NavHeader>
-        <NavLeft>Future volunteer Events</NavLeft>
+        <NavLeft>
+          <StatsHeader>Future volunteer events</StatsHeader>
+        </NavLeft>
         <NavRight>
           <Image
             src="/filter-icon.png"

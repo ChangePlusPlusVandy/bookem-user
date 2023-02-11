@@ -9,7 +9,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100%;
   background-color: white;
-  padding: 40px;
+  padding: 20px 40px;
   overflow-y: scroll;
   position: relative;
 `;
@@ -21,7 +21,6 @@ export const GreetingContainer = styled.div`
 `;
 
 export const Greeting = styled.p`
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
@@ -29,25 +28,25 @@ export const Greeting = styled.p`
   color: black;
 `;
 
-export const UpcomingEventsContainer = styled.div`
-  margin-top: 40px;
-`;
+export const UpcomingEventsContainer = styled.div``;
 
 export const InfoIcon = styled.div`
   position: absolute;
   top: 82px;
   right: 50px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const StatsContainer = styled.div`
   height: fit-content;
-  margin-top: 49px;
-  background-color: white;
+  margin-top: 15px;
 `;
 
 export const StatsHeader = styled.p`
   margin-bottom: 29px;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 25px;
@@ -57,14 +56,12 @@ export const StatsHeader = styled.p`
 
 export const StatsFlex = styled.div`
   height: fit-content;
-  background-color: white;
   display: flex;
   justify-content: space-evenly;
 `;
 
-export const StatsFlexChild = styled.div`
-  flex: 1;
-  background-color: white;
+export const FlexChild = styled.div`
+  flex: 0 1 auto;
   margin: 10px;
   padding: 10px;
   text-align: center;
@@ -73,7 +70,6 @@ export const StatsFlexChild = styled.div`
 
 export const StatsNumber = styled.p`
   margin: 0;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 40px;
@@ -83,7 +79,6 @@ export const StatsNumber = styled.p`
 
 export const StatsDescription = styled.p`
   margin: 0;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

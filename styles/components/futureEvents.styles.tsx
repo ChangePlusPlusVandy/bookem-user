@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 
 export const NavHeader = styled.div`
+  border-top: 1px solid #000000;
   width: 100%;
   padding: 26px 60px;
   display: flex;
@@ -23,8 +24,8 @@ export const NavRight = styled.div`
   width: 50%;
   text-align: right;
 
-  svg {
-    margin-right: 20px;
+  img {
+    cursor: pointer;
   }
 `;
 
