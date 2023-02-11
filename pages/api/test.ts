@@ -1,9 +1,11 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { authenticateUser } from '@/lib/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { authOptions } from './auth/[...nextauth]';
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const { method } = req;
   switch (method) {
     case 'GET':
@@ -20,6 +22,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         }
       }
   }
-};
-
-export default handler;
+}
