@@ -34,7 +34,6 @@ const LargeFormInput = styled.textarea`
   border-radius: 10px;
   width: 400px;
   height: 100px;
-  font-family: 'Times New Roman', serif;
   font-size: 1em;
 `;
 
