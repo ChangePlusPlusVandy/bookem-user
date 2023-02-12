@@ -26,9 +26,9 @@ type EventType = {
   source: string;
   name: string;
   location: string;
-  date: string;
+  date: Date;
   time: string;
-  availability: string;
+  availability: number;
   id: number;
 };
 
@@ -37,45 +37,45 @@ const feedsource: EventType[] = [
     source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
+    date: new Date('2005-12-17T03:24:00'),
     time: '9:30 AM',
-    availability: '11',
+    availability: 11,
     id: 0,
   },
   {
     source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
+    date: new Date('2022-12-17T03:24:00'),
     time: '9:30 AM',
-    availability: '10',
+    availability: 2,
     id: 1,
   },
   {
     source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
+    date: new Date('2023-12-17T03:24:00'),
     time: '9:30 AM',
-    availability: '8',
+    availability: 8,
     id: 2,
   },
   {
     source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
+    date: new Date('2021-12-17T03:24:00'),
     time: '9:30 AM',
-    availability: '11',
+    availability: 5,
     id: 3,
   },
   {
     source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
-    date: '11/25',
+    date: new Date('2020-12-17T03:24:00'),
     time: '9:30 AM',
-    availability: '4',
+    availability: 8,
     id: 4,
   },
 ];
@@ -91,12 +91,42 @@ const FutureVolunteerEvents = () => {
 
   const [buttonRight, setButtonRight] = useState(0);
   const [buttonTop, setButtonTop] = useState(0);
+  const [feed, setFeed] = useState(feedsource);
+
   function handleShowPopup() {
     setShowPopup(true);
   }
 
   function hidePopup() {
     setShowPopup(false);
+  }
+
+  function sortDescendingSpots() {
+    const copy = [...feed];
+    copy.sort((b, a) => a.availability - b.availability);
+    setFeed(copy);
+    console.log('here');
+  }
+
+  function sortAscendingSpots() {
+    const copy = [...feed];
+    copy.sort((a, b) => a.availability - b.availability);
+    setFeed(copy);
+    console.log('there');
+  }
+
+  function sortMostRecent() {
+    const copy = [...feed];
+    copy.sort((a, b) => a.date.valueOf() - b.date.valueOf());
+    setFeed(copy);
+    console.log('here');
+  }
+
+  function sortLeastRecent() {
+    const copy = [...feed];
+    copy.sort((b, a) => a.date.valueOf() - b.date.valueOf());
+    setFeed(copy);
+    console.log('there');
   }
 
   return (
@@ -107,7 +137,12 @@ const FutureVolunteerEvents = () => {
         </NavLeft>
         <NavRight>
           {showPopup ? (
-            <FilterEventsPopup hidePopup={hidePopup}></FilterEventsPopup>
+            <FilterEventsPopup
+              sortDescendingSpots={sortDescendingSpots}
+              sortAscendingSpots={sortAscendingSpots}
+              sortMostRecent={sortMostRecent}
+              sortLeastRecent={sortLeastRecent}
+              hidePopup={hidePopup}></FilterEventsPopup>
           ) : null}
           <FilterButton onClick={handleShowPopup}>
             <Image
@@ -129,7 +164,7 @@ const FutureVolunteerEvents = () => {
       </SearchBar>
 
       <ImagesWrapper>
-        {feedsource
+        {feed
           .filter(event => {
             if (query === '') {
               //if query is empty

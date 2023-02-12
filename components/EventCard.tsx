@@ -134,7 +134,7 @@ const EventCard = ({
 
         <InfoFlex>
           <InfoFlexChild ratio={ratio}>{eventData.date}</InfoFlexChild>
-          <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild>
+          {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
           <InfoFlexChild ratio={ratio}>
             {eventData.availability} spots
           </InfoFlexChild>

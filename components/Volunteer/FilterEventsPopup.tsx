@@ -35,9 +35,19 @@ const FilterText = styled.button`
 
 type Props = {
   hidePopup: () => void;
+  sortDescendingSpots: () => void;
+  sortAscendingSpots: () => void;
+  sortMostRecent: () => void;
+  sortLeastRecent: () => void;
 };
 
-export default function FilterEventsPopup({ hidePopup }: Props) {
+export default function FilterEventsPopup({
+  hidePopup,
+  sortDescendingSpots,
+  sortAscendingSpots,
+  sortMostRecent,
+  sortLeastRecent,
+}: Props) {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
@@ -61,10 +71,10 @@ export default function FilterEventsPopup({ hidePopup }: Props) {
     <>
       <Background></Background>
       <Container ref={wrapperRef}>
-        <FilterText>Most Recent</FilterText>
-        <FilterText>Least Recent</FilterText>
-        <FilterText>Most Spots</FilterText>
-        <FilterText>Least Spots</FilterText>
+        <FilterText onClick={sortLeastRecent}>Most Recent</FilterText>
+        <FilterText onClick={sortMostRecent}>Least Recent</FilterText>
+        <FilterText onClick={sortDescendingSpots}>Most Spots</FilterText>
+        <FilterText onClick={sortAscendingSpots}>Least Spots</FilterText>
       </Container>
     </>
   );
