@@ -1,8 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, ChangeEvent, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { UserData } from 'bookem-shared/src/types/database';
+import Image from 'next/image';
 import LeftDisplay from '@/components/LeftDisplay';
 import RegisterFlow from '@/components/RegisterFlow';
 
@@ -140,11 +141,15 @@ const RegisterPage = () => {
     ageRange: '',
     members: [],
     volunteerReason: '',
+    job1: '',
+    job2: '',
+    resume: null,
+    joinNewsletter: null,
   });
 
   // phone number handling
   const [phoneValue, setPhoneValue] = useState('');
-  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
     setPhoneValue(formattedPhoneNumber);
   };
@@ -158,9 +163,24 @@ const RegisterPage = () => {
     'Junior League member or sustainer',
   ];
 
-  // resume upload handling
+  // resume upload handling, based on https://codefrontend.com/file-upload-reactjs/
+  // TODO: THIS ONLY WORKS FOR <= 16 MB FILES
   const [resume, setResume] = useState<File>();
   const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleUploadClick = () => {
+    inputRef.current?.click();
+  };
+
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+
+    setResume(e.target.files[0]);
+
+    // TODO: do the file upload here normally...?????
+  };
 
   // arrow button handling
   let nextPage = user.page;
@@ -199,6 +219,8 @@ const RegisterPage = () => {
   };
 
   const onSubmitPage3 = (data: any) => {
+    // TODO: I can't figure out a better way to update resume field
+    data.resume = resume;
     console.log(data);
     user.page = nextPage;
   };
@@ -217,6 +239,7 @@ const RegisterPage = () => {
       nextPage = nextPage + 1;
       user.page = nextPage;
       onFinished();
+      // TODO: SHOULD DO SOMETHING WHEN USER CANNOT BE CREATED
     }
   };
 
@@ -234,9 +257,9 @@ const RegisterPage = () => {
         user.state +
         ' ' +
         user.zip,
-      sourceHeardFrom: 'somethingrandomidkwhattodohere',
-      ethnicity: 'somethingrandomidkwhattodohere',
-      gender: 'somethingrandomidkwhattodohere',
+      sourceHeardFrom: 'somethingrandomidkwhattoputhere',
+      ethnicity: 'somethingrandomidkwhattoputhere',
+      gender: 'somethingrandomidkwhattoputhere',
       programs: [],
     };
     createUser(userData);
@@ -397,7 +420,6 @@ const RegisterPage = () => {
                 Why do you want to become a community volunteer?
               </SectionHeader>
               <textarea
-                type="text"
                 placeholder="Start here..."
                 {...register('volunteerReason', { required: true })}
               />
@@ -439,6 +461,16 @@ const RegisterPage = () => {
               <SectionHeader>
                 Please upload your resume (Optional)
               </SectionHeader>
+              <button onClick={handleUploadClick}>
+                {resume ? `${resume.name}` : 'Click to select'}
+              </button>
+              <input
+                type="file"
+                {...register('resume')}
+                ref={inputRef}
+                onChange={handleFileChange}
+                style={{ display: 'none' }}
+              />
             </SectionContainer>
             <SectionContainer>
               <SectionHeader>
@@ -555,6 +587,7 @@ const RegisterPage = () => {
             {errors.city && <span>City is required</span>}
             {errors.state && <span>State is required</span>}
             {errors.zip && <span>Zip code is required</span>}
+            <p>More text here...</p>
             <input type="submit" onClick={() => pressSubmit()} />
             <RegisterFlow
               currentPage={user.page}
@@ -563,12 +596,6 @@ const RegisterPage = () => {
               handleRightArrow={handleRightArrow}
             />
           </Form>
-
-          {/* <button>
-            <Link href="/" onClick={() => onFinished()}>
-              Let&apos;s Go
-            </Link>
-          </button> */}
         </RightContainer>
       </Container>
     );
@@ -580,6 +607,12 @@ const RegisterPage = () => {
           <Header>Thank you!</Header>
           <p>Your registration for Volunteer is complete!</p>
           <p>Press the button below to log in to your account</p>
+          <Image
+            src="/user-circle.png"
+            alt="User profile stock image"
+            width="226"
+            height="226"
+          />
           <button>
             <Link href="/">Let&apos;s Go</Link>
           </button>
