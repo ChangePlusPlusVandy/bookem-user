@@ -39,7 +39,7 @@ const AddressContainer = styled.div`
   height: fit-content;
   margin-top: ${(300 / 328) * 16}px;
   margin-left: ${(300 / 328) * 300}px;
-  background-color: white;
+  background-color: red;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
@@ -54,6 +54,15 @@ const AddressIcon = styled.div`
   margin-right: 8px;
 `;
 
+const Address = styled.div`
+  position: absolute;
+  z-index: 1;
+  margin-left: 78px;
+  line-height: ${(300 / 328) * 22}px;
+  width: 175px;
+  white-space: break-word;
+`;
+
 const InfoContainer = styled.div`
   position: absolute;
   height: fit-content;
@@ -65,7 +74,8 @@ const InfoContainer = styled.div`
 const ClockIcon = styled.div`
   position: absolute;
   float: left;
-  margin-left: 350px;
+  margin-left: 340px;
+  z-index: 1;
 `;
 
 const CalendarIcon = styled.div`
@@ -77,6 +87,7 @@ const CheckmarkIcon = styled.div`
   position: absolute;
   float: left;
   margin-left: 520px;
+  z-index: 1;
 `;
 
 const InfoFlex = styled.div`
@@ -109,10 +120,11 @@ const Time = styled.div`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  margin-left: 380px;
+  margin-left: 348px;
   font-size: ${(300 / 328) * 18}px;
   line-height: ${(300 / 328) * 22}px;
-  white-space: nowrap;
+  width: 100px;
+  white-space: break-word;
 `;
 
 const Books = styled.div`
@@ -124,11 +136,12 @@ const Books = styled.div`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  margin-left: 550px;
+  margin-left: 538px;
   margin-right: ${(300 / 328) * 8}px;
   font-size: ${(300 / 328) * 18}px;
   line-height: ${(300 / 328) * 22}px;
-  white-space: nowrap;
+  width: 150px;
+  white-space: break-word;
 `;
 
 function formatAMPM(date: { getHours: () => any; getMinutes: () => any }) {
@@ -170,8 +183,7 @@ const LongEventCard = ({
             height={`${Math.round((300 / 328) * 23.99)}`}
           />
         </AddressIcon>
-        {/* TODO: school not showing - probably because its "schools" in Schema but "school" in MongoDB*/}
-        {eventData.school}
+        <Address>{eventData.school}</Address>
       </AddressContainer>
 
       <InfoContainer>
