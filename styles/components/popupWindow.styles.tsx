@@ -7,25 +7,24 @@ export const Background = styled.div`
   width: 100%;
   height: 100%;
   z-index: 10;
-  background: black;
   display: flex;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.6);
 `;
 
 export const Container = styled.div`
+  background-color: white;
+  border-radius: 10px;
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 85%;
   height: 85%;
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  border-radius: 10px;
   z-index: 10;
+  overflow: hidden;
 `;
 
 export const CloseButton = styled.button`
