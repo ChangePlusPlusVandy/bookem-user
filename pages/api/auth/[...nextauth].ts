@@ -8,6 +8,8 @@ import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
 import clientPromise from 'lib/mongodb';
 import bcrypt from 'bcrypt';
 import { SessionStrategy } from 'next-auth/core/types';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
+import { JWT } from 'next-auth/jwt';
 
 const sessionStrategy: SessionStrategy = 'jwt';
 
@@ -64,35 +66,42 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET || '',
     }),
   ],
-  // callbacks: {
-  //   async session(session: { user: UserData; token: any }, token: any) {
-  //     //session.accessToken = token.accessToken;
-  //     console.log('Session token');
-  //     console.log(token);
-  //     if (userAccount !== null) {
-  //       session.user = userAccount;
-  //     } else if (typeof token !== typeof undefined) {
-  //       session.token = token;
-  //     }
-  //     console.log('session callback returning');
-  //     console.log(session);
-  //     return session;
-  //   },
-  //   async jwt(
-  //     token: { user: any },
-  //     user: any,
-  //     account: any,
-  //     profile: any,
-  //     isNewUser: any
-  //   ) {
-  //     console.log('JWT Token User');
-  //     console.log(token.user);
-  //     if (typeof user !== typeof undefined) {
-  //       token.user = user;
-  //     }
-  //     return token;
-  //   },
-  // },
+  callbacks: {
+    /**
+     * Update session's user.id with token.uid
+     * @param session
+     * @param token Contains user id
+     * @returns session with user.id inside
+     */
+    async session({ session, token }: { session: any; token: any }) {
+      //session.accessToken = token.accessToken;
+      console.log('Session Token: ', token);
+      if (session?.user) {
+        console.log('User in session: ', session.user);
+        session.user._id = token.uid;
+      }
+      console.log('session callback returning');
+      console.log('Session: ', session);
+      return session;
+    },
+
+    /**
+     * Put user id inside JWT token
+     * @param token JWT token
+     * @param user Logged in user
+     * @returns JWT token with user's id encrypted inside
+     */
+    async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any }) {
+      console.log('JWT Token: ', token);
+
+      if (user) {
+        console.log('Logged in User: ', user);
+        token.uid = user._id;
+      }
+
+      return token;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
