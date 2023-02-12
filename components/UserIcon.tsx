@@ -27,7 +27,6 @@ const UserNameDiv = styled.div`
   margin: auto;
   text-align: center;
   color: white;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
