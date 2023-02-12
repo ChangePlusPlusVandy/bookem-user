@@ -2,13 +2,14 @@ import dbConnect from '@/lib/dbConnect';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
   if (!session) {
     res.status(401).json({
       error: 'You are unauthorized to perform this action. Please login first',
@@ -40,9 +41,19 @@ export default async function handler(
         console.error(error);
         res.status(500).json({ message: error });
       }
-    case 'PUT':
-    case 'DELETE':
     case 'POST':
+      try {
+        await dbConnect();
+        const program: QueriedVolunteerProgramData =
+          (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
+
+        const userIndex = program.users;
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: error });
+      }
+    // case 'PUT':
+    // case 'DELETE':
     default:
       res.setHeader('Allow', ['GET', 'PUT', 'DELETE', 'POST']);
       res.status(405).end(`Method ${method} Not Allowed`);
