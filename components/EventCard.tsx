@@ -26,7 +26,6 @@ const Name = styled.div<RatioProp>`
   background-color: white;
   margin-top: ${props => props.ratio * 29}px;
   height: ${props => props.ratio * 40.45}px;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 700;
   font-size: ${props => props.ratio * 18}px;
@@ -37,7 +36,6 @@ const AddressContainer = styled.div<RatioProp>`
   height: fit-content;
   margin-top: ${props => props.ratio * 13}px;
   background-color: white;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: ${props => props.ratio * 18}px;
@@ -72,7 +70,6 @@ const InfoFlexChild = styled.div<RatioProp>`
   flex: 0 1 auto;
   text-align: center;
   vertical-align: middle;
-  font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: ${props => props.ratio * 18}px;
