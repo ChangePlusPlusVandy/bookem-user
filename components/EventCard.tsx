@@ -8,8 +8,8 @@ interface RatioProp {
 
 const Container = styled.div<RatioProp>`
   background-color: white;
-  width: ${props => props.ratio * 328}px;
-  height: ${props => props.ratio * 328}px;
+  max-width: 300px;
+  height: ${props => props.ratio * 350}px;
   border-radius: 10px;
   padding: ${props => props.ratio * 17}px;
   margin: ${props => props.ratio * 17}px;
@@ -62,6 +62,7 @@ const InfoFlex = styled.div`
   height: fit-content;
   background-color: white;
   display: flex;
+  gap: 5px;
   justify-content: space-between;
 `;
 
@@ -118,7 +119,7 @@ const EventCard = ({
             height={`${Math.round(ratio * 23.99)}`}
           />
         </AddressIcon>
-        {eventData.address}
+        {eventData.location}
       </AddressContainer>
 
       <InfoContainer ratio={ratio}>
@@ -135,7 +136,7 @@ const EventCard = ({
           <InfoFlexChild ratio={ratio}>{eventData.date}</InfoFlexChild>
           <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild>
           <InfoFlexChild ratio={ratio}>
-            {eventData.numSpots} spots
+            {eventData.availability} spots
           </InfoFlexChild>
         </InfoFlex>
       </InfoContainer>

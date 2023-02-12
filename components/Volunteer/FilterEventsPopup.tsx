@@ -5,10 +5,11 @@ export const Background = styled.div`
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 500%;
+  width: 100%;
   height: 500%;
   z-index: 5;
   display: flex;
+  overflow: hidden;
 `;
 
 export const Container = styled.div`
@@ -16,12 +17,20 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   width: 150px;
-  height: 200px;
+  height: 180px;
   background: gray;
   border-radius: 10px;
   z-index: 10;
-  right: 41px;
-  top: 0px;
+  right: 0px;
+  top: 40px;
+  display: flex;
+  padding: 30px;
+  gap: 10px;
+`;
+
+const FilterText = styled.button`
+  width: 100px;
+  border: none;
 `;
 
 type Props = {
@@ -51,7 +60,12 @@ export default function FilterEventsPopup({ hidePopup }: Props) {
   return (
     <>
       <Background></Background>
-      <Container ref={wrapperRef}></Container>
+      <Container ref={wrapperRef}>
+        <FilterText>Most Recent</FilterText>
+        <FilterText>Least Recent</FilterText>
+        <FilterText>Most Spots</FilterText>
+        <FilterText>Least Spots</FilterText>
+      </Container>
     </>
   );
 }

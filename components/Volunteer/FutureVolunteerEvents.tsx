@@ -15,6 +15,13 @@ import { StatsHeader } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
 import styled from 'styled-components';
 
+const FilterButton = styled.button`
+  border-radius: 100%;
+  border: none;
+  height: 40px;
+  width: 40px;
+`;
+
 type EventType = {
   source: string;
   name: string;
@@ -32,7 +39,7 @@ const feedsource: EventType[] = [
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
     time: '9:30 AM',
-    availability: '11 spots',
+    availability: '11',
     id: 0,
   },
   {
@@ -41,7 +48,7 @@ const feedsource: EventType[] = [
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
     time: '9:30 AM',
-    availability: '11 spots',
+    availability: '10',
     id: 1,
   },
   {
@@ -50,7 +57,7 @@ const feedsource: EventType[] = [
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
     time: '9:30 AM',
-    availability: '11 spots',
+    availability: '8',
     id: 2,
   },
   {
@@ -59,7 +66,7 @@ const feedsource: EventType[] = [
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
     time: '9:30 AM',
-    availability: '11 spots',
+    availability: '11',
     id: 3,
   },
   {
@@ -68,7 +75,7 @@ const feedsource: EventType[] = [
     location: '3593 Cedar Rd. Nashville',
     date: '11/25',
     time: '9:30 AM',
-    availability: '11 spots',
+    availability: '4',
     id: 4,
   },
 ];
@@ -102,14 +109,14 @@ const FutureVolunteerEvents = () => {
           {showPopup ? (
             <FilterEventsPopup hidePopup={hidePopup}></FilterEventsPopup>
           ) : null}
-          <button onClick={handleShowPopup}>
+          <FilterButton onClick={handleShowPopup}>
             <Image
               src="/filter-icon.png"
               alt="Filter icon"
               width="25"
               height="25"
             />
-          </button>
+          </FilterButton>
         </NavRight>
       </NavHeader>
 
