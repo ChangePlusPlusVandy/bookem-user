@@ -12,9 +12,8 @@ import Contact from './Contact';
  * Contain everything
  */
 const EventBox = styled.div`
-  // background-color: pink;
   width: 100%;
-  padding: 82px 80px 80px 66.5px;
+  padding: 50px;
 `;
 
 /**
@@ -22,8 +21,8 @@ const EventBox = styled.div`
  */
 const MiddleBox = styled.div`
   display: flex;
-  margin-top: 62px;
-  // background-color: #e4ebf7;
+  margin-top: 45px;
+  margin-left: 30px;
 `;
 
 /**
@@ -41,26 +40,24 @@ const BottomBox = styled.div`
  */
 const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
   return (
-    <>
-      <EventBox>
-        <Header />
+    <EventBox>
+      <Header />
 
-        {/* Book Icon and Program name */}
-        <MiddleBox>
-          <BookIcon />
-          <ProgramName programName={event.name} />
-        </MiddleBox>
+      {/* Book Icon and Program name */}
+      <MiddleBox>
+        <BookIcon />
+        <ProgramName programName={event.name} />
+      </MiddleBox>
 
-        {/* Time and Place of the program */}
-        <TimeAndPlace programDate={event.programDate} />
+      {/* Time and Place of the program */}
+      <TimeAndPlace programDate={event.programDate} />
 
-        {/* Program Description and Contact Info */}
-        <BottomBox>
-          <About description={event.description} />
-          <Contact />
-        </BottomBox>
-      </EventBox>
-    </>
+      {/* Program Description and Contact Info */}
+      <BottomBox>
+        <About description={event.description} />
+        <Contact />
+      </BottomBox>
+    </EventBox>
   );
 };
 

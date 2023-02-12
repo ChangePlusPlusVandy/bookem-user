@@ -7,25 +7,20 @@ const ProgramNameBox = styled.div`
 `;
 
 const NameAndSpot = styled.div`
-  font-family: 'Inter';
-  font-style: normal;
   font-size: 30px;
   line-height: 50px;
 `;
 
 const SignupButton = styled.button`
   width: 135px;
-  margin-top: 60px;
-  padding: 10px 10px 10px 10px;
+  margin-top: 30px;
+  padding: 12px;
   background: #5a5a5a;
   border-radius: 10px;
+  border: none;
   cursor: pointer;
   color: white;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
   font-size: 30px;
-  line-height: 36px;
 `;
 
 /**
@@ -34,15 +29,13 @@ const SignupButton = styled.button`
  */
 const ProgramName = ({ programName }: { programName: string }) => {
   return (
-    <>
-      <ProgramNameBox>
-        <NameAndSpot>
-          <b>{programName}</b> (Program category) <br />
-          9/10 spots filled
-        </NameAndSpot>
-        <SignupButton>Sign up</SignupButton>
-      </ProgramNameBox>
-    </>
+    <ProgramNameBox>
+      <NameAndSpot>
+        <b>{programName}</b> (Program category) <br />
+        9/10 spots filled
+      </NameAndSpot>
+      <SignupButton>Sign up</SignupButton>
+    </ProgramNameBox>
   );
 };
 
