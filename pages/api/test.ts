@@ -1,5 +1,4 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { authenticateUser } from '@/lib/auth';
 import { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -10,29 +9,16 @@ export default async function handler(
   switch (method) {
     case 'GET':
       try {
-        await authenticateUser(req, res);
         res.json({ message: 'Test Get' });
       } catch (error: any) {
-        if (
-          error.message.includes(
-            'Cannot set headers after they are sent to the client'
-          )
-        ) {
-          console.log('User not authenticated');
-        }
+        console.log('Exception thrown');
+        console.error(error);
       }
     case 'POST':
       try {
-        await authenticateUser(req, res);
         res.json({ message: 'Test POST' });
       } catch (error: any) {
-        if (
-          error.message.includes(
-            'Cannot set headers after they are sent to the client'
-          )
-        ) {
-          console.log('User not authenticated');
-        }
+        console.error(error);
       }
   }
 }

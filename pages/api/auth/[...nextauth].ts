@@ -66,6 +66,9 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET || '',
     }),
   ],
+  pages: {
+    signIn: '/login',
+  },
   callbacks: {
     /**
      * Update session's user.id with token.uid
