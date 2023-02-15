@@ -184,6 +184,21 @@ const ResumeButton = styled.button`
   color: #6d6d6d;
 `;
 
+const Error = styled.span`
+  padding: 1vh;
+  color: red;
+`;
+
+// format error message
+const printError = (message: string) => {
+  return (
+    <>
+      <Error>{message}</Error>
+      <br />
+    </>
+  );
+};
+
 // adapted from https://tomduffytech.com/how-to-format-phone-number-in-react/
 const formatPhoneNumber = (value: string) => {
   if (!value) return value;
@@ -223,6 +238,7 @@ const RegisterPage = () => {
   // user data
   // TODO: DO I NEED TO CREATE A TYPE FOR THIS?
   // TODO: I DON'T NEED USER AS A STATE AT ALL, I COULD JUST UPLOAD ALL THE DATA IN THE LAST ONSUBMIT, CREATE PAGE STATE ONLY, PASS DATA INTO ONFINISHED PARAM
+  // TODO: FORMAT THE ERRORS
   const [user, setUser] = useState({
     page: 1,
     firstName: '',
@@ -372,6 +388,8 @@ const RegisterPage = () => {
                   placeholder="Last name"
                   width={'45%'}></InputText>
               </InputFlex>
+              {errors.firstName && printError('First name is required')}
+              {errors.lastName && printError('Last name is required')}
             </SectionContainer>
 
             <SectionContainer margin={'5vh'}>
@@ -397,6 +415,9 @@ const RegisterPage = () => {
                   width={'45%'}
                   type={'password'}></InputText>
               </InputContainer>
+              {errors.phone && printError('Phone number is required')}
+              {errors.email && printError('Email address is required')}
+              {errors.password && printError('Password is required')}
             </SectionContainer>
 
             <SectionContainer>
@@ -426,17 +447,25 @@ const RegisterPage = () => {
                   placeholder="Zip code"
                   width={'45%'}></InputText>
               </InputContainer>
+              {errors.streetAddress && printError('Street address is required')}
+              {errors.city && printError('City is required')}
+              {errors.state && printError('State is required')}
+              {errors.zip && printError('Zip code is required')}
             </SectionContainer>
 
-            {errors.firstName && <span>First name is required</span>}
-            {errors.lastName && <span>Last name is required</span>}
-            {errors.phone && <span>Phone number is required</span>}
-            {errors.email && <span>Email address is required</span>}
-            {errors.password && <span>Password is required</span>}
-            {errors.streetAddress && <span>Street address is required</span>}
-            {errors.city && <span>City is required</span>}
-            {errors.state && <span>State is required</span>}
-            {errors.zip && <span>Zip code is required</span>}
+            {/* {errors.firstName ||
+            errors.lastName ||
+            errors.phone ||
+            errors.email ||
+            errors.password ||
+            errors.streetAddress ||
+            errors.city ||
+            errors.state ||
+            errors.zip ? (
+              <p style={{ padding: '1vh', paddingTop: '15px', color: 'red' }}>
+                You must complete all required fields
+              </p>
+            ) : null} */}
 
             <RegisterFlow
               currentPage={user.page}
@@ -483,6 +512,7 @@ const RegisterPage = () => {
                   45+
                 </LabelRadio>
               </InputFlex>
+              {errors.ageRange && printError('A selection is required')}
             </SectionContainer>
 
             <SectionContainer margin={'4vh'}>
@@ -527,6 +557,7 @@ const RegisterPage = () => {
                   {...register('volunteerReason', { required: true })}
                 />
               </TextareaContainer>
+              {errors.volunteerReason && printError('A response is required')}
             </SectionContainer>
 
             <RegisterFlow
@@ -560,7 +591,9 @@ const RegisterPage = () => {
                   placeholder="Job Title 2 (Optional)"
                   width={'100%'}></InputText>
               </InputContainer>
+              {errors.jobTitle1 && printError('A job title is required')}
             </SectionContainer>
+
             <SectionContainer margin={'5vh'}>
               <SectionHeader>
                 Please upload your resume (Optional)
@@ -578,6 +611,7 @@ const RegisterPage = () => {
                 style={{ display: 'none' }}
               />
             </SectionContainer>
+
             <SectionContainer>
               <SectionHeader>
                 Would you like to join our newsletter?
@@ -604,7 +638,9 @@ const RegisterPage = () => {
                   </LabelRadio>
                 </li>
               </InputRadioVertical>
+              {errors.joinNewsletter && printError('A selection is required')}
             </SectionContainer>
+
             <RegisterFlow
               currentPage={user.page}
               form={'registerPage3'}
@@ -634,6 +670,8 @@ const RegisterPage = () => {
                   placeholder="Last name"
                   width={'45%'}></InputText>
               </InputFlex>
+              {errors.firstName && printError('First name is required')}
+              {errors.lastName && printError('Last name is required')}
             </SectionContainer>
 
             <SectionContainer margin={'5vh'}>
@@ -659,6 +697,9 @@ const RegisterPage = () => {
                   width={'45%'}
                   type={'password'}></InputText>
               </InputContainer>
+              {errors.phone && printError('Phone number is required')}
+              {errors.email && printError('Email address is required')}
+              {errors.password && printError('Password is required')}
             </SectionContainer>
 
             <SectionContainer>
@@ -688,17 +729,12 @@ const RegisterPage = () => {
                   placeholder="Zip code"
                   width={'45%'}></InputText>
               </InputContainer>
+              {errors.streetAddress && printError('Street address is required')}
+              {errors.city && printError('City is required')}
+              {errors.state && printError('State is required')}
+              {errors.zip && printError('Zip code is required')}
             </SectionContainer>
 
-            {errors.firstName && <span>First name is required</span>}
-            {errors.lastName && <span>Last name is required</span>}
-            {errors.phone && <span>Phone number is required</span>}
-            {errors.email && <span>Email address is required</span>}
-            {errors.password && <span>Password is required</span>}
-            {errors.streetAddress && <span>Street address is required</span>}
-            {errors.city && <span>City is required</span>}
-            {errors.state && <span>State is required</span>}
-            {errors.zip && <span>Zip code is required</span>}
             <p>More text here...</p>
             <input type="submit" onClick={() => pressSubmit()} />
             <RegisterFlow
