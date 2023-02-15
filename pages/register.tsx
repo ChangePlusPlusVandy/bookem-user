@@ -35,7 +35,7 @@ const RightContainer = styled.div`
 `;
 
 const Header = styled.div`
-  margin-bottom: 4vh;
+  margin-bottom: 2vh;
   padding: 1vh;
 
   font-family: 'Inter';
@@ -61,9 +61,7 @@ const SectionHeader = styled.div`
   color: #000000;
 `;
 
-const Form = styled.form``;
-
-const InputFlexContainer = styled.div`
+const InputFlex = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1vh;
@@ -88,6 +86,102 @@ const InputText = styled.input<Props>`
   ::placeholder {
     color: #a4a4a4;
   }
+`;
+
+const LabelRadio = styled.label`
+  display: grid;
+  grid-template-columns: 18px auto;
+  gap: 18px;
+  width: 33vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+`;
+
+const InputRadio = styled.input`
+  width: 21px;
+  height: 21px;
+  border: 1px solid #000000;
+`;
+
+const CheckboxColumns = styled.ul`
+  columns: 2;
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`;
+
+const LabelCheckbox = styled.label`
+  display: grid;
+  grid-template-columns: 18px auto;
+  gap: 18px;
+  align-items: center;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 40px;
+  color: #000000;
+`;
+
+const InputCheckbox = styled.input`
+  width: 21px;
+  height: 21px;
+  border: 1px solid #000000;
+`;
+
+const TextareaContainer = styled.div`
+  padding: 1vh;
+`;
+
+const InputTextarea = styled.textarea`
+  border: 1px solid #6d6d6d;
+  border-radius: 20px;
+  resize: none;
+  width: 100%;
+  height: 160px;
+  padding: 12px 25px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+  ::placeholder {
+    color: #a4a4a4;
+  }
+`;
+
+const InputRadioVertical = styled.ul`
+  list-style-type: none;
+  padding: 1vh;
+`;
+
+const ResumeContainer = styled.div`
+  text-align: center;
+`;
+
+const ResumeButton = styled.button`
+  cursor: pointer;
+  margin-top: 45px;
+  border: 1px solid #6d6d6d;
+  border-radius: 20px;
+  background: #ffffff;
+  width: 334px;
+  height: fit-content;
+  padding: 10px 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  color: #6d6d6d;
 `;
 
 // adapted from https://tomduffytech.com/how-to-format-phone-number-in-react/
@@ -127,6 +221,8 @@ const createUser = async (userData: UserData) => {
 
 const RegisterPage = () => {
   // user data
+  // TODO: DO I NEED TO CREATE A TYPE FOR THIS?
+  // TODO: I DON'T NEED USER AS A STATE AT ALL, I COULD JUST UPLOAD ALL THE DATA IN THE LAST ONSUBMIT, CREATE PAGE STATE ONLY, PASS DATA INTO ONFINISHED PARAM
   const [user, setUser] = useState({
     page: 1,
     firstName: '',
@@ -141,10 +237,10 @@ const RegisterPage = () => {
     ageRange: '',
     members: [],
     volunteerReason: '',
-    job1: '',
-    job2: '',
+    jobTitle1: '',
+    jobTitle2: '',
     resume: null,
-    joinNewsletter: null,
+    joinNewsletter: '',
   });
 
   // phone number handling
@@ -157,10 +253,10 @@ const RegisterPage = () => {
   // possible values of members field
   const members = [
     'Rotary member',
-    'Current board member',
     'Kiwanis member',
+    // 'Junior League member or sustainer',
+    'Current board member',
     'Former board member',
-    'Junior League member or sustainer',
   ];
 
   // resume upload handling, based on https://codefrontend.com/file-upload-reactjs/
@@ -200,29 +296,21 @@ const RegisterPage = () => {
   } = useForm();
 
   const onSubmitPage1 = (data: any) => {
-    user.page = nextPage;
-    user.firstName = data.firstName;
-    user.lastName = data.lastName;
-    user.email = data.email;
-    user.password = data.password;
-    user.phone = data.phone;
-    user.streetAddress = data.streetAddress;
-    user.city = data.city;
-    user.state = data.state;
-    user.zip = data.zip;
-    console.log(user);
+    setUser({ ...user, ...data, page: nextPage });
+    console.log(user, data);
   };
 
   const onSubmitPage2 = (data: any) => {
-    console.log(data);
-    user.page = nextPage;
+    setUser({ ...user, ...data, page: nextPage });
+    console.log(user, data);
   };
 
   const onSubmitPage3 = (data: any) => {
     // TODO: I can't figure out a better way to update resume field
     data.resume = resume;
-    console.log(data);
-    user.page = nextPage;
+
+    setUser({ ...user, ...data, page: nextPage });
+    console.log(user, data);
   };
 
   // true only if you press the final submit button on page 4
@@ -271,10 +359,10 @@ const RegisterPage = () => {
         <LeftDisplay />
         <RightContainer>
           <Header>Tell us about yourself!</Header>
-          <Form id="registerPage1" onSubmit={handleSubmit(onSubmitPage1)}>
+          <form id="registerPage1" onSubmit={handleSubmit(onSubmitPage1)}>
             <SectionContainer margin={'5vh'}>
               <SectionHeader>Basic Information</SectionHeader>
-              <InputFlexContainer>
+              <InputFlex>
                 <InputText
                   {...register('firstName', { required: true })}
                   placeholder="First name"
@@ -283,7 +371,7 @@ const RegisterPage = () => {
                   {...register('lastName', { required: true })}
                   placeholder="Last name"
                   width={'45%'}></InputText>
-              </InputFlexContainer>
+              </InputFlex>
             </SectionContainer>
 
             <SectionContainer margin={'5vh'}>
@@ -321,7 +409,7 @@ const RegisterPage = () => {
                   width={'100%'}></InputText>
               </InputContainer>
 
-              <InputFlexContainer>
+              <InputFlex>
                 <InputText
                   {...register('city', { required: true })}
                   placeholder="City"
@@ -330,7 +418,7 @@ const RegisterPage = () => {
                   {...register('state', { required: true })}
                   placeholder="State"
                   width={'45%'}></InputText>
-              </InputFlexContainer>
+              </InputFlex>
 
               <InputContainer>
                 <InputText
@@ -356,7 +444,7 @@ const RegisterPage = () => {
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
-          </Form>
+          </form>
         </RightContainer>
       </Container>
     );
@@ -366,52 +454,66 @@ const RegisterPage = () => {
         <LeftDisplay />
         <RightContainer>
           <Header>Next up</Header>
-          <Form id="registerPage2" onSubmit={handleSubmit(onSubmitPage2)}>
-            <SectionContainer margin={'5vh'}>
+          <form id="registerPage2" onSubmit={handleSubmit(onSubmitPage2)}>
+            <SectionContainer margin={'4vh'}>
               <SectionHeader>Select age range</SectionHeader>
-              <InputFlexContainer>
-                <label>
-                  <input
+              <InputFlex>
+                <LabelRadio>
+                  <InputRadio
                     type="radio"
                     value="under18"
                     {...register('ageRange', { required: true })}
                   />
                   Under 18
-                </label>
-                <label>
-                  <input
+                </LabelRadio>
+                <LabelRadio>
+                  <InputRadio
                     type="radio"
                     value="18to45"
                     {...register('ageRange', { required: true })}
                   />
                   18-45
-                </label>
-                <label>
-                  <input
+                </LabelRadio>
+                <LabelRadio>
+                  <InputRadio
                     type="radio"
                     value="45plus"
                     {...register('ageRange', { required: true })}
                   />
                   45+
-                </label>
-              </InputFlexContainer>
+                </LabelRadio>
+              </InputFlex>
             </SectionContainer>
 
-            <SectionContainer margin={'5vh'}>
+            <SectionContainer margin={'4vh'}>
               <SectionHeader>
                 Are you a member of the following? (Optional)
               </SectionHeader>
-              <fieldset>
-                {members.map(member => (
-                  <label key={member}>
-                    <input
-                      type="checkbox"
-                      value={member}
-                      {...register('members')}
-                    />
-                    {member}
-                  </label>
-                ))}
+
+              <fieldset style={{ border: 'none' }}>
+                <CheckboxColumns>
+                  {members.map(member => (
+                    <li key={member}>
+                      <LabelCheckbox>
+                        <InputCheckbox
+                          type="checkbox"
+                          value={member}
+                          {...register('members')}
+                        />
+                        {member}
+                      </LabelCheckbox>
+                    </li>
+                  ))}
+                </CheckboxColumns>
+                <LabelCheckbox>
+                  <InputCheckbox
+                    type="checkbox"
+                    value="Junior League member or sustainer"
+                    {...register('members')}
+                  />
+
+                  {'Junior League member or sustainer'}
+                </LabelCheckbox>
               </fieldset>
             </SectionContainer>
 
@@ -419,10 +521,12 @@ const RegisterPage = () => {
               <SectionHeader>
                 Why do you want to become a community volunteer?
               </SectionHeader>
-              <textarea
-                placeholder="Start here..."
-                {...register('volunteerReason', { required: true })}
-              />
+              <TextareaContainer>
+                <InputTextarea
+                  placeholder="Start here..."
+                  {...register('volunteerReason', { required: true })}
+                />
+              </TextareaContainer>
             </SectionContainer>
 
             <RegisterFlow
@@ -431,7 +535,7 @@ const RegisterPage = () => {
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
-          </Form>
+          </form>
         </RightContainer>
       </Container>
     );
@@ -441,7 +545,7 @@ const RegisterPage = () => {
         <LeftDisplay />
         <RightContainer>
           <Header>Almost there</Header>
-          <Form id="registerPage3" onSubmit={handleSubmit(onSubmitPage3)}>
+          <form id="registerPage3" onSubmit={handleSubmit(onSubmitPage3)}>
             <SectionContainer margin={'5vh'}>
               <SectionHeader>Occupation</SectionHeader>
               <InputContainer>
@@ -461,9 +565,11 @@ const RegisterPage = () => {
               <SectionHeader>
                 Please upload your resume (Optional)
               </SectionHeader>
-              <button onClick={handleUploadClick}>
-                {resume ? `${resume.name}` : 'Click to select'}
-              </button>
+              <ResumeContainer>
+                <ResumeButton onClick={handleUploadClick}>
+                  {resume ? `${resume.name}` : 'Click here to upload'}
+                </ResumeButton>
+              </ResumeContainer>
               <input
                 type="file"
                 {...register('resume')}
@@ -476,22 +582,28 @@ const RegisterPage = () => {
               <SectionHeader>
                 Would you like to join our newsletter?
               </SectionHeader>
-              <label>
-                <input
-                  type="radio"
-                  value="yes"
-                  {...register('joinNewsletter', { required: true })}
-                />
-                Yes, please!
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  value="no"
-                  {...register('joinNewsletter', { required: true })}
-                />
-                No, thanks
-              </label>
+              <InputRadioVertical>
+                <li style={{ marginBottom: '40px' }}>
+                  <LabelRadio>
+                    <InputRadio
+                      type="radio"
+                      value="yes"
+                      {...register('joinNewsletter', { required: true })}
+                    />
+                    Yes, please!
+                  </LabelRadio>
+                </li>
+                <li>
+                  <LabelRadio>
+                    <InputRadio
+                      type="radio"
+                      value="no"
+                      {...register('joinNewsletter', { required: true })}
+                    />
+                    No, thanks
+                  </LabelRadio>
+                </li>
+              </InputRadioVertical>
             </SectionContainer>
             <RegisterFlow
               currentPage={user.page}
@@ -499,7 +611,7 @@ const RegisterPage = () => {
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
-          </Form>
+          </form>
         </RightContainer>
       </Container>
     );
@@ -509,19 +621,19 @@ const RegisterPage = () => {
         <LeftDisplay />
         <RightContainer>
           <Header>Review Information</Header>
-          <Form id="registerPage4" onSubmit={handleSubmit(onSubmitPage4)}>
+          <form id="registerPage4" onSubmit={handleSubmit(onSubmitPage4)}>
             <SectionContainer margin={'5vh'}>
               <SectionHeader>Basic Information</SectionHeader>
-              <InputFlexContainer>
+              <InputFlex>
                 <InputText
                   {...register('firstName', { required: true })}
-                  placeholder={user.firstName}
+                  placeholder="First name"
                   width={'45%'}></InputText>
                 <InputText
                   {...register('lastName', { required: true })}
-                  placeholder={user.lastName}
+                  placeholder="Last name"
                   width={'45%'}></InputText>
-              </InputFlexContainer>
+              </InputFlex>
             </SectionContainer>
 
             <SectionContainer margin={'5vh'}>
@@ -529,7 +641,7 @@ const RegisterPage = () => {
               <InputContainer>
                 <InputText
                   {...register('phone', { required: true })}
-                  placeholder={user.phone}
+                  placeholder="Phone number"
                   onChange={e => handlePhone(e)}
                   value={phoneValue}
                   width={'100%'}></InputText>
@@ -537,13 +649,13 @@ const RegisterPage = () => {
               <InputContainer>
                 <InputText
                   {...register('email', { required: true })}
-                  placeholder={user.email}
+                  placeholder="Email Address"
                   width={'100%'}></InputText>
               </InputContainer>
               <InputContainer>
                 <InputText
                   {...register('password', { required: true })}
-                  placeholder={user.password}
+                  placeholder="Password"
                   width={'45%'}
                   type={'password'}></InputText>
               </InputContainer>
@@ -555,25 +667,25 @@ const RegisterPage = () => {
               <InputContainer>
                 <InputText
                   {...register('streetAddress', { required: true })}
-                  placeholder={user.streetAddress}
+                  placeholder="Street address"
                   width={'100%'}></InputText>
               </InputContainer>
 
-              <InputFlexContainer>
+              <InputFlex>
                 <InputText
                   {...register('city', { required: true })}
-                  placeholder={user.city}
+                  placeholder="City"
                   width={'45%'}></InputText>
                 <InputText
                   {...register('state', { required: true })}
-                  placeholder={user.state}
+                  placeholder="State"
                   width={'45%'}></InputText>
-              </InputFlexContainer>
+              </InputFlex>
 
               <InputContainer>
                 <InputText
                   {...register('zip', { required: true })}
-                  placeholder={user.zip}
+                  placeholder="Zip code"
                   width={'45%'}></InputText>
               </InputContainer>
             </SectionContainer>
@@ -595,7 +707,7 @@ const RegisterPage = () => {
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
-          </Form>
+          </form>
         </RightContainer>
       </Container>
     );
