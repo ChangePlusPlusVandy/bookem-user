@@ -699,7 +699,9 @@ const RegisterPage = () => {
                   width="45%"
                   type="password"></InputText>
               </InputContainer>
-              {errors.phone && printError('Phone number is required')}
+              {errors.phone &&
+                phoneValue == '' &&
+                printError('Phone number is required')}
               {errors.email && printError('Email address is required')}
               {errors.password && printError('Password is required')}
             </SectionContainer>
