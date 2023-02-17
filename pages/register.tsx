@@ -106,6 +106,7 @@ const InputRadio = styled.input`
   width: 21px;
   height: 21px;
   border: 1px solid #000000;
+  cursor: pointer;
 `;
 
 const CheckboxColumns = styled.ul`
@@ -134,6 +135,7 @@ const InputCheckbox = styled.input`
   width: 21px;
   height: 21px;
   border: 1px solid #000000;
+  cursor: pointer;
 `;
 
 const TextareaContainer = styled.div`
@@ -280,25 +282,6 @@ const formatPhoneNumber = (value: string) => {
   )}-${phoneNumber.slice(6, 10)}`;
 };
 
-// send api request to create user
-// const createUser = async (userData: UserData) => {
-//   try {
-//     const res = await fetch('/api/users/create', {
-//       method: 'POST',
-//       headers: {
-//         'content-type': 'application/json',
-//       },
-//       body: JSON.stringify(userData),
-//     });
-//     console.log(res);
-
-//     if (res.status == 201) return null;
-//     else return { message: 'You have entered invalid information.' };
-//   } catch (err) {
-//     return { message: 'Some error has occurred.' };
-//   }
-// };
-
 const RegisterPage = () => {
   // page number handling
   const [page, setPage] = useState(1);
@@ -344,11 +327,11 @@ const RegisterPage = () => {
     formState: { errors },
   } = useForm();
 
-  let submitted = false; // true only if you press the submit button on page 4
+  let finished = false; // true only if you press the submit button on page 4
 
   const onSubmit = async (data: any) => {
     console.log(data);
-    if (submitted) {
+    if (finished) {
       const error = await onFinished(data);
       console.log(error);
       if (!error) nextPage = nextPage + 1;
@@ -358,6 +341,7 @@ const RegisterPage = () => {
   };
 
   const onFinished = async (data: any) => {
+    // put data into correct format
     const userData: UserData = {
       name: data.firstName + ' ' + data.lastName,
       email: data.email,
@@ -377,6 +361,7 @@ const RegisterPage = () => {
       programs: [],
     };
 
+    // send api request to create user
     try {
       const res = await fetch('/api/users/create', {
         method: 'POST',
@@ -392,7 +377,6 @@ const RegisterPage = () => {
     } catch (err) {
       return { message: 'Some error has occurred.' };
     }
-    // return createUser(userData);
   };
 
   if (page == 1)
@@ -480,20 +464,6 @@ const RegisterPage = () => {
               {errors.state && printError('State is required')}
               {errors.zip && printError('Zip code is required')}
             </SectionContainer>
-
-            {/* {errors.firstName ||
-            errors.lastName ||
-            errors.phone ||
-            errors.email ||
-            errors.password ||
-            errors.streetAddress ||
-            errors.city ||
-            errors.state ||
-            errors.zip ? (
-              <p style={{ padding: '1vh', paddingTop: '15px', color: 'red' }}>
-                You must complete all required fields
-              </p>
-            ) : null} */}
 
             <RegisterFlow
               currentPage={page}
@@ -771,7 +741,7 @@ const RegisterPage = () => {
             <ButtonContainer>
               <Button
                 onClick={() => {
-                  submitted = true;
+                  finished = true;
                 }}>
                 Submit
               </Button>
@@ -809,7 +779,7 @@ const RegisterPage = () => {
           </LastPageImage>
           <LastPageButtonContainer>
             <Button>
-              <Link href="/">Let&apos;s Go</Link>
+              <Link href="/">Let&apos;s go</Link>
             </Button>
           </LastPageButtonContainer>
         </LastPageContainer>
