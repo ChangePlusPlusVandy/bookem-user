@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .gitignore .",
-    "test": "jest --watch",
+    "test": "jest --watch --testEnvironment=node",
     "test:ci": "jest --ci",
     "postinstall": "npm update && npm i bookem-shared"
   },
