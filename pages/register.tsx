@@ -2,8 +2,8 @@ import React, { useState, ChangeEvent, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
 import Link from 'next/link';
-import { UserData } from 'bookem-shared/src/types/database';
 import Image from 'next/image';
+import { UserData } from 'bookem-shared/src/types/database';
 import LeftDisplay from '@/components/LeftDisplay';
 import RegisterFlow from '@/components/RegisterFlow';
 
@@ -11,6 +11,7 @@ interface Props {
   width?: string;
   margin?: string;
   page?: number;
+  fontSize?: string;
 }
 
 const Container = styled.div`
@@ -34,8 +35,8 @@ const RightContainer = styled.div`
   overflow-y: auto;
 `;
 
-const Header = styled.div`
-  margin-bottom: 2vh;
+const Header = styled.div<Props>`
+  margin-bottom: ${props => (props.margin ? props.margin : '2vh')};
   padding: 1vh;
 
   font-family: 'Inter';
@@ -162,7 +163,7 @@ const InputRadioVertical = styled.ul`
   padding: 1vh;
 `;
 
-const ResumeContainer = styled.div`
+const ButtonContainer = styled.div`
   text-align: center;
 `;
 
@@ -184,6 +185,66 @@ const ResumeButton = styled.button`
   color: #6d6d6d;
 `;
 
+const ReviewInfoText = styled.div`
+  padding-left: 1vh;
+  margin-bottom: 2vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000000;
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  width: 215px;
+  height: 47px;
+  background: #6d6d6d;
+  border: 1px solid #6d6d6d;
+  border-radius: 20px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: #ffffff;
+`;
+
+const LastPageContainer = styled(RightContainer)`
+  padding: 10vh;
+  gap: 0vh;
+`;
+
+const LastPageText = styled.div<Props>`
+  margin-bottom: 2vh;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: ${props => (props.fontSize ? props.fontSize : '25px')};
+  line-height: 36px;
+
+  color: #000000;
+`;
+
+const LastPageImage = styled.div`
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const LastPageButtonContainer = styled.div`
+  position: absolute;
+  bottom: 10vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 const Error = styled.span`
   padding: 1vh;
   color: red;
@@ -199,6 +260,7 @@ const printError = (message: string) => {
   );
 };
 
+// auto-format phone number input
 // adapted from https://tomduffytech.com/how-to-format-phone-number-in-react/
 const formatPhoneNumber = (value: string) => {
   if (!value) return value;
@@ -219,45 +281,36 @@ const formatPhoneNumber = (value: string) => {
 };
 
 // send api request to create user
-const createUser = async (userData: UserData) => {
-  try {
-    const res = await fetch('/api/users/create', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(userData),
-    });
-    console.log(res);
-  } catch (err) {
-    console.log(err);
-  }
-};
+// const createUser = async (userData: UserData) => {
+//   try {
+//     const res = await fetch('/api/users/create', {
+//       method: 'POST',
+//       headers: {
+//         'content-type': 'application/json',
+//       },
+//       body: JSON.stringify(userData),
+//     });
+//     console.log(res);
+
+//     if (res.status == 201) return null;
+//     else return { message: 'You have entered invalid information.' };
+//   } catch (err) {
+//     return { message: 'Some error has occurred.' };
+//   }
+// };
 
 const RegisterPage = () => {
-  // user data
-  // TODO: DO I NEED TO CREATE A TYPE FOR THIS?
-  // TODO: I DON'T NEED USER AS A STATE AT ALL, I COULD JUST UPLOAD ALL THE DATA IN THE LAST ONSUBMIT, CREATE PAGE STATE ONLY, PASS DATA INTO ONFINISHED PARAM
-  // TODO: FORMAT THE ERRORS
-  const [user, setUser] = useState({
-    page: 1,
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-    phone: '',
-    streetAddress: '',
-    city: '',
-    state: '',
-    zip: '',
-    ageRange: '',
-    members: [],
-    volunteerReason: '',
-    jobTitle1: '',
-    jobTitle2: '',
-    resume: null,
-    joinNewsletter: '',
-  });
+  // page number handling
+  const [page, setPage] = useState(1);
+  let nextPage = page;
+
+  const handleLeftArrow = () => {
+    nextPage = nextPage - 1;
+  };
+
+  const handleRightArrow = () => {
+    nextPage = nextPage + 1;
+  };
 
   // phone number handling
   const [phoneValue, setPhoneValue] = useState('');
@@ -266,17 +319,8 @@ const RegisterPage = () => {
     setPhoneValue(formattedPhoneNumber);
   };
 
-  // possible values of members field
-  const members = [
-    'Rotary member',
-    'Kiwanis member',
-    // 'Junior League member or sustainer',
-    'Current board member',
-    'Former board member',
-  ];
-
-  // resume upload handling, based on https://codefrontend.com/file-upload-reactjs/
-  // TODO: THIS ONLY WORKS FOR <= 16 MB FILES
+  // resume upload handling
+  // based on https://codefrontend.com/file-upload-reactjs/, only works for files with <= 16 MB I think
   const [resume, setResume] = useState<File>();
   const inputRef = useRef<HTMLInputElement | null>(null);
 
@@ -288,111 +332,93 @@ const RegisterPage = () => {
     if (!e.target.files) {
       return;
     }
-
+    setValue('resume', e.target.files[0]);
     setResume(e.target.files[0]);
-
-    // TODO: do the file upload here normally...?????
   };
 
-  // arrow button handling
-  let nextPage = user.page;
-  const handleLeftArrow = () => {
-    nextPage = nextPage - 1;
-  };
-
-  const handleRightArrow = () => {
-    nextPage = nextPage + 1;
-  };
-
-  // form handling
+  // form data handling
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm();
 
-  const onSubmitPage1 = (data: any) => {
-    setUser({ ...user, ...data, page: nextPage });
-    console.log(user, data);
-  };
+  let submitted = false; // true only if you press the submit button on page 4
 
-  const onSubmitPage2 = (data: any) => {
-    setUser({ ...user, ...data, page: nextPage });
-    console.log(user, data);
-  };
-
-  const onSubmitPage3 = (data: any) => {
-    // TODO: I can't figure out a better way to update resume field
-    data.resume = resume;
-
-    setUser({ ...user, ...data, page: nextPage });
-    console.log(user, data);
-  };
-
-  // true only if you press the final submit button on page 4
-  let finalSubmit = false;
-  const pressSubmit = () => {
-    finalSubmit = true;
-  };
-
-  const onSubmitPage4 = (data: any) => {
+  const onSubmit = async (data: any) => {
     console.log(data);
-    user.page = nextPage;
-
-    if (finalSubmit) {
-      nextPage = nextPage + 1;
-      user.page = nextPage;
-      onFinished();
-      // TODO: SHOULD DO SOMETHING WHEN USER CANNOT BE CREATED
+    if (submitted) {
+      const error = await onFinished(data);
+      console.log(error);
+      if (!error) nextPage = nextPage + 1;
+      else alert(error.message);
     }
+    setPage(nextPage);
   };
 
-  const onFinished = () => {
+  const onFinished = async (data: any) => {
     const userData: UserData = {
-      name: user.firstName + ' ' + user.lastName,
-      email: user.email,
-      password: user.password,
-      phone: user.phone,
+      name: data.firstName + ' ' + data.lastName,
+      email: data.email,
+      password: data.password,
+      phone: data.phone,
       address:
-        user.streetAddress +
+        data.streetAddress +
         ', ' +
-        user.city +
+        data.city +
         ', ' +
-        user.state +
+        data.state +
         ' ' +
-        user.zip,
+        data.zip,
       sourceHeardFrom: 'somethingrandomidkwhattoputhere',
       ethnicity: 'somethingrandomidkwhattoputhere',
       gender: 'somethingrandomidkwhattoputhere',
       programs: [],
     };
-    createUser(userData);
+
+    try {
+      const res = await fetch('/api/users/create', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+      console.log(res);
+
+      if (res.status == 201) return null;
+      else return { message: 'You have entered invalid information.' };
+    } catch (err) {
+      return { message: 'Some error has occurred.' };
+    }
+    // return createUser(userData);
   };
 
-  if (user.page == 1)
+  if (page == 1)
     return (
       <Container>
         <LeftDisplay />
         <RightContainer>
           <Header>Tell us about yourself!</Header>
-          <form id="registerPage1" onSubmit={handleSubmit(onSubmitPage1)}>
-            <SectionContainer margin={'5vh'}>
+          <form id="registerPage1" onSubmit={handleSubmit(onSubmit)}>
+            <SectionContainer margin="5vh">
               <SectionHeader>Basic Information</SectionHeader>
               <InputFlex>
                 <InputText
                   {...register('firstName', { required: true })}
                   placeholder="First name"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
                 <InputText
                   {...register('lastName', { required: true })}
                   placeholder="Last name"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
               </InputFlex>
               {errors.firstName && printError('First name is required')}
               {errors.lastName && printError('Last name is required')}
             </SectionContainer>
 
-            <SectionContainer margin={'5vh'}>
+            <SectionContainer margin="5vh">
               <SectionHeader>Contact</SectionHeader>
               <InputContainer>
                 <InputText
@@ -400,22 +426,24 @@ const RegisterPage = () => {
                   placeholder="Phone number"
                   onChange={e => handlePhone(e)}
                   value={phoneValue}
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
               <InputContainer>
                 <InputText
                   {...register('email', { required: true })}
                   placeholder="Email Address"
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
               <InputContainer>
                 <InputText
                   {...register('password', { required: true })}
                   placeholder="Password"
-                  width={'45%'}
-                  type={'password'}></InputText>
+                  width="45%"
+                  type="password"></InputText>
               </InputContainer>
-              {errors.phone && printError('Phone number is required')}
+              {errors.phone &&
+                phoneValue == '' &&
+                printError('Phone number is required')}
               {errors.email && printError('Email address is required')}
               {errors.password && printError('Password is required')}
             </SectionContainer>
@@ -427,25 +455,25 @@ const RegisterPage = () => {
                 <InputText
                   {...register('streetAddress', { required: true })}
                   placeholder="Street address"
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
 
               <InputFlex>
                 <InputText
                   {...register('city', { required: true })}
                   placeholder="City"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
                 <InputText
                   {...register('state', { required: true })}
                   placeholder="State"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
               </InputFlex>
 
               <InputContainer>
                 <InputText
                   {...register('zip', { required: true })}
                   placeholder="Zip code"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
               </InputContainer>
               {errors.streetAddress && printError('Street address is required')}
               {errors.city && printError('City is required')}
@@ -468,8 +496,8 @@ const RegisterPage = () => {
             ) : null} */}
 
             <RegisterFlow
-              currentPage={user.page}
-              form={'registerPage1'}
+              currentPage={page}
+              form="registerPage1"
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
@@ -477,14 +505,14 @@ const RegisterPage = () => {
         </RightContainer>
       </Container>
     );
-  else if (user.page == 2)
+  else if (page == 2)
     return (
       <Container>
         <LeftDisplay />
         <RightContainer>
           <Header>Next up</Header>
-          <form id="registerPage2" onSubmit={handleSubmit(onSubmitPage2)}>
-            <SectionContainer margin={'4vh'}>
+          <form id="registerPage2" onSubmit={handleSubmit(onSubmit)}>
+            <SectionContainer margin="4vh">
               <SectionHeader>Select age range</SectionHeader>
               <InputFlex>
                 <LabelRadio>
@@ -515,14 +543,19 @@ const RegisterPage = () => {
               {errors.ageRange && printError('A selection is required')}
             </SectionContainer>
 
-            <SectionContainer margin={'4vh'}>
+            <SectionContainer margin="4vh">
               <SectionHeader>
                 Are you a member of the following? (Optional)
               </SectionHeader>
 
               <fieldset style={{ border: 'none' }}>
                 <CheckboxColumns>
-                  {members.map(member => (
+                  {[
+                    'Rotary member',
+                    'Kiwanis member',
+                    'Current board member',
+                    'Former board member',
+                  ].map(member => (
                     <li key={member}>
                       <LabelCheckbox>
                         <InputCheckbox
@@ -541,8 +574,7 @@ const RegisterPage = () => {
                     value="Junior League member or sustainer"
                     {...register('members')}
                   />
-
-                  {'Junior League member or sustainer'}
+                  Junior League member or sustainer
                 </LabelCheckbox>
               </fieldset>
             </SectionContainer>
@@ -561,8 +593,8 @@ const RegisterPage = () => {
             </SectionContainer>
 
             <RegisterFlow
-              currentPage={user.page}
-              form={'registerPage2'}
+              currentPage={page}
+              form="registerPage2"
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
@@ -570,39 +602,39 @@ const RegisterPage = () => {
         </RightContainer>
       </Container>
     );
-  else if (user.page == 3)
+  else if (page == 3)
     return (
       <Container>
         <LeftDisplay />
         <RightContainer>
           <Header>Almost there</Header>
-          <form id="registerPage3" onSubmit={handleSubmit(onSubmitPage3)}>
-            <SectionContainer margin={'5vh'}>
+          <form id="registerPage3" onSubmit={handleSubmit(onSubmit)}>
+            <SectionContainer margin="5vh">
               <SectionHeader>Occupation</SectionHeader>
               <InputContainer>
                 <InputText
                   {...register('jobTitle1', { required: true })}
                   placeholder="Job Title 1"
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
               <InputContainer>
                 <InputText
                   {...register('jobTitle2')}
                   placeholder="Job Title 2 (Optional)"
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
               {errors.jobTitle1 && printError('A job title is required')}
             </SectionContainer>
 
-            <SectionContainer margin={'5vh'}>
+            <SectionContainer margin="5vh">
               <SectionHeader>
                 Please upload your resume (Optional)
               </SectionHeader>
-              <ResumeContainer>
-                <ResumeButton onClick={handleUploadClick}>
+              <ButtonContainer>
+                <ResumeButton type="button" onClick={handleUploadClick}>
                   {resume ? `${resume.name}` : 'Click here to upload'}
                 </ResumeButton>
-              </ResumeContainer>
+              </ButtonContainer>
               <input
                 type="file"
                 {...register('resume')}
@@ -642,8 +674,8 @@ const RegisterPage = () => {
             </SectionContainer>
 
             <RegisterFlow
-              currentPage={user.page}
-              form={'registerPage3'}
+              currentPage={page}
+              form="registerPage3"
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
@@ -651,30 +683,30 @@ const RegisterPage = () => {
         </RightContainer>
       </Container>
     );
-  else if (user.page == 4)
+  else if (page == 4)
     return (
       <Container>
         <LeftDisplay />
         <RightContainer>
-          <Header>Review Information</Header>
-          <form id="registerPage4" onSubmit={handleSubmit(onSubmitPage4)}>
-            <SectionContainer margin={'5vh'}>
+          <Header margin="0vh">Review Information</Header>
+          <form id="registerPage4" onSubmit={handleSubmit(onSubmit)}>
+            <SectionContainer margin="3vh">
               <SectionHeader>Basic Information</SectionHeader>
               <InputFlex>
                 <InputText
                   {...register('firstName', { required: true })}
                   placeholder="First name"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
                 <InputText
                   {...register('lastName', { required: true })}
                   placeholder="Last name"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
               </InputFlex>
               {errors.firstName && printError('First name is required')}
               {errors.lastName && printError('Last name is required')}
             </SectionContainer>
 
-            <SectionContainer margin={'5vh'}>
+            <SectionContainer margin="3vh">
               <SectionHeader>Contact</SectionHeader>
               <InputContainer>
                 <InputText
@@ -682,52 +714,52 @@ const RegisterPage = () => {
                   placeholder="Phone number"
                   onChange={e => handlePhone(e)}
                   value={phoneValue}
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
               <InputContainer>
                 <InputText
                   {...register('email', { required: true })}
                   placeholder="Email Address"
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
               <InputContainer>
                 <InputText
                   {...register('password', { required: true })}
                   placeholder="Password"
-                  width={'45%'}
-                  type={'password'}></InputText>
+                  width="45%"
+                  type="password"></InputText>
               </InputContainer>
               {errors.phone && printError('Phone number is required')}
               {errors.email && printError('Email address is required')}
               {errors.password && printError('Password is required')}
             </SectionContainer>
 
-            <SectionContainer>
+            <SectionContainer margin="2vh">
               <SectionHeader>Address</SectionHeader>
 
               <InputContainer>
                 <InputText
                   {...register('streetAddress', { required: true })}
                   placeholder="Street address"
-                  width={'100%'}></InputText>
+                  width="100%"></InputText>
               </InputContainer>
 
               <InputFlex>
                 <InputText
                   {...register('city', { required: true })}
                   placeholder="City"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
                 <InputText
                   {...register('state', { required: true })}
                   placeholder="State"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
               </InputFlex>
 
               <InputContainer>
                 <InputText
                   {...register('zip', { required: true })}
                   placeholder="Zip code"
-                  width={'45%'}></InputText>
+                  width="45%"></InputText>
               </InputContainer>
               {errors.streetAddress && printError('Street address is required')}
               {errors.city && printError('City is required')}
@@ -735,11 +767,19 @@ const RegisterPage = () => {
               {errors.zip && printError('Zip code is required')}
             </SectionContainer>
 
-            <p>More text here...</p>
-            <input type="submit" onClick={() => pressSubmit()} />
+            <ReviewInfoText>More text here...</ReviewInfoText>
+            <ButtonContainer>
+              <Button
+                onClick={() => {
+                  submitted = true;
+                }}>
+                Submit
+              </Button>
+            </ButtonContainer>
+
             <RegisterFlow
-              currentPage={user.page}
-              form={'registerPage4'}
+              currentPage={page}
+              form="registerPage4"
               handleLeftArrow={handleLeftArrow}
               handleRightArrow={handleRightArrow}
             />
@@ -747,24 +787,32 @@ const RegisterPage = () => {
         </RightContainer>
       </Container>
     );
-  else if (user.page == 5)
+  else if (page == 5)
     return (
       <Container>
         <LeftDisplay />
-        <RightContainer>
-          <Header>Thank you!</Header>
-          <p>Your registration for Volunteer is complete!</p>
-          <p>Press the button below to log in to your account</p>
-          <Image
-            src="/user-circle.png"
-            alt="User profile stock image"
-            width="226"
-            height="226"
-          />
-          <button>
-            <Link href="/">Let&apos;s Go</Link>
-          </button>
-        </RightContainer>
+        <LastPageContainer>
+          <LastPageText fontSize="30px">Thank you!</LastPageText>
+          <LastPageText>
+            Your registration for Volunteer is complete!
+          </LastPageText>
+          <LastPageText>
+            Press the button below to log in to your account
+          </LastPageText>
+          <LastPageImage>
+            <Image
+              src="/user-circle.png"
+              alt="User profile stock image"
+              width="226"
+              height="226"
+            />
+          </LastPageImage>
+          <LastPageButtonContainer>
+            <Button>
+              <Link href="/">Let&apos;s Go</Link>
+            </Button>
+          </LastPageButtonContainer>
+        </LastPageContainer>
       </Container>
     );
 };
