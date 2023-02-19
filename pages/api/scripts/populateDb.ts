@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import dbConnect from 'lib/dbConnect';
+import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
 import { faker } from '@faker-js/faker';
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
