@@ -6,6 +6,16 @@ interface RatioProp {
   ratio: number;
 }
 
+type EventType = {
+  source: string;
+  name: string;
+  location: string;
+  date: Date;
+  time: string;
+  availability: number;
+  id: number;
+};
+
 const Container = styled.div<RatioProp>`
   background-color: white;
   max-width: 300px;
@@ -89,14 +99,37 @@ const toRatio = (size: string): number => {
   else return 1;
 };
 
+function convertToDate(date: Date) {
+  return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+}
+
+function getTime(date: Date) {
+  var ampm: String = 'AM';
+  var hours: Number;
+
+  if (date.getHours() == 0) {
+    hours = 12;
+  } else {
+    if (date.getHours() > 12) {
+      ampm = 'PM';
+      hours = date.getHours() - 12;
+    } else {
+      hours = date.getHours();
+    }
+  }
+
+  return hours + ':' + date.getMinutes().toString() + ' ' + ampm;
+}
+
 const EventCard = ({
   eventData,
   size,
 }: {
   // TODO: change type of eventData
-  eventData: any;
+  eventData: EventType;
   size: 'large' | 'medium' | 'small';
 }) => {
+  const eventDate = new Date(eventData.date);
   const ratio = toRatio(size);
   return (
     <Container ratio={ratio}>
@@ -125,7 +158,7 @@ const EventCard = ({
       <InfoContainer ratio={ratio}>
         <ClockIcon>
           <Image
-            src="/clock.png"
+            src="/dateicon.png"
             alt="Clock icon"
             width={`${Math.round(ratio * 21.27)}`}
             height={`${Math.round(ratio * 22.14)}`}
@@ -133,7 +166,9 @@ const EventCard = ({
         </ClockIcon>
 
         <InfoFlex>
-          <InfoFlexChild ratio={ratio}>{eventData.date}</InfoFlexChild>
+          <InfoFlexChild ratio={ratio}>
+            {convertToDate(eventDate) + ' ' + getTime(eventDate)}
+          </InfoFlexChild>
           {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
           <InfoFlexChild ratio={ratio}>
             {eventData.availability} spots

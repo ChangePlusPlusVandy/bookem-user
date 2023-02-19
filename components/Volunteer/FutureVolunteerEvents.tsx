@@ -37,7 +37,7 @@ const feedsource: EventType[] = [
     source: '/event-icon.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
-    date: new Date('2005-12-17T03:24:00'),
+    date: new Date('2005-12-17T13:24:00'),
     time: '9:30 AM',
     availability: 11,
     id: 0,
