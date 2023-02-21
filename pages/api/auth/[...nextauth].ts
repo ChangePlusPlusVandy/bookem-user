@@ -80,14 +80,7 @@ export const authOptions = {
      * @returns session with user.id inside
      */
     async session({ session, token }: { session: any; token: any }) {
-      //session.accessToken = token.accessToken;
-      console.log('Session Token: ', token);
-      if (session?.user) {
-        console.log('User in session: ', session.user);
-        session.user._id = token.uid;
-      }
-      console.log('session callback returning');
-      console.log('Session: ', session);
+      if (session?.user) session.user._id = token.uid;
       return session;
     },
 
@@ -98,13 +91,7 @@ export const authOptions = {
      * @returns JWT token with user's id encrypted inside
      */
     async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any }) {
-      console.log('JWT Token: ', token);
-
-      if (user) {
-        console.log('Logged in User: ', user);
-        token.uid = user._id;
-      }
-
+      if (user) token.uid = user._id;
       return token;
     },
   },
