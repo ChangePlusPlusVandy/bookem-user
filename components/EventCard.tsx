@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { convertToDate, getTime } from 'utils/utils';
+import { convertToDate, getTime } from '@/utils/utils';
 import { EventType } from '@/types/types';
 import {
   AddressContainer,

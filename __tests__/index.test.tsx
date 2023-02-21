@@ -25,6 +25,9 @@ jest.mock('next/router', () => ({
   },
 }));
 
+// mock serverSidedProps
+jest.mock('@/lib/getServerSideProps', () => '');
+
 describe('Home', () => {
   it('home page rendered correctly', () => {
     // renders the component
