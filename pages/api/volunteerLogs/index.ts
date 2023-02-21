@@ -2,7 +2,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 // dbConnect is used to connect to our mongoDB database (via mongoose)
-import dbConnect from 'lib/dbConnect';
+import dbConnect from '@/lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
 import { getSession } from 'next-auth/react';

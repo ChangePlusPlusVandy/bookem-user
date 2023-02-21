@@ -3,11 +3,13 @@ import EventCard from '@/components/EventCard';
 import styled from 'styled-components';
 
 export const dummyEventData = {
+  source: '/event-icon.png',
   name: 'Distribute books (BNFK)',
-  address: '3593 Cedar Rd. Nashville',
-  date: '11/25',
+  location: '3593 Cedar Rd. Nashville',
+  date: new Date('2005-12-17T13:24:00'),
   time: '9:30 AM',
-  numSpots: 11,
+  availability: 11,
+  id: 0,
 };
 
 const Container = styled.div`

@@ -1,13 +1,15 @@
 // NextAuth documentation: https://next-auth.js.org/getting-started/example
-import dbConnect from 'lib/dbConnect';
+import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter';
-import clientPromise from 'lib/mongodb';
+import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcrypt';
 import { SessionStrategy } from 'next-auth/core/types';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
+import { JWT } from 'next-auth/jwt';
 
 const sessionStrategy: SessionStrategy = 'jwt';
 
@@ -16,6 +18,7 @@ export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   session: {
     strategy: sessionStrategy,
+    maxAge: 24 * 60 * 60, // 1 day
   },
   providers: [
     // Credentials docs: https://next-auth.js.org/providers/credentials
@@ -63,35 +66,35 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_SECRET || '',
     }),
   ],
-  // callbacks: {
-  //   async session(session: { user: UserData; token: any }, token: any) {
-  //     //session.accessToken = token.accessToken;
-  //     console.log('Session token');
-  //     console.log(token);
-  //     if (userAccount !== null) {
-  //       session.user = userAccount;
-  //     } else if (typeof token !== typeof undefined) {
-  //       session.token = token;
-  //     }
-  //     console.log('session callback returning');
-  //     console.log(session);
-  //     return session;
-  //   },
-  //   async jwt(
-  //     token: { user: any },
-  //     user: any,
-  //     account: any,
-  //     profile: any,
-  //     isNewUser: any
-  //   ) {
-  //     console.log('JWT Token User');
-  //     console.log(token.user);
-  //     if (typeof user !== typeof undefined) {
-  //       token.user = user;
-  //     }
-  //     return token;
-  //   },
-  // },
+
+  pages: {
+    // Configure the route for signin page
+    signIn: '/login',
+  },
+
+  callbacks: {
+    /**
+     * Update session's user.id with token.uid
+     * @param session
+     * @param token Contains user id
+     * @returns session with user.id inside
+     */
+    async session({ session, token }: { session: any; token: any }) {
+      if (session?.user) session.user._id = token.uid;
+      return session;
+    },
+
+    /**
+     * Put user id inside JWT token
+     * @param token JWT token
+     * @param user Logged in user
+     * @returns JWT token with user's id encrypted inside
+     */
+    async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any }) {
+      if (user) token.uid = user._id;
+      return token;
+    },
+  },
 };
 
 export default NextAuth(authOptions);
