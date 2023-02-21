@@ -55,7 +55,7 @@ const VolunteerHistoryPage = () => {
 
   if (error) return <div>Failed to load users</div>;
   if (isLoading) return <div>Loading...</div>;
-  if (!data) return null;
+  if (!data) return <></>;
 
   return (
     <>
@@ -82,3 +82,6 @@ const VolunteerHistoryPage = () => {
 };
 
 export default VolunteerHistoryPage;
+
+// perform automatic redirection to login page if user not logged in.
+export { getServerSideProps } from '@/lib/getServerSideProps';
