@@ -1,3 +1,8 @@
+/**
+ * THIS FILE DEPENDS ON THIS COMMENT. DO NOT DELETE.
+ * @jest-environment jsdom
+ */
+
 import { SideBar } from '@/components/SideBar';
 import LoginPage from '@/pages/login';
 import VolunteerPage from '@/pages/volunteer';
@@ -19,6 +24,9 @@ jest.mock('next/router', () => ({
     };
   },
 }));
+
+// mock serverSidedProps
+jest.mock('@/lib/getServerSideProps', () => '');
 
 describe('Home', () => {
   it('home page rendered correctly', () => {
