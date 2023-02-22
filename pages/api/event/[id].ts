@@ -1,23 +1,22 @@
 import dbConnect from '@/lib/dbConnect';
+import Users from 'bookem-shared/src/models/Users';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import {
+  QueriedUserData,
+  QueriedVolunteerProgramData,
+} from 'bookem-shared/src/types/database';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
+import mongoose from 'mongoose';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   const session = await getServerSession(req, res, authOptions);
-  if (!session) {
-    res.status(401).json({
-      error: 'You are unauthorized to perform this action. Please login first',
-    });
-    return;
-  }
-  const user = session.user;
-  console.log('Logged in user: ' + user);
+  const sessionUser = session.user;
+  console.log('Logged in user: ' + sessionUser);
 
   const {
     query: { id },
@@ -35,7 +34,9 @@ export default async function handler(
       try {
         await dbConnect();
         const program: QueriedVolunteerProgramData =
-          (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
+          (await VolunteerPrograms.findById(
+            new mongoose.Types.ObjectId(id as string)
+          )) as QueriedVolunteerProgramData;
         return res.status(200).json(program);
       } catch (error) {
         console.error(error);
@@ -47,7 +48,20 @@ export default async function handler(
         const program: QueriedVolunteerProgramData =
           (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
 
-        const userIndex = program.users;
+        const user: QueriedUserData = (await Users.findById(
+          sessionUser._id
+        )) as QueriedUserData;
+
+        console.log('User in database: ', user);
+        console.log('Program in database: ', program);
+
+        const userIndex = program.users.indexOf(user._id);
+
+        if (userIndex == -1) {
+          // Register the user
+        } else {
+          // Remove the user
+        }
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: error });
