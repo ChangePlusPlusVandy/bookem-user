@@ -18,7 +18,7 @@ type EventType = {
 
 const Container = styled.div<RatioProp>`
   background-color: white;
-  max-width: 300px;
+  width: ${props => props.ratio * 328}px;
   height: ${props => props.ratio * 350}px;
   border-radius: 10px;
   padding: ${props => props.ratio * 17}px;
