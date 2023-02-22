@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
   overflow: hidden;
 `;
 
@@ -13,6 +12,7 @@ export const RightContainer = styled.div`
   width: 50vw;
   height: 100vh;
   background: white;
+  overflow: auto;
 `;
 
 export const LoginForm = styled.form`
@@ -34,7 +34,7 @@ export const Button = styled.button`
     background-color: green;
     cursor: pointer;
   }
-  width: 275px;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -50,6 +50,7 @@ export const Footer = styled.div`
   height: 17vh;
   background: gray;
   background-color: teal;
+  overflow: auto;
 `;
 
 export const ExternalPrompt = styled.p`
