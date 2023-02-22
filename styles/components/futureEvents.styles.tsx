@@ -79,11 +79,12 @@ export const ImagesWrapper = styled.div`
   margin: auto;
 `;
 
+/**
+ * Button for filter button
+ */
 export const FilterButton = styled.button`
   border-radius: 100%;
   border: none;
   height: 40px;
   width: 40px;
-
-  background-color: blue;
 `;
