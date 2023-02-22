@@ -1,150 +1,28 @@
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
+import {
+  EventImage,
+  Name,
+  AddressContainer,
+  AddressIcon,
+  InfoContainer,
+  InfoFlex,
+  InfoFlexChild,
+  ClockIcon,
+  Address,
+  CalendarIcon,
+  Time,
+  CheckmarkIcon,
+  Books,
+  Container,
+} from '@/styles/components/longEventCard.styles';
 
-const Container = styled.div`
-  background-color: white;
-  width: 98.5%;
-  height: ${(300 / 328) * 82}px;
-  border-radius: 10px;
-  padding: ${(300 / 328) * 17}px;
-  margin: ${(300 / 328) * 17}px;
-  margin-left: ${(300 / 328) * 6}px;
-  border: 1px solid black;
-  display: flex;
-  flex-direction: row;
-`;
-
-const EventImage = styled.div`
-  display: flex;
-  justify-content: left;
-  margin-top: ${300 / 328}px;
-  margin-left: ${(300 / 328) * 20}px;
-`;
-
-const Name = styled.div`
-  background-color: white;
-  margin-top: ${(300 / 328) * 16}px;
-  margin-left: ${(300 / 328) * 40}px;
-  height: ${(300 / 328) * 30}px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 700;
-  font-size: ${(300 / 328) * 18}px;
-  line-height: ${(300 / 328) * 22}px;
-`;
-
-const AddressContainer = styled.div`
-  position: absolute;
-  height: fit-content;
-  margin-top: ${(300 / 328) * 16}px;
-  margin-left: ${(300 / 328) * 300}px;
-  background-color: red;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: ${(300 / 328) * 18}px;
-  line-height: ${(300 / 328) * 22}px;
-`;
-
-const AddressIcon = styled.div`
-  float: left;
-  position: absolute;
-  margin-left: 50px;
-  margin-right: 8px;
-`;
-
-const Address = styled.div`
-  position: absolute;
-  z-index: 1;
-  margin-left: 78px;
-  line-height: ${(300 / 328) * 22}px;
-  width: 175px;
-  white-space: break-word;
-`;
-
-const InfoContainer = styled.div`
-  position: absolute;
-  height: fit-content;
-  margin-top: ${(300 / 328) * 16}px;
-  margin-left: ${(300 / 328) * 400}px;
-  background-color: white;
-`;
-
-const ClockIcon = styled.div`
-  position: absolute;
-  float: left;
-  margin-left: 340px;
-  z-index: 1;
-`;
-
-const CalendarIcon = styled.div`
-  float: left;
-  margin-left: 150px;
-`;
-
-const CheckmarkIcon = styled.div`
-  position: absolute;
-  float: left;
-  margin-left: 520px;
-  z-index: 1;
-`;
-
-const InfoFlex = styled.div`
-  height: fit-content;
-  background-color: white;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const InfoFlexChild = styled.div`
-  background-color: white;
-  flex: 0 1 auto;
-  text-align: center;
-  vertical-align: middle;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  margin-left: ${(300 / 328) * 8}px;
-  margin-right: ${(300 / 328) * 8}px;
-  font-size: ${(300 / 328) * 18}px;
-  line-height: ${(300 / 328) * 22}px;
-`;
-
-const Time = styled.div`
-  position: absolute;
-  background-color: white;
-  flex: 0 1 auto;
-  text-align: center;
-  vertical-align: middle;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  margin-left: 348px;
-  font-size: ${(300 / 328) * 18}px;
-  line-height: ${(300 / 328) * 22}px;
-  width: 100px;
-  white-space: break-word;
-`;
-
-const Books = styled.div`
-  position: absolute;
-  background-color: white;
-  flex: 0 1 auto;
-  text-align: center;
-  vertical-align: middle;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  margin-left: 538px;
-  margin-right: ${(300 / 328) * 8}px;
-  font-size: ${(300 / 328) * 18}px;
-  line-height: ${(300 / 328) * 22}px;
-  width: 150px;
-  white-space: break-word;
-`;
-
-function formatAMPM(date: { getHours: () => any; getMinutes: () => any }) {
+/**
+ * Helper function to format the time into a readable AM/PM format.
+ *
+ * Takes in an unformatted time and returns a formatted one.
+ */
+const formatAMPM = (date: { getHours: () => any; getMinutes: () => any }) => {
   var hours = date.getHours();
   var minutes = date.getMinutes();
   var ampm = hours >= 12 ? 'PM' : 'AM';
@@ -153,15 +31,18 @@ function formatAMPM(date: { getHours: () => any; getMinutes: () => any }) {
   minutes = minutes < 10 ? '0' + minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return strTime;
-}
+};
 
+// this component takes in and displays all of an event's data
 const LongEventCard = ({
   eventData,
 }: {
   // TODO: change type of eventData
   eventData: any;
 }) => {
+  // create a date object with JavaScript's Date constructor
   const date = new Date(eventData.programDate);
+
   return (
     <Container>
       <EventImage>
@@ -196,6 +77,7 @@ const LongEventCard = ({
               height={`${Math.round((300 / 328) * 23.99)}`}
             />
           </CalendarIcon>
+          {/* calls a JavaScript method to format the date into a readable format */}
           <InfoFlexChild>{date.toDateString()}</InfoFlexChild>
           <ClockIcon>
             <Image
