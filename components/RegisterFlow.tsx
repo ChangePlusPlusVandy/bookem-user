@@ -1,44 +1,25 @@
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
+import {
+  DotsContainer,
+  DotsFlex,
+  LeftArrow,
+  RightArrow,
+  ProgressContainer,
+} from '@/styles/registerFlow.styles';
 
-const DotsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 130px;
-  margin-left: 130px;
-`;
-
-const DotsFlex = styled.div`
-  display: flex;
-  justify-content: space-between;
-  width: 120px;
-  position: absolute;
-  transform: translate(0%, 83.3%);
-`;
-
-const LeftArrow = styled.div`
-  float: left;
-`;
-
-const RightArrow = styled.div`
-  float: right;
-`;
-
-const ProgressContainer = styled.div`
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 5vh;
-  position: absolute;
-  bottom: 0;
-  width: fit-content;
-  align-items: center;
-`;
-
+/**
+ * format the dots representing register form pages
+ * @param currentPage current register page number
+ * @returns well formatted page dots
+ */
 const formatPageDots = (currentPage: number) => {
+  // list of register page numbers
   const pages = [1, 2, 3, 4];
+
+  // maps each register page number to the correct colored dot
   const listDots = pages.map(page => {
+    // dot for current page is black
     if (page == currentPage)
       return (
         <Image
@@ -49,6 +30,8 @@ const formatPageDots = (currentPage: number) => {
           key={page}
         />
       );
+
+    // dot for other pages are white
     return (
       <Image
         src="/white-dot.png"
@@ -59,6 +42,7 @@ const formatPageDots = (currentPage: number) => {
       />
     );
   });
+
   return (
     <DotsContainer>
       <DotsFlex>{listDots}</DotsFlex>
@@ -66,6 +50,14 @@ const formatPageDots = (currentPage: number) => {
   );
 };
 
+/**
+ * format the left and right arrows with respect to the page dots
+ * @param currentPage current register page number
+ * @param form id of the form corresponding to the register page
+ * @param handleLeftArrow function for handling clicking the left arrow
+ * @param handleRightArray function for handling clicking the right arrow
+ * @returns well formatted register flow component
+ */
 const RegisterFlow = ({
   currentPage,
   form,
@@ -79,6 +71,7 @@ const RegisterFlow = ({
 }) => {
   return (
     <ProgressContainer>
+      {/* left arrow does not appear on register page 1 */}
       <LeftArrow>
         {Number(currentPage) != 1 ? (
           <input
@@ -92,7 +85,11 @@ const RegisterFlow = ({
           />
         ) : null}
       </LeftArrow>
+
+      {/* format the page dots */}
       {formatPageDots(currentPage)}
+
+      {/* right arrow does not appear on register page 4 */}
       <RightArrow>
         {Number(currentPage) != 4 ? (
           <input
