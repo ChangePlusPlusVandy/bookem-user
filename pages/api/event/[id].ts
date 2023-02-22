@@ -16,7 +16,7 @@ export default async function handler(
 ) {
   const session = await getServerSession(req, res, authOptions);
   const sessionUser = session.user;
-  console.log('Logged in user: ' + sessionUser);
+  console.log('Logged in user: ' + JSON.stringify(sessionUser));
 
   const {
     query: { id },
@@ -33,10 +33,11 @@ export default async function handler(
     case 'GET':
       try {
         await dbConnect();
+
+        // Query program
         const program: QueriedVolunteerProgramData =
-          (await VolunteerPrograms.findById(
-            new mongoose.Types.ObjectId(id as string)
-          )) as QueriedVolunteerProgramData;
+          (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
+
         return res.status(200).json(program);
       } catch (error) {
         console.error(error);
@@ -45,26 +46,42 @@ export default async function handler(
     case 'POST':
       try {
         await dbConnect();
-        const program: QueriedVolunteerProgramData =
-          (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
 
-        const user: QueriedUserData = (await Users.findById(
-          sessionUser._id
-        )) as QueriedUserData;
+        // Query program
+        const program = await VolunteerPrograms.findById(id);
+
+        // Query logged in user
+        const user = await Users.findById(sessionUser._id);
 
         console.log('User in database: ', user);
         console.log('Program in database: ', program);
 
+        // Find the index of logged in user in program.users
         const userIndex = program.users.indexOf(user._id);
 
-        if (userIndex == -1) {
-          // Register the user
+        // Find the index of program in user.programs
+        const programIndex = user.programs.indexOf(program._id);
+
+        if (userIndex === -1 && programIndex === -1) {
+          // Register to the program
+          program.users.unshift(user._id);
+          user.programs.unshift(program._id);
+        } else if (userIndex === -1 && programIndex === -1) {
+          throw new Error('Inconsistency betwee collections!');
         } else {
-          // Remove the user
+          // Unregister
+          // Remove the user and program
+          program.users.splice(userIndex, 1);
+          user.programs.splice(programIndex, 1);
         }
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: error });
+
+        // Resave both document
+        await user.save();
+        await program.save();
+
+        return res.status(200).json('Register Success');
+      } catch (error: any) {
+        res.status(500).json({ message: error.message });
       }
     // case 'PUT':
     // case 'DELETE':
