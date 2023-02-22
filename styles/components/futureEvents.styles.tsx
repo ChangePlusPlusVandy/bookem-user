@@ -5,6 +5,9 @@ export const Container = styled.div`
   height: 100%;
 `;
 
+/**
+ * Container of Future volunteer events header
+ */
 export const NavHeader = styled.div`
   border-top: 1px solid #000000;
   width: 100%;
@@ -13,12 +16,17 @@ export const NavHeader = styled.div`
   align-items: center;
 `;
 
+/**
+ * Container left side of header
+ */
 export const NavLeft = styled.div`
   width: 50%;
 `;
 
+/**
+ * Container of filter icon
+ */
 export const NavRight = styled.div`
-  position: relative;
   width: 50%;
   text-align: right;
   img {
@@ -26,6 +34,9 @@ export const NavRight = styled.div`
   }
 `;
 
+/**
+ * Container of search bar
+ */
 export const SearchBar = styled.div`
   width: 100%;
   display: flex;
@@ -33,6 +44,9 @@ export const SearchBar = styled.div`
   position: relative;
 `;
 
+/**
+ * Container for input in search bar
+ */
 export const Input = styled.input`
   font-size: 16px;
   border: solid 1px #dbdbdb;
@@ -54,6 +68,9 @@ export const Input = styled.input`
   }
 `;
 
+/**
+ * Container for event card wrapper
+ */
 export const ImagesWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -67,4 +84,6 @@ export const FilterButton = styled.button`
   border: none;
   height: 40px;
   width: 40px;
+
+  background-color: blue;
 `;
