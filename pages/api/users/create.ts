@@ -1,4 +1,4 @@
-import dbConnect from 'lib/dbConnect';
+import dbConnect from '@/lib/dbConnect';
 import { hash } from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Users from 'bookem-shared/src/models/Users';
