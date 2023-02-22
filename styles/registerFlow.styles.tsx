@@ -30,6 +30,4 @@ export const ProgressContainer = styled.div`
   padding-bottom: 5vh;
   position: absolute;
   bottom: 0;
-  width: fit-content;
-  align-items: center;
 `;
