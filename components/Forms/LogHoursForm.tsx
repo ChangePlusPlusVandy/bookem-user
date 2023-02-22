@@ -1,54 +1,20 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import {
+  FormBox,
+  FormHeader,
+  FormInput,
+  FormLabel,
+  LargeFormInput,
+  List,
+  SubmitButton,
+} from '@/styles/components/Forms/logHoursForm.styles';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 
-const FormBox = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const FormHeader = styled.legend`
-  font-weight: bold;
-`;
-
-const List = styled.ul`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 10px 0;
-`;
-
-const FormLabel = styled.label`
-  margin-top: 20px;
-`;
-
-const FormInput = styled.input`
-  margin-top: 20px;
-  border-radius: 10px;
-  height: 25px;
-`;
-
-const LargeFormInput = styled.textarea`
-  margin-top: 20px;
-  border-radius: 10px;
-  width: 400px;
-  height: 100px;
-  font-family: 'Times New Roman', serif;
-  font-size: 1em;
-`;
-
-const SubmitButton = styled.input`
-  margin-left: 150px;
-  margin-top: 40px;
-  width: 100px;
-  height: 40px;
-  border-radius: 10px;
-  cursor: pointer;
-`;
-
 const LogHoursForm = () => {
+  // get functions from react hook form
   const { register, handleSubmit } = useForm();
+
+  // handle form submission by parsing data and calling createVolunteerLog
   const onSubmit = (data: any) => {
     const results = JSON.stringify({
       // program: data.Program,
@@ -61,12 +27,14 @@ const LogHoursForm = () => {
     createVolunteerLog(results);
   };
 
-  async function createVolunteerLog(data: any) {
+  // sends a post request to insert the volunteer form
+  const createVolunteerLog = async (data: any) => {
+    // TODO: implement endpoint for VolunteerProgramApplication and call it
     await fetch('/api/volunteerLogs/create', {
       method: 'POST',
       body: data,
     });
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

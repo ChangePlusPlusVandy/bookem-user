@@ -113,3 +113,10 @@ export const ImagesWrapper = styled.div`
   width: 75%;
   margin: auto;
 `;
+
+export const FilterButton = styled.button`
+  border-radius: 100%;
+  border: none;
+  height: 40px;
+  width: 40px;
+`;

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import EventCard from '@/components/EventCard';
 import {
   Container,
+  FilterButton,
   ImagesWrapper,
   Input,
   NavHeader,
@@ -13,25 +14,9 @@ import {
 } from '@/styles/components/futureEvents.styles';
 import { StatsHeader } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
-import styled from 'styled-components';
+import { EventType } from '@/types/types';
 
-const FilterButton = styled.button`
-  border-radius: 100%;
-  border: none;
-  height: 40px;
-  width: 40px;
-`;
-
-type EventType = {
-  source: string;
-  name: string;
-  location: string;
-  date: Date;
-  time: string;
-  availability: number;
-  id: number;
-};
-
+// TODO: get this from database
 const feedsource: EventType[] = [
   {
     source: '/event-icon.png',
@@ -80,54 +65,39 @@ const feedsource: EventType[] = [
   },
 ];
 
-const ButtonContainer = styled.div`
-  display: flex;
-`;
-
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
 
-  const [showPopup, setShowPopup] = useState(false);
+  const [isPopupOn, setIsPopupOn] = useState(false);
 
-  const [buttonRight, setButtonRight] = useState(0);
-  const [buttonTop, setButtonTop] = useState(0);
   const [feed, setFeed] = useState(feedsource);
 
-  function handleShowPopup() {
-    setShowPopup(true);
-  }
+  const showPopup = () => setIsPopupOn(true);
+  const hidePopup = () => setIsPopupOn(false);
 
-  function hidePopup() {
-    setShowPopup(false);
-  }
-
-  function sortDescendingSpots() {
+  const sortDescendingSpots = () => {
     const copy = [...feed];
     copy.sort((b, a) => a.availability - b.availability);
     setFeed(copy);
-    console.log('here');
-  }
+  };
 
-  function sortAscendingSpots() {
+  const sortAscendingSpots = () => {
     const copy = [...feed];
     copy.sort((a, b) => a.availability - b.availability);
     setFeed(copy);
-    console.log('there');
-  }
+  };
 
-  function sortMostRecent() {
+  const sortMostRecent = () => {
     const copy = [...feed];
     copy.sort((a, b) => a.date.valueOf() - b.date.valueOf());
     setFeed(copy);
-    console.log('here');
-  }
+  };
 
-  function sortLeastRecent() {
+  const sortLeastRecent = () => {
     const copy = [...feed];
     copy.sort((b, a) => a.date.valueOf() - b.date.valueOf());
     setFeed(copy);
-    console.log('there');
-  }
+  };
 
   return (
     <Container>
@@ -136,7 +106,7 @@ const FutureVolunteerEvents = () => {
           <StatsHeader>Future volunteer events</StatsHeader>
         </NavLeft>
         <NavRight>
-          {showPopup ? (
+          {isPopupOn ? (
             <FilterEventsPopup
               sortDescendingSpots={sortDescendingSpots}
               sortAscendingSpots={sortAscendingSpots}
@@ -144,7 +114,7 @@ const FutureVolunteerEvents = () => {
               sortLeastRecent={sortLeastRecent}
               hidePopup={hidePopup}></FilterEventsPopup>
           ) : null}
-          <FilterButton onClick={handleShowPopup}>
+          <FilterButton onClick={showPopup}>
             <Image
               src="/filter-icon.png"
               alt="Filter icon"
