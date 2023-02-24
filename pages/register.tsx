@@ -24,8 +24,29 @@ const printError = (message: string) => {
 };
 
 const RegisterPage = () => {
+  // state for user data
+  const [formData, setFormData] = useState({
+    page: 1,
+    firstName: '',
+    lastName: '',
+    phone: '',
+    email: '',
+    password: '',
+    streetAddress: '',
+    city: '',
+    state: '',
+    zip: '',
+    ageRange: '',
+    members: [],
+    volunteerReason: '',
+    jobTitle1: '',
+    jobTitle2: '',
+    resume: null,
+    joinNewsletter: '',
+  });
+
   // state for current register page
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
 
   // react hook form
   // const {
@@ -38,7 +59,7 @@ const RegisterPage = () => {
   /* page number handling */
 
   // variable for storing the page that user wants to go to
-  let nextPage = page;
+  let nextPage = formData.page;
 
   // useEffect(() => {
   //   console.log('hi ', errors);
@@ -46,13 +67,13 @@ const RegisterPage = () => {
 
   // updates nextPage to be the previous register page
   const handleLeftArrow = () => {
-    nextPage = page - 1;
+    nextPage = formData.page - 1;
     // console.log(errors);
   };
 
   // updates nextPage to be the next register page
   const handleRightArrow = () => {
-    nextPage = page + 1;
+    nextPage = formData.page + 1;
     // console.log(errors);
   };
 
@@ -60,40 +81,56 @@ const RegisterPage = () => {
 
   // handle form data upon submission on each page
   const onSubmit = async (data: any) => {
+    // update formData state with new form data and next register page number
     console.log(data);
+    setFormData({ ...formData, page: nextPage, ...data });
 
     // when user clicks on final submit button on page 4
-    if (page == 4 && nextPage == page) {
+    if (formData.page == 4 && nextPage == formData.page) {
       // check if user is registered successfully
       const error = await onFinished(data);
       console.log(error);
 
       // if successful, go to last register page
-      if (!error) nextPage = page + 1;
+      if (!error) nextPage = formData.page + 1;
       // otherwise, send alert to user with error message
       else alert(error.message);
     }
 
     // update current register page number
-    setPage(nextPage);
+    // formData.page = nextPage;
+    // console.log(formData.page);
+    console.log(formData);
   };
 
   // attempt to create user in database using form data
   const onFinished = async (data: any) => {
     // put form data into correct format for the user schema
+    // const userData: UserData = {
+    //   name: data.firstName + ' ' + data.lastName,
+    //   email: data.email,
+    //   password: data.password,
+    //   phone: data.phone,
+    //   address:
+    //     data.streetAddress +
+    //     ', ' +
+    //     data.city +
+    //     ', ' +
+    //     data.state +
+    //     ' ' +
+    //     data.zip,
+    //   sourceHeardFrom: 'somethingrandomidkwhattoputhere',
+    //   ethnicity: 'somethingrandomidkwhattoputhere',
+    //   gender: 'somethingrandomidkwhattoputhere',
+    //   programs: [],
+    // };
+
     const userData: UserData = {
-      name: data.firstName + ' ' + data.lastName,
-      email: data.email,
-      password: data.password,
-      phone: data.phone,
-      address:
-        data.streetAddress +
-        ', ' +
-        data.city +
-        ', ' +
-        data.state +
-        ' ' +
-        data.zip,
+      name: 'h h',
+      email: 'hii@h.com',
+      password: 'h',
+      phone: '(123) 456-7890',
+      address: 'h',
       sourceHeardFrom: 'somethingrandomidkwhattoputhere',
       ethnicity: 'somethingrandomidkwhattoputhere',
       gender: 'somethingrandomidkwhattoputhere',
@@ -120,6 +157,7 @@ const RegisterPage = () => {
     }
   };
 
+  // TODO: RENAME PROPS TO SOMETHING ELSE
   const props = {
     onSubmit,
     printError,
@@ -130,11 +168,11 @@ const RegisterPage = () => {
   return (
     <Container>
       <LeftDisplay />
-      {page == 1 && <RegisterPage1 props={props} />}
-      {page == 2 && <RegisterPage2 props={props} />}
-      {page == 3 && <RegisterPage3 props={props} />}
-      {page == 4 && <RegisterPage4 props={props} />}
-      {page == 5 && <RegisterPage5 />}
+      {formData.page == 1 && <RegisterPage1 props={props} />}
+      {formData.page == 2 && <RegisterPage2 props={props} />}
+      {formData.page == 3 && <RegisterPage3 props={props} />}
+      {formData.page == 4 && <RegisterPage4 props={props} />}
+      {formData.page == 5 && <RegisterPage5 />}
     </Container>
   );
 };
