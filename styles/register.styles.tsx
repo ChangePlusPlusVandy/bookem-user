@@ -11,6 +11,8 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
+  font-family: 'Inter';
+  font-style: normal;
 `;
 
 export const RightContainer = styled.div`
@@ -32,8 +34,6 @@ export const Header = styled.div<Props>`
   margin-bottom: ${props => (props.margin ? props.margin : '2vh')};
   padding: 1vh;
 
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
@@ -47,8 +47,7 @@ export const SectionContainer = styled.div<Props>`
 export const SectionHeader = styled.div`
   padding: 1vh;
   padding-bottom: 1.2vh;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -71,8 +70,6 @@ export const InputText = styled.input<Props>`
   border-bottom: 1px solid #c1c1c1;
   width: ${props => props.width};
 
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -87,8 +84,7 @@ export const LabelRadio = styled.label`
   grid-template-columns: 18px auto;
   gap: 18px;
   width: 33vh;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -116,8 +112,7 @@ export const LabelCheckbox = styled.label`
   grid-template-columns: 18px auto;
   gap: 18px;
   align-items: center;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: 20px;
   line-height: 40px;
@@ -142,8 +137,7 @@ export const InputTextarea = styled.textarea`
   width: 100%;
   height: 160px;
   padding: 12px 25px;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -171,8 +165,7 @@ export const ResumeButton = styled.button`
   width: 334px;
   height: fit-content;
   padding: 10px 20px;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -183,8 +176,7 @@ export const ResumeButton = styled.button`
 export const ReviewInfoText = styled.div`
   padding-left: 1vh;
   margin-bottom: 2vh;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -199,13 +191,10 @@ export const Button = styled.button`
   border: 1px solid #6d6d6d;
   border-radius: 20px;
 
-  font-family: 'Inter';
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: #ffffff;
 `;
 
@@ -216,12 +205,10 @@ export const LastPageContainer = styled(RightContainer)`
 
 export const LastPageText = styled.div<Props>`
   margin-bottom: 2vh;
-  font-family: 'Inter';
-  font-style: normal;
+
   font-weight: 400;
   font-size: ${props => (props.fontSize ? props.fontSize : '25px')};
   line-height: 36px;
-
   color: #000000;
 `;
 

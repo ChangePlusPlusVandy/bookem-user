@@ -1,10 +1,5 @@
 import React, { ChangeEvent, KeyboardEventHandler, useState } from 'react';
-import {
-  SubmitHandler,
-  FieldValues,
-  useForm,
-  UseFormReturn,
-} from 'react-hook-form';
+import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
 import RegisterFlow from '../RegisterFlow';
 import {
   RightContainer,
@@ -49,7 +44,7 @@ const formatPhoneNumber = (value: string) => {
 };
 
 const RegisterPage4 = ({
-  props: {
+  formFunctions: {
     handleForm,
     onSubmit,
     handleEnter,
@@ -59,7 +54,7 @@ const RegisterPage4 = ({
   },
   formPhoneData,
 }: {
-  props: {
+  formFunctions: {
     handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
     handleEnter: KeyboardEventHandler<HTMLInputElement>;
@@ -93,6 +88,7 @@ const RegisterPage4 = ({
       <form id="registerPage4" onSubmit={handleSubmit(onSubmit)}>
         <SectionContainer margin="3vh">
           <SectionHeader>Basic Information</SectionHeader>
+
           <InputFlex>
             <InputText
               {...register('firstName', { required: true })}
@@ -105,12 +101,14 @@ const RegisterPage4 = ({
               placeholder="Last name"
               width="45%"></InputText>
           </InputFlex>
+
           {errors.firstName && printError('First name is required')}
           {errors.lastName && printError('Last name is required')}
         </SectionContainer>
 
         <SectionContainer margin="3vh">
           <SectionHeader>Contact</SectionHeader>
+
           <InputContainer>
             <InputText
               {...register('phone', { required: true })}
@@ -120,6 +118,7 @@ const RegisterPage4 = ({
               value={phoneValue}
               width="100%"></InputText>
           </InputContainer>
+
           <InputContainer>
             <InputText
               {...register('email', { required: true })}
@@ -127,6 +126,7 @@ const RegisterPage4 = ({
               placeholder="Email Address"
               width="100%"></InputText>
           </InputContainer>
+
           <InputContainer>
             <InputText
               {...register('password', { required: true })}
@@ -135,6 +135,7 @@ const RegisterPage4 = ({
               width="45%"
               type="password"></InputText>
           </InputContainer>
+
           {errors.phone &&
             phoneValue == '' &&
             printError('Phone number is required')}
@@ -173,6 +174,7 @@ const RegisterPage4 = ({
               placeholder="Zip code"
               width="45%"></InputText>
           </InputContainer>
+
           {errors.streetAddress && printError('Street address is required')}
           {errors.city && printError('City is required')}
           {errors.state && printError('State is required')}
@@ -180,6 +182,7 @@ const RegisterPage4 = ({
         </SectionContainer>
 
         <ReviewInfoText>More text here...</ReviewInfoText>
+
         <ButtonContainer>
           <Button>Submit</Button>
         </ButtonContainer>

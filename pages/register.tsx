@@ -24,7 +24,7 @@ const printError = (message: string) => {
 };
 
 const RegisterPage = () => {
-  // state for user data
+  // state for form data
   const [formData, setFormData] = useState({
     page: 1,
     firstName: '',
@@ -50,16 +50,12 @@ const RegisterPage = () => {
   // variable for storing the page that user wants to go to
   let nextPage = formData.page;
 
-  // useEffect(() => {
-  //   console.log('hi ', errors);
-  // }, [errors]);
-
   // updates nextPage to be the previous register page
   const handleLeftArrow = () => {
     nextPage = formData.page - 1;
   };
 
-  // updates nextPage to be the next register page
+  // updates nextPage to be the upcoming register page
   const handleRightArrow = () => {
     nextPage = formData.page + 1;
   };
@@ -90,8 +86,7 @@ const RegisterPage = () => {
 
       // if successful, go to last register page
       if (!error) {
-        nextPage = formData.page + 1;
-        setFormData({ ...formData, page: nextPage });
+        setFormData({ ...formData, page: formData.page + 1 });
       }
       // otherwise, send alert to user with error message
       else alert(error.message);
@@ -141,8 +136,8 @@ const RegisterPage = () => {
     }
   };
 
-  // TODO: RENAME PROPS TO SOMETHING ELSE
-  const props = {
+  // functions to be passed as props to each register page component
+  const formFunctions = {
     handleForm,
     onSubmit,
     handleEnter,
@@ -155,15 +150,28 @@ const RegisterPage = () => {
     <Container>
       <LeftDisplay />
       {formData.page == 1 && (
-        <RegisterPage1 props={props} formPhoneData={formData.phone} />
+        <RegisterPage1
+          formFunctions={formFunctions}
+          formPhoneData={formData.phone}
+        />
       )}
-      {formData.page == 2 && <RegisterPage2 props={props} />}
+
+      {formData.page == 2 && <RegisterPage2 formFunctions={formFunctions} />}
+
       {formData.page == 3 && (
-        <RegisterPage3 props={props} formResumeData={formData.resume} />
+        <RegisterPage3
+          formFunctions={formFunctions}
+          formResumeData={formData.resume}
+        />
       )}
+
       {formData.page == 4 && (
-        <RegisterPage4 props={props} formPhoneData={formData.phone} />
+        <RegisterPage4
+          formFunctions={formFunctions}
+          formPhoneData={formData.phone}
+        />
       )}
+
       {formData.page == 5 && <RegisterPage5 />}
     </Container>
   );

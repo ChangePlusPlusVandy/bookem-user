@@ -1,10 +1,5 @@
 import React, { KeyboardEventHandler } from 'react';
-import {
-  FieldValues,
-  SubmitHandler,
-  useForm,
-  UseFormReturn,
-} from 'react-hook-form';
+import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
 import RegisterFlow from '../RegisterFlow';
 import {
   RightContainer,
@@ -22,7 +17,7 @@ import {
 } from '@/styles/register.styles';
 
 const RegisterPage2 = ({
-  props: {
+  formFunctions: {
     handleForm,
     onSubmit,
     handleEnter,
@@ -31,7 +26,7 @@ const RegisterPage2 = ({
     handleRightArrow,
   },
 }: {
-  props: {
+  formFunctions: {
     handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
     handleEnter: KeyboardEventHandler<HTMLInputElement>;
@@ -53,6 +48,7 @@ const RegisterPage2 = ({
       <form id="registerPage2" onSubmit={handleSubmit(onSubmit)}>
         <SectionContainer margin="4vh">
           <SectionHeader>Select age range</SectionHeader>
+
           <InputFlex>
             <LabelRadio>
               <InputRadio
@@ -82,6 +78,7 @@ const RegisterPage2 = ({
               45+
             </LabelRadio>
           </InputFlex>
+
           {errors.ageRange && printError('A selection is required')}
         </SectionContainer>
 

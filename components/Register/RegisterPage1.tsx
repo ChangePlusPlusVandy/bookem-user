@@ -41,7 +41,7 @@ const formatPhoneNumber = (value: string) => {
 };
 
 const RegisterPage1 = ({
-  props: {
+  formFunctions: {
     handleForm,
     onSubmit,
     handleEnter,
@@ -51,7 +51,7 @@ const RegisterPage1 = ({
   },
   formPhoneData,
 }: {
-  props: {
+  formFunctions: {
     handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
     handleEnter: KeyboardEventHandler<HTMLInputElement>;
@@ -85,6 +85,7 @@ const RegisterPage1 = ({
       <form id="registerPage1" onSubmit={handleSubmit(onSubmit)}>
         <SectionContainer margin="5vh">
           <SectionHeader>Basic Information</SectionHeader>
+
           <InputFlex>
             <InputText
               {...register('firstName', { required: true })}
@@ -97,12 +98,14 @@ const RegisterPage1 = ({
               placeholder="Last name"
               width="45%"></InputText>
           </InputFlex>
+
           {errors.firstName && printError('First name is required')}
           {errors.lastName && printError('Last name is required')}
         </SectionContainer>
 
         <SectionContainer margin="5vh">
           <SectionHeader>Contact</SectionHeader>
+
           <InputContainer>
             <InputText
               {...register('phone', { required: true })}
@@ -112,6 +115,7 @@ const RegisterPage1 = ({
               value={phoneValue}
               width="100%"></InputText>
           </InputContainer>
+
           <InputContainer>
             <InputText
               {...register('email', { required: true })}
@@ -119,6 +123,7 @@ const RegisterPage1 = ({
               placeholder="Email Address"
               width="100%"></InputText>
           </InputContainer>
+
           <InputContainer>
             <InputText
               {...register('password', { required: true })}
@@ -127,6 +132,7 @@ const RegisterPage1 = ({
               width="45%"
               type="password"></InputText>
           </InputContainer>
+
           {errors.phone &&
             phoneValue == '' &&
             printError('Phone number is required')}
@@ -165,6 +171,7 @@ const RegisterPage1 = ({
               placeholder="Zip code"
               width="45%"></InputText>
           </InputContainer>
+
           {errors.streetAddress && printError('Street address is required')}
           {errors.city && printError('City is required')}
           {errors.state && printError('State is required')}

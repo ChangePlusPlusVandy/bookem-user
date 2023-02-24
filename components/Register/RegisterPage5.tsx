@@ -17,6 +17,7 @@ const RegisterPage5 = () => {
       <LastPageText>
         Press the button below to log in to your account
       </LastPageText>
+
       <LastPageImage>
         <Image
           src="/user-circle.png"
@@ -25,6 +26,7 @@ const RegisterPage5 = () => {
           height="226"
         />
       </LastPageImage>
+
       <LastPageButtonContainer>
         <Button>
           <Link href="/">Let&apos;s go</Link>

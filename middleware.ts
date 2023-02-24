@@ -8,7 +8,7 @@ import { NextResponse } from 'next/server';
  */
 export { default } from 'next-auth/middleware';
 
-// middleware function TODO: figure out why this is necessary
+// TODO: figure out why this is necessary
 export async function middleware(req: any, ev: any) {}
 
 /**

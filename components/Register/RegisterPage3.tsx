@@ -4,12 +4,7 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import {
-  SubmitHandler,
-  FieldValues,
-  useForm,
-  UseFormReturn,
-} from 'react-hook-form';
+import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
 import RegisterFlow from '../RegisterFlow';
 import {
   RightContainer,
@@ -26,7 +21,7 @@ import {
 } from '@/styles/register.styles';
 
 const RegisterPage3 = ({
-  props: {
+  formFunctions: {
     handleForm,
     onSubmit,
     handleEnter,
@@ -36,7 +31,7 @@ const RegisterPage3 = ({
   },
   formResumeData,
 }: {
-  props: {
+  formFunctions: {
     handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
     handleEnter: KeyboardEventHandler<HTMLInputElement>;
@@ -83,6 +78,7 @@ const RegisterPage3 = ({
       <form id="registerPage3" onSubmit={handleSubmit(onSubmit)}>
         <SectionContainer margin="5vh">
           <SectionHeader>Occupation</SectionHeader>
+
           <InputContainer>
             <InputText
               {...register('jobTitle1', { required: true })}
@@ -90,6 +86,7 @@ const RegisterPage3 = ({
               placeholder="Job Title 1"
               width="100%"></InputText>
           </InputContainer>
+
           <InputContainer>
             <InputText
               {...register('jobTitle2')}
@@ -97,16 +94,19 @@ const RegisterPage3 = ({
               placeholder="Job Title 2 (Optional)"
               width="100%"></InputText>
           </InputContainer>
+
           {errors.jobTitle1 && printError('A job title is required')}
         </SectionContainer>
 
         <SectionContainer margin="5vh">
           <SectionHeader>Please upload your resume (Optional)</SectionHeader>
+
           <ButtonContainer>
             <ResumeButton type="button" onClick={handleUploadClick}>
               {resume ? `${resume.name}` : 'Click here to upload'}
             </ResumeButton>
           </ButtonContainer>
+
           <input
             type="file"
             {...register('resume')}
@@ -119,6 +119,7 @@ const RegisterPage3 = ({
 
         <SectionContainer>
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
+
           <InputRadioVertical>
             <li style={{ marginBottom: '40px' }}>
               <LabelRadio>
