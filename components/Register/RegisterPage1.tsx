@@ -1,5 +1,5 @@
-import React, { ChangeEvent, useState } from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import React, { ChangeEvent, KeyboardEventHandler, useState } from 'react';
+import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
 import RegisterFlow from '../RegisterFlow';
 import {
   RightContainer,
@@ -41,26 +41,37 @@ const formatPhoneNumber = (value: string) => {
 };
 
 const RegisterPage1 = ({
-  props: { onSubmit, printError, handleLeftArrow, handleRightArrow },
+  props: {
+    handleForm,
+    onSubmit,
+    handleEnter,
+    printError,
+    handleLeftArrow,
+    handleRightArrow,
+  },
+  formPhoneData,
 }: {
   props: {
+    handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
+    handleEnter: KeyboardEventHandler<HTMLInputElement>;
     printError: Function;
     handleLeftArrow: Function;
     handleRightArrow: Function;
   };
+  formPhoneData: string;
 }) => {
   // react hook form
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = handleForm;
 
   /* phone number format handling */
 
   // state for phone number
-  const [phoneValue, setPhoneValue] = useState('');
+  const [phoneValue, setPhoneValue] = useState(formPhoneData);
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
@@ -77,10 +88,12 @@ const RegisterPage1 = ({
           <InputFlex>
             <InputText
               {...register('firstName', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="First name"
               width="45%"></InputText>
             <InputText
               {...register('lastName', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Last name"
               width="45%"></InputText>
           </InputFlex>
@@ -93,6 +106,7 @@ const RegisterPage1 = ({
           <InputContainer>
             <InputText
               {...register('phone', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Phone number"
               onChange={e => handlePhone(e)}
               value={phoneValue}
@@ -101,12 +115,14 @@ const RegisterPage1 = ({
           <InputContainer>
             <InputText
               {...register('email', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Email Address"
               width="100%"></InputText>
           </InputContainer>
           <InputContainer>
             <InputText
               {...register('password', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Password"
               width="45%"
               type="password"></InputText>
@@ -124,6 +140,7 @@ const RegisterPage1 = ({
           <InputContainer>
             <InputText
               {...register('streetAddress', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Street address"
               width="100%"></InputText>
           </InputContainer>
@@ -131,10 +148,12 @@ const RegisterPage1 = ({
           <InputFlex>
             <InputText
               {...register('city', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="City"
               width="45%"></InputText>
             <InputText
               {...register('state', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="State"
               width="45%"></InputText>
           </InputFlex>
@@ -142,6 +161,7 @@ const RegisterPage1 = ({
           <InputContainer>
             <InputText
               {...register('zip', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Zip code"
               width="45%"></InputText>
           </InputContainer>

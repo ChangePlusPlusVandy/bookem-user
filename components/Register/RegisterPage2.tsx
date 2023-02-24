@@ -1,5 +1,10 @@
-import React from 'react';
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import React, { KeyboardEventHandler } from 'react';
+import {
+  FieldValues,
+  SubmitHandler,
+  useForm,
+  UseFormReturn,
+} from 'react-hook-form';
 import RegisterFlow from '../RegisterFlow';
 import {
   RightContainer,
@@ -17,10 +22,19 @@ import {
 } from '@/styles/register.styles';
 
 const RegisterPage2 = ({
-  props: { onSubmit, printError, handleLeftArrow, handleRightArrow },
+  props: {
+    handleForm,
+    onSubmit,
+    handleEnter,
+    printError,
+    handleLeftArrow,
+    handleRightArrow,
+  },
 }: {
   props: {
+    handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
+    handleEnter: KeyboardEventHandler<HTMLInputElement>;
     printError: Function;
     handleLeftArrow: Function;
     handleRightArrow: Function;
@@ -31,7 +45,7 @@ const RegisterPage2 = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = handleForm;
 
   return (
     <RightContainer>
@@ -45,6 +59,7 @@ const RegisterPage2 = ({
                 type="radio"
                 value="under18"
                 {...register('ageRange', { required: true })}
+                onKeyDown={handleEnter}
               />
               Under 18
             </LabelRadio>
@@ -53,6 +68,7 @@ const RegisterPage2 = ({
                 type="radio"
                 value="18to45"
                 {...register('ageRange', { required: true })}
+                onKeyDown={handleEnter}
               />
               18-45
             </LabelRadio>
@@ -61,6 +77,7 @@ const RegisterPage2 = ({
                 type="radio"
                 value="45plus"
                 {...register('ageRange', { required: true })}
+                onKeyDown={handleEnter}
               />
               45+
             </LabelRadio>
@@ -87,6 +104,7 @@ const RegisterPage2 = ({
                       type="checkbox"
                       value={member}
                       {...register('members')}
+                      onKeyDown={handleEnter}
                     />
                     {member}
                   </LabelCheckbox>
@@ -98,6 +116,7 @@ const RegisterPage2 = ({
                 type="checkbox"
                 value="Junior League member or sustainer"
                 {...register('members')}
+                onKeyDown={handleEnter}
               />
               Junior League member or sustainer
             </LabelCheckbox>

@@ -1,5 +1,15 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
-import { SubmitHandler, FieldValues, useForm } from 'react-hook-form';
+import React, {
+  ChangeEvent,
+  KeyboardEventHandler,
+  useRef,
+  useState,
+} from 'react';
+import {
+  SubmitHandler,
+  FieldValues,
+  useForm,
+  UseFormReturn,
+} from 'react-hook-form';
 import RegisterFlow from '../RegisterFlow';
 import {
   RightContainer,
@@ -16,14 +26,25 @@ import {
 } from '@/styles/register.styles';
 
 const RegisterPage3 = ({
-  props: { onSubmit, printError, handleLeftArrow, handleRightArrow },
+  props: {
+    handleForm,
+    onSubmit,
+    handleEnter,
+    printError,
+    handleLeftArrow,
+    handleRightArrow,
+  },
+  formResumeData,
 }: {
   props: {
+    handleForm: UseFormReturn<FieldValues, any>;
     onSubmit: SubmitHandler<FieldValues>;
+    handleEnter: KeyboardEventHandler<HTMLInputElement>;
     printError: Function;
     handleLeftArrow: Function;
     handleRightArrow: Function;
   };
+  formResumeData: File | undefined;
 }) => {
   // react hook form
   const {
@@ -31,13 +52,13 @@ const RegisterPage3 = ({
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm();
+  } = handleForm;
 
   /* resume upload handling */
   /* based on https://codefrontend.com/file-upload-reactjs/, only works for files with <= 16 MB I think */
 
   // state for uploaded resume file
-  const [resume, setResume] = useState<File>();
+  const [resume, setResume] = useState<File | undefined>(formResumeData);
 
   // object that helps with handling clicking on resume upload button
   const inputRef = useRef<HTMLInputElement | null>(null);
@@ -65,12 +86,14 @@ const RegisterPage3 = ({
           <InputContainer>
             <InputText
               {...register('jobTitle1', { required: true })}
+              onKeyDown={handleEnter}
               placeholder="Job Title 1"
               width="100%"></InputText>
           </InputContainer>
           <InputContainer>
             <InputText
               {...register('jobTitle2')}
+              onKeyDown={handleEnter}
               placeholder="Job Title 2 (Optional)"
               width="100%"></InputText>
           </InputContainer>
@@ -87,6 +110,7 @@ const RegisterPage3 = ({
           <input
             type="file"
             {...register('resume')}
+            onKeyDown={handleEnter}
             ref={inputRef}
             onChange={handleFileChange}
             style={{ display: 'none' }}
@@ -102,6 +126,7 @@ const RegisterPage3 = ({
                   type="radio"
                   value="yes"
                   {...register('joinNewsletter', { required: true })}
+                  onKeyDown={handleEnter}
                 />
                 Yes, please!
               </LabelRadio>
@@ -112,6 +137,7 @@ const RegisterPage3 = ({
                   type="radio"
                   value="no"
                   {...register('joinNewsletter', { required: true })}
+                  onKeyDown={handleEnter}
                 />
                 No, thanks
               </LabelRadio>

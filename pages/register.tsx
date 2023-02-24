@@ -41,20 +41,9 @@ const RegisterPage = () => {
     volunteerReason: '',
     jobTitle1: '',
     jobTitle2: '',
-    resume: null,
+    resume: undefined,
     joinNewsletter: '',
   });
-
-  // state for current register page
-  // const [page, setPage] = useState(1);
-
-  // react hook form
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   setValue,
-  //   formState: { errors },
-  // } = useForm();
 
   /* page number handling */
 
@@ -68,16 +57,24 @@ const RegisterPage = () => {
   // updates nextPage to be the previous register page
   const handleLeftArrow = () => {
     nextPage = formData.page - 1;
-    // console.log(errors);
   };
 
   // updates nextPage to be the next register page
   const handleRightArrow = () => {
     nextPage = formData.page + 1;
-    // console.log(errors);
   };
 
   /* form handling */
+
+  // react hook form
+  const handleForm = useForm();
+
+  // disables submitting form data using enter key (used for all form inputs)
+  const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
 
   // handle form data upon submission on each page
   const onSubmit = async (data: any) => {
@@ -92,45 +89,32 @@ const RegisterPage = () => {
       console.log(error);
 
       // if successful, go to last register page
-      if (!error) nextPage = formData.page + 1;
+      if (!error) {
+        nextPage = formData.page + 1;
+        setFormData({ ...formData, page: nextPage });
+      }
       // otherwise, send alert to user with error message
       else alert(error.message);
     }
-
-    // update current register page number
-    // formData.page = nextPage;
-    // console.log(formData.page);
     console.log(formData);
   };
 
   // attempt to create user in database using form data
   const onFinished = async (data: any) => {
     // put form data into correct format for the user schema
-    // const userData: UserData = {
-    //   name: data.firstName + ' ' + data.lastName,
-    //   email: data.email,
-    //   password: data.password,
-    //   phone: data.phone,
-    //   address:
-    //     data.streetAddress +
-    //     ', ' +
-    //     data.city +
-    //     ', ' +
-    //     data.state +
-    //     ' ' +
-    //     data.zip,
-    //   sourceHeardFrom: 'somethingrandomidkwhattoputhere',
-    //   ethnicity: 'somethingrandomidkwhattoputhere',
-    //   gender: 'somethingrandomidkwhattoputhere',
-    //   programs: [],
-    // };
-
     const userData: UserData = {
-      name: 'h h',
-      email: 'hii@h.com',
-      password: 'h',
-      phone: '(123) 456-7890',
-      address: 'h',
+      name: data.firstName + ' ' + data.lastName,
+      email: data.email,
+      password: data.password,
+      phone: data.phone,
+      address:
+        data.streetAddress +
+        ', ' +
+        data.city +
+        ', ' +
+        data.state +
+        ' ' +
+        data.zip,
       sourceHeardFrom: 'somethingrandomidkwhattoputhere',
       ethnicity: 'somethingrandomidkwhattoputhere',
       gender: 'somethingrandomidkwhattoputhere',
@@ -159,7 +143,9 @@ const RegisterPage = () => {
 
   // TODO: RENAME PROPS TO SOMETHING ELSE
   const props = {
+    handleForm,
     onSubmit,
+    handleEnter,
     printError,
     handleLeftArrow,
     handleRightArrow,
@@ -168,10 +154,16 @@ const RegisterPage = () => {
   return (
     <Container>
       <LeftDisplay />
-      {formData.page == 1 && <RegisterPage1 props={props} />}
+      {formData.page == 1 && (
+        <RegisterPage1 props={props} formPhoneData={formData.phone} />
+      )}
       {formData.page == 2 && <RegisterPage2 props={props} />}
-      {formData.page == 3 && <RegisterPage3 props={props} />}
-      {formData.page == 4 && <RegisterPage4 props={props} />}
+      {formData.page == 3 && (
+        <RegisterPage3 props={props} formResumeData={formData.resume} />
+      )}
+      {formData.page == 4 && (
+        <RegisterPage4 props={props} formPhoneData={formData.phone} />
+      )}
       {formData.page == 5 && <RegisterPage5 />}
     </Container>
   );
