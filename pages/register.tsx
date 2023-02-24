@@ -65,7 +65,7 @@ const RegisterPage = () => {
   // react hook form
   const handleForm = useForm();
 
-  // disables submitting form data using enter key (used for all form inputs)
+  // disable submitting form data using enter key (used for all form inputs)
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault();
@@ -81,13 +81,11 @@ const RegisterPage = () => {
     // when user clicks on final submit button on page 4
     if (formData.page == 4 && nextPage == formData.page) {
       // check if user is registered successfully
-      const error = await onFinished(data);
+      const error = await onFinished(formData);
       console.log(error);
 
       // if successful, go to last register page
-      if (!error) {
-        setFormData({ ...formData, page: formData.page + 1 });
-      }
+      if (!error) setFormData({ ...formData, page: formData.page + 1 });
       // otherwise, send alert to user with error message
       else alert(error.message);
     }
