@@ -1,3 +1,4 @@
+import { convertToDate, getTime } from '@/utils/utils';
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
@@ -44,21 +45,19 @@ const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
   const iconWidth = 50;
   const iconHeight = 50;
 
+  programDate = new Date(programDate.toLocaleString());
+
   /**
    * List of icon params
    */
   const iconParamList: IconParams[] = [
     {
       src: '/event/calendar.png',
-      text: programDate.toLocaleString('default', {
-        month: 'long',
-        year: 'numeric',
-        day: 'numeric',
-      }),
+      text: convertToDate(programDate),
     },
     {
       src: '/event/clock.png',
-      text: programDate.getHours() + ':' + programDate.getMinutes(),
+      text: getTime(programDate),
     },
     {
       src: '/event/map-pin.png',

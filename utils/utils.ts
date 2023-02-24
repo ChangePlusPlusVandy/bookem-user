@@ -1,5 +1,5 @@
 export const convertToDate = (date: Date) => {
-  return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
+  return date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
 };
 
 export const getTime = (date: Date) => {
