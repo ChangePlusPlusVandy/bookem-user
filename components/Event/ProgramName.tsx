@@ -1,4 +1,5 @@
-import React from 'react';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const ProgramNameBox = styled.div`
@@ -23,18 +24,35 @@ const SignupButton = styled.button`
   font-size: 30px;
 `;
 
+const signUpEvent = async (program: QueriedVolunteerProgramData) => {
+  console.log(program);
+
+  try {
+    const response = await fetch('/api/event/' + program._id, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    console.log(response);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 /**
  * Contain the Program name and sign up button
  * @param programName
  */
-const ProgramName = ({ programName }: { programName: string }) => {
+const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
   return (
     <ProgramNameBox>
       <NameAndSpot>
-        <b>{programName}</b> (Program category) <br />
+        <b>{program.name}</b> (Program category) <br />
         9/10 spots filled
       </NameAndSpot>
-      <SignupButton>Sign up</SignupButton>
+      <SignupButton onClick={() => signUpEvent(program)}>Sign up</SignupButton>
     </ProgramNameBox>
   );
 };

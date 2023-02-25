@@ -46,7 +46,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       {/* Book Icon and Program name */}
       <MiddleBox>
         <BookIcon />
-        <ProgramName programName={event.name} />
+        <ProgramName program={event} />
       </MiddleBox>
 
       {/* Time and Place of the program */}

@@ -52,9 +52,6 @@ export default async function handler(
         // Query logged in user
         const user = await Users.findById(sessionUser._id);
 
-        console.log('User in database: ', user);
-        console.log('Program in database: ', program);
-
         // Find the index of logged in user in program.users
         const userIndex = program.users.indexOf(user._id);
 
@@ -65,8 +62,8 @@ export default async function handler(
           // Register to the program
           program.users.unshift(user._id);
           user.programs.unshift(program._id);
-        } else if (userIndex === -1 && programIndex === -1) {
-          throw new Error('Inconsistency betwee collections!');
+        } else if (userIndex === -1 || programIndex === -1) {
+          throw new Error('Inconsistency between collections!');
         } else {
           // Unregister
           // Remove the user and program
@@ -81,11 +78,12 @@ export default async function handler(
         return res.status(200).json('Register Success');
       } catch (error: any) {
         res.status(500).json({ message: error.message });
+        console.error(error);
       }
     // case 'PUT':
     // case 'DELETE':
-    default:
-      res.setHeader('Allow', ['GET', 'PUT', 'DELETE', 'POST']);
-      res.status(405).end(`Method ${method} Not Allowed`);
+    // default:
+    // res.setHeader('Allow', ['GET', 'PUT', 'DELETE', 'POST']);
+    // res.status(405).end(`Method ${method} Not Allowed`);
   }
 }
