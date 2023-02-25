@@ -5,7 +5,7 @@ import {
   NameAndSpot,
   SignupButton,
 } from '@/styles/components/Event/programName.styles';
-import { getSession, useSession } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 /**
  * Contain the Program name and sign up button
@@ -15,10 +15,15 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
   const [signedUp, setSignedUp] = useState(false);
   const { data: session } = useSession();
 
+  /**
+   * Sign up/Unsign up the current user to the event
+   * @param program
+   */
   const signUpEvent = async (program: QueriedVolunteerProgramData) => {
     console.log(program);
 
     try {
+      // Send post request to backend
       const response = await fetch('/api/event/' + program._id, {
         method: 'POST',
         headers: {
@@ -26,7 +31,13 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
         },
       });
 
-      const message = await response.json();
+      // Success
+      if (response.status === 200) {
+        const message = await response.json();
+        console.log(message);
+      }
+
+      // Update sign up state
       setSignedUp(!signedUp);
     } catch (error) {
       console.error(error);
@@ -34,6 +45,8 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
   };
 
   useEffect(() => {
+    // Initialize signedUp according to whether the current program
+    // contains the user or not
     if (session?.user) {
       setSignedUp(program.users.includes(session.user._id));
     }

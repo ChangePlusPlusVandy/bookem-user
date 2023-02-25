@@ -13,10 +13,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Get session user
   const session = await getServerSession(req, res, authOptions);
   const sessionUser = session.user;
-  console.log('Logged in user: ' + JSON.stringify(sessionUser));
 
+  // Get request parameter
   const {
     query: { id },
     method,
@@ -26,7 +27,7 @@ export default async function handler(
     /**
      * @route GET /api/event/[id]
      * @desc Get program by id
-     * @req id, user
+     * @req program id, user in session
      * @res QueriedVolunteerProgramData
      */
     case 'GET':
@@ -42,6 +43,13 @@ export default async function handler(
         console.error(error);
         res.status(500).json({ message: error });
       }
+
+    /**
+     * @route POST /api/event/[id]
+     * @desc Signup/Unsignup the user
+     * @req program id, user in session
+     * @res Success message
+     */
     case 'POST':
       try {
         await dbConnect();
