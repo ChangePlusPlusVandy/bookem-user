@@ -2,11 +2,19 @@ import Event from '@/components/Event/Event';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+
+// Helper function for useSWR to fetch data
 const fetcher = (url: string) => fetch(url).then(res => res.json());
+
+/**
+ * Event Detail Page
+ * @returns
+ */
 const EventDetail = () => {
   const router = useRouter();
   const { pid } = router.query;
 
+  // Fetch event by id
   const {
     data: event,
     error,

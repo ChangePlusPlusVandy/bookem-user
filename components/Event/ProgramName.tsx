@@ -20,8 +20,6 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
    * @param program
    */
   const signUpEvent = async (program: QueriedVolunteerProgramData) => {
-    console.log(program);
-
     try {
       // Send post request to backend
       const response = await fetch('/api/event/' + program._id, {
