@@ -1,35 +1,12 @@
-import Image from 'next/image';
 import React from 'react';
-import styled from 'styled-components';
-
-const ContactBox = styled.div`
-  width: 500px;
-  margin-left: 147px;
-`;
-
-const ContactHeader = styled.div`
-  font-size: 30px;
-`;
-
-const BigIconBox = styled.div`
-  margin-top: 40px;
-`;
-
-/**
- * Contains Icon + text
- */
-const IconBox = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 30px;
-`;
-
-const Icon = styled(Image)``;
-
-const IconText = styled.span`
-  margin-left: 37px;
-  font-size: 18px;
-`;
+import {
+  ContactBox,
+  ContactHeader,
+  BigIconBox,
+  Icon,
+  IconBox,
+  IconText,
+} from '@/styles/components/Event/contact.styled';
 
 /**
  * Parameter of each icon + text box

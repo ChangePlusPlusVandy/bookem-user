@@ -2,30 +2,12 @@ import { convertToDate, getTime } from '@/utils/utils';
 import Image from 'next/image';
 import React from 'react';
 import styled from 'styled-components';
-
-const TimeAndPlaceBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  height: 50px;
-  margin-top: 20px;
-`;
-
-/**
- * Contains the Icon + text
- */
-const IconBox = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Icon = styled(Image)``;
-
-const IconText = styled.span`
-  margin-left: 20px;
-  font-size: 18px;
-`;
+import {
+  TimeAndPlaceBox,
+  Icon,
+  IconBox,
+  IconText,
+} from '@/styles/components/Event/timeAndPlace.styles';
 
 /**
  * Parameter of each icon + text box

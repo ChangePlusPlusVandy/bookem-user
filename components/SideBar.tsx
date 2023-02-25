@@ -29,7 +29,7 @@ const iconHeight = 42.47;
 /**
  * List of IconParams
  */
-const iconParamList = [
+const iconParamList: IconParams[] = [
   {
     defaultSrc: '/sidebar/home-white.png',
     hoveredsrc: '/sidebar/home-black.png',
