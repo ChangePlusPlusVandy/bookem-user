@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+/**
+ * Container for volunteer dashboard
+ */
 export const DashboardContainer = styled.div`
   height: fit-content;
   width: 100%;
@@ -8,6 +11,9 @@ export const DashboardContainer = styled.div`
   position: relative;
 `;
 
+/**
+ * Button for "Log Hours"
+ */
 export const LogButton = styled.button`
   background: #6d6d6d;
   border-radius: 10px;
@@ -27,11 +33,17 @@ export const LogButton = styled.button`
   }
 `;
 
+/**
+ * Container for log hours and history icons
+ */
 export const ButtonIcon = styled.div`
   float: left;
   margin-right: 40px;
 `;
 
+/**
+ * Button for "See History"
+ */
 export const HistoryButton = styled.button`
   width: 350px;
   height: 88px;
@@ -51,6 +63,9 @@ export const HistoryButton = styled.button`
   }
 `;
 
+/**
+ * Container for "Log Hours" and "See History" buttons
+ */
 export const VolunteerButtonsContainer = styled.div`
   height: fit-content;
   display: flex;
@@ -62,6 +77,9 @@ export const VolunteerButtonsContainer = styled.div`
   }
 `;
 
+/**
+ * Container for volunteer stats
+ */
 export const VolunteerStatsContainer = styled.div`
   margin-top: 20px;
 `;
