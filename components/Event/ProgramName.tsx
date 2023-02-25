@@ -35,7 +35,8 @@ const signUpEvent = async (program: QueriedVolunteerProgramData) => {
       },
     });
 
-    console.log(response);
+    const message = await response.json();
+    console.log(message);
   } catch (error) {
     console.error(error);
   }
