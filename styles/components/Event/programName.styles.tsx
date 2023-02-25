@@ -11,7 +11,7 @@ export const NameAndSpot = styled.div`
 `;
 
 export const SignupButton = styled.button`
-  width: 135px;
+  width: 150px;
   margin-top: 30px;
   padding: 12px;
   background: #5a5a5a;
@@ -19,5 +19,5 @@ export const SignupButton = styled.button`
   border: none;
   cursor: pointer;
   color: white;
-  font-size: 30px;
+  font-size: 25px;
 `;
