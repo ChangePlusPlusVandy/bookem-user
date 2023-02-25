@@ -4,7 +4,6 @@ import styled from 'styled-components';
  * Contain everything
  */
 export const EventBox = styled.div`
-  width: 100%;
   padding: 50px;
 `;
 
@@ -13,8 +12,7 @@ export const EventBox = styled.div`
  */
 export const MiddleBox = styled.div`
   display: flex;
-  margin-top: 45px;
-  margin-left: 30px;
+  margin: 45px auto auto 30px;
 `;
 
 /**
