@@ -79,6 +79,7 @@ const FutureVolunteerEvents = () => {
     copy.sort((b, a) => a.availability - b.availability);
     setFeed(copy);
   };
+
   // Sorts events based on increasing availability
   const sortAscendingSpots = () => {
     const copy = [...feed];
