@@ -6,7 +6,6 @@ import RegisterPage1 from '@/components/Register/RegisterPage1';
 import RegisterPage2 from '@/components/Register/RegisterPage2';
 import RegisterPage3 from '@/components/Register/RegisterPage3';
 import RegisterPage4 from '@/components/Register/RegisterPage4';
-import RegisterPage5 from '@/components/Register/RegisterPage5';
 import { Container, Error } from '@/styles/register.styles';
 
 /**
@@ -163,14 +162,7 @@ const RegisterPage = () => {
         />
       )}
 
-      {/* {formData.page == 4 && (
-        <RegisterPage4
-          formFunctions={formFunctions}
-          formPhoneData={formData.phone}
-        />
-      )} */}
-
-      {formData.page == 4 && <RegisterPage5 />}
+      {formData.page == 4 && <RegisterPage4 />}
     </Container>
   );
 };
