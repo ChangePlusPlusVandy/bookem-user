@@ -79,7 +79,7 @@ const RegisterPage = () => {
     setFormData({ ...formData, page: nextPage, ...data });
 
     // when user clicks on final submit button on page 4
-    if (formData.page == 4 && nextPage == formData.page) {
+    if (formData.page == 3 && nextPage == formData.page) {
       // check if user is registered successfully
       const error = await onFinished(formData);
       console.log(error);
@@ -163,14 +163,14 @@ const RegisterPage = () => {
         />
       )}
 
-      {formData.page == 4 && (
+      {/* {formData.page == 4 && (
         <RegisterPage4
           formFunctions={formFunctions}
           formPhoneData={formData.phone}
         />
-      )}
+      )} */}
 
-      {formData.page == 5 && <RegisterPage5 />}
+      {formData.page == 4 && <RegisterPage5 />}
     </Container>
   );
 };

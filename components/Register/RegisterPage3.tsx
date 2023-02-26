@@ -18,6 +18,7 @@ import {
   InputRadioVertical,
   LabelRadio,
   InputRadio,
+  Button,
 } from '@/styles/register.styles';
 
 const RegisterPage3 = ({
@@ -146,6 +147,10 @@ const RegisterPage3 = ({
           </InputRadioVertical>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
+
+        <ButtonContainer>
+          <Button>Submit</Button>
+        </ButtonContainer>
 
         <RegisterFlow
           currentPage={3}

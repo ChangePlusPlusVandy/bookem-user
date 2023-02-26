@@ -22,11 +22,8 @@ export const RightContainer = styled.div`
   width: 50vw;
   height: 100vh;
   background: white;
-  padding-top: 7vh;
-  padding-bottom: 7vh;
+  padding: 7vh 10%;
   gap: 4vh;
-  padding-left: 19vh;
-  padding-right: 19vh;
   overflow-y: auto;
 `;
 
