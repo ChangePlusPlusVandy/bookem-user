@@ -1,6 +1,7 @@
 import React from 'react';
-import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import Image from 'next/image';
+import UpcomingEvents from '@/components/Home/UpcomingEvents';
+import PastActivity from '@/components/Home/PastActivity';
 import {
   Container,
   DashboardLayout,
@@ -15,8 +16,17 @@ import {
   StatsNumber,
   UpcomingEventsContainer,
 } from '@/styles/dashboard.styles';
-import PastActivity from '@/components/Home/PastActivity';
 
+/**
+ * format main dashboard on home page
+ * @param userData object that contains pertinent user information
+ * userData: {
+ *   name: string;
+ *   hoursVolunteered: number;
+ *   booksShared: number;
+ *   dollarsDonated: number;
+ * }
+ */
 const MainDashboard = ({ userData }: any) => {
   return (
     <DashboardLayout>

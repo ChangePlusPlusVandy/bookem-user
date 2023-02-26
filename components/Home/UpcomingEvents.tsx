@@ -1,6 +1,6 @@
 import React from 'react';
-import EventCard from '@/components/EventCard';
 import styled from 'styled-components';
+import EventCard from '@/components/EventCard';
 
 export const dummyEventData = {
   source: '/event-icon.png',
@@ -26,6 +26,9 @@ const Events = styled.div`
   display: inline-block;
 `;
 
+/**
+ * format horizontal upcoming event scroll bar on home page
+ */
 const UpcomingEvents = () => {
   return (
     <Container>

@@ -27,6 +27,9 @@ const Header = styled.p`
   font-weight: 400;
 `;
 
+/**
+ * format vertical past activities scroll bar on home page
+ */
 const PastActivity = () => {
   return (
     <Container>
