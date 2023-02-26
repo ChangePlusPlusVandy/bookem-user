@@ -21,6 +21,7 @@ import {
 import WindowFlow from '@/components/WindowFlow';
 
 const VolunteerDashboard = ({ userData }: any) => {
+  // set pop up window to false
   const [showPopup, setShowPopup] = useState(false);
 
   return (
@@ -38,6 +39,7 @@ const VolunteerDashboard = ({ userData }: any) => {
           <Greeting>Volunteer</Greeting>
         </GreetingContainer>
 
+        {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>
           <LogButton onClick={() => setShowPopup(true)}>
             <ButtonIcon>
@@ -50,6 +52,7 @@ const VolunteerDashboard = ({ userData }: any) => {
             </ButtonIcon>
             Log Hours
           </LogButton>
+          {/** Button for "See History" */}
           <HistoryButton>
             <ButtonIcon>
               <Image
@@ -63,6 +66,7 @@ const VolunteerDashboard = ({ userData }: any) => {
           </HistoryButton>
         </VolunteerButtonsContainer>
 
+        {/** Volunteer stats */}
         <VolunteerStatsContainer>
           <StatsFlex>
             <FlexChild>
