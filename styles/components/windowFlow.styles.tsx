@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
+/**
+ * Container for the header of all the page numbers and titles
+ */
 export const PageNumHeader = styled.div`
   display: flex;
+  flex-wrap: wrap;
   margin: 0 auto;
   margin-top: 15px;
   width: 100%;
@@ -9,6 +13,9 @@ export const PageNumHeader = styled.div`
   overflow: hidden;
 `;
 
+/**
+ * Container for each circular page number
+ */
 export const PageNum = styled.div`
   border-radius: 50%;
   border: solid 1px black;
@@ -18,15 +25,24 @@ export const PageNum = styled.div`
   padding: 15px 20px;
 `;
 
+/**
+ * Container for the page title
+ */
 export const PageTitle = styled.div`
   padding-top: 15px;
 `;
 
+/**
+ * Container for the line in between each page number/title
+ */
 export const ImageWrapper = styled.div`
   padding-top: 10px;
   padding-left: 20px;
 `;
 
+/**
+ * Container for bottom region containing the navigation arrrows and submit buttons
+ */
 export const BottomContainer = styled.div`
   position: absolute;
   bottom: 30px;
@@ -35,11 +51,25 @@ export const BottomContainer = styled.div`
   display: flex;
 `;
 
+/**
+ * Container for button to go back a page
+ */
 export const ButtonLeft = styled.div`
   position: absolute;
   left: 30px;
 `;
 
+/**
+ * Container for button to go forward a page
+ */
+export const ButtonRight = styled.div`
+  position: absolute;
+  right: 30px;
+`;
+
+/**
+ * Buttons for going back or forward a page
+ */
 export const ArrowButton = styled.button`
   background: transparent;
   border: transparent;
@@ -49,16 +79,17 @@ export const ArrowButton = styled.button`
   padding: 0 2px;
 `;
 
-export const ButtonRight = styled.div`
-  position: absolute;
-  right: 30px;
-`;
-
+/**
+ * Container for "Submit" button in middle of page
+ */
 export const ButtonCenter = styled.div`
   display: flex;
   margin: 0 auto;
 `;
 
+/**
+ * Button for the "Submit" button
+ */
 export const SubmitButton = styled.button`
   font-size: 23px;
   border: 1px solid black;
