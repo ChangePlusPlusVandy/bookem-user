@@ -48,11 +48,13 @@ const WindowFlow = ({
     });
   }, [currentPage]);
 
+  // function to update the page number if the back arrow is clicked
   const navigateBack = () => {
     if (currentPage <= numPages && currentPage > 1)
       setCurrentPage(currentPage - 1);
   };
 
+  // function to update the page number if the forward arrow is clicked
   const navigateForward = () => {
     if (currentPage >= 0 && currentPage < numPages)
       setCurrentPage(currentPage + 1);
@@ -60,13 +62,13 @@ const WindowFlow = ({
 
   return (
     <>
+      {/** Page header with page numbers and titles */}
       <PageNumHeader>
         {pages.map((page, index) => {
           return (
             <>
               <PageNum id={(index + 1).toString()}>{index + 1}</PageNum>
               <PageTitle>{page}</PageTitle>
-
               {index < pages.length - 1 && (
                 <ImageWrapper>
                   <Image
@@ -80,38 +82,45 @@ const WindowFlow = ({
             </>
           );
         })}
-        <BottomContainer>
-          {currentPage > 1 && (
-            <ButtonLeft>
-              <ArrowButton onClick={navigateBack}>
-                <Image
-                  src="/arrow-left.png"
-                  alt="Left arrow"
-                  width="40"
-                  height="40"
-                />
-              </ArrowButton>
-            </ButtonLeft>
-          )}
-          {currentPage == pages.length && (
-            <ButtonCenter>
-              <SubmitButton>Submit</SubmitButton>
-            </ButtonCenter>
-          )}
-          {currentPage < pages.length && (
-            <ButtonRight>
-              <ArrowButton onClick={navigateForward}>
-                <Image
-                  src="/arrow-right.png"
-                  alt="Right arrow"
-                  width="40"
-                  height="40"
-                />
-              </ArrowButton>
-            </ButtonRight>
-          )}
-        </BottomContainer>
       </PageNumHeader>
+
+      {/** Buttons for submit and navigating pages */}
+      <BottomContainer>
+        {/** Forward arrow appears if not on last page */}
+        {currentPage < pages.length && (
+          <ButtonRight>
+            <ArrowButton onClick={navigateForward}>
+              <Image
+                src="/arrow-right.png"
+                alt="Right arrow"
+                width="40"
+                height="40"
+              />
+            </ArrowButton>
+          </ButtonRight>
+        )}
+
+        {/** Back arrow appears if not on first page */}
+        {currentPage > 1 && (
+          <ButtonLeft>
+            <ArrowButton onClick={navigateBack}>
+              <Image
+                src="/arrow-left.png"
+                alt="Left arrow"
+                width="40"
+                height="40"
+              />
+            </ArrowButton>
+          </ButtonLeft>
+        )}
+
+        {/** Submit button appears if on last page */}
+        {currentPage == pages.length && (
+          <ButtonCenter>
+            <SubmitButton>Submit</SubmitButton>
+          </ButtonCenter>
+        )}
+      </BottomContainer>
       {children}
     </>
   );
