@@ -21,7 +21,6 @@ export const PageNum = styled.div`
   border: solid 1px black;
   height: 50px;
   width: 50px;
-  margin: 0 10px 10px 10px;
   padding: 15px 20px;
 `;
 
@@ -30,6 +29,7 @@ export const PageNum = styled.div`
  */
 export const PageTitle = styled.div`
   padding-top: 15px;
+  margin: 0 1vw 5vh 1vw;
 `;
 
 /**
@@ -37,7 +37,7 @@ export const PageTitle = styled.div`
  */
 export const ImageWrapper = styled.div`
   padding-top: 10px;
-  padding-left: 20px;
+  margin-right: 1vw;
 `;
 
 /**
