@@ -49,9 +49,10 @@ const RegisterPage = () => {
   // variable for storing the page that user wants to go to
   let nextPage = formData.page;
 
-  // updates nextPage to be the previous register page
-  const handleLeftArrow = () => {
-    nextPage = formData.page - 1;
+  // updates nextPage to be the previous register page, saves data but not submit form
+  const handleLeftArrow = (data: any) => {
+    console.log(data);
+    setFormData({ ...formData, page: formData.page - 1, ...data });
   };
 
   // updates nextPage to be the upcoming register page

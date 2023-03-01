@@ -7,6 +7,7 @@ import {
   RightArrow,
   ProgressContainer,
 } from '@/styles/registerFlow.styles';
+import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
 /**
  * format the dots representing register form pages
@@ -61,11 +62,13 @@ const formatPageDots = (currentPage: number) => {
 const RegisterFlow = ({
   currentPage,
   form,
+  getValues,
   handleLeftArrow,
   handleRightArrow,
 }: {
   currentPage: number;
   form: string;
+  getValues: UseFormGetValues<FieldValues>;
   handleLeftArrow: Function;
   handleRightArrow: Function;
 }) => {
@@ -74,14 +77,12 @@ const RegisterFlow = ({
       {/* left arrow does not appear on register page 1 */}
       <LeftArrow>
         {Number(currentPage) != 1 ? (
-          <input
-            form={form}
-            type="image"
+          <Image
             src="/left-arrow.png"
-            height="20px"
-            width="10px"
+            height="20"
+            width="10"
             alt="Button for previous page"
-            onClick={() => handleLeftArrow()}
+            onClick={() => handleLeftArrow(getValues())}
           />
         ) : null}
       </LeftArrow>

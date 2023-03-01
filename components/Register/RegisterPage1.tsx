@@ -65,6 +65,7 @@ const RegisterPage1 = ({
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = handleForm;
 
@@ -181,6 +182,7 @@ const RegisterPage1 = ({
         <RegisterFlow
           currentPage={1}
           form="registerPage1"
+          getValues={getValues}
           handleLeftArrow={handleLeftArrow}
           handleRightArrow={handleRightArrow}
         />

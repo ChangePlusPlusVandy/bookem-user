@@ -4,14 +4,14 @@ export const DotsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 130px;
-  margin-left: 130px;
+  margin-right: 120px;
+  margin-left: 120px;
 `;
 
 export const DotsFlex = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 120px;
+  width: 84px;
   position: absolute;
   transform: translate(0%, 83.3%);
 `;

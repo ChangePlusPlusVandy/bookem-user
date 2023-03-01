@@ -47,6 +47,7 @@ const RegisterPage3 = ({
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = handleForm;
 
@@ -122,7 +123,7 @@ const RegisterPage3 = ({
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
           <InputRadioVertical>
-            <li style={{ marginBottom: '40px' }}>
+            <li style={{ marginBottom: '60px' }}>
               <LabelRadio>
                 <InputRadio
                   type="radio"
@@ -155,6 +156,7 @@ const RegisterPage3 = ({
         <RegisterFlow
           currentPage={3}
           form="registerPage3"
+          getValues={getValues}
           handleLeftArrow={handleLeftArrow}
           handleRightArrow={handleRightArrow}
         />
