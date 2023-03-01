@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import { FieldValues, UseFormGetValues } from 'react-hook-form';
 import {
   DotsContainer,
   DotsFlex,
@@ -7,7 +8,6 @@ import {
   RightArrow,
   ProgressContainer,
 } from '@/styles/registerFlow.styles';
-import { FieldValues, UseFormGetValues } from 'react-hook-form';
 
 /**
  * format the dots representing register form pages
@@ -55,6 +55,7 @@ const formatPageDots = (currentPage: number) => {
  * format the left and right arrows with respect to the page dots
  * @param currentPage current register page number
  * @param form id of the form corresponding to the register page
+ * @param getValues function for getting inputs of register page form
  * @param handleLeftArrow function for handling clicking the left arrow
  * @param handleRightArray function for handling clicking the right arrow
  * @returns well formatted register flow component
