@@ -10,5 +10,8 @@ export { default } from 'next-auth/middleware';
  * Configure which api routes to authenticate
  */
 export const config = {
-  matcher: ['/api/:function*'],
+  // match all routes in /api except for the route /api/users/create
+  // the ?!(...) means match everything except for (...)
+  // adapted from: https://nextjs.org/docs/messages/invalid-route-source
+  matcher: ['/api/((?!users/create).*)'],
 };
