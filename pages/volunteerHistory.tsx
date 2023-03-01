@@ -44,7 +44,8 @@ const VolunteerHistoryPage = () => {
               name: event.name,
               school: event.schools,
               programDate: event.programDate,
-            }}></LongEventCard>
+            }}
+          />
         ))}
       </MainContainer>
     </>

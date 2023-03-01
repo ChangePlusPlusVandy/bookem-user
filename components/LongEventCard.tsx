@@ -6,14 +6,11 @@ import {
   AddressContainer,
   AddressIcon,
   InfoContainer,
-  InfoFlex,
-  InfoFlexChild,
+  Description,
   ClockIcon,
   Address,
   CalendarIcon,
-  Time,
   CheckmarkIcon,
-  Books,
   Container,
 } from '@/styles/components/longEventCard.styles';
 
@@ -68,39 +65,39 @@ const LongEventCard = ({
       </AddressContainer>
 
       <InfoContainer>
-        <InfoFlex>
-          <CalendarIcon>
-            <Image
-              src="/calendar.png"
-              alt="Calendar icon"
-              width={`${Math.round((300 / 328) * 21)}`}
-              height={`${Math.round((300 / 328) * 23.99)}`}
-            />
-          </CalendarIcon>
+        <CalendarIcon>
+          <Image
+            src="/calendar.png"
+            alt="Calendar icon"
+            width={`${Math.round((300 / 328) * 21)}`}
+            height={`${Math.round((300 / 328) * 23.99)}`}
+          />
           {/* calls a JavaScript method to format the date into a readable format */}
-          <InfoFlexChild>{date.toDateString()}</InfoFlexChild>
-          <ClockIcon>
-            <Image
-              src="/clock.png"
-              alt="Clock icon"
-              width={`${Math.round((300 / 328) * 21.27)}`}
-              height={`${Math.round((300 / 328) * 22.14)}`}
-            />
-          </ClockIcon>
-          <Time>{formatAMPM(date)}</Time>
-          <CheckmarkIcon>
-            <Image
-              src="/checkmark.png"
-              alt="Checkmark icon"
-              width={`${Math.round((300 / 328) * 21)}`}
-              height={`${Math.round((300 / 328) * 23.99)}`}
-            />
-          </CheckmarkIcon>
-          <Books>
+          <Description>{date.toDateString()}</Description>
+        </CalendarIcon>
+
+        <ClockIcon>
+          <Image
+            src="/clock.png"
+            alt="Clock icon"
+            width={`${Math.round((300 / 328) * 21.27)}`}
+            height={`${Math.round((300 / 328) * 22.14)}`}
+          />
+          <Description>{formatAMPM(date)}</Description>
+        </ClockIcon>
+
+        <CheckmarkIcon>
+          <Image
+            src="/checkmark.png"
+            alt="Checkmark icon"
+            width={`${Math.round((300 / 328) * 21)}`}
+            height={`${Math.round((300 / 328) * 23.99)}`}
+          />
+          <Description>
             {/* TODO: add data for number of books distributed*/}X books
             distributed
-          </Books>
-        </InfoFlex>
+          </Description>
+        </CheckmarkIcon>
       </InfoContainer>
     </Container>
   );

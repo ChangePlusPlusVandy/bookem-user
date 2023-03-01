@@ -21,6 +21,7 @@ export const IconLink = styled(Link)`
   margin-top: 35px;
   margin-right: 10px;
 `;
+
 export const HeaderContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -29,13 +30,9 @@ export const HeaderContainer = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  height: 639px;
-  width: 1150px;
-  margin-top: 50px;
-  margin: auto;
   background-color: #d9d9d9;
+  width: 95%;
+  margin: 0 auto 20px auto;
   border-radius: 10px;
-  overflow-y: auto;
   padding: 10px;
-  overflow-x: hidden;
 `;
