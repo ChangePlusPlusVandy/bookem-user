@@ -1,6 +1,6 @@
-import React, { ChangeEvent, KeyboardEventHandler, useState } from 'react';
-import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
-import RegisterFlow from '../RegisterFlow';
+import React, { ChangeEvent, useState } from 'react';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+import RegisterFlow from '@/components/RegisterFlow';
 import {
   RightContainer,
   Header,
@@ -10,6 +10,7 @@ import {
   InputText,
   InputContainer,
 } from '@/styles/register.styles';
+import { RegisterFormFunctions } from '@/types/types';
 
 /**
  * auto-format inputted phone number
@@ -51,14 +52,7 @@ const RegisterPage1 = ({
   },
   formPhoneData,
 }: {
-  formFunctions: {
-    handleForm: UseFormReturn<FieldValues, any>;
-    onSubmit: SubmitHandler<FieldValues>;
-    handleEnter: KeyboardEventHandler<HTMLInputElement>;
-    printError: Function;
-    handleLeftArrow: Function;
-    handleRightArrow: Function;
-  };
+  formFunctions: RegisterFormFunctions;
   formPhoneData: string;
 }) => {
   // react hook form
@@ -83,7 +77,9 @@ const RegisterPage1 = ({
   return (
     <RightContainer>
       <Header>Tell us about yourself!</Header>
-      <form id="registerPage1" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id="registerPage1"
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer margin="5vh">
           <SectionHeader>Basic Information</SectionHeader>
 

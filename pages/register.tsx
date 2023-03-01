@@ -7,6 +7,7 @@ import RegisterPage2 from '@/components/Register/RegisterPage2';
 import RegisterPage3 from '@/components/Register/RegisterPage3';
 import RegisterPage4 from '@/components/Register/RegisterPage4';
 import { Container, Error } from '@/styles/register.styles';
+import { RegisterFormFunctions } from '@/types/types';
 
 /**
  * format error messages
@@ -24,6 +25,7 @@ const printError = (message: string) => {
 
 const RegisterPage = () => {
   // state for form data
+  // TODO: add state to formData
   const [formData, setFormData] = useState({
     page: 1,
     firstName: '',
@@ -67,9 +69,7 @@ const RegisterPage = () => {
 
   // disable submitting form data using enter key (used for all form inputs)
   const handleEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      event.preventDefault();
-    }
+    if (event.key === 'Enter') event.preventDefault();
   };
 
   // handle form data upon submission on each page
@@ -79,7 +79,7 @@ const RegisterPage = () => {
     setFormData({ ...formData, page: nextPage, ...data });
 
     // when user clicks on final submit button on page 4
-    if (formData.page == 3 && nextPage == formData.page) {
+    if (formData.page === 3 && nextPage === formData.page) {
       // check if user is registered successfully
       const error = await onFinished(formData);
       console.log(error);
@@ -112,15 +112,18 @@ const RegisterPage = () => {
       ethnicity: 'somethingrandomidkwhattoputhere',
       gender: 'somethingrandomidkwhattoputhere',
       programs: [],
+      backgroundCheck: {
+        passed: false,
+        expirationDate: new Date(),
+      },
+      userType: '',
+      tags: [],
     };
 
     // send api request to create user
     try {
       const res = await fetch('/api/users/create', {
         method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-        },
         body: JSON.stringify(userData),
       });
       console.log(res);
@@ -135,7 +138,7 @@ const RegisterPage = () => {
   };
 
   // functions to be passed as props to each register page component
-  const formFunctions = {
+  const formFunctions: RegisterFormFunctions = {
     handleForm,
     onSubmit,
     handleEnter,
@@ -147,23 +150,23 @@ const RegisterPage = () => {
   return (
     <Container>
       <LeftDisplay />
-      {formData.page == 1 && (
+      {formData.page === 1 && (
         <RegisterPage1
           formFunctions={formFunctions}
           formPhoneData={formData.phone}
         />
       )}
 
-      {formData.page == 2 && <RegisterPage2 formFunctions={formFunctions} />}
+      {formData.page === 2 && <RegisterPage2 formFunctions={formFunctions} />}
 
-      {formData.page == 3 && (
+      {formData.page === 3 && (
         <RegisterPage3
           formFunctions={formFunctions}
           formResumeData={formData.resume}
         />
       )}
 
-      {formData.page == 4 && <RegisterPage4 />}
+      {formData.page === 4 && <RegisterPage4 />}
     </Container>
   );
 };

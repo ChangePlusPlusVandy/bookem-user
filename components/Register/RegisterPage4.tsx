@@ -9,7 +9,7 @@ import {
   Button,
 } from '@/styles/register.styles';
 
-const RegisterPage5 = () => {
+const RegisterPage4 = () => {
   return (
     <LastPageContainer>
       <LastPageText fontSize="30px">Thank you!</LastPageText>
@@ -36,4 +36,4 @@ const RegisterPage5 = () => {
   );
 };
 
-export default RegisterPage5;
+export default RegisterPage4;

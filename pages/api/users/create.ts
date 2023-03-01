@@ -12,7 +12,7 @@ export default async function handler(
     case 'POST':
       try {
         // start a try catch block to catch any errors in parsing the request body
-        const user = req.body as QueriedUserData;
+        const user = JSON.parse(req.body) as QueriedUserData;
 
         // Get the user's email and password from the request body
         const { email, password, name } = user;

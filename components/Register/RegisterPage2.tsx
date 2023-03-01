@@ -1,6 +1,6 @@
-import React, { KeyboardEventHandler } from 'react';
-import { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form';
-import RegisterFlow from '../RegisterFlow';
+import React from 'react';
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+import RegisterFlow from '@/components/RegisterFlow';
 import {
   RightContainer,
   Header,
@@ -15,6 +15,7 @@ import {
   TextareaContainer,
   InputTextarea,
 } from '@/styles/register.styles';
+import { RegisterFormFunctions } from '@/types/types';
 
 const RegisterPage2 = ({
   formFunctions: {
@@ -26,14 +27,7 @@ const RegisterPage2 = ({
     handleRightArrow,
   },
 }: {
-  formFunctions: {
-    handleForm: UseFormReturn<FieldValues, any>;
-    onSubmit: SubmitHandler<FieldValues>;
-    handleEnter: KeyboardEventHandler<HTMLInputElement>;
-    printError: Function;
-    handleLeftArrow: Function;
-    handleRightArrow: Function;
-  };
+  formFunctions: RegisterFormFunctions;
 }) => {
   // react hook form
   const {
@@ -46,7 +40,9 @@ const RegisterPage2 = ({
   return (
     <RightContainer>
       <Header>Next up</Header>
-      <form id="registerPage2" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id="registerPage2"
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer margin="4vh">
           <SectionHeader>Select age range</SectionHeader>
 
