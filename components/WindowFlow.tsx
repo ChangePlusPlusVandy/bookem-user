@@ -16,12 +16,12 @@ import {
 
 const WindowFlow = ({
   pages,
-  children,
+  components,
 }: {
   // the array of strings at the top of the window flow
   pages: string[];
-  // the children component to render inside of window flow
-  children: React.ReactNode;
+  // the array of components to render in the window flow
+  components: React.ReactNode[];
 }) => {
   const numPages = pages.length;
 
@@ -121,7 +121,10 @@ const WindowFlow = ({
           </ButtonCenter>
         )}
       </BottomContainer>
-      {children}
+
+      {components.map((comp, index) => {
+        if (currentPage === index + 1) return comp;
+      })}
     </>
   );
 };

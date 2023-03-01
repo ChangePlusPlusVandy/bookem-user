@@ -19,6 +19,7 @@ import {
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
 import WindowFlow from '@/components/WindowFlow';
+import LogHoursForm from '../Forms/LogHoursForm';
 
 const VolunteerDashboard = ({ userData }: any) => {
   // set pop up window to false
@@ -30,10 +31,15 @@ const VolunteerDashboard = ({ userData }: any) => {
         {/* based on whether or not hideppopup is true, displays popup */}
         {showPopup && (
           <PopupWindow hidePopup={() => setShowPopup(false)}>
-            <WindowFlow pages={['Event', 'Program', 'Numbers', 'Comments']}>
-              {/* TODO: add children for Log Hours */}
-              Add forms below
-            </WindowFlow>
+            <WindowFlow
+              pages={['Event', 'Program', 'Numbers', 'Comments']}
+              components={[
+                <div>page 1</div>,
+                <div>page 2</div>,
+                <div>page 3</div>,
+                <div>page 4</div>,
+              ]}
+            />
           </PopupWindow>
         )}
         <GreetingContainer>
