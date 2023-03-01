@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import { dummyEventData } from '@/components/Home/UpcomingEvents';
 const EventCard = React.lazy(() => import('@/components/EventCard'));
 
-// vertical list of sample past events (another component)
-
+/**
+ * Container for all past activities
+ */
 const Container = styled.div`
   background-color: #d9d9d9;
   width: 24vw;
@@ -20,6 +21,9 @@ const Container = styled.div`
   }
 `;
 
+/**
+ * Header for past activities
+ */
 const Header = styled.p`
   font-size: 25px;
   margin-top: 50px;
