@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
-  flex-direction: row;
   overflow: hidden;
 `;
 
@@ -13,28 +12,28 @@ export const RightContainer = styled.div`
   width: 50vw;
   height: 100vh;
   background: white;
+  overflow: auto;
 `;
 
 export const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
 `;
 
-export const Button = styled.button`
+export const CreateButton = styled.button`
   font-size: 17px;
   background: #dbdbdb;
   border: none;
   padding-top: 12px;
   padding-bottom: 12px;
-  padding-left: 35px;
-  padding-right: 35px;
   border-radius: 14px;
   &:hover {
-    background-color: green;
+    background-color: #ededed;
     cursor: pointer;
   }
-  width: 275px;
+  width: 20vw;
+  min-width: 200px;
   margin-left: auto;
   margin-right: auto;
 `;
@@ -44,11 +43,10 @@ export const Footer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  left: 50%;
+  left: 50vw;
   bottom: 0px;
   width: 50vw;
   height: 17vh;
-  background: gray;
   background-color: teal;
 `;
 
@@ -73,10 +71,9 @@ export const ContentContainer = styled.div`
 `;
 
 export const LoginHeader = styled.div`
-  margin-right: auto;
   font-size: 30px;
   font-weight: bold;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 export const IconContainer = styled.div`
@@ -99,23 +96,31 @@ export const SubmitButton = styled.input`
   padding: 12px 35px;
   border-radius: 14px;
   &:hover {
-    background-color: green;
+    background-color: #ededed;
     cursor: pointer;
   }
   width: 80%;
-  margin: 0 auto;
+  margin: auto;
 `;
 
 export const IconButton = styled.button`
   height: 40px;
   width: 40px;
-  border-radius: 100%;
-  background-color: #dbdbdb;
+  background-color: white;
+  border-radius: 5px;
   border: 0px;
   &:hover {
-    background-color: green;
+    background-color: #ededed;
     cursor: pointer;
   }
+  padding: 0px;
+`;
+
+export const IconImage = styled.img`
+  height: 30px;
+  width: 30px;
+  padding: 0px;
+  margin: 0px;
 `;
 
 export const LittleText = styled.p`

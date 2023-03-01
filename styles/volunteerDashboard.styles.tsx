@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 /**
@@ -41,15 +42,13 @@ export const ButtonIcon = styled.div`
   margin: 5px 40px 0 0;
 `;
 
-/**
- * Button for "See History"
- */
-export const HistoryButton = styled.button`
+export const HistoryButton = styled(Link)`
   width: 350px;
   height: 74px;
   padding: 19px;
   margin-top: 25px;
   background: #e3e3e3;
+  border: 1.5px solid #000000;
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;
