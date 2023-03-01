@@ -45,7 +45,7 @@ const FilterEventsPopup = ({
       <Container ref={wrapperRef}>
         <FilterText onClick={sortLeastRecent}>Most Recent</FilterText>
         <FilterText onClick={sortMostRecent}>Least Recent</FilterText>
-        <span></span>
+        <span />
         <FilterText onClick={sortDescendingSpots}>Most Spots</FilterText>
         <FilterText onClick={sortAscendingSpots}>Least Spots</FilterText>
       </Container>

@@ -18,7 +18,6 @@ import {
   SubmitButton,
 } from '@/styles/login.styles';
 import LeftDisplay from '@/components/LeftDisplay';
-import { useActiveRoute } from '@/lib/useActiveRoute';
 import Link from 'next/link';
 
 const LoginPage = () => {

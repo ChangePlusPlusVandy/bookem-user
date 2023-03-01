@@ -1,13 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
-
 import {
   Container,
   ImgContainer,
   HeaderFont,
   InfoFont,
-} from '@/styles/components/leftdisplay.styles';
+} from '@/styles/components/leftDisplay.styles';
 
 const LeftDisplay = () => {
   return (
