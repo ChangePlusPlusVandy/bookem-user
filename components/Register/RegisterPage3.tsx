@@ -5,7 +5,7 @@ import React, {
   useState,
 } from 'react';
 import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
-import RegisterFlow from '../RegisterFlow';
+import RegisterFlow from '@/components/RegisterFlow';
 import {
   RightContainer,
   Header,
@@ -20,6 +20,7 @@ import {
   InputRadio,
   Button,
 } from '@/styles/register.styles';
+import { RegisterFormFunctions } from '@/types/types';
 
 const RegisterPage3 = ({
   formFunctions: {
@@ -32,14 +33,7 @@ const RegisterPage3 = ({
   },
   formResumeData,
 }: {
-  formFunctions: {
-    handleForm: UseFormReturn<FieldValues, any>;
-    onSubmit: SubmitHandler<FieldValues>;
-    handleEnter: KeyboardEventHandler<HTMLInputElement>;
-    printError: Function;
-    handleLeftArrow: Function;
-    handleRightArrow: Function;
-  };
+  formFunctions: RegisterFormFunctions;
   formResumeData: File | undefined;
 }) => {
   // react hook form
@@ -76,7 +70,9 @@ const RegisterPage3 = ({
   return (
     <RightContainer>
       <Header>Almost there</Header>
-      <form id="registerPage3" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        id="registerPage3"
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer margin="5vh">
           <SectionHeader>Occupation</SectionHeader>
 
