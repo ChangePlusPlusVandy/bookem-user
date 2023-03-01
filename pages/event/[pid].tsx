@@ -16,9 +16,13 @@ const EventDetail = () => {
     programDate: new Date('October 20, 2014 11:13:00'),
     createdAt: new Date(),
     updatedAt: new Date(),
-    users: [new mongoose.Types.ObjectId()],
-    hasForm: false,
+    volunteers: [new mongoose.Types.ObjectId()],
+    isOpen: false,
     category: 'RFR',
+    email: 'test_user@bookem.org',
+    location: '2301 Vanderbilt Place',
+    maxSpot: 10,
+    phone: '(615)555-5555',
   });
 
   useEffect(() => {
@@ -28,12 +32,16 @@ const EventDetail = () => {
       name: 'Example Event',
       description:
         "Book'em partners with Habitat for Humanity of Greater Nashville to provide books to children moving into their new homes. Books are handpicked, bundled, and personalized with a name tag before being taken to home dedication sites.",
-      programDate: new Date('October 13, 2014 11:13:00'),
+      programDate: new Date(),
       createdAt: new Date(),
       updatedAt: new Date(),
-      users: [new mongoose.Types.ObjectId()],
-      hasForm: false,
+      volunteers: [new mongoose.Types.ObjectId()],
+      isOpen: false,
       category: 'RFR',
+      email: 'test_user@bookem.org',
+      location: '2301 Vanderbilt Place',
+      maxSpot: 10,
+      phone: '(615)555-5555',
     });
   }, [pid]);
 
