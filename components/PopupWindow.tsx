@@ -14,7 +14,6 @@ export const PopupWindow = ({ hidePopup, children }: Props) => {
   const wrapperRef = useRef(null);
   useOutsideAlerter(wrapperRef);
 
-  //
   function useOutsideAlerter(ref: React.RefObject<HTMLElement>) {
     //function to detect click outside of element
     useEffect(() => {

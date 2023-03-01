@@ -33,7 +33,7 @@ export const ButtonIcon = styled.div`
   margin-right: 40px;
 `;
 
-export const HistoryButton = styled.button`
+export const HistoryButton = styled(Link)`
   width: 350px;
   height: 88px;
   padding: 19px;

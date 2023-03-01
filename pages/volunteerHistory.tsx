@@ -1,61 +1,29 @@
 import LongEventCard from '@/components/LongEventCard';
 import React from 'react';
-import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
 import useSWR from 'swr';
 import { VolunteerProgramData } from 'bookem-shared/src/types/database';
-
-const Header = styled.h2`
-  font-family: 'Inter';
-  font-size: 25px;
-  margin-top: 50px;
-  font-weight: 400;
-`;
-
-const Description = styled.p`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  margin-left: 35px;
-`;
-
-const IconLink = styled(Link)`
-  margin-top: 35px;
-  margin-right: 10px;
-`;
-const HeaderContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 20px;
-`;
-
-const MainContainer = styled.div`
-  height: 639px;
-  width: 1150px;
-  margin-top: 50px;
-  margin: auto;
-  background-color: #d9d9d9;
-  border-radius: 10px;
-  overflow-y: auto;
-  padding: 10px;
-  overflow-x: hidden;
-`;
+import {
+  HeaderContainer,
+  Header,
+  Description,
+  MainContainer,
+  IconLink,
+} from '@/styles/volunteerHistory.styles';
 
 const fetcher = (url: string) => fetch(url).then(res => res.json());
 
 const VolunteerHistoryPage = () => {
+  // get data from the volunteerPrograms API using SWR
   const { data, error, isLoading } = useSWR<VolunteerProgramData[]>(
     '/api/volunteerPrograms/',
     fetcher
   );
 
-  if (error) return <div>Failed to load users</div>;
+  // check for errors, loading, no data
+  if (error) return <div>Failed to load volunteer history</div>;
   if (isLoading) return <div>Loading...</div>;
-  if (!data) return null;
+  if (!data) return <></>;
 
   return (
     <>
@@ -67,14 +35,17 @@ const VolunteerHistoryPage = () => {
       </HeaderContainer>
       <Description>Click on event to see specific details</Description>
       <MainContainer>
+        {/* Loop through each volunteerProgram specific to that user */}
         {data.map(event => (
+          // for each event, create a new LongEventCard component and pass in all that event's info
           <LongEventCard
             key={event.name}
             eventData={{
               name: event.name,
               school: event.schools,
               programDate: event.programDate,
-            }}></LongEventCard>
+            }}
+          />
         ))}
       </MainContainer>
     </>
@@ -82,3 +53,6 @@ const VolunteerHistoryPage = () => {
 };
 
 export default VolunteerHistoryPage;
+
+// perform automatic redirection to login page if user not logged in.
+export { getServerSideProps } from '@/lib/getServerSideProps';
