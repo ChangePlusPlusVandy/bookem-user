@@ -29,6 +29,7 @@ export const NavLeft = styled.div`
 export const NavRight = styled.div`
   width: 50%;
   text-align: right;
+  position: relative;
   img {
     cursor: pointer;
   }
