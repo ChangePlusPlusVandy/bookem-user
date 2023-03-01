@@ -66,7 +66,7 @@ const RegisterPage1 = ({
   /* phone number format handling */
 
   // state for phone number
-  const [phoneValue, setPhoneValue] = useState(formPhoneData);
+  const [phoneValue, setPhoneValue] = useState<string>(formPhoneData);
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
@@ -88,12 +88,14 @@ const RegisterPage1 = ({
               {...register('firstName', { required: true })}
               onKeyDown={handleEnter}
               placeholder="First name"
-              width="45%"></InputText>
+              width="45%"
+            />
             <InputText
               {...register('lastName', { required: true })}
               onKeyDown={handleEnter}
               placeholder="Last name"
-              width="45%"></InputText>
+              width="45%"
+            />
           </InputFlex>
 
           {errors.firstName && printError('First name is required')}
@@ -110,7 +112,8 @@ const RegisterPage1 = ({
               placeholder="Phone number"
               onChange={e => handlePhone(e)}
               value={phoneValue}
-              width="100%"></InputText>
+              width="100%"
+            />
           </InputContainer>
 
           <InputContainer>
@@ -118,7 +121,8 @@ const RegisterPage1 = ({
               {...register('email', { required: true })}
               onKeyDown={handleEnter}
               placeholder="Email Address"
-              width="100%"></InputText>
+              width="100%"
+            />
           </InputContainer>
 
           <InputContainer>
@@ -127,7 +131,8 @@ const RegisterPage1 = ({
               onKeyDown={handleEnter}
               placeholder="Password"
               width="45%"
-              type="password"></InputText>
+              type="password"
+            />
           </InputContainer>
 
           {errors.phone &&
@@ -145,7 +150,8 @@ const RegisterPage1 = ({
               {...register('streetAddress', { required: true })}
               onKeyDown={handleEnter}
               placeholder="Street address"
-              width="100%"></InputText>
+              width="100%"
+            />
           </InputContainer>
 
           <InputFlex>
@@ -153,12 +159,14 @@ const RegisterPage1 = ({
               {...register('city', { required: true })}
               onKeyDown={handleEnter}
               placeholder="City"
-              width="45%"></InputText>
+              width="45%"
+            />
             <InputText
               {...register('state', { required: true })}
               onKeyDown={handleEnter}
               placeholder="State"
-              width="45%"></InputText>
+              width="45%"
+            />
           </InputFlex>
 
           <InputContainer>
@@ -166,7 +174,8 @@ const RegisterPage1 = ({
               {...register('zip', { required: true })}
               onKeyDown={handleEnter}
               placeholder="Zip code"
-              width="45%"></InputText>
+              width="45%"
+            />
           </InputContainer>
 
           {errors.streetAddress && printError('Street address is required')}
