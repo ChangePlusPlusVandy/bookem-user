@@ -47,6 +47,7 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
+        // TODO: use find by id from session
         const user = (await Users.findOne({
           email: email,
         })) as QueriedUserData;
