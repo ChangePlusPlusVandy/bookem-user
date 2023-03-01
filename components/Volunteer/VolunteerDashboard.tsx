@@ -26,6 +26,7 @@ const VolunteerDashboard = ({ userData }: any) => {
   return (
     <>
       <DashboardContainer>
+        {/* based on whether or not hideppopup is true, displays popup */}
         {showPopup && (
           <PopupWindow hidePopup={() => setShowPopup(false)}>
             <WindowFlow pages={['Event', 'Program', 'Numbers', 'Comments']}>
