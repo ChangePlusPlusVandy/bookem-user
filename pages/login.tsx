@@ -2,12 +2,13 @@ import React from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { getSession, GetSessionParams, signIn } from 'next-auth/react';
 import {
-  Button,
+  CreateButton,
   Container,
   ContentContainer,
   ExternalPrompt,
   Footer,
   IconButton,
+  IconImage,
   IconContainer,
   Input,
   LittleText,
@@ -17,7 +18,6 @@ import {
   SubmitButton,
 } from '@/styles/login.styles';
 import LeftDisplay from '@/components/LeftDisplay';
-import { useActiveRoute } from '@/lib/useActiveRoute';
 import Link from 'next/link';
 
 const LoginPage = () => {
@@ -64,10 +64,18 @@ const LoginPage = () => {
             <span> Or log in with </span>
           </ExternalPrompt>
           <IconContainer>
-            <IconButton />
-            <IconButton />
-            <IconButton />
-            <IconButton />
+            <IconButton>
+              <IconImage src={'/AppleLogo.png'}></IconImage>
+            </IconButton>
+            <IconButton>
+              <IconImage src={'/GoogleLogo.png'}></IconImage>
+            </IconButton>
+            <IconButton>
+              <IconImage src={'/FacebookLogo.png'}></IconImage>
+            </IconButton>
+            <IconButton>
+              <IconImage src={'/InstagramLogo.png'}></IconImage>
+            </IconButton>
           </IconContainer>
           <SubmitButton form="loginForm" type="submit" value="Log in" />
         </ContentContainer>
@@ -75,7 +83,7 @@ const LoginPage = () => {
         <Footer>
           <LittleText>New here? Come join us!</LittleText>
           <Link href={'/register'}>
-            <Button>Create Account</Button>
+            <CreateButton>Create Account</CreateButton>
           </Link>
         </Footer>
       </RightContainer>
