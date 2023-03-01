@@ -31,7 +31,5 @@ export const HeaderFont = styled.p`
 export const InfoFont = styled.p`
   font-size: 15px;
   width: 85%;
-  margin-top: 0px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 `;

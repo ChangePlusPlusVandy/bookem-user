@@ -30,5 +30,6 @@ export const Container = styled.div`
 export const FilterText = styled.button`
   width: 100px;
   border: none;
+  border-radius: 20px;
   cursor: pointer;
 `;

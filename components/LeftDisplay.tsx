@@ -7,7 +7,7 @@ import {
   ImgContainer,
   HeaderFont,
   InfoFont,
-} from '@/styles/leftdisplay.styles';
+} from '@/styles/components/leftdisplay.styles';
 
 const LeftDisplay = () => {
   return (
