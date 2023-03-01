@@ -21,10 +21,7 @@ export const RightContainer = styled.div`
   flex-direction: column;
   width: 50vw;
   height: 100vh;
-  background: white;
   padding: 7vh 10%;
-  gap: 4vh;
-  overflow-y: auto;
 `;
 
 export const Header = styled.div<Props>`

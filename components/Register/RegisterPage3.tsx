@@ -81,7 +81,8 @@ const RegisterPage3 = ({
               {...register('jobTitle1', { required: true })}
               onKeyDown={handleEnter}
               placeholder="Job Title 1"
-              width="100%"></InputText>
+              width="100%"
+            />
           </InputContainer>
 
           <InputContainer>
@@ -89,7 +90,8 @@ const RegisterPage3 = ({
               {...register('jobTitle2')}
               onKeyDown={handleEnter}
               placeholder="Job Title 2 (Optional)"
-              width="100%"></InputText>
+              width="100%"
+            />
           </InputContainer>
 
           {errors.jobTitle1 && printError('A job title is required')}
