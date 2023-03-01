@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const DashboardContainer = styled.div`
@@ -32,12 +33,13 @@ export const ButtonIcon = styled.div`
   margin-right: 40px;
 `;
 
-export const HistoryButton = styled.button`
+export const HistoryButton = styled(Link)`
   width: 350px;
   height: 88px;
   padding: 19px;
   padding-top: 25px;
   background: #e3e3e3;
+  border: 1.5px solid #000000;
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;

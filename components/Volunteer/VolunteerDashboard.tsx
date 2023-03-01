@@ -51,7 +51,7 @@ const VolunteerDashboard = ({ userData }: any) => {
             </ButtonIcon>
             Log Hours
           </LogButton>
-          <HistoryButton>
+          <HistoryButton href="/volunteerHistory">
             <ButtonIcon>
               <Image
                 src="/history-clock.png"
