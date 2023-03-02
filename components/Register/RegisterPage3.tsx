@@ -70,10 +70,11 @@ const RegisterPage3 = ({
 
   return (
     <RightContainer>
-      <Header>Almost there</Header>
       <form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
+        <Header>Almost there</Header>
+
         <SectionContainer margin="5vh">
           <SectionHeader>Occupation</SectionHeader>
 
@@ -117,11 +118,11 @@ const RegisterPage3 = ({
           />
         </SectionContainer>
 
-        <SectionContainer>
+        <SectionContainer margin="6vh">
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
           <InputRadioVertical>
-            <li style={{ marginBottom: '60px' }}>
+            <li style={{ marginBottom: '40px' }}>
               <LabelRadio>
                 <InputRadio
                   type="radio"
@@ -150,15 +151,15 @@ const RegisterPage3 = ({
         <ButtonContainer>
           <Button>Submit</Button>
         </ButtonContainer>
-
-        <RegisterFlow
-          currentPage={3}
-          form="registerPage3"
-          getValues={getValues}
-          handleLeftArrow={handleLeftArrow}
-          handleRightArrow={handleRightArrow}
-        />
       </form>
+
+      <RegisterFlow
+        currentPage={3}
+        form="registerPage3"
+        getValues={getValues}
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
+      />
     </RightContainer>
   );
 };

@@ -2,10 +2,8 @@ import React from 'react';
 import Image from 'next/image';
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 import {
-  DotsContainer,
   DotsFlex,
-  LeftArrow,
-  RightArrow,
+  Arrow,
   ProgressContainer,
 } from '@/styles/registerFlow.styles';
 
@@ -44,11 +42,7 @@ const formatPageDots = (currentPage: number) => {
     );
   });
 
-  return (
-    <DotsContainer>
-      <DotsFlex>{listDots}</DotsFlex>
-    </DotsContainer>
-  );
+  return <DotsFlex>{listDots}</DotsFlex>;
 };
 
 /**
@@ -76,35 +70,31 @@ const RegisterFlow = ({
   return (
     <ProgressContainer>
       {/* left arrow does not appear on register page 1 */}
-      <LeftArrow>
-        {Number(currentPage) != 1 ? (
-          <Image
-            src="/left-arrow.png"
-            height="20"
-            width="10"
-            alt="Button for previous page"
-            onClick={() => handleLeftArrow(getValues())}
-          />
-        ) : null}
-      </LeftArrow>
+      <Arrow visible={Number(currentPage) != 1}>
+        <Image
+          src="/left-arrow.png"
+          height="20"
+          width="10"
+          alt="Button for previous page"
+          onClick={() => handleLeftArrow(getValues())}
+        />
+      </Arrow>
 
       {/* format the page dots */}
       {formatPageDots(currentPage)}
 
       {/* right arrow does not appear on register page 4 */}
-      <RightArrow>
-        {Number(currentPage) != 3 ? (
-          <input
-            form={form}
-            type="image"
-            src="/right-arrow.png"
-            height="20px"
-            width="10px"
-            alt="Button for next page"
-            onClick={() => handleRightArrow()}
-          />
-        ) : null}
-      </RightArrow>
+      <Arrow visible={Number(currentPage) != 3}>
+        <input
+          form={form}
+          type="image"
+          src="/right-arrow.png"
+          height="20px"
+          width="10px"
+          alt="Button for next page"
+          onClick={() => handleRightArrow()}
+        />
+      </Arrow>
     </ProgressContainer>
   );
 };

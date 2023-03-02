@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 
+/**
+ * Props to pass into styled components
+ */
 interface Props {
   width?: string;
   margin?: string;
@@ -7,6 +10,18 @@ interface Props {
   fontSize?: string;
 }
 
+/**
+ * Generic input font
+ */
+const InputGenericFont = `
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+`;
+
+/**
+ * Container for entire register page
+ */
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -15,29 +30,43 @@ export const Container = styled.div`
   font-style: normal;
 `;
 
+/**
+ * Container for right half of register page
+ */
 export const RightContainer = styled.div`
-  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 60px;
   width: 50vw;
   height: 100vh;
   padding: 7vh 10%;
+  overflow-y: auto;
 `;
 
-export const Header = styled.div<Props>`
-  margin-bottom: ${props => (props.margin ? props.margin : '2vh')};
+/**
+ * Header of each register page
+ */
+export const Header = styled.div`
+  margin-bottom: 2vh;
   padding: 1vh;
 
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
-  color: #000000;
 `;
 
+/**
+ * Container for each section of a register page
+ * 'margin' is used to determine its margin-bottom
+ */
 export const SectionContainer = styled.div<Props>`
   margin-bottom: ${props => props.margin};
 `;
 
+/**
+ * Header for each section
+ */
 export const SectionHeader = styled.div`
   padding: 1vh;
   padding-bottom: 1.2vh;
@@ -45,62 +74,74 @@ export const SectionHeader = styled.div`
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
-  color: #000000;
 `;
 
+/**
+ * Flexbox for inputs that are side-by-side
+ */
 export const InputFlex = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 1vh;
 `;
 
-export const InputContainer = styled.div`
-  padding: 1vh;
-`;
-
+/**
+ * Text inputs with varying length
+ * 'width' determines input box length
+ */
 export const InputText = styled.input<Props>`
   outline: 0;
   border-width: 0 0 1px;
   border-bottom: 1px solid #c1c1c1;
   width: ${props => props.width};
 
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000000;
+  ${InputGenericFont};
   ::placeholder {
     color: #a4a4a4;
   }
 `;
 
+/**
+ * Container that gives text inputs consistent padding
+ */
+export const InputContainer = styled.div`
+  padding: 1vh;
+`;
+
+/**
+ * Radio input label
+ */
 export const LabelRadio = styled.label`
   display: grid;
   grid-template-columns: 18px auto;
   gap: 18px;
   width: 33vh;
 
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000000;
+  ${InputGenericFont};
 `;
 
+/**
+ * Radio input button
+ */
 export const InputRadio = styled.input`
   width: 21px;
   height: 21px;
-  border: 1px solid #000000;
   cursor: pointer;
 `;
 
+/**
+ * Format checkboxes in columns
+ */
 export const CheckboxColumns = styled.ul`
   columns: 2;
-  -webkit-columns: 2;
-  -moz-columns: 2;
   list-style-type: none;
   padding: 0;
   margin: 0;
 `;
 
+/**
+ * Checkbox input label
+ */
 export const LabelCheckbox = styled.label`
   display: grid;
   grid-template-columns: 18px auto;
@@ -110,46 +151,43 @@ export const LabelCheckbox = styled.label`
   font-weight: 400;
   font-size: 20px;
   line-height: 40px;
-  color: #000000;
 `;
 
+/**
+ * Checkbox input button
+ */
 export const InputCheckbox = styled.input`
   width: 21px;
   height: 21px;
-  border: 1px solid #000000;
   cursor: pointer;
 `;
 
-export const TextareaContainer = styled.div`
-  padding: 1vh;
-`;
-
+/**
+ * Text area input
+ */
 export const InputTextarea = styled.textarea`
-  border: 1px solid #6d6d6d;
   border-radius: 20px;
   resize: none;
   width: 100%;
   height: 160px;
   padding: 12px 25px;
 
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000000;
+  ${InputGenericFont};
   ::placeholder {
     color: #a4a4a4;
   }
 `;
 
-export const InputRadioVertical = styled.ul`
-  list-style-type: none;
-  padding: 1vh;
-`;
-
+/**
+ * Horizontally aligns large register buttons
+ */
 export const ButtonContainer = styled.div`
   text-align: center;
 `;
 
+/**
+ * Resume upload button
+ */
 export const ResumeButton = styled.button`
   cursor: pointer;
   margin-top: 45px;
@@ -160,23 +198,21 @@ export const ResumeButton = styled.button`
   height: fit-content;
   padding: 10px 20px;
 
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
+  ${InputGenericFont};
   color: #6d6d6d;
 `;
 
-export const ReviewInfoText = styled.div`
-  padding-left: 1vh;
-  margin-bottom: 2vh;
-
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  color: #000000;
+/**
+ * Formats radio buttons vertically
+ */
+export const InputRadioVertical = styled.ul`
+  list-style-type: none;
+  padding: 1vh;
 `;
 
+/**
+ * Submit and Let's go buttons
+ */
 export const Button = styled.button`
   cursor: pointer;
   width: 215px;
@@ -185,42 +221,41 @@ export const Button = styled.button`
   border: 1px solid #6d6d6d;
   border-radius: 20px;
 
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
+  ${InputGenericFont};
   color: #ffffff;
 `;
 
+/**
+ * Container for right half of last register page
+ */
 export const LastPageContainer = styled(RightContainer)`
+  align-items: center;
   padding: 10vh;
-  gap: 0vh;
 `;
 
+/**
+ * Container for text on last register page
+ */
+export const LastPageTextContainer = styled.div`
+  align-self: flex-start;
+`;
+
+/**
+ * Text on last register page
+ * 'margin' determines margin-bottom
+ * 'fontSize' determines font-size
+ */
 export const LastPageText = styled.div<Props>`
-  margin-bottom: 2vh;
+  margin-bottom: ${props => (props.margin ? props.margin : '2vh')};
 
   font-weight: 400;
   font-size: ${props => (props.fontSize ? props.fontSize : '25px')};
   line-height: 36px;
-  color: #000000;
 `;
 
-export const LastPageImage = styled.div`
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
-export const LastPageButtonContainer = styled.div`
-  position: absolute;
-  bottom: 10vh;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
-
+/**
+ * Error messages for invalid inputs
+ */
 export const Error = styled.span`
   padding: 1vh;
   color: red;

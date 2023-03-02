@@ -12,8 +12,8 @@ import {
   CheckboxColumns,
   LabelCheckbox,
   InputCheckbox,
-  TextareaContainer,
   InputTextarea,
+  InputContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/types/types';
 
@@ -39,10 +39,11 @@ const RegisterPage2 = ({
 
   return (
     <RightContainer>
-      <Header>Next up</Header>
       <form
         id="registerPage2"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
+        <Header>Next up</Header>
+
         <SectionContainer margin="4vh">
           <SectionHeader>Select age range</SectionHeader>
 
@@ -121,23 +122,23 @@ const RegisterPage2 = ({
           <SectionHeader>
             Why do you want to become a community volunteer?
           </SectionHeader>
-          <TextareaContainer>
+          <InputContainer>
             <InputTextarea
               placeholder="Start here..."
               {...register('volunteerReason', { required: true })}
             />
-          </TextareaContainer>
+          </InputContainer>
           {errors.volunteerReason && printError('A response is required')}
         </SectionContainer>
-
-        <RegisterFlow
-          currentPage={2}
-          form="registerPage2"
-          getValues={getValues}
-          handleLeftArrow={handleLeftArrow}
-          handleRightArrow={handleRightArrow}
-        />
       </form>
+
+      <RegisterFlow
+        currentPage={2}
+        form="registerPage2"
+        getValues={getValues}
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
+      />
     </RightContainer>
   );
 };
