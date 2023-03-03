@@ -18,6 +18,9 @@ export const DotsFlex = styled.div`
  */
 export const Arrow = styled.div<Props>`
   visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /**
