@@ -61,7 +61,7 @@ export const Header = styled.div`
  * 'margin' is used to determine its margin-bottom
  */
 export const SectionContainer = styled.div<Props>`
-  margin-bottom: ${props => props.margin};
+  margin: 5vh 5vh ${props => props.margin} 5vh;
 `;
 
 /**

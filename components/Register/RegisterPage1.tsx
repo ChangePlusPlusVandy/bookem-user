@@ -81,7 +81,7 @@ const RegisterPage1 = ({
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <Header>Tell us about yourself!</Header>
 
-        <SectionContainer margin="5vh">
+        <SectionContainer>
           <SectionHeader>Basic Information</SectionHeader>
 
           <InputFlex>
@@ -103,7 +103,7 @@ const RegisterPage1 = ({
           {errors.lastName && printError('Last name is required')}
         </SectionContainer>
 
-        <SectionContainer margin="5vh">
+        <SectionContainer>
           <SectionHeader>Contact</SectionHeader>
 
           <InputContainer>

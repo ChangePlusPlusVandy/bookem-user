@@ -44,7 +44,7 @@ const RegisterPage2 = ({
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <Header>Next up</Header>
 
-        <SectionContainer margin="4vh">
+        <SectionContainer>
           <SectionHeader>Select age range</SectionHeader>
 
           <InputFlex>
@@ -80,7 +80,7 @@ const RegisterPage2 = ({
           {errors.ageRange && printError('A selection is required')}
         </SectionContainer>
 
-        <SectionContainer margin="4vh">
+        <SectionContainer>
           <SectionHeader>
             Are you a member of the following? (Optional)
           </SectionHeader>

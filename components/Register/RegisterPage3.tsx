@@ -75,7 +75,7 @@ const RegisterPage3 = ({
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <Header>Almost there</Header>
 
-        <SectionContainer margin="5vh">
+        <SectionContainer>
           <SectionHeader>Occupation</SectionHeader>
 
           <InputContainer>
@@ -99,7 +99,7 @@ const RegisterPage3 = ({
           {errors.jobTitle1 && printError('A job title is required')}
         </SectionContainer>
 
-        <SectionContainer margin="5vh">
+        <SectionContainer>
           <SectionHeader>Please upload your resume (Optional)</SectionHeader>
 
           <ButtonContainer>
@@ -118,7 +118,7 @@ const RegisterPage3 = ({
           />
         </SectionContainer>
 
-        <SectionContainer margin="6vh">
+        <SectionContainer>
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
           <InputRadioVertical>
