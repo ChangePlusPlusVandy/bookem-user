@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LogHoursForm = styled.form`
+export const LogHoursForm = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
