@@ -24,6 +24,6 @@ export interface RegisterFormFunctions {
   onSubmit: (data: UserData) => void;
   handleEnter: React.KeyboardEventHandler<HTMLInputElement>;
   printError: (message: string) => JSX.Element;
-  handleLeftArrow: () => void;
+  handleLeftArrow: (data: any) => void;
   handleRightArrow: () => void;
 }

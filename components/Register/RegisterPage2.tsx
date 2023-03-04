@@ -12,8 +12,9 @@ import {
   CheckboxColumns,
   LabelCheckbox,
   InputCheckbox,
-  TextareaContainer,
   InputTextarea,
+  InputContainer,
+  CheckboxContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/types/types';
 
@@ -33,16 +34,18 @@ const RegisterPage2 = ({
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = handleForm;
 
   return (
     <RightContainer>
-      <Header>Next up</Header>
       <form
         id="registerPage2"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <SectionContainer margin="4vh">
+        <Header>Next up</Header>
+
+        <SectionContainer>
           <SectionHeader>Select age range</SectionHeader>
 
           <InputFlex>
@@ -78,7 +81,7 @@ const RegisterPage2 = ({
           {errors.ageRange && printError('A selection is required')}
         </SectionContainer>
 
-        <SectionContainer margin="4vh">
+        <SectionContainer>
           <SectionHeader>
             Are you a member of the following? (Optional)
           </SectionHeader>
@@ -90,8 +93,9 @@ const RegisterPage2 = ({
                 'Kiwanis member',
                 'Current board member',
                 'Former board member',
+                'Junior League member or sustainer',
               ].map(member => (
-                <li key={member}>
+                <CheckboxContainer key={member}>
                   <LabelCheckbox>
                     <InputCheckbox
                       type="checkbox"
@@ -101,18 +105,9 @@ const RegisterPage2 = ({
                     />
                     {member}
                   </LabelCheckbox>
-                </li>
+                </CheckboxContainer>
               ))}
             </CheckboxColumns>
-            <LabelCheckbox>
-              <InputCheckbox
-                type="checkbox"
-                value="Junior League member or sustainer"
-                {...register('members')}
-                onKeyDown={handleEnter}
-              />
-              Junior League member or sustainer
-            </LabelCheckbox>
           </fieldset>
         </SectionContainer>
 
@@ -120,22 +115,23 @@ const RegisterPage2 = ({
           <SectionHeader>
             Why do you want to become a community volunteer?
           </SectionHeader>
-          <TextareaContainer>
+          <InputContainer>
             <InputTextarea
               placeholder="Start here..."
               {...register('volunteerReason', { required: true })}
             />
-          </TextareaContainer>
+          </InputContainer>
           {errors.volunteerReason && printError('A response is required')}
         </SectionContainer>
-
-        <RegisterFlow
-          currentPage={2}
-          form="registerPage2"
-          handleLeftArrow={handleLeftArrow}
-          handleRightArrow={handleRightArrow}
-        />
       </form>
+
+      <RegisterFlow
+        currentPage={2}
+        form="registerPage2"
+        getValues={getValues}
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
+      />
     </RightContainer>
   );
 };
