@@ -134,7 +134,7 @@ export const InputRadio = styled.input`
  * Contain checkbox plus text associated with it
  */
 export const CheckboxContainer = styled.li`
-  margin: 20px 0px;
+  margin: 15px 0px 15px 0px;
 `;
 
 /**
