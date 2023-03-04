@@ -1,10 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
+import { FieldValues, UseFormGetValues } from 'react-hook-form';
 import {
-  DotsContainer,
   DotsFlex,
-  LeftArrow,
-  RightArrow,
+  Arrow,
   ProgressContainer,
 } from '@/styles/registerFlow.styles';
 
@@ -43,17 +42,14 @@ const formatPageDots = (currentPage: number) => {
     );
   });
 
-  return (
-    <DotsContainer>
-      <DotsFlex>{listDots}</DotsFlex>
-    </DotsContainer>
-  );
+  return <DotsFlex>{listDots}</DotsFlex>;
 };
 
 /**
  * format the left and right arrows with respect to the page dots
  * @param currentPage current register page number
  * @param form id of the form corresponding to the register page
+ * @param getValues function for getting inputs of register page form
  * @param handleLeftArrow function for handling clicking the left arrow
  * @param handleRightArray function for handling clicking the right arrow
  * @returns well formatted register flow component
@@ -61,48 +57,44 @@ const formatPageDots = (currentPage: number) => {
 const RegisterFlow = ({
   currentPage,
   form,
+  getValues,
   handleLeftArrow,
   handleRightArrow,
 }: {
   currentPage: number;
   form: string;
+  getValues: UseFormGetValues<FieldValues>;
   handleLeftArrow: Function;
   handleRightArrow: Function;
 }) => {
   return (
     <ProgressContainer>
       {/* left arrow does not appear on register page 1 */}
-      <LeftArrow>
-        {Number(currentPage) != 1 ? (
-          <input
-            form={form}
-            type="image"
-            src="/left-arrow.png"
-            height="20px"
-            width="10px"
-            alt="Button for previous page"
-            onClick={() => handleLeftArrow()}
-          />
-        ) : null}
-      </LeftArrow>
+      <Arrow visible={Number(currentPage) != 1}>
+        <Image
+          src="/left-arrow.png"
+          height="20"
+          width="10"
+          alt="Button for previous page"
+          onClick={() => handleLeftArrow(getValues())}
+        />
+      </Arrow>
 
       {/* format the page dots */}
       {formatPageDots(currentPage)}
 
       {/* right arrow does not appear on register page 4 */}
-      <RightArrow>
-        {Number(currentPage) != 3 ? (
-          <input
-            form={form}
-            type="image"
-            src="/right-arrow.png"
-            height="20px"
-            width="10px"
-            alt="Button for next page"
-            onClick={() => handleRightArrow()}
-          />
-        ) : null}
-      </RightArrow>
+      <Arrow visible={Number(currentPage) != 3}>
+        <input
+          form={form}
+          type="image"
+          src="/right-arrow.png"
+          height="20px"
+          width="10px"
+          alt="Button for next page"
+          onClick={() => handleRightArrow()}
+        />
+      </Arrow>
     </ProgressContainer>
   );
 };

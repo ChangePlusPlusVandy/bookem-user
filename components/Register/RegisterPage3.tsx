@@ -41,6 +41,7 @@ const RegisterPage3 = ({
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = handleForm;
 
@@ -69,11 +70,12 @@ const RegisterPage3 = ({
 
   return (
     <RightContainer>
-      <Header>Almost there</Header>
       <form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <SectionContainer margin="5vh">
+        <Header>Almost there</Header>
+
+        <SectionContainer>
           <SectionHeader>Occupation</SectionHeader>
 
           <InputContainer>
@@ -97,7 +99,7 @@ const RegisterPage3 = ({
           {errors.jobTitle1 && printError('A job title is required')}
         </SectionContainer>
 
-        <SectionContainer margin="5vh">
+        <SectionContainer>
           <SectionHeader>Please upload your resume (Optional)</SectionHeader>
 
           <ButtonContainer>
@@ -120,28 +122,24 @@ const RegisterPage3 = ({
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
           <InputRadioVertical>
-            <li style={{ marginBottom: '40px' }}>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value="yes"
-                  {...register('joinNewsletter', { required: true })}
-                  onKeyDown={handleEnter}
-                />
-                Yes, please!
-              </LabelRadio>
-            </li>
-            <li>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value="no"
-                  {...register('joinNewsletter', { required: true })}
-                  onKeyDown={handleEnter}
-                />
-                No, thanks
-              </LabelRadio>
-            </li>
+            <LabelRadio>
+              <InputRadio
+                type="radio"
+                value="yes"
+                {...register('joinNewsletter', { required: true })}
+                onKeyDown={handleEnter}
+              />
+              Yes, please!
+            </LabelRadio>
+            <LabelRadio>
+              <InputRadio
+                type="radio"
+                value="no"
+                {...register('joinNewsletter', { required: true })}
+                onKeyDown={handleEnter}
+              />
+              No, thanks
+            </LabelRadio>
           </InputRadioVertical>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
@@ -149,14 +147,15 @@ const RegisterPage3 = ({
         <ButtonContainer>
           <Button>Submit</Button>
         </ButtonContainer>
-
-        <RegisterFlow
-          currentPage={3}
-          form="registerPage3"
-          handleLeftArrow={handleLeftArrow}
-          handleRightArrow={handleRightArrow}
-        />
       </form>
+
+      <RegisterFlow
+        currentPage={3}
+        form="registerPage3"
+        getValues={getValues}
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
+      />
     </RightContainer>
   );
 };

@@ -3,35 +3,34 @@ import Link from 'next/link';
 import Image from 'next/image';
 import {
   LastPageContainer,
+  LastPageTextContainer,
   LastPageText,
-  LastPageImage,
-  LastPageButtonContainer,
   Button,
 } from '@/styles/register.styles';
 
 const RegisterPage4 = () => {
   return (
     <LastPageContainer>
-      <LastPageText fontSize="30px">Thank you!</LastPageText>
-      <LastPageText>Your registration for Volunteer is complete!</LastPageText>
-      <LastPageText>
-        Press the button below to log in to your account
-      </LastPageText>
+      <LastPageTextContainer>
+        <LastPageText>Thank you!</LastPageText>
+        <LastPageText>
+          Your registration for Volunteer is complete!
+        </LastPageText>
+        <LastPageText>
+          Press the button below to log in to your account
+        </LastPageText>
+      </LastPageTextContainer>
 
-      <LastPageImage>
-        <Image
-          src="/user-circle.png"
-          alt="User profile stock image"
-          width="226"
-          height="226"
-        />
-      </LastPageImage>
+      <Image
+        src="/user-circle.png"
+        alt="User profile stock image"
+        width="226"
+        height="226"
+      />
 
-      <LastPageButtonContainer>
-        <Button>
-          <Link href="/">Let&apos;s go</Link>
-        </Button>
-      </LastPageButtonContainer>
+      <Button>
+        <Link href="/">Let&apos;s go</Link>
+      </Button>
     </LastPageContainer>
   );
 };

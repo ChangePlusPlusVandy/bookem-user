@@ -59,6 +59,7 @@ const RegisterPage1 = ({
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = handleForm;
 
@@ -75,11 +76,12 @@ const RegisterPage1 = ({
 
   return (
     <RightContainer>
-      <Header>Tell us about yourself!</Header>
       <form
         id="registerPage1"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <SectionContainer margin="5vh">
+        <Header>Tell us about yourself!</Header>
+
+        <SectionContainer>
           <SectionHeader>Basic Information</SectionHeader>
 
           <InputFlex>
@@ -101,7 +103,7 @@ const RegisterPage1 = ({
           {errors.lastName && printError('Last name is required')}
         </SectionContainer>
 
-        <SectionContainer margin="5vh">
+        <SectionContainer>
           <SectionHeader>Contact</SectionHeader>
 
           <InputContainer>
@@ -182,14 +184,15 @@ const RegisterPage1 = ({
           {errors.state && printError('State is required')}
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
-
-        <RegisterFlow
-          currentPage={1}
-          form="registerPage1"
-          handleLeftArrow={handleLeftArrow}
-          handleRightArrow={handleRightArrow}
-        />
       </form>
+
+      <RegisterFlow
+        currentPage={1}
+        form="registerPage1"
+        getValues={getValues}
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
+      />
     </RightContainer>
   );
 };

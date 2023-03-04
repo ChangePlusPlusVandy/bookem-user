@@ -1,33 +1,35 @@
 import styled from 'styled-components';
 
-export const DotsContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: 130px;
-  margin-left: 130px;
-`;
+interface Props {
+  visible?: boolean;
+}
 
+/**
+ * Flex box for spacing page dots
+ */
 export const DotsFlex = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 120px;
-  position: absolute;
-  transform: translate(0%, 83.3%);
+  width: 84px;
 `;
 
-export const LeftArrow = styled.div`
-  float: left;
+/**
+ * Makes register nagivation arrow visible or hidden
+ */
+export const Arrow = styled.div<Props>`
+  visibility: ${props => (props.visible ? 'visible' : 'hidden')};
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
-export const RightArrow = styled.div`
-  float: right;
-`;
-
+/**
+ * Spaces out and centers page dots and arrows
+ */
 export const ProgressContainer = styled.div`
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding-bottom: 5vh;
-  position: absolute;
-  bottom: 0;
+  align-self: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 256px;
 `;
