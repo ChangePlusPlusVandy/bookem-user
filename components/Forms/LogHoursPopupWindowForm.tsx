@@ -18,10 +18,6 @@ const LogHoursPopupWindowForm = ({
   // get functions from react hook form
   const { register, handleSubmit } = useForm();
 
-  const saveData = (data: any) => {
-    console.log('saving data: ', data);
-  };
-
   // handle form submission by parsing data and calling createVolunteerLog
   const onSubmit = (data: any) => {
     const results = JSON.stringify({
