@@ -70,7 +70,7 @@ const WindowFlow = ({
       <PageNumHeader>
         {pages.map((page, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <PageNum id={(index + 1).toString()}>{index + 1}</PageNum>
               <PageTitle>{page}</PageTitle>
               {index < pages.length - 1 && (
@@ -83,14 +83,16 @@ const WindowFlow = ({
                   />
                 </ImageWrapper>
               )}
-            </>
+            </React.Fragment>
           );
         })}
       </PageNumHeader>
 
       {/** Render the current page */}
       {components.map((comp, index) => {
-        if (currentPage === index + 1) return comp;
+        // clone the component and add a key
+        if (currentPage === index + 1)
+          return React.cloneElement(comp as React.ReactElement, { key: index });
       })}
 
       {/** Buttons for submit and navigating pages */}
