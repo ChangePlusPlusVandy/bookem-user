@@ -12,11 +12,11 @@ const RegisterPage4 = () => {
   return (
     <LastPageContainer>
       <LastPageTextContainer>
-        <LastPageText fontSize="30px">Thank you!</LastPageText>
+        <LastPageText>Thank you!</LastPageText>
         <LastPageText>
           Your registration for Volunteer is complete!
         </LastPageText>
-        <LastPageText margin="0px">
+        <LastPageText>
           Press the button below to log in to your account
         </LastPageText>
       </LastPageTextContainer>

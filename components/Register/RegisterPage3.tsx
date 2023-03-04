@@ -122,28 +122,24 @@ const RegisterPage3 = ({
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
           <InputRadioVertical>
-            <li style={{ marginBottom: '40px' }}>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value="yes"
-                  {...register('joinNewsletter', { required: true })}
-                  onKeyDown={handleEnter}
-                />
-                Yes, please!
-              </LabelRadio>
-            </li>
-            <li>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  value="no"
-                  {...register('joinNewsletter', { required: true })}
-                  onKeyDown={handleEnter}
-                />
-                No, thanks
-              </LabelRadio>
-            </li>
+            <LabelRadio>
+              <InputRadio
+                type="radio"
+                value="yes"
+                {...register('joinNewsletter', { required: true })}
+                onKeyDown={handleEnter}
+              />
+              Yes, please!
+            </LabelRadio>
+            <LabelRadio>
+              <InputRadio
+                type="radio"
+                value="no"
+                {...register('joinNewsletter', { required: true })}
+                onKeyDown={handleEnter}
+              />
+              No, thanks
+            </LabelRadio>
           </InputRadioVertical>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>

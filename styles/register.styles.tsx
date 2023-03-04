@@ -50,7 +50,6 @@ export const RightContainer = styled.div`
 export const Header = styled.div`
   margin-bottom: 2vh;
   padding: 1vh;
-
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
@@ -62,7 +61,7 @@ export const Header = styled.div`
  */
 export const SectionContainer = styled.div<Props>`
   /* margin: 5vh 5vh ${props => props.margin} 0vh; */
-  margin: 5vh 0vh 0vh 0vh;
+  margin: 10px 0 0 0;
 `;
 
 /**
@@ -70,11 +69,8 @@ export const SectionContainer = styled.div<Props>`
  */
 export const SectionHeader = styled.div`
   padding: 1vh;
-  padding-bottom: 1.2vh;
-
   font-weight: 700;
   font-size: 20px;
-  line-height: 24px;
 `;
 
 /**
@@ -117,6 +113,7 @@ export const LabelRadio = styled.label`
   grid-template-columns: 18px auto;
   gap: 18px;
   width: 33vh;
+  margin-bottom: 10px;
 
   ${InputGenericFont};
 `;
@@ -254,10 +251,13 @@ export const LastPageTextContainer = styled.div`
  */
 export const LastPageText = styled.div<Props>`
   margin-bottom: ${props => (props.margin ? props.margin : '2vh')};
-
   font-weight: 400;
   font-size: ${props => (props.fontSize ? props.fontSize : '25px')};
   line-height: 36px;
+
+  &:first-child {
+    font-size: 30px;
+  }
 `;
 
 /**
