@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const LogHoursForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin-top: 20px;
+`;
+
 export const FormBox = styled.div`
   display: flex;
   justify-content: center;
