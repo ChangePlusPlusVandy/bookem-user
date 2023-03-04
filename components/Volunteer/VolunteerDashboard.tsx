@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { PopupWindow } from '@/components/PopupWindow';
-import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import Image from 'next/image';
+import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
   Greeting,
   GreetingContainer,
@@ -18,8 +17,7 @@ import {
   VolunteerButtonsContainer,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
-import WindowFlow from '@/components/WindowFlow';
-import LogHoursForm from '../Forms/LogHoursForm';
+import LogHoursPopupWindowForm from '@/components/Forms/LogHoursPopupWindowForm';
 
 const VolunteerDashboard = ({ userData }: any) => {
   // set pop up window to false
@@ -29,19 +27,7 @@ const VolunteerDashboard = ({ userData }: any) => {
     <>
       <DashboardContainer>
         {/* based on whether or not hideppopup is true, displays popup */}
-        {showPopup && (
-          <PopupWindow hidePopup={() => setShowPopup(false)}>
-            <WindowFlow
-              pages={['Event', 'Program', 'Numbers', 'Comments']}
-              components={[
-                <div>page 1</div>,
-                <div>page 2</div>,
-                <div>page 3</div>,
-                <div>page 4</div>,
-              ]}
-            />
-          </PopupWindow>
-        )}
+        {showPopup && <LogHoursPopupWindowForm setShowPopup={setShowPopup} />}
         <GreetingContainer>
           <Greeting>Volunteer</Greeting>
         </GreetingContainer>
