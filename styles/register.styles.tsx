@@ -40,7 +40,7 @@ export const RightContainer = styled.div`
   gap: 60px;
   width: 50vw;
   height: 100vh;
-  padding: 7vh 10%;
+  padding: 7vh 3% 7vh 7%;
   overflow-y: auto;
 `;
 
@@ -61,7 +61,8 @@ export const Header = styled.div`
  * 'margin' is used to determine its margin-bottom
  */
 export const SectionContainer = styled.div<Props>`
-  margin: 5vh 5vh ${props => props.margin} 5vh;
+  /* margin: 5vh 5vh ${props => props.margin} 0vh; */
+  margin: 5vh 0vh 0vh 0vh;
 `;
 
 /**
@@ -130,6 +131,13 @@ export const InputRadio = styled.input`
 `;
 
 /**
+ * Contain checkbox plus text associated with it
+ */
+export const CheckboxContainer = styled.li`
+  margin: 20px 0px;
+`;
+
+/**
  * Format checkboxes in columns
  */
 export const CheckboxColumns = styled.ul`
@@ -150,7 +158,6 @@ export const LabelCheckbox = styled.label`
 
   font-weight: 400;
   font-size: 20px;
-  line-height: 40px;
 `;
 
 /**

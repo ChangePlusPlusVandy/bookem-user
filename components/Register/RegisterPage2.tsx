@@ -14,6 +14,7 @@ import {
   InputCheckbox,
   InputTextarea,
   InputContainer,
+  CheckboxContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/types/types';
 
@@ -92,8 +93,9 @@ const RegisterPage2 = ({
                 'Kiwanis member',
                 'Current board member',
                 'Former board member',
+                'Junior League member or sustainer',
               ].map(member => (
-                <li key={member}>
+                <CheckboxContainer key={member}>
                   <LabelCheckbox>
                     <InputCheckbox
                       type="checkbox"
@@ -103,18 +105,9 @@ const RegisterPage2 = ({
                     />
                     {member}
                   </LabelCheckbox>
-                </li>
+                </CheckboxContainer>
               ))}
             </CheckboxColumns>
-            <LabelCheckbox>
-              <InputCheckbox
-                type="checkbox"
-                value="Junior League member or sustainer"
-                {...register('members')}
-                onKeyDown={handleEnter}
-              />
-              Junior League member or sustainer
-            </LabelCheckbox>
           </fieldset>
         </SectionContainer>
 
