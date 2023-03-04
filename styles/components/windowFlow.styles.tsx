@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const WindowFlowContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding: 30px 0;
+`;
+
 /**
  * Container for the header of all the page numbers and titles
  */
@@ -7,7 +16,6 @@ export const PageNumHeader = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-  margin-top: 15px;
   width: 100%;
   justify-content: center;
   overflow: hidden;
@@ -44,27 +52,23 @@ export const ImageWrapper = styled.div`
  * Container for bottom region containing the navigation arrrows and submit buttons
  */
 export const BottomContainer = styled.div`
-  position: absolute;
-  bottom: 30px;
+  display: flex;
   height: 50px;
   width: 100%;
-  display: flex;
 `;
 
 /**
  * Container for button to go back a page
  */
 export const ButtonLeft = styled.div`
-  position: absolute;
-  left: 30px;
+  margin-right: auto;
 `;
 
 /**
  * Container for button to go forward a page
  */
 export const ButtonRight = styled.div`
-  position: absolute;
-  right: 30px;
+  margin-left: auto;
 `;
 
 /**
@@ -83,8 +87,9 @@ export const ArrowButton = styled.button`
  * Container for "Submit" button in middle of page
  */
 export const ButtonCenter = styled.div`
-  display: flex;
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
 `;
 
 /**

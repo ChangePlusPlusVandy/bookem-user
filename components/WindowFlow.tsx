@@ -12,6 +12,7 @@ import {
   SubmitButton,
   ButtonCenter,
   BottomContainer,
+  WindowFlowContainer,
 } from '@/styles/components/windowFlow.styles';
 
 const WindowFlow = ({
@@ -61,7 +62,7 @@ const WindowFlow = ({
   };
 
   return (
-    <>
+    <WindowFlowContainer>
       {/** Page header with page numbers and titles */}
       <PageNumHeader>
         {pages.map((page, index) => {
@@ -84,22 +85,13 @@ const WindowFlow = ({
         })}
       </PageNumHeader>
 
+      {/** Render the current page */}
+      {components.map((comp, index) => {
+        if (currentPage === index + 1) return comp;
+      })}
+
       {/** Buttons for submit and navigating pages */}
       <BottomContainer>
-        {/** Forward arrow appears if not on last page */}
-        {currentPage < pages.length && (
-          <ButtonRight>
-            <ArrowButton onClick={navigateForward}>
-              <Image
-                src="/arrow-right.png"
-                alt="Right arrow"
-                width="40"
-                height="40"
-              />
-            </ArrowButton>
-          </ButtonRight>
-        )}
-
         {/** Back arrow appears if not on first page */}
         {currentPage > 1 && (
           <ButtonLeft>
@@ -114,6 +106,20 @@ const WindowFlow = ({
           </ButtonLeft>
         )}
 
+        {/** Forward arrow appears if not on last page */}
+        {currentPage < pages.length && (
+          <ButtonRight>
+            <ArrowButton onClick={navigateForward}>
+              <Image
+                src="/arrow-right.png"
+                alt="Right arrow"
+                width="40"
+                height="40"
+              />
+            </ArrowButton>
+          </ButtonRight>
+        )}
+
         {/** Submit button appears if on last page */}
         {currentPage == pages.length && (
           <ButtonCenter>
@@ -121,11 +127,7 @@ const WindowFlow = ({
           </ButtonCenter>
         )}
       </BottomContainer>
-
-      {components.map((comp, index) => {
-        if (currentPage === index + 1) return comp;
-      })}
-    </>
+    </WindowFlowContainer>
   );
 };
 
