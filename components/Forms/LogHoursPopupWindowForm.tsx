@@ -18,6 +18,8 @@ const LogHoursPopupWindowForm = ({
   // get functions from react hook form
   const { register, handleSubmit } = useForm();
 
+  const pages = ['Event', 'Program', 'Numbers', 'Comments'];
+
   // handle form submission by parsing data and calling createVolunteerLog
   const onSubmit = (data: any) => {
     const results = JSON.stringify({
@@ -43,14 +45,16 @@ const LogHoursPopupWindowForm = ({
   return (
     <PopupWindow hidePopup={() => setShowPopup(false)}>
       <WindowFlow
-        pages={['Event', 'Program', 'Numbers', 'Comments']}
+        pages={pages}
         onSubmit={handleSubmit(onSubmit)}
         components={[
           // Page 1 - Event
-          <LogHoursForm>TODO: show table of volunteer programs</LogHoursForm>,
+          <LogHoursForm key={pages[0]}>
+            TODO: show table of volunteer programs
+          </LogHoursForm>,
 
           // Page 2 - Program
-          <LogHoursForm>
+          <LogHoursForm key={pages[1]}>
             <FormHeader>Please select one program</FormHeader>
             <FormLabel>
               <input {...register('Program')} type="radio" value="RIF"></input>
@@ -67,7 +71,7 @@ const LogHoursPopupWindowForm = ({
           </LogHoursForm>,
 
           // Page 3 - Numbers
-          <LogHoursForm>
+          <LogHoursForm key={pages[2]}>
             <FormLabel>Please log volunteer hours</FormLabel>
             <FormInput
               {...register('NumberOfHours')}
@@ -94,7 +98,7 @@ const LogHoursPopupWindowForm = ({
           </LogHoursForm>,
 
           // Page 4 - Comments
-          <LogHoursForm>
+          <LogHoursForm key={pages[3]}>
             <FormLabel>Anything else you&apos;d like to share?</FormLabel>
             <LargeFormInput
               {...register('Comment')}
