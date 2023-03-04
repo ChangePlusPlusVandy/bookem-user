@@ -18,11 +18,14 @@ import {
 const WindowFlow = ({
   pages,
   components,
+  onSubmit,
 }: {
   // the array of strings at the top of the window flow
   pages: string[];
   // the array of components to render in the window flow
   components: React.ReactNode[];
+  // function that is called whenever the submit button is clicked
+  onSubmit?: () => void;
 }) => {
   const numPages = pages.length;
 
@@ -123,7 +126,7 @@ const WindowFlow = ({
         {/** Submit button appears if on last page */}
         {currentPage == pages.length && (
           <ButtonCenter>
-            <SubmitButton>Submit</SubmitButton>
+            <SubmitButton onClick={onSubmit}>Submit</SubmitButton>
           </ButtonCenter>
         )}
       </BottomContainer>
