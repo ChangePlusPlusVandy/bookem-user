@@ -154,7 +154,12 @@ export default async function handler(
           const selectedUsers = faker.helpers.arrayElements(userIds);
 
           const isOpen: boolean = faker.datatype.boolean();
+
+          // ID in selected users' programs array should align with the id of
+          // the program to be added
           const programId = new ObjectId();
+
+          // Only populate selected users' programs field when isOpen is true
           if (isOpen) {
             // for every volunteer chosen, add the program to their programs array
             selectedUsers.forEach(userId => {
@@ -176,6 +181,7 @@ export default async function handler(
             programDate: faker.date.past(),
             category: faker.helpers.arrayElement(CATEGORIES),
             isOpen: isOpen,
+            // Only populate volunteers field when isOpen is true
             volunteers: isOpen
               ? selectedUsers.map(userId => new ObjectId(userId))
               : [],
