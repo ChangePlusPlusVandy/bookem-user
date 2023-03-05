@@ -23,7 +23,13 @@ interface IconParams {
  * Contain Program's date and location
  * @param programDate
  */
-const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
+const TimeAndPlace = ({
+  programDate,
+  location,
+}: {
+  programDate: Date;
+  location: string;
+}) => {
   const iconWidth = 50;
   const iconHeight = 50;
 
@@ -43,7 +49,7 @@ const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
     },
     {
       src: '/event/map-pin.png',
-      text: '3593 Cedar Rd. Nashville',
+      text: location,
     },
   ];
 

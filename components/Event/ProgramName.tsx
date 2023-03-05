@@ -22,6 +22,10 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
   const signUpEvent = async (program: QueriedVolunteerProgramData) => {
     try {
       // Send post request to backend
+      if (!program.isOpen) {
+        alert('Go to program application!');
+        return;
+      }
       const response = await fetch('/api/event/' + program._id, {
         method: 'POST',
         headers: {
@@ -54,7 +58,7 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
     <ProgramNameBox>
       <NameAndSpot>
         <b>{program.name}</b> ({program.category}) <br />
-        9/10 spots filled
+        {program.volunteers.length}/{program.maxSpot} spots filled
       </NameAndSpot>
       <SignupButton onClick={() => signUpEvent(program)}>
         <span>{signedUp ? 'Signed up' : 'Sign up'}</span>

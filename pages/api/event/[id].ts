@@ -17,8 +17,6 @@ export default async function handler(
   const session = await getServerSession(req, res, authOptions);
   const sessionUser = session.user;
 
-  console.log('Session user: ', sessionUser);
-
   // Get request parameter
   const {
     query: { id },

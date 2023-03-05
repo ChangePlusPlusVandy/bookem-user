@@ -21,18 +21,18 @@ interface IconParams {
 /**
  * Contain Contact info
  */
-const Contact = () => {
+const Contact = ({ phone, email }: { phone: string; email: string }) => {
   /**
    * List of icon params
    */
   const iconParamList: IconParams[] = [
     {
       src: '/event/phone.png',
-      text: '615-383-3837',
+      text: phone,
     },
     {
       src: '/event/mail.png',
-      text: 'bookem@gmail.com',
+      text: email,
     },
   ];
 
