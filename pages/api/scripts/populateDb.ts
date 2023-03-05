@@ -52,7 +52,7 @@ export default async function handler(
         await dbConnect();
 
         // TODO: uncomment this line but do not commit it to the repo
-        // throw 'Uncomment this line to delete all data from the database and re-populate it with dummy data';
+        throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
 
         // ----------------- REPOPULATE USERS -----------------
 
