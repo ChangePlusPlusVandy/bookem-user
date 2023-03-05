@@ -42,7 +42,7 @@ export default async function handler(
   }
 
   // start a try catch block to catch any errors in parsing the request body
-  const volunteerLog = req.body as VolunteerLogData;
+  const volunteerLog = JSON.parse(req.body) as VolunteerLogData;
 
   if (!volunteerLog.hours) {
     res.status(400).json({ message: 'Missing hours in request body.' });

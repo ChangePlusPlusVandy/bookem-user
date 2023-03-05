@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { PopupWindow } from '@/components/PopupWindow';
-import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import Image from 'next/image';
+import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
   Greeting,
   GreetingContainer,
@@ -18,26 +17,22 @@ import {
   VolunteerButtonsContainer,
   VolunteerStatsContainer,
 } from '@/styles/volunteerDashboard.styles';
-import WindowFlow from '@/components/WindowFlow';
+import LogHoursPopupWindowForm from '@/components/Forms/LogHoursPopupWindowForm';
 
 const VolunteerDashboard = ({ userData }: any) => {
+  // set pop up window to false
   const [showPopup, setShowPopup] = useState(false);
 
   return (
     <>
       <DashboardContainer>
-        {showPopup && (
-          <PopupWindow hidePopup={() => setShowPopup(false)}>
-            <WindowFlow pages={['Event', 'Program', 'Numbers', 'Comments']}>
-              {/* TODO: add children for Log Hours */}
-              Add forms below
-            </WindowFlow>
-          </PopupWindow>
-        )}
+        {/* based on whether or not hideppopup is true, displays popup */}
+        {showPopup && <LogHoursPopupWindowForm setShowPopup={setShowPopup} />}
         <GreetingContainer>
           <Greeting>Volunteer</Greeting>
         </GreetingContainer>
 
+        {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>
           <LogButton onClick={() => setShowPopup(true)}>
             <ButtonIcon>
@@ -50,7 +45,8 @@ const VolunteerDashboard = ({ userData }: any) => {
             </ButtonIcon>
             Log Hours
           </LogButton>
-          <HistoryButton>
+          {/** Button for "See History" */}
+          <HistoryButton href="/volunteerHistory">
             <ButtonIcon>
               <Image
                 src="/history-clock.png"
@@ -63,6 +59,7 @@ const VolunteerDashboard = ({ userData }: any) => {
           </HistoryButton>
         </VolunteerButtonsContainer>
 
+        {/** Volunteer stats */}
         <VolunteerStatsContainer>
           <StatsFlex>
             <FlexChild>

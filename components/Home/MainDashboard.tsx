@@ -1,62 +1,61 @@
 import React from 'react';
-import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import Image from 'next/image';
+import UpcomingEvents from '@/components/Home/UpcomingEvents';
+import PastActivity from '@/components/Home/PastActivity';
 import {
   Container,
   DashboardLayout,
   Greeting,
-  GreetingContainer,
   InfoIcon,
-  StatsContainer,
   StatsDescription,
   StatsFlex,
   FlexChild,
-  StatsHeader,
+  Header,
   StatsNumber,
-  UpcomingEventsContainer,
 } from '@/styles/dashboard.styles';
-import PastActivity from '@/components/Home/PastActivity';
 
+/**
+ * format main dashboard on home page
+ * @param userData object that contains pertinent user information
+ * userData: {
+ *   name: string;
+ *   hoursVolunteered: number;
+ *   booksShared: number;
+ *   dollarsDonated: number;
+ * }
+ */
 const MainDashboard = ({ userData }: any) => {
   return (
     <DashboardLayout>
       <Container>
-        <GreetingContainer>
-          <Greeting>Hello {userData.name}, how&apos;s your day?</Greeting>
-        </GreetingContainer>
+        <Greeting>Hello {userData.name}, how&apos;s your day?</Greeting>
 
         <InfoIcon>
           <Image src="/info.png" alt="Info icon" width="44" height="44" />
         </InfoIcon>
 
-        <StatsContainer>
-          <StatsHeader>Your accomplishments at a glance:</StatsHeader>
-          <StatsFlex>
-            <FlexChild>
-              <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-              <StatsDescription>Hours volunteered</StatsDescription>
-            </FlexChild>
+        <Header>Your accomplishments at a glance:</Header>
+        <StatsFlex>
+          <FlexChild>
+            <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
+            <StatsDescription>Hours volunteered</StatsDescription>
+          </FlexChild>
 
-            <FlexChild>
-              <StatsNumber>{userData.booksShared}</StatsNumber>
-              <StatsDescription>Books shared (requested?)</StatsDescription>
-            </FlexChild>
+          <FlexChild>
+            <StatsNumber>{userData.booksShared}</StatsNumber>
+            <StatsDescription>Books shared (requested?)</StatsDescription>
+          </FlexChild>
 
-            <FlexChild>
-              <StatsNumber>{userData.dollarsDonated}</StatsNumber>
-              <StatsDescription>Dollars donated</StatsDescription>
-            </FlexChild>
-          </StatsFlex>
-        </StatsContainer>
+          <FlexChild>
+            <StatsNumber>{userData.dollarsDonated}</StatsNumber>
+            <StatsDescription>Dollars donated</StatsDescription>
+          </FlexChild>
+        </StatsFlex>
 
-        <StatsContainer>
-          <StatsHeader>Your events</StatsHeader>
-          {/* TODO: add a filter icon on the right */}
-        </StatsContainer>
+        <Header>Your events</Header>
+        {/* TODO: add a filter icon on the right */}
 
-        <UpcomingEventsContainer>
-          <UpcomingEvents />
-        </UpcomingEventsContainer>
+        <UpcomingEvents />
       </Container>
 
       <PastActivity />

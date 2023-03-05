@@ -1,7 +1,10 @@
 import React from 'react';
-import EventCard from '@/components/EventCard';
 import styled from 'styled-components';
+import EventCard from '@/components/EventCard';
 
+/**
+ * Dummy data for event cards
+ */
 export const dummyEventData = {
   source: '/event-icon.png',
   name: 'Distribute books (BNFK)',
@@ -12,9 +15,10 @@ export const dummyEventData = {
   id: 0,
 };
 
+/**
+ * Container for all event cards
+ */
 const Container = styled.div`
-  height: fit-content;
-  width: 100%;
   background: #d9d9d9;
   padding: 35px;
   border-radius: 10px;
@@ -22,10 +26,16 @@ const Container = styled.div`
   overflow-x: auto;
 `;
 
+/**
+ * Container for each event card
+ */
 const Events = styled.div`
   display: inline-block;
 `;
 
+/**
+ * format horizontal upcoming event scroll bar on home page
+ */
 const UpcomingEvents = () => {
   return (
     <Container>
