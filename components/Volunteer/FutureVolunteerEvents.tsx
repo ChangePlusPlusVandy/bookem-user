@@ -12,7 +12,7 @@ import {
   NavRight,
   SearchBar,
 } from '@/styles/components/futureEvents.styles';
-import { StatsHeader } from '@/styles/dashboard.styles';
+import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
 import { EventType } from '@/types/types';
 
@@ -105,7 +105,7 @@ const FutureVolunteerEvents = () => {
     <Container>
       <NavHeader>
         <NavLeft>
-          <StatsHeader>Future volunteer events</StatsHeader>
+          <Header>Future volunteer events</Header>
         </NavLeft>
         {/* Container for filter icon that sorts events accordingly */}
         <NavRight>

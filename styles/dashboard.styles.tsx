@@ -21,6 +21,11 @@ export const Container = styled.div`
   font-weight: 400;
 `;
 
+export const GreetingContainer = styled.div`
+  height: fit-content;
+  background-color: white;
+`;
+
 /**
  * Text that greets user
  */
