@@ -69,7 +69,7 @@ export default async function handler(
           password: await hash(process.env.TEST_USER_PASSWD || '', 12),
           phone: '615-555-5555',
           address: faker.address.streetAddress(),
-          sourxeHeardFrom: SOURCES[0],
+          sourceHeardFrom: SOURCES[0],
           ethnicity: faker.helpers.arrayElement(ETHNICITY),
           gender: faker.helpers.arrayElement(GENDERS),
           backgroundCheck: {
