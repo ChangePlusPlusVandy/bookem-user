@@ -36,9 +36,7 @@ const SCHOOLS = [...Array(NUM_OF_SCHOOLS)].map(
 
 const PROGRAM_NAMES = [
   "Book sorting in Book'em center",
-  'Book Donation Event at ' + SCHOOLS[0],
-  'Book Donation Event at ' + SCHOOLS[1],
-  'Book Donation Event at ' + SCHOOLS[2],
+  ...SCHOOLS.map(school => 'Book sorting in ' + school),
 ];
 
 export default async function handler(
@@ -52,7 +50,7 @@ export default async function handler(
         await dbConnect();
 
         // TODO: uncomment this line but do not commit it to the repo
-        throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
+        // throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
 
         // ----------------- REPOPULATE USERS -----------------
 
@@ -156,13 +154,14 @@ export default async function handler(
           const selectedUsers = faker.helpers.arrayElements(userIds);
 
           const isOpen: boolean = faker.datatype.boolean();
+          const programId = new ObjectId();
           if (isOpen) {
             // for every volunteer chosen, add the program to their programs array
             selectedUsers.forEach(userId => {
               // add the program ID to the user's programs array
               bulkUsers2.find({ _id: new ObjectId(userId) }).updateOne({
                 $push: {
-                  programs: new ObjectId(),
+                  programs: programId,
                 },
               });
             });
@@ -170,6 +169,7 @@ export default async function handler(
 
           // insert the program into the database
           bulkPrograms.insert({
+            _id: programId,
             name: programName,
             description: faker.lorem.paragraph(),
             school: faker.helpers.arrayElement(SCHOOLS),
@@ -179,7 +179,10 @@ export default async function handler(
             volunteers: isOpen
               ? selectedUsers.map(userId => new ObjectId(userId))
               : [],
-            maxSpot: faker.datatype.number(100),
+            maxSpot: faker.datatype.number({
+              min: selectedUsers.length,
+              max: selectedUsers.length + 20,
+            }),
             location: faker.address.streetAddress(),
             phone: faker.phone.number(),
             email: faker.internet.email(),
