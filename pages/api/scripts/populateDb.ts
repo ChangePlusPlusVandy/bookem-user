@@ -52,7 +52,7 @@ export default async function handler(
         await dbConnect();
 
         // TODO: uncomment this line but do not commit it to the repo
-        throw 'Uncomment this line to delete all data from the database and re-populate it with dummy data';
+        // throw 'Uncomment this line to delete all data from the database and re-populate it with dummy data';
 
         // ----------------- REPOPULATE USERS -----------------
 
@@ -151,29 +151,34 @@ export default async function handler(
         const bulkUsers2 = Users.collection.initializeUnorderedBulkOp();
 
         // iterate through each program name
-        PROGRAM_NAMES.forEach(program => {
+        PROGRAM_NAMES.forEach(programName => {
           // select random volunteers
           const selectedUsers = faker.helpers.arrayElements(userIds);
 
-          // for every volunteer chosen, add the program to their programs array
-          selectedUsers.forEach(userId => {
-            // add the program ID to the user's programs array
-            bulkUsers2.find({ _id: new ObjectId(userId) }).updateOne({
-              $push: {
-                programs: new ObjectId(),
-              },
+          const isOpen: boolean = faker.datatype.boolean();
+          if (isOpen) {
+            // for every volunteer chosen, add the program to their programs array
+            selectedUsers.forEach(userId => {
+              // add the program ID to the user's programs array
+              bulkUsers2.find({ _id: new ObjectId(userId) }).updateOne({
+                $push: {
+                  programs: new ObjectId(),
+                },
+              });
             });
-          });
+          }
 
           // insert the program into the database
           bulkPrograms.insert({
-            name: program,
+            name: programName,
             description: faker.lorem.paragraph(),
             school: faker.helpers.arrayElement(SCHOOLS),
             programDate: faker.date.past(),
             category: faker.helpers.arrayElement(CATEGORIES),
-            isOpen: faker.datatype.boolean(),
-            volunteers: selectedUsers.map(userId => new ObjectId(userId)),
+            isOpen: isOpen,
+            volunteers: isOpen
+              ? selectedUsers.map(userId => new ObjectId(userId))
+              : [],
             maxSpot: faker.datatype.number(100),
             location: faker.address.streetAddress(),
             phone: faker.phone.number(),
