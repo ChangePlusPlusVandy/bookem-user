@@ -36,9 +36,9 @@ const SCHOOLS = [...Array(NUM_OF_SCHOOLS)].map(
 
 const PROGRAM_NAMES = [
   "Book sorting in Book'em center",
-  'Book Donation Event at' + SCHOOLS[0],
-  'Book Donation Event at' + SCHOOLS[1],
-  'Book Donation Event at' + SCHOOLS[2],
+  'Book Donation Event at ' + SCHOOLS[0],
+  'Book Donation Event at ' + SCHOOLS[1],
+  'Book Donation Event at ' + SCHOOLS[2],
 ];
 
 export default async function handler(
