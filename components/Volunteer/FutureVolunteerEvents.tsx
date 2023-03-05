@@ -67,32 +67,34 @@ const feedsource: EventType[] = [
 
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
-
   const [isPopupOn, setIsPopupOn] = useState(false);
-
   const [feed, setFeed] = useState(feedsource);
 
   const showPopup = () => setIsPopupOn(true);
   const hidePopup = () => setIsPopupOn(false);
 
+  // Sorts events based on decreasing availability
   const sortDescendingSpots = () => {
     const copy = [...feed];
     copy.sort((b, a) => a.availability - b.availability);
     setFeed(copy);
   };
 
+  // Sorts events based on increasing availability
   const sortAscendingSpots = () => {
     const copy = [...feed];
     copy.sort((a, b) => a.availability - b.availability);
     setFeed(copy);
   };
 
+  // Sorts events in order of most to least recent
   const sortMostRecent = () => {
     const copy = [...feed];
     copy.sort((a, b) => a.date.valueOf() - b.date.valueOf());
     setFeed(copy);
   };
 
+  // Sorts events in order of least to most recent
   const sortLeastRecent = () => {
     const copy = [...feed];
     copy.sort((b, a) => a.date.valueOf() - b.date.valueOf());
@@ -105,6 +107,7 @@ const FutureVolunteerEvents = () => {
         <NavLeft>
           <StatsHeader>Future volunteer events</StatsHeader>
         </NavLeft>
+        {/* Container for filter icon that sorts events accordingly */}
         <NavRight>
           {isPopupOn ? (
             <FilterEventsPopup
@@ -114,6 +117,8 @@ const FutureVolunteerEvents = () => {
               sortLeastRecent={sortLeastRecent}
               hidePopup={hidePopup}></FilterEventsPopup>
           ) : null}
+
+          {/* Button for filtering events */}
           <FilterButton onClick={showPopup}>
             <Image
               src="/filter-icon.png"
@@ -125,6 +130,7 @@ const FutureVolunteerEvents = () => {
         </NavRight>
       </NavHeader>
 
+      {/* Container for search bar that searches for events based on query input */}
       <SearchBar>
         <Input
           type="text"
@@ -133,6 +139,7 @@ const FutureVolunteerEvents = () => {
         />
       </SearchBar>
 
+      {/* Container for events that show up based on query input */}
       <ImagesWrapper>
         {feed
           .filter(event => {

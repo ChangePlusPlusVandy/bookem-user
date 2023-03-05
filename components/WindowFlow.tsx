@@ -12,16 +12,20 @@ import {
   SubmitButton,
   ButtonCenter,
   BottomContainer,
+  WindowFlowContainer,
 } from '@/styles/components/windowFlow.styles';
 
 const WindowFlow = ({
   pages,
-  children,
+  components,
+  onSubmit,
 }: {
   // the array of strings at the top of the window flow
   pages: string[];
-  // the children component to render inside of window flow
-  children: React.ReactNode;
+  // the array of components to render in the window flow
+  components: React.ReactNode[];
+  // function that is called whenever the submit button is clicked
+  onSubmit?: () => void;
 }) => {
   const numPages = pages.length;
 
@@ -48,25 +52,27 @@ const WindowFlow = ({
     });
   }, [currentPage]);
 
+  // function to update the page number if the back arrow is clicked
   const navigateBack = () => {
     if (currentPage <= numPages && currentPage > 1)
       setCurrentPage(currentPage - 1);
   };
 
+  // function to update the page number if the forward arrow is clicked
   const navigateForward = () => {
     if (currentPage >= 0 && currentPage < numPages)
       setCurrentPage(currentPage + 1);
   };
 
   return (
-    <>
+    <WindowFlowContainer>
+      {/** Page header with page numbers and titles */}
       <PageNumHeader>
         {pages.map((page, index) => {
           return (
-            <>
+            <React.Fragment key={index}>
               <PageNum id={(index + 1).toString()}>{index + 1}</PageNum>
               <PageTitle>{page}</PageTitle>
-
               {index < pages.length - 1 && (
                 <ImageWrapper>
                   <Image
@@ -77,43 +83,56 @@ const WindowFlow = ({
                   />
                 </ImageWrapper>
               )}
-            </>
+            </React.Fragment>
           );
         })}
-        <BottomContainer>
-          {currentPage > 1 && (
-            <ButtonLeft>
-              <ArrowButton onClick={navigateBack}>
-                <Image
-                  src="/arrow-left.png"
-                  alt="Left arrow"
-                  width="40"
-                  height="40"
-                />
-              </ArrowButton>
-            </ButtonLeft>
-          )}
-          {currentPage == pages.length && (
-            <ButtonCenter>
-              <SubmitButton>Submit</SubmitButton>
-            </ButtonCenter>
-          )}
-          {currentPage < pages.length && (
-            <ButtonRight>
-              <ArrowButton onClick={navigateForward}>
-                <Image
-                  src="/arrow-right.png"
-                  alt="Right arrow"
-                  width="40"
-                  height="40"
-                />
-              </ArrowButton>
-            </ButtonRight>
-          )}
-        </BottomContainer>
       </PageNumHeader>
-      {children}
-    </>
+
+      {/** Render the current page */}
+      {components.map((comp, index) => {
+        // clone the component and add a key
+        if (currentPage === index + 1)
+          return React.cloneElement(comp as React.ReactElement, { key: index });
+      })}
+
+      {/** Buttons for submit and navigating pages */}
+      <BottomContainer>
+        {/** Back arrow appears if not on first page */}
+        {currentPage > 1 && (
+          <ButtonLeft>
+            <ArrowButton onClick={navigateBack}>
+              <Image
+                src="/arrow-left.png"
+                alt="Left arrow"
+                width="40"
+                height="40"
+              />
+            </ArrowButton>
+          </ButtonLeft>
+        )}
+
+        {/** Forward arrow appears if not on last page */}
+        {currentPage < pages.length && (
+          <ButtonRight>
+            <ArrowButton onClick={navigateForward}>
+              <Image
+                src="/arrow-right.png"
+                alt="Right arrow"
+                width="40"
+                height="40"
+              />
+            </ArrowButton>
+          </ButtonRight>
+        )}
+
+        {/** Submit button appears if on last page */}
+        {currentPage == pages.length && (
+          <ButtonCenter>
+            <SubmitButton onClick={onSubmit}>Submit</SubmitButton>
+          </ButtonCenter>
+        )}
+      </BottomContainer>
+    </WindowFlowContainer>
   );
 };
 
