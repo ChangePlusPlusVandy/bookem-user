@@ -46,9 +46,9 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
     // Initialize signedUp according to whether the current program
     // contains the user or not
     if (session?.user) {
-      setSignedUp(program.users.includes(session.user._id));
+      setSignedUp(program.volunteers.includes(session.user._id));
     }
-  }, [program.users, session?.user]);
+  }, [program.volunteers, session?.user]);
 
   return (
     <ProgramNameBox>

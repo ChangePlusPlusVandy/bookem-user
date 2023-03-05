@@ -17,6 +17,8 @@ export default async function handler(
   const session = await getServerSession(req, res, authOptions);
   const sessionUser = session.user;
 
+  console.log('Session user: ', sessionUser);
+
   // Get request parameter
   const {
     query: { id },
@@ -60,22 +62,22 @@ export default async function handler(
         // Query logged in user
         const user = await Users.findById(sessionUser._id);
 
-        // Find the index of logged in user in program.users
-        const userIndex = program.users.indexOf(user._id);
+        // Find the index of logged in user in program.volunteers
+        const userIndex = program.volunteers.indexOf(user._id);
 
         // Find the index of program in user.programs
         const programIndex = user.programs.indexOf(program._id);
 
         if (userIndex === -1 && programIndex === -1) {
           // Register to the program
-          program.users.unshift(user._id);
+          program.volunteers.unshift(user._id);
           user.programs.unshift(program._id);
         } else if (userIndex === -1 || programIndex === -1) {
           throw new Error('Inconsistency between collections!');
         } else {
           // Unregister
           // Remove the user and program
-          program.users.splice(userIndex, 1);
+          program.volunteers.splice(userIndex, 1);
           user.programs.splice(programIndex, 1);
         }
 
