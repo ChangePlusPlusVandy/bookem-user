@@ -54,11 +54,21 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
     }
   }, [program.volunteers, session?.user]);
 
+  /**
+   * Calculate the length of the program volunteers
+   * If program.volunteers is undefined, return 0
+   */
+  const getProgramLength = () => {
+    if (program.volunteers && program.volunteers.length)
+      return program.volunteers.length;
+    else return 0;
+  };
+
   return (
     <ProgramNameBox>
       <NameAndSpot>
         <b>{program.name}</b> ({program.category}) <br />
-        {program.volunteers.length}/{program.maxSpot} spots filled
+        {getProgramLength()}/{program.maxSpot} spots filled
       </NameAndSpot>
       <SignupButton onClick={() => signUpEvent(program)}>
         <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
