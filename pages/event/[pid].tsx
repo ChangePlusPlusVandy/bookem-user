@@ -1,10 +1,7 @@
 import Event from '@/components/Event/Event';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import { useRouter } from 'next/router';
-import useSWR from 'swr';
-
-// Helper function for useSWR to fetch data
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+import { useEffect, useState } from 'react';
 
 /**
  * Event Detail Page
@@ -14,20 +11,38 @@ const EventDetail = () => {
   const router = useRouter();
   const { pid } = router.query;
 
-  // Fetch event by id
-  const {
-    data: event,
-    error,
-    isLoading,
-  } = useSWR<QueriedVolunteerProgramData>('/api/event/' + pid, fetcher);
+  const [event, setEvent] = useState<QueriedVolunteerProgramData>();
+  const [error, setError] = useState<Error>();
 
-  if (error) return <div>Failed to load volunteer history</div>;
-  if (isLoading) return <div>Loading...</div>;
-  if (!event) return <></>;
+  // use simple fetch to fetch when component is mounted
+  useEffect(() => {
+    if (pid) {
+      fetch('/api/event/' + pid)
+        .then(res => {
+          if (!res.ok) {
+            throw new Error(
+              'An error has occurred while fetching: ' + res.statusText
+            );
+          }
+          return res.json();
+        })
+        .then(data => {
+          setEvent(data);
+        })
+        .catch(err => {
+          setError(err);
+        });
+    } else {
+      setError(new Error('No pid found'));
+    }
+  }, []);
 
   return (
     <>
-      <Event event={event} />
+      {/* TODO: render 404 page */}
+      {error && <>404 Event not found!</>}
+      {!event && !error && <div>Loading...</div>}
+      {event && <Event event={event} />}
     </>
   );
 };
