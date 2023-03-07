@@ -1,7 +1,5 @@
 import { convertToDate, getTime } from '@/utils/utils';
-import Image from 'next/image';
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from 'react';
 import {
   TimeAndPlaceBox,
   Icon,
@@ -30,22 +28,17 @@ const TimeAndPlace = ({
   programDate: Date;
   location: string;
 }) => {
-  const iconWidth = 50;
-  const iconHeight = 50;
-
-  programDate = new Date(programDate.toLocaleString());
-
   /**
    * List of icon params
    */
   const iconParamList: IconParams[] = [
     {
       src: '/event/calendar.png',
-      text: convertToDate(programDate),
+      text: convertToDate(programDate.toString()),
     },
     {
       src: '/event/clock.png',
-      text: getTime(programDate),
+      text: getTime(programDate.toString()),
     },
     {
       src: '/event/map-pin.png',
@@ -59,11 +52,7 @@ const TimeAndPlace = ({
       {iconParamList.map(iconParam => {
         return (
           <IconBox key={iconParam.src}>
-            <Icon
-              src={iconParam.src}
-              alt=""
-              width={iconWidth}
-              height={iconHeight}></Icon>
+            <Icon src={iconParam.src} alt="" width={50} height={50} />
             <IconText>{iconParam.text}</IconText>
           </IconBox>
         );
