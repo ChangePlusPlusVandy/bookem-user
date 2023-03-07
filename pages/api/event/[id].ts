@@ -5,6 +5,7 @@ import {
   QueriedUserData,
   QueriedVolunteerProgramData,
 } from 'bookem-shared/src/types/database';
+import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '../auth/[...nextauth]';
@@ -32,6 +33,12 @@ export default async function handler(
     case 'GET':
       try {
         await dbConnect();
+
+        if (!id) return res.status(400).json({ message: 'Missing id' });
+
+        // check if id is a valid mongoose id
+        if (!ObjectId.isValid(id as string))
+          return res.status(400).json({ message: 'Invalid id' });
 
         // Query program
         const program: QueriedVolunteerProgramData =
