@@ -26,15 +26,9 @@ const EventDetail = () => {
           }
           return res.json();
         })
-        .then(data => {
-          setEvent(data);
-        })
-        .catch(err => {
-          setError(err);
-        });
-    } else {
-      setError(new Error('No pid found'));
-    }
+        .then(data => setEvent(data))
+        .catch(err => setError(err));
+    } else setError(new Error('No pid found'));
   }, []);
 
   return (
