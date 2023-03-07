@@ -15,7 +15,6 @@ export default async function handler(
 ) {
   // Get session user
   const session = await getServerSession(req, res, authOptions);
-  const sessionUser = session.user;
 
   // Get request parameter
   const {
@@ -43,6 +42,7 @@ export default async function handler(
         console.error(error);
         res.status(500).json({ message: error });
       }
+      break;
 
     /**
      * @route POST /api/event/[id]
@@ -52,13 +52,15 @@ export default async function handler(
      */
     case 'POST':
       try {
+        console.log('POST /api/event/[id]');
         await dbConnect();
 
         // Query program
         const program = await VolunteerPrograms.findById(id);
+        console.log('QUERY PROGRAM: ', program);
 
         // Query logged in user
-        const user = await Users.findById(sessionUser._id);
+        const user = await Users.findById(session.user._id);
 
         // Find the index of logged in user in program.volunteers
         const userIndex = program.volunteers.indexOf(user._id);
@@ -88,6 +90,8 @@ export default async function handler(
         res.status(500).json({ message: error.message });
         console.error(error);
       }
+
+      break;
     // case 'PUT':
     // case 'DELETE':
     // default:
