@@ -1,8 +1,10 @@
-export const convertToDate = (date: Date) => {
+export const convertToDate = (str: string) => {
+  const date = new Date(str);
   return date.getMonth() + 1 + '/' + date.getDate() + '/' + date.getFullYear();
 };
 
-export const getTime = (date: Date) => {
+export const getTime = (str: string) => {
+  const date = new Date(str);
   var ampm: String = 'AM';
   var hours: Number;
 
