@@ -72,6 +72,7 @@ export const authOptions = {
     signIn: '/login',
   },
 
+  // Callbacks doc: https://next-auth.js.org/configuration/callbacks
   callbacks: {
     /**
      * Update session's user.id with token.uid

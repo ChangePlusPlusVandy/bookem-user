@@ -1,6 +1,6 @@
 /**
  * THIS FILE HAS TO STAY HERE!
- * Use the default next-auth middleware pattern.
+ * Use the default next-auth middleware pattern from https://next-auth.js.org/configuration/nextjs
  * If a user is not logged in, the default behavior is
  * to redirect them to the sign-in page.
  */
