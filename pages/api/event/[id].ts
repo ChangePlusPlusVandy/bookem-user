@@ -44,6 +44,10 @@ export default async function handler(
         const program: QueriedVolunteerProgramData =
           (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
 
+        // if program is not found
+        if (!program)
+          return res.status(400).json({ message: 'Program not found' });
+
         return res.status(200).json(program);
       } catch (error) {
         console.error(error);
