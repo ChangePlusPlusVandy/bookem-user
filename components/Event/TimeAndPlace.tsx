@@ -1,30 +1,11 @@
-import Image from 'next/image';
-import React from 'react';
-import styled from 'styled-components';
-
-const TimeAndPlaceBox = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  height: 50px;
-  margin-top: 20px;
-`;
-
-/**
- * Contains the Icon + text
- */
-const IconBox = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const Icon = styled(Image)``;
-
-const IconText = styled.span`
-  margin-left: 20px;
-  font-size: 18px;
-`;
+import { convertToDate, getTime } from '@/utils/utils';
+import React, { useEffect, useState } from 'react';
+import {
+  TimeAndPlaceBox,
+  Icon,
+  IconBox,
+  IconText,
+} from '@/styles/components/Event/timeAndPlace.styles';
 
 /**
  * Parameter of each icon + text box
@@ -40,29 +21,28 @@ interface IconParams {
  * Contain Program's date and location
  * @param programDate
  */
-const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
-  const iconWidth = 50;
-  const iconHeight = 50;
-
+const TimeAndPlace = ({
+  programDate,
+  location,
+}: {
+  programDate: Date;
+  location: string;
+}) => {
   /**
    * List of icon params
    */
   const iconParamList: IconParams[] = [
     {
       src: '/event/calendar.png',
-      text: programDate.toLocaleString('default', {
-        month: 'long',
-        year: 'numeric',
-        day: 'numeric',
-      }),
+      text: convertToDate(programDate.toString()),
     },
     {
       src: '/event/clock.png',
-      text: programDate.getHours() + ':' + programDate.getMinutes(),
+      text: getTime(programDate.toString()),
     },
     {
       src: '/event/map-pin.png',
-      text: '3593 Cedar Rd. Nashville',
+      text: location,
     },
   ];
 
@@ -72,11 +52,7 @@ const TimeAndPlace = ({ programDate }: { programDate: Date }) => {
       {iconParamList.map(iconParam => {
         return (
           <IconBox key={iconParam.src}>
-            <Icon
-              src={iconParam.src}
-              alt=""
-              width={iconWidth}
-              height={iconHeight}></Icon>
+            <Icon src={iconParam.src} alt="" width={50} height={50} />
             <IconText>{iconParam.text}</IconText>
           </IconBox>
         );

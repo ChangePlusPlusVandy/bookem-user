@@ -9,11 +9,9 @@ export const SideBarBox = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
-  align-items: stretch;
   text-align: center;
   justify-content: space-between;
   width: 120px;
-  height: 100vh;
   background-color: #6d6d6d;
 `;
 

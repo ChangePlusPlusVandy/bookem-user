@@ -1,23 +1,10 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import React from 'react';
-import styled from 'styled-components';
-
-const HeaderBox = styled.div`
-  display: flex;
-  height: 48px;
-`;
-
-/**
- * Arrow Image as a link
- */
-const ArrowLink = styled(Link)``;
-const ArrowImg = styled(Image)``;
-
-const EventDetailText = styled.span`
-  margin-left: 38px;
-  font-size: 40px;
-`;
+import {
+  HeaderBox,
+  ArrowLink,
+  ArrowImg,
+  EventDetailText,
+} from '@/styles/components/Event/header.styles';
 
 /**
  * Contain the Header Event Detail

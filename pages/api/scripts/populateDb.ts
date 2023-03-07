@@ -25,16 +25,19 @@ const NUM_OF_SCHOOLS = 40;
 const SOURCES = ['social media', 'friend', 'news', 'other'];
 const GENDERS = ['male', 'female'];
 const ETHNICITY = ['white', 'black', 'asian', 'hispanic', 'other'];
-const PROGRAM_NAMES = [
-  "Books For Nashville's Kids",
-  'Reading Is Fundamental',
-  'Ready For Reading',
-  'Read Me Day',
-  'Book Drive',
-];
+
+const CATEGORIES = ['BFNK', 'RIF', 'RFR', 'Read Me Day', 'Book Drive'];
+
+const USERTYPES = ['admin', 'user'];
+
 const SCHOOLS = [...Array(NUM_OF_SCHOOLS)].map(
   () => faker.company.name() + ' School'
 );
+
+const PROGRAM_NAMES = [
+  "Book sorting in Book'em center",
+  ...SCHOOLS.map(school => 'Book sorting in ' + school),
+];
 
 export default async function handler(
   req: NextApiRequest,
@@ -47,7 +50,7 @@ export default async function handler(
         await dbConnect();
 
         // TODO: uncomment this line but do not commit it to the repo
-        throw 'Uncomment this line to delete all data from the database and re-populate it with dummy data';
+        throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
 
         // ----------------- REPOPULATE USERS -----------------
 
@@ -64,9 +67,16 @@ export default async function handler(
           password: await hash(process.env.TEST_USER_PASSWD || '', 12),
           phone: '615-555-5555',
           address: faker.address.streetAddress(),
+          sourceHeardFrom: SOURCES[0],
           ethnicity: faker.helpers.arrayElement(ETHNICITY),
           gender: faker.helpers.arrayElement(GENDERS),
+          backgroundCheck: {
+            passed: true,
+            expirationDate: new Date(),
+          },
+          userType: USERTYPES[0],
           programs: [],
+          tags: CATEGORIES[0],
         });
 
         // Insert NUM_OF_USERS users into the database
@@ -80,7 +90,13 @@ export default async function handler(
             sourceHeardFrom: faker.helpers.arrayElement(SOURCES),
             ethnicity: faker.helpers.arrayElement(ETHNICITY),
             gender: faker.helpers.arrayElement(GENDERS),
+            backgroundCheck: {
+              passed: true,
+              expirationDate: new Date(),
+            },
+            userType: faker.helpers.arrayElement(USERTYPES),
             programs: [],
+            tags: [],
           });
         }
 
@@ -133,28 +149,49 @@ export default async function handler(
         const bulkUsers2 = Users.collection.initializeUnorderedBulkOp();
 
         // iterate through each program name
-        PROGRAM_NAMES.forEach(program => {
+        PROGRAM_NAMES.forEach(programName => {
           // select random volunteers
           const selectedUsers = faker.helpers.arrayElements(userIds);
 
-          // for every volunteer chosen, add the program to their programs array
-          selectedUsers.forEach(userId => {
-            // add the program ID to the user's programs array
-            bulkUsers2.find({ _id: new ObjectId(userId) }).updateOne({
-              $push: {
-                programs: new ObjectId(),
-              },
+          const isOpen: boolean = faker.datatype.boolean();
+
+          // ID in selected users' programs array should align with the id of
+          // the program to be added
+          const programId = new ObjectId();
+
+          // Only populate selected users' programs field when isOpen is true
+          if (isOpen) {
+            // for every volunteer chosen, add the program to their programs array
+            selectedUsers.forEach(userId => {
+              // add the program ID to the user's programs array
+              bulkUsers2.find({ _id: new ObjectId(userId) }).updateOne({
+                $push: {
+                  programs: programId,
+                },
+              });
             });
-          });
+          }
 
           // insert the program into the database
           bulkPrograms.insert({
-            name: program,
+            _id: programId,
+            name: programName,
             description: faker.lorem.paragraph(),
             school: faker.helpers.arrayElement(SCHOOLS),
             programDate: faker.date.past(),
-            isArchived: false,
-            volunteers: selectedUsers.map(userId => new ObjectId(userId)),
+            category: faker.helpers.arrayElement(CATEGORIES),
+            isOpen: isOpen,
+            // Only populate volunteers field when isOpen is true
+            volunteers: isOpen
+              ? selectedUsers.map(userId => new ObjectId(userId))
+              : [],
+            maxSpot: faker.datatype.number({
+              min: selectedUsers.length,
+              max: selectedUsers.length + 20,
+            }),
+            location: faker.address.streetAddress(),
+            phone: faker.phone.number(),
+            email: faker.internet.email(),
           });
         });
 

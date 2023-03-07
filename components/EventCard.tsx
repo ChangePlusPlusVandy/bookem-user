@@ -79,7 +79,9 @@ const EventCard = ({
 
         <InfoFlex>
           <InfoFlexChild ratio={ratio}>
-            {convertToDate(eventDate) + ' ' + getTime(eventDate)}
+            {convertToDate(eventDate.toString()) +
+              ' ' +
+              getTime(eventDate.toString())}
           </InfoFlexChild>
           {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
           <InfoFlexChild ratio={ratio}>
