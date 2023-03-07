@@ -19,13 +19,15 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
    * Sign up/Unsign up the current user to the event
    * @param program
    */
-  const signUpEvent = async (program: QueriedVolunteerProgramData) => {
+  const signUpEvent = async () => {
     try {
-      // Send post request to backend
+      // If the program is not open, users need to submit an application
       if (!program.isOpen) {
+        // TODO: redirect to program application page
         alert('Go to program application!');
         return;
       }
+
       const response = await fetch('/api/event/' + program._id, {
         method: 'POST',
         headers: {
@@ -70,7 +72,7 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
         <b>{program.name}</b> ({program.category}) <br />
         {getProgramLength()}/{program.maxSpot} spots filled
       </NameAndSpot>
-      <SignupButton onClick={() => signUpEvent(program)}>
+      <SignupButton onClick={signUpEvent}>
         <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
       </SignupButton>
     </ProgramNameBox>

@@ -63,12 +63,10 @@ export default async function handler(
      */
     case 'POST':
       try {
-        console.log('POST /api/event/[id]');
         await dbConnect();
 
         // Query program
         const program = await VolunteerPrograms.findById(id);
-        console.log('QUERY PROGRAM: ', program);
 
         // Query logged in user
         const user = await Users.findById(session.user._id);
