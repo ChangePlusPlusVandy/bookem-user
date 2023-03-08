@@ -50,7 +50,7 @@ export default async function handler(
         await dbConnect();
 
         // TODO: uncomment this line but do not commit it to the repo
-        // throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
+        throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
 
         // ----------------- REPOPULATE USERS -----------------
 
@@ -122,7 +122,7 @@ export default async function handler(
           // Insert NUM_OF_LOGS_PER_USER volunteer logs for each user
           for (let i = 0; i < NUM_OF_LOGS_PER_USER; i++) {
             bulkLogs.insert({
-              userID: new ObjectId(userId),
+              userId: new ObjectId(userId),
               school: faker.helpers.arrayElement(SCHOOLS),
               teacher: faker.name.firstName() + ' ' + faker.name.lastName(),
               date: faker.date.past(),
