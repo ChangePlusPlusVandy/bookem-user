@@ -50,7 +50,7 @@ export default async function handler(
         await dbConnect();
 
         // TODO: uncomment this line but do not commit it to the repo
-        throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
+        // throw 'Comment this line to delete all data from the database and re-populate it with dummy data';
 
         // ----------------- REPOPULATE USERS -----------------
 
@@ -178,7 +178,10 @@ export default async function handler(
             name: programName,
             description: faker.lorem.paragraph(),
             school: faker.helpers.arrayElement(SCHOOLS),
-            programDate: faker.date.past(),
+            programDate: faker.date.between(
+              '2021-01-01T00:00:00.000Z',
+              '2025-01-01T00:00:00.000Z'
+            ),
             category: faker.helpers.arrayElement(CATEGORIES),
             isOpen: isOpen,
             // Only populate volunteers field when isOpen is true
