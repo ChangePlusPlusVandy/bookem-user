@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   HeaderBox,
-  ArrowLink,
   EventDetailText,
 } from '@/styles/components/Event/header.styles';
 
@@ -11,14 +11,12 @@ import {
  */
 const Header = () => {
   return (
-    <>
-      <HeaderBox>
-        <ArrowLink href="/">
-          <Image src="/event/arrow-left.png" alt="" width={48} height={48} />
-        </ArrowLink>
-        <EventDetailText>Event Details</EventDetailText>
-      </HeaderBox>
-    </>
+    <HeaderBox>
+      <Link href="/">
+        <Image src="/event/arrow-left.png" alt="" width={48} height={48} />
+      </Link>
+      <EventDetailText>Event Details</EventDetailText>
+    </HeaderBox>
   );
 };
 
