@@ -1,11 +1,11 @@
 import React from 'react';
-import { UserIcon } from '@/components/UserIcon';
+import { UserIcon } from '@/components/Sidebar/UserIcon';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import {
   IconContainer,
   IconLink,
   Container,
-} from '@/styles/components/sidebar.styles';
+} from '@/styles/components/Sidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
   SIDEBAR_ICON_PARAMS,

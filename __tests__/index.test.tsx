@@ -3,7 +3,7 @@
  * @jest-environment jsdom
  */
 
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/Sidebar/Sidebar';
 import LoginPage from '@/pages/login';
 import VolunteerPage from '@/pages/volunteer';
 import '@testing-library/jest-dom';

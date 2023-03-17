@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { Container, MainContent } from '@/styles/layout.styles';
-import { Sidebar } from '@/components/Sidebar';
+import { Sidebar } from '@/components/Sidebar/Sidebar';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 
