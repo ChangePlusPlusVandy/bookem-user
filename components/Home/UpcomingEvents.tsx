@@ -6,7 +6,7 @@ import EventCard from '@/components/EventCard';
  * Dummy data for event cards
  */
 export const dummyEventData = {
-  source: '/event-icon.png',
+  source: '/eventCard/event-image.png',
   name: 'Distribute books (BNFK)',
   location: '3593 Cedar Rd. Nashville',
   date: new Date('2005-12-17T13:24:00'),

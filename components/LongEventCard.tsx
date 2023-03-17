@@ -44,7 +44,7 @@ const LongEventCard = ({
     <Container>
       <EventImage>
         <Image
-          src="/event-image.png"
+          src="/eventCard/event-image.png"
           alt="Event image icon"
           width={`${Math.round((300 / 328) * 53)}`}
           height={`${Math.round((300 / 328) * 53)}`}
@@ -55,7 +55,7 @@ const LongEventCard = ({
       <AddressContainer>
         <AddressIcon>
           <Image
-            src="/map.png"
+            src="/eventCard/map.png"
             alt="Map icon"
             width={`${Math.round((300 / 328) * 21)}`}
             height={`${Math.round((300 / 328) * 23.99)}`}
@@ -67,7 +67,7 @@ const LongEventCard = ({
       <InfoContainer>
         <CalendarIcon>
           <Image
-            src="/calendar.png"
+            src="/event/calendar.png"
             alt="Calendar icon"
             width={`${Math.round((300 / 328) * 21)}`}
             height={`${Math.round((300 / 328) * 23.99)}`}
@@ -78,7 +78,7 @@ const LongEventCard = ({
 
         <ClockIcon>
           <Image
-            src="/clock.png"
+            src="/event/clock.png"
             alt="Clock icon"
             width={`${Math.round((300 / 328) * 21.27)}`}
             height={`${Math.round((300 / 328) * 22.14)}`}
@@ -88,7 +88,7 @@ const LongEventCard = ({
 
         <CheckmarkIcon>
           <Image
-            src="/checkmark.png"
+            src="/eventCard/checkmark.png"
             alt="Checkmark icon"
             width={`${Math.round((300 / 328) * 21)}`}
             height={`${Math.round((300 / 328) * 23.99)}`}
