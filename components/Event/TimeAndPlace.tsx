@@ -1,21 +1,11 @@
 import { convertToDate, getTime } from '@/utils/utils';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import Image from 'next/image';
 import {
   TimeAndPlaceBox,
-  Icon,
   IconBox,
   IconText,
 } from '@/styles/components/Event/timeAndPlace.styles';
-
-/**
- * Parameter of each icon + text box
- * @src src for the icon image
- * @text text associated with that icon
- */
-interface IconParams {
-  src: string;
-  text: string;
-}
 
 /**
  * Contain Program's date and location
@@ -28,35 +18,25 @@ const TimeAndPlace = ({
   programDate: Date;
   location: string;
 }) => {
-  /**
-   * List of icon params
-   */
-  const iconParamList: IconParams[] = [
-    {
-      src: '/event/calendar.png',
-      text: convertToDate(programDate.toString()),
-    },
-    {
-      src: '/event/clock.png',
-      text: getTime(programDate.toString()),
-    },
-    {
-      src: '/event/map-pin.png',
-      text: location,
-    },
-  ];
-
   return (
     <TimeAndPlaceBox>
-      {/* Iterate through iconParamList to produce a list of icon + text */}
-      {iconParamList.map(iconParam => {
-        return (
-          <IconBox key={iconParam.src}>
-            <Icon src={iconParam.src} alt="" width={50} height={50} />
-            <IconText>{iconParam.text}</IconText>
-          </IconBox>
-        );
-      })}
+      {/* Calendar */}
+      <IconBox>
+        <Image src={'/event/calendar.png'} alt="" width={50} height={50} />
+        <IconText>{convertToDate(programDate.toString())}</IconText>
+      </IconBox>
+
+      {/* Clock */}
+      <IconBox>
+        <Image src={'/event/clock.png'} alt="" width={50} height={50} />
+        <IconText>{getTime(programDate.toString())}</IconText>
+      </IconBox>
+
+      {/* Location */}
+      <IconBox>
+        <Image src={'/event/map-pin.png'} alt="" width={50} height={50} />
+        <IconText>{location}</IconText>
+      </IconBox>
     </TimeAndPlaceBox>
   );
 };
