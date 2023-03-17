@@ -9,4 +9,5 @@ export default defineConfig({
     },
     baseUrl: process.env.NEXTAUTH_URL,
   },
+  video: false,
 });
