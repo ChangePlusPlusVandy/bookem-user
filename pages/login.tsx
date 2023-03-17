@@ -63,23 +63,6 @@ const LoginPage = () => {
                 {errors.email && <span>Email is required</span>}
                 {errors.password && <span>Password is required</span>}
               </LoginForm>
-              {/* <ExternalPrompt>
-            <span> Or log in with </span>
-          </ExternalPrompt>
-          <IconContainer>
-            <IconButton>
-              <IconImage src={'/AppleLogo.png'}></IconImage>
-            </IconButton>
-            <IconButton>
-              <IconImage src={'/GoogleLogo.png'}></IconImage>
-            </IconButton>
-            <IconButton>
-              <IconImage src={'/FacebookLogo.png'}></IconImage>
-            </IconButton>
-            <IconButton>
-              <IconImage src={'/InstagramLogo.png'}></IconImage>
-            </IconButton>
-          </IconContainer> */}
               <SubmitButton form="loginForm" type="submit" value="Log in" />
             </ContentContainer>
 
