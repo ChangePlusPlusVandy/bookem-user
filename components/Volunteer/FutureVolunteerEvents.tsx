@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { useState } from 'react';
-import EventCard from '@/components/EventCard';
+import EventCard from '@/components/shared/EventCard';
 import {
   Container,
   FilterButton,

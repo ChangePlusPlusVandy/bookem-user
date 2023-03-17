@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { dummyEventData } from '@/components/Home/UpcomingEvents';
-const EventCard = React.lazy(() => import('@/components/EventCard')); // implement lazy loading
+const EventCard = React.lazy(() => import('@/components/shared/EventCard')); // implement lazy loading
 import { Container, Header } from '@/styles/components/pastActivity.styles';
 
 // vertical list of sample PastEvents

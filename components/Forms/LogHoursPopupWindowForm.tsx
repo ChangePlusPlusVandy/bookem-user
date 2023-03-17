@@ -7,8 +7,8 @@ import {
 } from '@/styles/components/Forms/logHoursPopupWindowForm.styles';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import PopupWindow from '@/components/PopupWindow';
-import WindowFlow from '@/components/WindowFlow';
+import PopupWindow from '@/components/shared/PopupWindow';
+import WindowFlow from '@/components/shared/WindowFlow';
 
 const LogHoursPopupWindowForm = ({
   setShowPopup,

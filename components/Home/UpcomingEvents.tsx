@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import EventCard from '@/components/EventCard';
+import EventCard from '@/components/shared/EventCard';
 
 /**
  * Dummy data for event cards

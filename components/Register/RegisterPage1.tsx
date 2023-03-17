@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import RegisterFlow from '@/components/RegisterFlow';
+import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
   Header,
