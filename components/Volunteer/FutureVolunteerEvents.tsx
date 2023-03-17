@@ -14,7 +14,7 @@ import {
 } from '@/styles/components/futureEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
-import { EventType } from '@/types/types';
+import { EventType } from '@/utils/types';
 
 // TODO: get this from database
 const feedsource: EventType[] = [

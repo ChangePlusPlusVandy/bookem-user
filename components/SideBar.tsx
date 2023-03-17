@@ -2,60 +2,11 @@ import React from 'react';
 import { UserIcon } from '@/components/UserIcon';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import { Icon, IconBox, IconLink, SideBarBox } from '@/styles/sidebar.styles';
-
-/**
- * Icon Param container.
- * Used to create icons through iteration
- * @defaultSrc src of the icon when not selected or hovered
- * @hoveredsrc src of the icon when selected or hovered
- * @linkTo where the link of icon directs to
- */
-interface IconParams {
-  defaultSrc: string;
-  hoveredsrc: string;
-  linkTo: string;
-}
-
-/**
- * Default width of icons
- */
-const iconWidth = 41.25;
-
-/**
- * Default height of icons
- */
-const iconHeight = 42.47;
-
-/**
- * List of IconParams
- */
-const iconParamList: IconParams[] = [
-  {
-    defaultSrc: '/sidebar/home-white.png',
-    hoveredsrc: '/sidebar/home-black.png',
-    linkTo: '/',
-  },
-  {
-    defaultSrc: '/sidebar/hand-shake-white.png',
-    hoveredsrc: '/sidebar/hand-shake-black.png',
-    linkTo: '/volunteer',
-  },
-  {
-    defaultSrc: '/sidebar/currency-dollar-white.png',
-    hoveredsrc: '/sidebar/currency-dollar-black.png',
-    linkTo: '/donate',
-  },
-  {
-    defaultSrc: '/sidebar/book-open-white.png',
-    hoveredsrc: '/sidebar/book-open-black.png',
-    linkTo: '/request',
-  },
-  {
-    defaultSrc: '/sidebar/setting-white.png',
-    hoveredsrc: '/sidebar/setting-black.png',
-    linkTo: '/settings',
-  },
-];
+import {
+  SIDEBAR_ICON_HEIGHT,
+  SIDEBAR_ICON_PARAMS,
+  SIDEBAR_ICON_WIDTH,
+} from '@/utils/constants';
 
 export const SideBar = () => {
   const activeRoute = useActiveRoute();
@@ -67,7 +18,7 @@ export const SideBar = () => {
       </IconBox>
 
       {/* Iterate through iconParamList to display icons */}
-      {iconParamList.map(iconParam => {
+      {SIDEBAR_ICON_PARAMS.map(iconParam => {
         return (
           <IconBox key={iconParam.defaultSrc}>
             {/* Link that wraps around the icon */}
@@ -88,8 +39,8 @@ export const SideBar = () => {
               <Icon
                 src={iconParam.defaultSrc}
                 alt=""
-                width={iconWidth}
-                height={iconHeight}
+                width={SIDEBAR_ICON_HEIGHT}
+                height={SIDEBAR_ICON_WIDTH}
               />
             </IconLink>
           </IconBox>
