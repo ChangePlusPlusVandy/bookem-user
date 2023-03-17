@@ -1,18 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import EventCard from '@/components/EventCard';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import mongoose from 'mongoose';
 
 /**
  * Dummy data for event cards
  */
-export const dummyEventData = {
-  source: '/eventCard/event-image.png',
+export const dummyEventData: QueriedVolunteerProgramData = {
+  _id: new mongoose.Types.ObjectId(),
   name: 'Distribute books (BNFK)',
+  description: 'blablabla',
+  schools: [],
+  programDate: new Date('2005-12-17T13:24:00'),
+  category: 'RFR',
+  isOpen: true,
+  volunteers: [],
+  maxSpot: 11,
   location: '3593 Cedar Rd. Nashville',
-  date: new Date('2005-12-17T13:24:00'),
-  time: '9:30 AM',
-  availability: 11,
-  id: 0,
+  phone: '123-456-7890',
+  email: 'test_user@bookem.com',
+  createdAt: new Date(),
+  updatedAt: new Date(),
 };
 
 /**

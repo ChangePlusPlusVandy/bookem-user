@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { convertToDate, getTime } from '@/utils/utils';
-import { EventType } from '@/utils/types';
 import {
   AddressContainer,
   AddressIcon,
@@ -13,6 +12,7 @@ import {
   InfoFlexChild,
   Name,
 } from '@/styles/components/eventCard.styles';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 
 // EventCard specific implementation of sizeMap
 const sizeMap = new Map<string, number>([
@@ -33,12 +33,13 @@ const EventCard = ({
   size,
 }: {
   // TODO: change type of eventData
-  eventData: EventType;
+  eventData: QueriedVolunteerProgramData;
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
 }) => {
+  console.log(eventData);
   // convert the event date to Date format
-  const eventDate = new Date(eventData.date);
+  const eventDate = new Date(eventData.programDate);
 
   // get ratio based on size to be used in computing distances
   const ratio = toRatio(size);
@@ -84,9 +85,7 @@ const EventCard = ({
               getTime(eventDate.toString())}
           </InfoFlexChild>
           {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
-          <InfoFlexChild ratio={ratio}>
-            {eventData.availability} spots
-          </InfoFlexChild>
+          <InfoFlexChild ratio={ratio}>{eventData.maxSpot} spots</InfoFlexChild>
         </InfoFlex>
       </InfoContainer>
     </Container>

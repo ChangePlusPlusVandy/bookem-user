@@ -14,56 +14,94 @@ import {
 } from '@/styles/components/futureEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
-import { EventType } from '@/utils/types';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import mongoose from 'mongoose';
 
 // TODO: get this from database
-const feedsource: EventType[] = [
+const feedsource: QueriedVolunteerProgramData[] = [
   {
-    source: '/eventCard/event-image.png',
+    _id: new mongoose.Types.ObjectId(),
     name: 'Distribute books (BNFK)',
+    description: 'blablabla',
+    schools: [],
+    programDate: new Date('2005-12-17T13:24:00'),
+    category: 'RFR',
+    isOpen: true,
+    volunteers: [],
+    maxSpot: 11,
     location: '3593 Cedar Rd. Nashville',
-    date: new Date('2005-12-17T13:24:00'),
-    time: '9:30 AM',
-    availability: 11,
-    id: 0,
+    phone: '123-456-7890',
+    email: 'test_user@bookem.com',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    source: '/eventCard/event-image.png',
+    _id: new mongoose.Types.ObjectId(),
     name: 'Distribute books (BNFK)',
+    description: 'blablabla',
+    schools: [],
+    programDate: new Date('2005-12-17T13:24:00'),
+    category: 'RFR',
+    isOpen: true,
+    volunteers: [],
+    maxSpot: 11,
     location: '3593 Cedar Rd. Nashville',
-    date: new Date('2022-12-17T03:24:00'),
-    time: '9:30 AM',
-    availability: 2,
-    id: 1,
+    phone: '123-456-7890',
+    email: 'test_user@bookem.com',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    source: '/eventCard/event-image.png',
+    _id: new mongoose.Types.ObjectId(),
     name: 'Distribute books (BNFK)',
+    description: 'blablabla',
+    schools: [],
+    programDate: new Date('2005-12-17T13:24:00'),
+    category: 'RFR',
+    isOpen: true,
+    volunteers: [],
+    maxSpot: 11,
     location: '3593 Cedar Rd. Nashville',
-    date: new Date('2023-12-17T03:24:00'),
-    time: '9:30 AM',
-    availability: 8,
-    id: 2,
+    phone: '123-456-7890',
+    email: 'test_user@bookem.com',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    source: '/eventCard/event-image.png',
+    _id: new mongoose.Types.ObjectId(),
     name: 'Distribute books (BNFK)',
+    description: 'blablabla',
+    schools: [],
+    programDate: new Date('2005-12-17T13:24:00'),
+    category: 'RFR',
+    isOpen: true,
+    volunteers: [],
+    maxSpot: 11,
     location: '3593 Cedar Rd. Nashville',
-    date: new Date('2021-12-17T03:24:00'),
-    time: '9:30 AM',
-    availability: 5,
-    id: 3,
+    phone: '123-456-7890',
+    email: 'test_user@bookem.com',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
   {
-    source: '/eventCard/event-image.png',
+    _id: new mongoose.Types.ObjectId(),
     name: 'Distribute books (BNFK)',
+    description: 'blablabla',
+    schools: [],
+    programDate: new Date('2005-12-17T13:24:00'),
+    category: 'RFR',
+    isOpen: true,
+    volunteers: [],
+    maxSpot: 11,
     location: '3593 Cedar Rd. Nashville',
-    date: new Date('2020-12-17T03:24:00'),
-    time: '9:30 AM',
-    availability: 8,
-    id: 4,
+    phone: '123-456-7890',
+    email: 'test_user@bookem.com',
+    createdAt: new Date(),
+    updatedAt: new Date(),
   },
 ];
+
+// '/eventCard/event-image.png'
 
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
@@ -76,28 +114,28 @@ const FutureVolunteerEvents = () => {
   // Sorts events based on decreasing availability
   const sortDescendingSpots = () => {
     const copy = [...feed];
-    copy.sort((b, a) => a.availability - b.availability);
+    copy.sort((b, a) => a.maxSpot - b.maxSpot);
     setFeed(copy);
   };
 
   // Sorts events based on increasing availability
   const sortAscendingSpots = () => {
     const copy = [...feed];
-    copy.sort((a, b) => a.availability - b.availability);
+    copy.sort((a, b) => a.maxSpot - b.maxSpot);
     setFeed(copy);
   };
 
   // Sorts events in order of most to least recent
   const sortMostRecent = () => {
     const copy = [...feed];
-    copy.sort((a, b) => a.date.valueOf() - b.date.valueOf());
+    copy.sort((a, b) => a.programDate.valueOf() - b.programDate.valueOf());
     setFeed(copy);
   };
 
   // Sorts events in order of least to most recent
   const sortLeastRecent = () => {
     const copy = [...feed];
-    copy.sort((b, a) => a.date.valueOf() - b.date.valueOf());
+    copy.sort((b, a) => a.programDate.valueOf() - b.programDate.valueOf());
     setFeed(copy);
   };
 
@@ -152,7 +190,11 @@ const FutureVolunteerEvents = () => {
             }
           })
           .map(item => (
-            <EventCard eventData={item} size="medium" key={item.id} />
+            <EventCard
+              eventData={item}
+              size="medium"
+              key={item._id.toString()}
+            />
           ))}
       </ImagesWrapper>
     </Container>
