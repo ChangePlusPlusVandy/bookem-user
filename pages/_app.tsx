@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
-import { Layout } from '@/styles/layout.styles';
+import { Container, MainContent } from '@/styles/layout.styles';
+import { SideBar } from '@/components/SideBar';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
 
@@ -18,3 +19,12 @@ export default function App({
     </SessionProvider>
   );
 }
+
+const Layout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <Container>
+      <SideBar />
+      <MainContent>{children}</MainContent>
+    </Container>
+  );
+};
