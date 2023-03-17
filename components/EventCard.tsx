@@ -47,7 +47,7 @@ const EventCard = ({
     <Container ratio={ratio}>
       <EventImage ratio={ratio}>
         <Image
-          src="/event-image.png"
+          src="/eventCard/event-image.png"
           alt="Event image icon"
           width={`${Math.round(ratio * 138)}`}
           height={`${Math.round(ratio * 138)}`}
@@ -58,7 +58,7 @@ const EventCard = ({
       <AddressContainer ratio={ratio}>
         <AddressIcon>
           <Image
-            src="/map.png"
+            src="/eventCard/map.png"
             alt="Map icon"
             width={`${Math.round(ratio * 21)}`}
             height={`${Math.round(ratio * 23.99)}`}
@@ -70,7 +70,7 @@ const EventCard = ({
       <InfoContainer ratio={ratio}>
         <ClockIcon>
           <Image
-            src="/date-icon.png"
+            src="/eventCard/date-icon.png"
             alt="Clock icon"
             width={`${Math.round(ratio * 21.27)}`}
             height={`${Math.round(ratio * 22.14)}`}
