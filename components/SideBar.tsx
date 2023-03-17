@@ -1,26 +1,31 @@
 import React from 'react';
 import { UserIcon } from '@/components/UserIcon';
 import { useActiveRoute } from '@/lib/useActiveRoute';
-import { Icon, IconBox, IconLink, SideBarBox } from '@/styles/sidebar.styles';
+import {
+  IconContainer,
+  IconLink,
+  Container,
+} from '@/styles/components/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
   SIDEBAR_ICON_PARAMS,
   SIDEBAR_ICON_WIDTH,
 } from '@/utils/constants';
+import Image from 'next/image';
 
 export const SideBar = () => {
   const activeRoute = useActiveRoute();
 
   return (
-    <SideBarBox>
-      <IconBox>
+    <Container>
+      <IconContainer>
         <UserIcon />
-      </IconBox>
+      </IconContainer>
 
       {/* Iterate through iconParamList to display icons */}
       {SIDEBAR_ICON_PARAMS.map(iconParam => {
         return (
-          <IconBox key={iconParam.defaultSrc}>
+          <IconContainer key={iconParam.defaultSrc}>
             {/* Link that wraps around the icon */}
             <IconLink
               href={iconParam.linkTo}
@@ -36,16 +41,16 @@ export const SideBar = () => {
                   : iconParam.defaultSrc
               }>
               {/* Icon image with default src */}
-              <Icon
+              <Image
                 src={iconParam.defaultSrc}
                 alt=""
                 width={SIDEBAR_ICON_HEIGHT}
                 height={SIDEBAR_ICON_WIDTH}
               />
             </IconLink>
-          </IconBox>
+          </IconContainer>
         );
       })}
-    </SideBarBox>
+    </Container>
   );
 };
