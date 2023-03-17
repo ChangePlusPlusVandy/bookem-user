@@ -37,10 +37,6 @@ const EventCard = ({
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
 }) => {
-  console.log(eventData);
-  // convert the event date to Date format
-  const eventDate = new Date(eventData.programDate);
-
   // get ratio based on size to be used in computing distances
   const ratio = toRatio(size);
 
@@ -80,9 +76,9 @@ const EventCard = ({
 
         <InfoFlex>
           <InfoFlexChild ratio={ratio}>
-            {convertToDate(eventDate.toString()) +
+            {convertToDate(eventData.programDate.toString()) +
               ' ' +
-              getTime(eventDate.toString())}
+              getTime(eventData.programDate.toString())}
           </InfoFlexChild>
           {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
           <InfoFlexChild ratio={ratio}>{eventData.maxSpot} spots</InfoFlexChild>
