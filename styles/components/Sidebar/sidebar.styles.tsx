@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import Image from 'next/image';
 
 /**
  * Container of sidebar
  */
-export const SideBarBox = styled.div`
+export const Container = styled.div`
   display: flex;
   position: relative;
   flex-direction: column;
@@ -18,7 +17,7 @@ export const SideBarBox = styled.div`
 /**
  * Container of icon
  */
-export const IconBox = styled.div`
+export const IconContainer = styled.div`
   padding-top: 20px;
 `;
 
@@ -49,8 +48,3 @@ export const IconLink = styled(Link)<{
     }
   }
 `;
-
-/**
- * Icon image
- */
-export const Icon = styled(Image)``;

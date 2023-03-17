@@ -16,7 +16,7 @@ import {
   InputContainer,
   CheckboxContainer,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/types/types';
+import { RegisterFormFunctions } from '@/utils/types';
 
 const RegisterPage2 = ({
   formFunctions: {

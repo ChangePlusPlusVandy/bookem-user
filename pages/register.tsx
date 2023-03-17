@@ -7,7 +7,7 @@ import RegisterPage2 from '@/components/Register/RegisterPage2';
 import RegisterPage3 from '@/components/Register/RegisterPage3';
 import RegisterPage4 from '@/components/Register/RegisterPage4';
 import { Container, Error } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/types/types';
+import { RegisterFormFunctions } from '@/utils/types';
 
 /**
  * format error messages

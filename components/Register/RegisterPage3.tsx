@@ -20,7 +20,7 @@ import {
   InputRadio,
   Button,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/types/types';
+import { RegisterFormFunctions } from '@/utils/types';
 
 const RegisterPage3 = ({
   formFunctions: {

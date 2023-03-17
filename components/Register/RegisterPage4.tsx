@@ -22,7 +22,7 @@ const RegisterPage4 = () => {
       </LastPageTextContainer>
 
       <Image
-        src="/user-circle.png"
+        src="/registerFlow/user-circle.png"
         alt="User profile stock image"
         width="226"
         height="226"

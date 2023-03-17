@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { RatioProp } from '@/types/types';
+import { RatioProp } from '@/utils/types';
 
 export const Container = styled.div<RatioProp>`
   background-color: white;

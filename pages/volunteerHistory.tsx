@@ -29,7 +29,12 @@ const VolunteerHistoryPage = () => {
     <>
       <HeaderContainer>
         <IconLink href="/volunteer">
-          <Image src="/back-arrow.png" alt="Go Back" width="40" height="40" />
+          <Image
+            src="/event/arrow-left.png"
+            alt="Go Back"
+            width="40"
+            height="40"
+          />
         </IconLink>
         <Header>Volunteer History</Header>
       </HeaderContainer>

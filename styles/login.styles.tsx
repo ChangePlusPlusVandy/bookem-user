@@ -50,20 +50,6 @@ export const Footer = styled.div`
   background-color: teal;
 `;
 
-export const ExternalPrompt = styled.p`
-  padding-top: 8px;
-  color: gray;
-  font-size: 13px;
-  border-bottom: 1px solid #000;
-  line-height: 0.1em;
-  text-align: center;
-
-  span {
-    background: #fff;
-    padding: 0 10px;
-  }
-`;
-
 export const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -74,12 +60,6 @@ export const LoginHeader = styled.div`
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 50px;
-`;
-
-export const IconContainer = styled.div`
-  margin: 15px auto;
-  display: flex;
-  gap: 20px;
 `;
 
 export const Input = styled.input`
@@ -100,27 +80,7 @@ export const SubmitButton = styled.input`
     cursor: pointer;
   }
   width: 80%;
-  margin: auto;
-`;
-
-export const IconButton = styled.button`
-  height: 40px;
-  width: 40px;
-  background-color: white;
-  border-radius: 5px;
-  border: 0px;
-  &:hover {
-    background-color: #ededed;
-    cursor: pointer;
-  }
-  padding: 0px;
-`;
-
-export const IconImage = styled.img`
-  height: 30px;
-  width: 30px;
-  padding: 0px;
-  margin: 0px;
+  margin: 10% auto;
 `;
 
 export const LittleText = styled.p`

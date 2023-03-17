@@ -22,7 +22,7 @@ const formatPageDots = (currentPage: number) => {
     if (page == currentPage)
       return (
         <Image
-          src="/black-dot.png"
+          src="/registerFlow/black-dot.png"
           alt="Dot for current page"
           width="12"
           height="12"
@@ -33,7 +33,7 @@ const formatPageDots = (currentPage: number) => {
     // dot for other pages are white
     return (
       <Image
-        src="/white-dot.png"
+        src="/registerFlow/white-dot.png"
         alt="Dot for other page"
         width="12"
         height="12"
@@ -72,7 +72,7 @@ const RegisterFlow = ({
       {/* left arrow does not appear on register page 1 */}
       <Arrow visible={Number(currentPage) != 1}>
         <Image
-          src="/left-arrow.png"
+          src="/registerFlow/left-arrow.png"
           height="20"
           width="10"
           alt="Button for previous page"
@@ -88,7 +88,7 @@ const RegisterFlow = ({
         <input
           form={form}
           type="image"
-          src="/right-arrow.png"
+          src="/registerFlow/right-arrow.png"
           height="20px"
           width="10px"
           alt="Button for next page"
