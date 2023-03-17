@@ -1,66 +1,47 @@
 import React from 'react';
+import Image from 'next/image';
 import {
   ContactBox,
   ContactHeader,
   BigIconBox,
-  Icon,
   IconBox,
   IconText,
-} from '@/styles/components/Event/contact.styled';
-
-/**
- * Parameter of each icon + text box
- * @src src for the icon image
- * @text text associated with that icon
- */
-interface IconParams {
-  src: string;
-  text: string;
-}
+} from '@/styles/components/Event/contact.styles';
+import {
+  EVENT_CONTACT_ICON_WIDTH,
+  EVENT_CONTACT_ICON_HEIGHT,
+} from '@/utils/constants';
 
 /**
  * Contain Contact info
  */
-const Contact = ({ phone, email }: { phone: string; email: string }) => {
-  /**
-   * List of icon params
-   */
-  const iconParamList: IconParams[] = [
-    {
-      src: '/event/phone.png',
-      text: phone,
-    },
-    {
-      src: '/event/mail.png',
-      text: email,
-    },
-  ];
+const Contact = ({ phone, email }: { phone: string; email: string }) => (
+  <ContactBox>
+    <ContactHeader>Contact</ContactHeader>
+    <BigIconBox>
+      {/* Phone */}
+      <IconBox>
+        <Image
+          src={'/event/phone.png'}
+          alt=""
+          width={EVENT_CONTACT_ICON_WIDTH}
+          height={EVENT_CONTACT_ICON_HEIGHT}
+        />
+        <IconText>{phone}</IconText>
+      </IconBox>
 
-  const iconWidth = 23;
-  const iconHeight = 23;
-  return (
-    <>
-      <ContactBox>
-        <ContactHeader>Contact</ContactHeader>
-        <BigIconBox>
-          {/* Iterate through iconParamList to generate multiple icon + text box */}
-          {iconParamList.map(iconParam => {
-            return (
-              <IconBox key={iconParam.src}>
-                <Icon
-                  src={iconParam.src}
-                  alt=""
-                  width={iconWidth}
-                  height={iconHeight}
-                />
-                <IconText>{iconParam.text}</IconText>
-              </IconBox>
-            );
-          })}
-        </BigIconBox>
-      </ContactBox>
-    </>
-  );
-};
+      {/* Email */}
+      <IconBox>
+        <Image
+          src={'/event/mail.png'}
+          alt=""
+          width={EVENT_CONTACT_ICON_WIDTH}
+          height={EVENT_CONTACT_ICON_HEIGHT}
+        />
+        <IconText>{email}</IconText>
+      </IconBox>
+    </BigIconBox>
+  </ContactBox>
+);
 
 export default Contact;

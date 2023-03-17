@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 
 export const ContactBox = styled.div`
   width: 500px;
@@ -22,8 +21,6 @@ export const IconBox = styled.div`
   align-items: center;
   margin-bottom: 30px;
 `;
-
-export const Icon = styled(Image)``;
 
 export const IconText = styled.span`
   margin-left: 37px;

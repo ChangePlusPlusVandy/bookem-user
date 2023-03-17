@@ -37,7 +37,7 @@ const VolunteerDashboard = ({ userData }: any) => {
           <LogButton onClick={() => setShowPopup(true)}>
             <ButtonIcon>
               <Image
-                src="/pencil.png"
+                src="/volunteer/pencil.png"
                 alt="Pencil icon"
                 width="50"
                 height="50"
@@ -49,7 +49,7 @@ const VolunteerDashboard = ({ userData }: any) => {
           <HistoryButton href="/volunteerHistory">
             <ButtonIcon>
               <Image
-                src="/history-clock.png"
+                src="/volunteer/history-clock.png"
                 alt="Clock with arrow icon"
                 width="50"
                 height="50"

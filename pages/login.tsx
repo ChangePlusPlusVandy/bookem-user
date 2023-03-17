@@ -5,11 +5,7 @@ import {
   CreateButton,
   Container,
   ContentContainer,
-  ExternalPrompt,
   Footer,
-  IconButton,
-  IconImage,
-  IconContainer,
   Input,
   LittleText,
   LoginForm,
@@ -60,7 +56,7 @@ const LoginPage = () => {
             {errors.email && <span>Email is required</span>}
             {errors.password && <span>Password is required</span>}
           </LoginForm>
-          <ExternalPrompt>
+          {/* <ExternalPrompt>
             <span> Or log in with </span>
           </ExternalPrompt>
           <IconContainer>
@@ -76,7 +72,7 @@ const LoginPage = () => {
             <IconButton>
               <IconImage src={'/InstagramLogo.png'}></IconImage>
             </IconButton>
-          </IconContainer>
+          </IconContainer> */}
           <SubmitButton form="loginForm" type="submit" value="Log in" />
         </ContentContainer>
 

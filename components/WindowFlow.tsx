@@ -76,7 +76,7 @@ const WindowFlow = ({
               {index < pages.length - 1 && (
                 <ImageWrapper>
                   <Image
-                    src="/line.png"
+                    src="/windowFlow/line.png"
                     alt="Line between page titles"
                     width="40"
                     height="1"
@@ -102,7 +102,7 @@ const WindowFlow = ({
           <ButtonLeft>
             <ArrowButton onClick={navigateBack}>
               <Image
-                src="/arrow-left.png"
+                src="/windowFlow/arrow-left.png"
                 alt="Left arrow"
                 width="40"
                 height="40"
@@ -116,7 +116,7 @@ const WindowFlow = ({
           <ButtonRight>
             <ArrowButton onClick={navigateForward}>
               <Image
-                src="/arrow-right.png"
+                src="/windowFlow/arrow-right.png"
                 alt="Right arrow"
                 width="40"
                 height="40"

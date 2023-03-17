@@ -10,7 +10,7 @@ import {
   InputText,
   InputContainer,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/types/types';
+import { RegisterFormFunctions } from '@/utils/types';
 
 /**
  * auto-format inputted phone number

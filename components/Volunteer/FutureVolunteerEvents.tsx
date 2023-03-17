@@ -14,12 +14,12 @@ import {
 } from '@/styles/components/futureEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
-import { EventType } from '@/types/types';
+import { EventType } from '@/utils/types';
 
 // TODO: get this from database
 const feedsource: EventType[] = [
   {
-    source: '/event-icon.png',
+    source: '/eventCard/event-image.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: new Date('2005-12-17T13:24:00'),
@@ -28,7 +28,7 @@ const feedsource: EventType[] = [
     id: 0,
   },
   {
-    source: '/event-icon.png',
+    source: '/eventCard/event-image.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: new Date('2022-12-17T03:24:00'),
@@ -37,7 +37,7 @@ const feedsource: EventType[] = [
     id: 1,
   },
   {
-    source: '/event-icon.png',
+    source: '/eventCard/event-image.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: new Date('2023-12-17T03:24:00'),
@@ -46,7 +46,7 @@ const feedsource: EventType[] = [
     id: 2,
   },
   {
-    source: '/event-icon.png',
+    source: '/eventCard/event-image.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: new Date('2021-12-17T03:24:00'),
@@ -55,7 +55,7 @@ const feedsource: EventType[] = [
     id: 3,
   },
   {
-    source: '/event-icon.png',
+    source: '/eventCard/event-image.png',
     name: 'Distribute books (BNFK)',
     location: '3593 Cedar Rd. Nashville',
     date: new Date('2020-12-17T03:24:00'),
@@ -121,7 +121,7 @@ const FutureVolunteerEvents = () => {
           {/* Button for filtering events */}
           <FilterButton onClick={showPopup}>
             <Image
-              src="/filter-icon.png"
+              src="/volunteer/filter-icon.png"
               alt="Filter icon"
               width="25"
               height="25"
