@@ -3,7 +3,7 @@
  * @jest-environment jsdom
  */
 
-import { SideBar } from '@/components/SideBar';
+import { Sidebar } from '@/components/Sidebar';
 import LoginPage from '@/pages/login';
 import VolunteerPage from '@/pages/volunteer';
 import '@testing-library/jest-dom';
@@ -86,7 +86,7 @@ describe('Login', () => {
 describe('Sidebar', () => {
   it('sidebar rendered correctly', () => {
     // renders the component
-    render(<SideBar />);
+    render(<Sidebar />);
 
     // expect 6 icons (profile and 5 routes)
     expect(screen.getAllByRole('img')).toHaveLength(6);

@@ -13,7 +13,7 @@ import {
 } from '@/utils/constants';
 import Image from 'next/image';
 
-export const SideBar = () => {
+export const Sidebar = () => {
   const activeRoute = useActiveRoute();
 
   return (
