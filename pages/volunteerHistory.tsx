@@ -16,7 +16,7 @@ const fetcher = (url: string) => fetch(url).then(res => res.json());
 const VolunteerHistoryPage = () => {
   // get data from the volunteerPrograms API using SWR
   const { data, error, isLoading } = useSWR<VolunteerProgramData[]>(
-    '/api/volunteerPrograms/',
+    '/api/events/user',
     fetcher
   );
 

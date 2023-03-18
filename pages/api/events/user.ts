@@ -5,12 +5,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import dbConnect from 'lib/dbConnect';
 
 // getSession is used to get the user's session (if they are logged in)
-import { getSession } from 'next-auth/react';
+import { getServerSession } from 'next-auth';
 
 // import the models and types we need
 import Users from 'bookem-shared/src/models/Users';
-import { QueriedUserData } from 'bookem-shared/src/types/database';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
+import { authOptions } from '../auth/[...nextauth]';
 
 /**
  * /api/volunteerPrograms/:
@@ -29,28 +29,16 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   // check that user is authenticated
-  const session = await getSession({ req });
-
-  if (!session) {
-    res.status(401).json({
-      error: 'You are unauthorized to perform this action. Please login first',
-    });
-    return;
-  }
+  const session = await getServerSession(req, res, authOptions);
 
   switch (req.method) {
     case 'GET':
       try {
-        // TODO: change from fixed user to variable
-        const email = 'test_user@bookem.org';
-
         // Connect to the database
         await dbConnect();
 
         // TODO: use find by id from session
-        const user = (await Users.findOne({
-          email: email,
-        })) as QueriedUserData;
+        const user = await Users.findById(session.user._id);
 
         // If the user doesn't exist, return an error
         if (!user) {
