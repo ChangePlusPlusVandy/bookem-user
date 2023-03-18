@@ -46,11 +46,9 @@ export default async function handler(
           throw new Error('This user does not exist');
         }
 
-        const usersId = user._id;
-
         // get all volunteerEvents from collection that match the user's Id
         const volunteerPrograms = await VolunteerPrograms.find({
-          userId: usersId,
+          userId: user._id,
         });
 
         // return the result
