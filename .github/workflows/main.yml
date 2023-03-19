@@ -32,7 +32,6 @@ jobs:
           build: npm run build
           start: npm run e2e:headless
           wait-on: http://localhost:3000
-          spec: cypress/e2e/*
     env:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
   run-component-tests:
@@ -49,6 +48,5 @@ jobs:
           build: npm run build
           start: npm run component:headless
           wait-on: http://localhost:3000
-          spec: cypress/component/*
     env:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
