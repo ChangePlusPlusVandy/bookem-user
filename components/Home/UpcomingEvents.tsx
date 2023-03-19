@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EventCard from '@/components/EventCard';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
@@ -46,15 +46,36 @@ const Events = styled.div`
  * format horizontal upcoming event scroll bar on home page
  */
 const UpcomingEvents = () => {
+  const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
+  const [error, setError] = useState<Error>();
+  useEffect(() => {
+    fetch('/api/events/upcoming')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(
+            'An error has occurred while fetching: ' + res.statusText
+          );
+        }
+        return res.json();
+      })
+      .then(data => setEvents(data))
+      .catch(err => setError(err));
+  }, []);
   return (
-    <Container>
-      {[...Array(10)].map((_, i) => (
-        // TODO: iterate through real data instead of dummy data
-        <Events key={i}>
-          <EventCard eventData={dummyEventData} size={'large'} key={i} />
-        </Events>
-      ))}
-    </Container>
+    <>
+      {error && <>404 Event not found!</>}
+      {!events && !error && <div>Loading...</div>}
+      {events && (
+        <Container>
+          {events.map(event => (
+            // TODO: iterate through real data instead of dummy data
+            <Events key={event._id.toString()}>
+              <EventCard eventData={event} size={'large'} />
+            </Events>
+          ))}
+        </Container>
+      )}
+    </>
   );
 };
 
