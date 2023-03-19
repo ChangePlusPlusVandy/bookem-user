@@ -24,12 +24,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Install packages
+        run: npm ci
+      - name: Create .env.local
+        run: touch .env.local
+      - name: Set MONGODB_URI
+        run: echo MONGODB_URI = ${{ secrets.MONGODB_URI }} >> .env.local
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          build: |
-            touch .env.local
-            echo MONGODB_URI = ${{ secrets.MONGODB_URI }} >> .env.local
-            npm run build
+          build: npm run build
           start: npm start
           wait-on: http://localhost:3000
