@@ -1,6 +1,6 @@
-import { defineConfig } from 'cypress';
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env.local' });
+import { defineConfig } from "cypress";
+import dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 
 export default defineConfig({
   e2e: {
@@ -9,5 +9,13 @@ export default defineConfig({
     },
     baseUrl: process.env.NEXTAUTH_URL,
   },
+
   video: false,
+
+  component: {
+    devServer: {
+      framework: "next",
+      bundler: "webpack",
+    },
+  },
 });
