@@ -47,6 +47,5 @@ jobs:
         with:
           build: npm run build
           start: npm run component:headless
-          wait-on: http://localhost:3000
     env:
       MONGODB_URI: ${{ secrets.MONGODB_URI }}
