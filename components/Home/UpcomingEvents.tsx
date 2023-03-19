@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import EventCard from '@/components/EventCard';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import mongoose from 'mongoose';
+import { fetchData } from '@/utils/utils';
 
 /**
  * Dummy data for event cards
@@ -50,15 +51,7 @@ const UpcomingEvents = () => {
   const [error, setError] = useState<Error>();
   // Fetch upcoming events when rendered
   useEffect(() => {
-    fetch('/api/events/upcoming')
-      .then(res => {
-        if (!res.ok) {
-          throw new Error(
-            'An error has occurred while fetching: ' + res.statusText
-          );
-        }
-        return res.json();
-      })
+    fetchData('/api/events/upcoming')
       .then(data => setEvents(data))
       .catch(err => setError(err));
   }, []);
