@@ -11,10 +11,9 @@ export default async function handler(
 
   switch (method) {
     /**
-     * @route GET /api/event/[id]
-     * @desc Get program by id
-     * @req program id, user in session
-     * @res QueriedVolunteerProgramData
+     * @route GET /api/events/upcoming
+     * @desc Get all programs in the future
+     * @res QueriedVolunteerProgramData[]
      */
     case 'GET':
       try {
