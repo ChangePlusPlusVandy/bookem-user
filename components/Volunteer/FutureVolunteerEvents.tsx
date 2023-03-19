@@ -198,17 +198,9 @@ const FutureVolunteerEvents = () => {
           {/* Container for events that show up based on query input */}
           <ImagesWrapper>
             {events
-              .filter(event => {
-                if (query === '') {
-                  //if query is empty
-                  return event;
-                } else if (
-                  event.name.toLowerCase().includes(query.toLowerCase())
-                ) {
-                  //returns filtered array
-                  return event;
-                }
-              })
+              .filter(event =>
+                event.name.toLowerCase().includes(query.toLowerCase())
+              )
               .map(event => (
                 <EventCard
                   eventData={event}
