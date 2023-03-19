@@ -27,6 +27,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          setup: cp .env.local .env
-          build: npm run build
+          build: |
+            touch .env.local
+            echo MONGODB_URI = ${{ secrets.MONGODB_URI }} >> .env.local
+            npm run build
           start: npm start
