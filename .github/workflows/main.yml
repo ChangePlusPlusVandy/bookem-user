@@ -36,3 +36,5 @@ jobs:
           build: npm run build
           start: npm run e2e:headless
           wait-on: http://localhost:3000
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
