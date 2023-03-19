@@ -37,7 +37,7 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        // TODO: use find by id from session
+        // Query user from session
         const user = await Users.findById(session.user._id);
 
         // If the user doesn't exist, return an error

@@ -13,6 +13,7 @@ import {
   CheckmarkIcon,
   Container,
 } from '@/styles/components/longEventCard.styles';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 
 /**
  * Helper function to format the time into a readable AM/PM format.
@@ -34,8 +35,7 @@ const formatAMPM = (date: { getHours: () => any; getMinutes: () => any }) => {
 const LongEventCard = ({
   eventData,
 }: {
-  // TODO: change type of eventData
-  eventData: any;
+  eventData: QueriedVolunteerProgramData;
 }) => {
   // create a date object with JavaScript's Date constructor
   const date = new Date(eventData.programDate);
@@ -61,7 +61,7 @@ const LongEventCard = ({
             height={`${Math.round((300 / 328) * 23.99)}`}
           />
         </AddressIcon>
-        <Address>{eventData.school}</Address>
+        <Address>{eventData.location}</Address>
       </AddressContainer>
 
       <InfoContainer>

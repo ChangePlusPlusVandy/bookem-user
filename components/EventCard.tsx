@@ -32,7 +32,7 @@ const EventCard = ({
   eventData,
   size,
 }: {
-  // TODO: change type of eventData
+  // Volunteer program data
   eventData: QueriedVolunteerProgramData;
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
