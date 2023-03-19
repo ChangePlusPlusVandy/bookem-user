@@ -48,6 +48,7 @@ const Events = styled.div`
 const UpcomingEvents = () => {
   const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
   const [error, setError] = useState<Error>();
+  // Fetch upcoming events when rendered
   useEffect(() => {
     fetch('/api/events/upcoming')
       .then(res => {
@@ -63,12 +64,13 @@ const UpcomingEvents = () => {
   }, []);
   return (
     <>
+      {/* TODO: render 404 page */}
       {error && <>404 Event not found!</>}
       {!events && !error && <div>Loading...</div>}
       {events && (
         <Container>
           {events.map(event => (
-            // TODO: iterate through real data instead of dummy data
+            // Iterate through events to and pass data to EventCard
             <Events key={event._id.toString()}>
               <EventCard eventData={event} size={'large'} />
             </Events>
