@@ -8,7 +8,6 @@ import dbConnect from 'lib/dbConnect';
 import { getServerSession } from 'next-auth';
 
 // import the models and types we need
-import Users from 'bookem-shared/src/models/Users';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 import { authOptions } from '../auth/[...nextauth]';
 
