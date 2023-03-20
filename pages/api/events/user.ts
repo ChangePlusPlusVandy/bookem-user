@@ -36,16 +36,6 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        /* I don't think this extra layer of protection is needed */
-        // // Query user from session
-        // const user = await Users.findById(session.user._id);
-
-        // // If the user doesn't exist, return an error
-        // if (!user) {
-        //   res.status(422).json({ message: 'This user does not exist' });
-        //   throw new Error('This user does not exist');
-        // }
-
         // get all volunteerEvents from collection that match the user's Id
         const volunteerPrograms = await VolunteerPrograms.find({
           userId: session.user._id,
