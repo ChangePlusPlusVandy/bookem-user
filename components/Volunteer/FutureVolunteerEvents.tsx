@@ -16,6 +16,7 @@ import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
+import Link from 'next/link';
 
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
@@ -115,11 +116,9 @@ const FutureVolunteerEvents = () => {
                 event.name.toLowerCase().includes(query.toLowerCase())
               )
               .map(event => (
-                <EventCard
-                  eventData={event}
-                  size="medium"
-                  key={event._id.toString()}
-                />
+                <Link key={event._id.toString()} href={'/event/' + event._id}>
+                  <EventCard eventData={event} size="medium" />
+                </Link>
               ))}
           </ImagesWrapper>
         </Container>

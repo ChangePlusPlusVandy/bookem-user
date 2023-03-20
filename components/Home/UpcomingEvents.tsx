@@ -4,6 +4,7 @@ import EventCard from '@/components/EventCard';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import mongoose from 'mongoose';
 import { fetchData } from '@/utils/utils';
+import Link from 'next/link';
 
 /**
  * Dummy data for event cards
@@ -64,9 +65,11 @@ const UpcomingEvents = () => {
         <Container>
           {events.map(event => (
             // Iterate through events to and pass data to EventCard
-            <Events key={event._id.toString()}>
-              <EventCard eventData={event} size={'large'} />
-            </Events>
+            <Link key={event._id.toString()} href={'/event/' + event._id}>
+              <Events>
+                <EventCard eventData={event} size={'large'} />
+              </Events>
+            </Link>
           ))}
         </Container>
       )}

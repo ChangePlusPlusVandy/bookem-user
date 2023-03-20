@@ -10,6 +10,7 @@ import {
   IconLink,
 } from '@/styles/volunteerHistory.styles';
 import { fetchData } from '@/utils/utils';
+import Link from 'next/link';
 
 const VolunteerHistoryPage = () => {
   const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
@@ -44,7 +45,9 @@ const VolunteerHistoryPage = () => {
         {/* Loop through each volunteerProgram specific to that user */}
         {events.map(event => (
           // for each event, create a new LongEventCard component and pass in all that event's info
-          <LongEventCard key={event.name} eventData={event} />
+          <Link key={event._id.toString()} href={'/event/' + event._id}>
+            <LongEventCard eventData={event} />
+          </Link>
         ))}
       </MainContainer>
     </>
