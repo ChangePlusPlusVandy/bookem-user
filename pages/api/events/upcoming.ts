@@ -18,10 +18,12 @@ export default async function handler(
     case 'GET':
       try {
         await dbConnect();
-        // Get all programs where programDate > today
+
+        // Select all programs where programDate > today order by progamDate descending
         const programs = await VolunteerPrograms.find({
           programDate: { $gt: new Date() },
         }).sort({ programDate: 1 });
+
         return res.status(200).json(programs);
       } catch (error) {
         console.error(error);

@@ -37,6 +37,7 @@ export default async function handler(
         await dbConnect();
 
         // get all volunteerEvents from collection that match the user's Id
+        // sorted in descending order
         const volunteerPrograms = await VolunteerPrograms.find({
           userId: session.user._id,
           programDate: { $lt: new Date() },
