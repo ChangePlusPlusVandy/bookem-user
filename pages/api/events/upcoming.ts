@@ -19,7 +19,7 @@ export default async function handler(
       try {
         await dbConnect();
 
-        // Select all programs where programDate > today order by progamDate descending
+        // Select all programs where programDate > today order by progamDate ascending
         const programs = await VolunteerPrograms.find({
           programDate: { $gt: new Date() },
         }).sort({ programDate: 1 });
