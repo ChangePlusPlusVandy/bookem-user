@@ -49,7 +49,8 @@ export default async function handler(
         // get all volunteerEvents from collection that match the user's Id
         const volunteerPrograms = await VolunteerPrograms.find({
           userId: session.user._id,
-        });
+          programDate: { $lt: new Date() },
+        }).sort({ programDate: -1 });
 
         // return the result
         res.status(200).json(volunteerPrograms);
