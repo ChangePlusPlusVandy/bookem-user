@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { getSession, GetSessionParams, signIn } from 'next-auth/react';
 import {
@@ -14,10 +14,50 @@ import {
   SubmitButton,
 } from '@/styles/login.styles';
 import LeftDisplay from '@/components/Register/LeftDisplay';
+import MobileLogin from '@/components/mobile/Login';
 import Link from 'next/link';
 import { Media, MediaContextProvider } from '@/lib/media';
+import styled from 'styled-components';
+import Image from 'next/image';
+
+interface Props {
+  fontSize?: number;
+  lineHeight?: number;
+}
+
+const MobileContainer = styled.div`
+  background: pink;
+  height: 100vh;
+  padding: 6% 13%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+`;
+
+const MobileText = styled.p<Props>`
+  font-size: ${props => props.fontSize}px;
+  line-height: ${props => props.lineHeight}px;
+`;
+
+const MobileSignUpButton = styled.button`
+  background: #6d6d6d;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 19px;
+  color: white;
+  width: 296px;
+  height: 53px;
+`;
 
 const LoginPage = () => {
+  // state for going to mobile login page
+  const [onMobileLogin, setOnMobileLogin] = useState(false);
+
   // React hook form.
   const {
     register,
@@ -41,8 +81,41 @@ const LoginPage = () => {
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
-        {/* TODO:  */}
-        Hello Mobile!
+        <MobileContainer>
+          {onMobileLogin === false && (
+            <>
+              <Image
+                src={'/bookemkids.png'}
+                width="285"
+                height="387"
+                alt="BookEm Background"
+              />
+
+              <div>
+                <MobileText fontSize={25} lineHeight={30.26}>
+                  Welcome to Book'em
+                </MobileText>
+
+                <MobileText fontSize={16} lineHeight={19.36}>
+                  Share the joy of reading and book ownership.
+                </MobileText>
+              </div>
+
+              <Link href={'/register'}>
+                <MobileSignUpButton>Sign up</MobileSignUpButton>
+              </Link>
+
+              <MobileText
+                fontSize={16}
+                lineHeight={19.36}
+                onClick={() => setOnMobileLogin(true)}>
+                Or log in
+              </MobileText>
+            </>
+          )}
+
+          {onMobileLogin === true && <MobileLogin />}
+        </MobileContainer>
       </Media>
       <Media greaterThanOrEqual="sm">
         <Container>
