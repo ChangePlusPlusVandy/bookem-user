@@ -1,10 +1,7 @@
 import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
-import {
-  QueriedUserData,
-  QueriedVolunteerProgramData,
-} from 'bookem-shared/src/types/database';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';

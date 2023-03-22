@@ -1,8 +1,7 @@
 import LongEventCard from '@/components/LongEventCard';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import useSWR from 'swr';
-import { VolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import {
   HeaderContainer,
   Header,
@@ -10,20 +9,23 @@ import {
   MainContainer,
   IconLink,
 } from '@/styles/volunteerHistory.styles';
-
-const fetcher = (url: string) => fetch(url).then(res => res.json());
+import { fetchData } from '@/utils/utils';
+import Link from 'next/link';
 
 const VolunteerHistoryPage = () => {
-  // get data from the volunteerPrograms API using SWR
-  const { data, error, isLoading } = useSWR<VolunteerProgramData[]>(
-    '/api/volunteerPrograms/',
-    fetcher
-  );
+  const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
+  const [error, setError] = useState<Error>();
+  // Fetch volunteer history events when rendered
+  useEffect(() => {
+    fetchData('/api/events/user')
+      .then(data => setEvents(data))
+      .catch(err => setError(err));
+  }, []);
 
   // check for errors, loading, no data
-  if (error) return <div>Failed to load volunteer history</div>;
-  if (isLoading) return <div>Loading...</div>;
-  if (!data) return <></>;
+  if (error) return <>404 Event not found!</>;
+  if (!events && !error) return <div>Loading...</div>;
+  if (!events) return <></>;
 
   return (
     <>
@@ -41,16 +43,11 @@ const VolunteerHistoryPage = () => {
       <Description>Click on event to see specific details</Description>
       <MainContainer>
         {/* Loop through each volunteerProgram specific to that user */}
-        {data.map(event => (
+        {events.map(event => (
           // for each event, create a new LongEventCard component and pass in all that event's info
-          <LongEventCard
-            key={event.name}
-            eventData={{
-              name: event.name,
-              school: event.schools,
-              programDate: event.programDate,
-            }}
-          />
+          <Link key={event._id.toString()} href={'/event/' + event._id}>
+            <LongEventCard eventData={event} />
+          </Link>
         ))}
       </MainContainer>
     </>
