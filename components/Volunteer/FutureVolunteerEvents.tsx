@@ -11,7 +11,7 @@ import {
   NavLeft,
   NavRight,
   SearchBar,
-} from '@/styles/components/futureEvents.styles';
+} from '@/styles/components/Volunteer/futureVolunteerEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
@@ -116,9 +116,12 @@ const FutureVolunteerEvents = () => {
                 event.name.toLowerCase().includes(query.toLowerCase())
               )
               .map(event => (
-                <Link key={event._id.toString()} href={'/event/' + event._id}>
-                  <EventCard eventData={event} size="medium" />
-                </Link>
+                <EventCard
+                  key={event._id.toString()}
+                  eventData={event}
+                  size="medium"
+                  href={'/event/' + event._id}
+                />
               ))}
           </ImagesWrapper>
         </Container>
