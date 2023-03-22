@@ -39,7 +39,7 @@ const EventCard = ({
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
   // the link to redirect to when the EventCard is clicked
-  href: string | undefined;
+  href?: string | undefined;
 }) => {
   // get ratio based on size to be used in computing distances
   const ratio = toRatio(size);
