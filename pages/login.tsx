@@ -23,10 +23,10 @@ import Image from 'next/image';
 interface Props {
   fontSize?: number;
   lineHeight?: number;
+  hover?: boolean;
 }
 
 const MobileContainer = styled.div`
-  background: pink;
   height: 100vh;
   padding: 6% 13%;
   display: flex;
@@ -42,16 +42,25 @@ const MobileContainer = styled.div`
 const MobileText = styled.p<Props>`
   font-size: ${props => props.fontSize}px;
   line-height: ${props => props.lineHeight}px;
+  text-align: center;
+  &:hover {
+    cursor: ${props => (props.hover ? `pointer` : `auto`)};
+  }
 `;
 
 const MobileSignUpButton = styled.button`
   background: #6d6d6d;
+  border: none;
   border-radius: 10px;
   font-size: 16px;
   line-height: 19px;
   color: white;
   width: 296px;
   height: 53px;
+  margin-bottom: 40px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const LoginPage = () => {
@@ -81,26 +90,26 @@ const LoginPage = () => {
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
-        <MobileContainer>
-          {onMobileLogin === false && (
-            <>
-              <Image
-                src={'/bookemkids.png'}
-                width="285"
-                height="387"
-                alt="BookEm Background"
-              />
+        {onMobileLogin === false && (
+          <MobileContainer>
+            <Image
+              src={'/bookemkids.png'}
+              width="285"
+              height="387"
+              alt="BookEm Background"
+            />
 
-              <div>
-                <MobileText fontSize={25} lineHeight={30.26}>
-                  Welcome to Book'em
-                </MobileText>
+            <div>
+              <MobileText fontSize={25} lineHeight={30.26}>
+                Welcome to Book'em
+              </MobileText>
 
-                <MobileText fontSize={16} lineHeight={19.36}>
-                  Share the joy of reading and book ownership.
-                </MobileText>
-              </div>
+              <MobileText fontSize={16} lineHeight={19.36}>
+                Share the joy of reading and book ownership.
+              </MobileText>
+            </div>
 
+            <div>
               <Link href={'/register'}>
                 <MobileSignUpButton>Sign up</MobileSignUpButton>
               </Link>
@@ -108,14 +117,15 @@ const LoginPage = () => {
               <MobileText
                 fontSize={16}
                 lineHeight={19.36}
+                hover
                 onClick={() => setOnMobileLogin(true)}>
                 Or log in
               </MobileText>
-            </>
-          )}
+            </div>
+          </MobileContainer>
+        )}
 
-          {onMobileLogin === true && <MobileLogin />}
-        </MobileContainer>
+        {onMobileLogin === true && <MobileLogin />}
       </Media>
       <Media greaterThanOrEqual="sm">
         <Container>
