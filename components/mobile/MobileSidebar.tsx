@@ -4,7 +4,7 @@ import {
   IconLink,
   Container,
 } from '@/styles/components/Sidebar/sidebar.styles';
-import { UserIcon } from '@/components/Sidebar/UserIcon';
+import { UserIcon } from '@/components/DesktopSidebar/UserIcon';
 
 const MobileSidebar = () => {
   return (

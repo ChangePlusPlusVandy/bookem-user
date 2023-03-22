@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import { Container, MainContent } from '@/styles/layout.styles';
-import { DesktopSidebar } from '@/components/Sidebar/DesktopSidebar';
+import { DesktopSidebar } from '@/components/DesktopSidebar/DesktopSidebar';
 import { SessionProvider } from 'next-auth/react';
 import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';

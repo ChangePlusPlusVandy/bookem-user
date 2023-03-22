@@ -1,5 +1,5 @@
 import React from 'react';
-import { UserIcon } from '@/components/Sidebar/UserIcon';
+import { UserIcon } from '@/components/DesktopSidebar/UserIcon';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import {
   IconContainer,
