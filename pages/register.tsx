@@ -8,6 +8,7 @@ import RegisterPage3 from '@/components/Register/RegisterPage3';
 import RegisterPage4 from '@/components/Register/RegisterPage4';
 import { Container, Error } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
+import { Media, MediaContextProvider } from '@/lib/media';
 
 /**
  * format error messages
@@ -147,27 +148,35 @@ const RegisterPage = () => {
     handleRightArrow,
   };
 
+  // TODO: is changing the register styles css for RightContainer the right way to do the mobile responsiveness stuff?
+  // TODO: should I adjust everything's font size?
   return (
-    <Container>
-      <LeftDisplay />
-      {formData.page === 1 && (
-        <RegisterPage1
-          formFunctions={formFunctions}
-          formPhoneData={formData.phone}
-        />
-      )}
+    <MediaContextProvider disableDynamicMediaQueries>
+      <Container>
+        <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>
+        <Media greaterThanOrEqual="sm">
+          <LeftDisplay />
+        </Media>
 
-      {formData.page === 2 && <RegisterPage2 formFunctions={formFunctions} />}
+        {formData.page === 1 && (
+          <RegisterPage1
+            formFunctions={formFunctions}
+            formPhoneData={formData.phone}
+          />
+        )}
 
-      {formData.page === 3 && (
-        <RegisterPage3
-          formFunctions={formFunctions}
-          formResumeData={formData.resume}
-        />
-      )}
+        {formData.page === 2 && <RegisterPage2 formFunctions={formFunctions} />}
 
-      {formData.page === 4 && <RegisterPage4 />}
-    </Container>
+        {formData.page === 3 && (
+          <RegisterPage3
+            formFunctions={formFunctions}
+            formResumeData={formData.resume}
+          />
+        )}
+
+        {formData.page === 4 && <RegisterPage4 />}
+      </Container>
+    </MediaContextProvider>
   );
 };
 

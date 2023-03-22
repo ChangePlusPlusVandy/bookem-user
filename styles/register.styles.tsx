@@ -42,6 +42,9 @@ export const RightContainer = styled.div`
   height: 100vh;
   padding: 7vh 3% 7vh 7%;
   overflow-y: auto;
+  @media (max-width: 767px) {
+    width: 100vw;
+  }
 `;
 
 /**

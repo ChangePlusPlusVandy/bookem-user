@@ -11,6 +11,17 @@ import {
   InputContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
+import styled from 'styled-components';
+
+// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
+const Form = styled.form`
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+`;
 
 /**
  * auto-format inputted phone number
@@ -76,7 +87,7 @@ const RegisterPage1 = ({
 
   return (
     <RightContainer>
-      <form
+      <Form
         id="registerPage1"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <Header>Tell us about yourself!</Header>
@@ -184,7 +195,7 @@ const RegisterPage1 = ({
           {errors.state && printError('State is required')}
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
-      </form>
+      </Form>
 
       <RegisterFlow
         currentPage={1}

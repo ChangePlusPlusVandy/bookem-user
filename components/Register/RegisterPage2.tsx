@@ -17,6 +17,17 @@ import {
   CheckboxContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
+import styled from 'styled-components';
+
+// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
+const Form = styled.form`
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+`;
 
 const RegisterPage2 = ({
   formFunctions: {
@@ -40,7 +51,7 @@ const RegisterPage2 = ({
 
   return (
     <RightContainer>
-      <form
+      <Form
         id="registerPage2"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <Header>Next up</Header>
@@ -123,7 +134,7 @@ const RegisterPage2 = ({
           </InputContainer>
           {errors.volunteerReason && printError('A response is required')}
         </SectionContainer>
-      </form>
+      </Form>
 
       <RegisterFlow
         currentPage={2}
