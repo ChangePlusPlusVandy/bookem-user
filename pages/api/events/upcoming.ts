@@ -34,8 +34,9 @@ export default async function handler(
     // case 'POST':
     // case 'PUT':
     // case 'DELETE':
-    // default:
-    // res.setHeader('Allow', ['GET', 'PUT', 'DELETE', 'POST']);
-    // res.status(405).end(`Method ${method} Not Allowed`);
+    default:
+      // res.setHeader('Allow', ['GET', 'PUT', 'DELETE', 'POST']);
+      res.status(405).end(`Method ${method} Not Allowed`);
+      break;
   }
 }
