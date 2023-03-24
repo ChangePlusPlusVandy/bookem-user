@@ -4,7 +4,7 @@ import { DesktopSidebar } from '@/components/DesktopSidebar/DesktopSidebar';
 import { SessionProvider } from 'next-auth/react';
 import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';
-import MobileSidebar from '@/components/mobile/MobileSidebar';
+import MobileSidebar from '@/components/mobile/MobileSidebar/MobileSidebar';
 
 export default function App({
   Component,
