@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
   @media (max-width: 767px) {
     position: relative;
-    text-align: center;
+    /* text-align: center; */
     width: 100%;
     background-color: white;
   }
@@ -30,6 +30,7 @@ export const IconContainer = styled.div`
     padding-top: 20px;
   }
   @media (max-width: 767px) {
+    padding-top: 20px;
   }
 `;
 

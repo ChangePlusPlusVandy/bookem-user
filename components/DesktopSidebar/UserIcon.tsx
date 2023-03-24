@@ -3,16 +3,23 @@ import Image from 'next/image';
 import {
   ImageContainer,
   Name,
+  UserIconContainer,
 } from '@/styles/components/DesktopSidebar/userIcon.styles';
+import { Media } from '@/lib/media';
 
 export const UserIcon = () => {
   return (
-    <>
+    <UserIconContainer>
       <ImageContainer>
         {/* TODO: add user profile image */}
-        <Image src="/pretty.png" width="100" height="100" alt="" />
+        <Media greaterThanOrEqual="sm">
+          <Image src="/pretty.png" width="100" height="100" alt="" />
+        </Media>
+        <Media lessThan="sm">
+          <Image src="/pretty.png" width="73" height="73" alt="" />
+        </Media>
       </ImageContainer>
       <Name>Linda S.</Name>
-    </>
+    </UserIconContainer>
   );
 };
