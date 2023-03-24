@@ -25,19 +25,19 @@ export default function App({
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <MediaContextProvider disableDynamicMediaQueries>
-      <Media lessThan="sm">
-        <Container>
-          {/* TODO: add layout for mobile */}
-          <MobileSidebar />
+      {/* <Media lessThan="sm">
+        <Container> */}
+      {/* TODO: add layout for mobile */}
+      {/* <MobileSidebar />
           <MainContent>{children}</MainContent>
-        </Container>
-      </Media>
-      <Media greaterThanOrEqual="sm">
-        <Container>
-          <DesktopSidebar />
-          <MainContent>{children}</MainContent>
-        </Container>
-      </Media>
+        </Container> */}
+      {/* </Media> */}
+      {/* <Media greaterThanOrEqual="sm"> */}
+      <Container>
+        <DesktopSidebar />
+        <MainContent>{children}</MainContent>
+      </Container>
+      {/* </Media> */}
     </MediaContextProvider>
   );
 };

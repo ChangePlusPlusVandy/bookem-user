@@ -15,7 +15,9 @@ export const ImageContainer = styled.div`
 export const Name = styled.div`
   margin: auto;
   text-align: center;
-  color: white;
+  @media (min-width: 768px) {
+    color: white;
+  }
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
