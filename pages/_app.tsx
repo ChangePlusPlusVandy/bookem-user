@@ -26,9 +26,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
-        {/* TODO: add layout for mobile */}
-        <MobileSidebar />
-        <MainContent>{children}</MainContent>
+        <Container>
+          {/* TODO: add layout for mobile */}
+          <MobileSidebar />
+          <MainContent>{children}</MainContent>
+        </Container>
       </Media>
       <Media greaterThanOrEqual="sm">
         <Container>

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import {
   ImageContainer,
   Name,
-} from '@/styles/components/Sidebar/userIcon.styles';
+} from '@/styles/components/DesktopSidebar/userIcon.styles';
 
 export const UserIcon = () => {
   return (
