@@ -12,6 +12,7 @@ export const UserIcon = () => {
     <UserIconContainer>
       <ImageContainer>
         {/* TODO: add user profile image */}
+        {/* Bigger image size for desktop and smaller for mobile */}
         <Media greaterThanOrEqual="sm">
           <Image src="/pretty.png" width="100" height="100" alt="" />
         </Media>

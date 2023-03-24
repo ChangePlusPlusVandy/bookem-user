@@ -19,21 +19,24 @@ export const ImageContainer = styled.div`
 `;
 
 export const Name = styled.div`
-  text-align: center;
-
   @media (min-width: 768px) {
     color: white;
-    font: 400 normal 20px/30px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
   }
 
   @media (max-width: 767px) {
-    font: 400 normal 12px/30px;
+    margin-top: 10px;
+    font-size: 20px;
   }
 `;
 
 export const UserIconContainer = styled.div`
   @media (max-width: 767px) {
-    margin: 0 0 0 29px;
-    width: 73px;
+    margin: 0 0 120px 29px;
+    width: 100px;
   }
 `;
