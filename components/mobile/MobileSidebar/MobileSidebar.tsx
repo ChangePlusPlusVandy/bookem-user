@@ -1,8 +1,5 @@
 import React from 'react';
-import {
-  Container,
-  IconContainer,
-} from '@/styles/components/mobile/MobileSidebar/MobileSidebar.styles';
+import { Container } from '@/styles/components/mobile/MobileSidebar/sidebar.styles';
 import { UserIcon } from '@/components/DesktopSidebar/UserIcon';
 import { MobileUserIcon } from './MobileUserIcon';
 

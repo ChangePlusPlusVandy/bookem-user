@@ -7,10 +7,3 @@ export const Container = styled.div`
   width: 100%;
   background-color: pink;
 `;
-
-/**
- * Container of icon
- */
-export const IconContainer = styled.div`
-  padding-top: 20px;
-`;
