@@ -12,16 +12,22 @@ import {
   SIDEBAR_ICON_WIDTH,
 } from '@/utils/constants';
 import Image from 'next/image';
+import { Media } from '@/lib/media';
 
 export const DesktopSidebar = () => {
   const activeRoute = useActiveRoute();
 
   return (
     <Container>
-      <IconContainer>
-        <UserIcon />
-      </IconContainer>
+      <Media greaterThanOrEqual="sm">
+        <IconContainer>
+          <UserIcon />
+        </IconContainer>
+      </Media>
 
+      <Media lessThan="sm">
+        <UserIcon />
+      </Media>
       {/* Iterate through iconParamList to display icons */}
       {SIDEBAR_ICON_PARAMS.map(iconParam => {
         return (

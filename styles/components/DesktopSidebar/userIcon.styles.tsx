@@ -36,7 +36,7 @@ export const Name = styled.div`
 
 export const UserIconContainer = styled.div`
   @media (max-width: 767px) {
-    margin: 0 0 120px 29px;
+    margin: 76px 0 120px 29px;
     width: 100px;
   }
 `;
