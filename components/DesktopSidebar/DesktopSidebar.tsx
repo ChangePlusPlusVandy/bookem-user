@@ -51,26 +51,13 @@ export const DesktopSidebar = () => {
                     : iconParam.desktopDefaultSrc
                 }>
                 {/* Desktop version only displays image */}
-                <Media greaterThanOrEqual="sm">
-                  {/* Icon image with default src */}
-                  <Image
-                    src={iconParam.desktopDefaultSrc}
-                    alt=""
-                    width={SIDEBAR_ICON_HEIGHT}
-                    height={SIDEBAR_ICON_WIDTH}
-                  />
-                </Media>
-
-                {/* Mobile version displays image + text */}
-                <Media lessThan="sm">
-                  <Image
-                    src={iconParam.desktopDefaultSrc}
-                    alt=""
-                    width={SIDEBAR_ICON_HEIGHT}
-                    height={SIDEBAR_ICON_WIDTH}
-                  />
-                  <IconText>{iconParam.text}</IconText>
-                </Media>
+                {/* Icon image with default src */}
+                <Image
+                  src={iconParam.desktopDefaultSrc}
+                  alt=""
+                  width={SIDEBAR_ICON_HEIGHT}
+                  height={SIDEBAR_ICON_WIDTH}
+                />
               </IconLink>
             </IconContainer>
           </Media>
@@ -96,27 +83,14 @@ export const DesktopSidebar = () => {
                       ? iconParam.desktopHoveredSrc
                       : iconParam.desktopDefaultSrc
                   }>
-                  {/* Desktop version only displays image */}
-                  <Media greaterThanOrEqual="sm">
-                    {/* Icon image with default src */}
-                    <Image
-                      src={iconParam.desktopDefaultSrc}
-                      alt=""
-                      width={SIDEBAR_ICON_HEIGHT}
-                      height={SIDEBAR_ICON_WIDTH}
-                    />
-                  </Media>
-
                   {/* Mobile version displays image + text */}
-                  <Media lessThan="sm">
-                    <Image
-                      src={iconParam.desktopDefaultSrc}
-                      alt=""
-                      width={SIDEBAR_ICON_HEIGHT}
-                      height={SIDEBAR_ICON_WIDTH}
-                    />
-                    <IconText>{iconParam.text}</IconText>
-                  </Media>
+                  <Image
+                    src={iconParam.desktopDefaultSrc}
+                    alt=""
+                    width={SIDEBAR_ICON_HEIGHT}
+                    height={SIDEBAR_ICON_WIDTH}
+                  />
+                  <IconText>{iconParam.text}</IconText>
                 </IconLink>
               </IconContainer>
             );
