@@ -39,4 +39,5 @@ export interface SidebarIconParams {
   defaultSrc: string;
   hoveredsrc: string;
   linkTo: string;
+  text: string;
 }

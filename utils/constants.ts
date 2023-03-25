@@ -18,16 +18,19 @@ export const SIDEBAR_ICON_PARAMS: SidebarIconParams[] = [
     defaultSrc: '/sidebar/home-white.png',
     hoveredsrc: '/sidebar/home-black.png',
     linkTo: '/',
+    text: 'Home',
   },
   {
     defaultSrc: '/sidebar/volunteer-white.png',
     hoveredsrc: '/sidebar/volunteer-black.png',
     linkTo: '/volunteer',
+    text: 'Volunteer',
   },
   {
     defaultSrc: '/sidebar/setting-white.png',
     hoveredsrc: '/sidebar/setting-black.png',
     linkTo: '/settings',
+    text: 'Settings',
   },
 ];
 
