@@ -101,7 +101,7 @@ const LoginPage = () => {
 
             <div>
               <MobileText fontSize={25} lineHeight={30.26}>
-                Welcome to Book'em
+                Welcome to Book&apos;em
               </MobileText>
 
               <MobileText fontSize={16} lineHeight={19.36}>
