@@ -58,6 +58,7 @@ export const DesktopSidebar = () => {
                 />
               </Media>
 
+              {/* Mobile version displays image + text */}
               <Media lessThan="sm">
                 <Image
                   src={iconParam.defaultSrc}
