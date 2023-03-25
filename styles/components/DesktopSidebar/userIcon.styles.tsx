@@ -8,7 +8,6 @@ export const UserIconContainer = styled.div`
   @media (max-width: 767px) {
     margin: 76px 0 100px 29px;
     width: 100px;
-    background-color: pink;
   }
 `;
 

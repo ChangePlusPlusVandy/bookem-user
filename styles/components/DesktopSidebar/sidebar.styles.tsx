@@ -18,7 +18,6 @@ export const Container = styled.div`
     position: relative;
     /* text-align: center; */
     width: 100%;
-    background-color: lightblue;
   }
 `;
 
@@ -26,7 +25,6 @@ export const MobileIconsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background-color: aliceblue;
 `;
 
 /**
@@ -38,7 +36,6 @@ export const IconContainer = styled.div`
   @media (max-width: 767px) {
     margin: 25px 0 0 0;
     width: 90%;
-    background-color: red;
   }
 `;
 
@@ -77,6 +74,9 @@ export const IconLink = styled(Link)<{
     }
     @media (max-width: 767px) {
       background-color: #6d6d6d;
+      span {
+        color: white;
+      }
     }
     img {
       content: url(${props => props.hoveredsrc});
