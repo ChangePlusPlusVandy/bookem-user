@@ -61,3 +61,5 @@ export const IconLink = styled(Link)<{
     }
   }
 `;
+
+export const IconText = styled.span``;

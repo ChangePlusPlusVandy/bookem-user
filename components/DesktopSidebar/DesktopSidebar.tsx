@@ -5,6 +5,7 @@ import {
   IconContainer,
   IconLink,
   Container,
+  IconText,
 } from '@/styles/components/DesktopSidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
@@ -46,13 +47,26 @@ export const DesktopSidebar = () => {
                   ? iconParam.hoveredsrc
                   : iconParam.defaultSrc
               }>
-              {/* Icon image with default src */}
-              <Image
-                src={iconParam.defaultSrc}
-                alt=""
-                width={SIDEBAR_ICON_HEIGHT}
-                height={SIDEBAR_ICON_WIDTH}
-              />
+              {/* Desktop version only displays image */}
+              <Media greaterThanOrEqual="sm">
+                {/* Icon image with default src */}
+                <Image
+                  src={iconParam.defaultSrc}
+                  alt=""
+                  width={SIDEBAR_ICON_HEIGHT}
+                  height={SIDEBAR_ICON_WIDTH}
+                />
+              </Media>
+
+              <Media lessThan="sm">
+                <Image
+                  src={iconParam.defaultSrc}
+                  alt=""
+                  width={SIDEBAR_ICON_HEIGHT}
+                  height={SIDEBAR_ICON_WIDTH}
+                />
+                <IconText>{iconParam.text}</IconText>
+              </Media>
             </IconLink>
           </IconContainer>
         );
