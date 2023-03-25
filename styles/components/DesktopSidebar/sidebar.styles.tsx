@@ -26,11 +26,10 @@ export const Container = styled.div`
  * Container of icon
  */
 export const IconContainer = styled.div`
-  padding-top: 20px;
-
   @media (min-width: 768px) {
   }
   @media (max-width: 767px) {
+    margin: 25px 0 0 0;
     width: 90%;
   }
 `;
