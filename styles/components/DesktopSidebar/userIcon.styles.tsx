@@ -1,5 +1,17 @@
 import styled from 'styled-components';
 
+export const UserIconContainer = styled.div`
+  @media (min-width: 768px) {
+    margin: 20px 0 0 0;
+  }
+
+  @media (max-width: 767px) {
+    margin: 76px 0 100px 29px;
+    width: 100px;
+    background-color: pink;
+  }
+`;
+
 /**
  * Circular header image container
  */
@@ -31,17 +43,5 @@ export const Name = styled.div`
   @media (max-width: 767px) {
     margin-top: 10px;
     font-size: 20px;
-  }
-`;
-
-export const UserIconContainer = styled.div`
-  @media (min-width: 768px) {
-    margin: 20px 0 0 0;
-  }
-
-  @media (max-width: 767px) {
-    margin: 76px 0 120px 29px;
-    width: 100px;
-    background-color: pink;
   }
 `;

@@ -22,6 +22,12 @@ export const Container = styled.div`
   }
 `;
 
+export const MobileIconsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 /**
  * Container of icon
  */
@@ -67,5 +73,3 @@ export const IconLink = styled(Link)<{
 `;
 
 export const IconText = styled.span``;
-
-export const MobileIconsContainer = styled.div``;
