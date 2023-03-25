@@ -7,6 +7,7 @@ import {
   Container,
   IconText,
   MobileIconsContainer,
+  MobileIconFlexBox,
 } from '@/styles/components/DesktopSidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
@@ -83,19 +84,21 @@ export const DesktopSidebar = () => {
                       ? iconParam.mobileHoveredSrc
                       : iconParam.mobileDefaultSrc
                   }>
-                  {/* Mobile version displays image + text */}
-                  <Image
-                    src={iconParam.mobileDefaultSrc}
-                    alt=""
-                    width={SIDEBAR_ICON_HEIGHT}
-                    height={SIDEBAR_ICON_WIDTH}
-                  />
-                  <IconText
-                    color={
-                      activeRoute === iconParam.linkTo ? 'white' : 'black'
-                    }>
-                    {iconParam.text}
-                  </IconText>
+                  <MobileIconFlexBox>
+                    {/* Mobile version displays image + text */}
+                    <Image
+                      src={iconParam.mobileDefaultSrc}
+                      alt=""
+                      width={SIDEBAR_ICON_HEIGHT}
+                      height={SIDEBAR_ICON_WIDTH}
+                    />
+                    <IconText
+                      color={
+                        activeRoute === iconParam.linkTo ? 'white' : 'black'
+                      }>
+                      {iconParam.text}
+                    </IconText>
+                  </MobileIconFlexBox>
                 </IconLink>
               </IconContainer>
             );

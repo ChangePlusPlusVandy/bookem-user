@@ -65,12 +65,29 @@ export const IconLink = styled(Link)<{
     content: url(${props => props.imgsrc});
   }
 
+  @media (max-width: 767px) {
+  }
+
+  @media (min-width: 767px) {
+  }
+
   &:hover {
-    background-color: #d9d9d9;
+    @media (min-width: 767px) {
+      background-color: #d9d9d9;
+    }
+    @media (max-width: 767px) {
+      background-color: #6d6d6d;
+    }
     img {
       content: url(${props => props.hoveredsrc});
     }
   }
+`;
+
+export const MobileIconFlexBox = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 `;
 
 export const IconText = styled.span<{ color: string }>`
