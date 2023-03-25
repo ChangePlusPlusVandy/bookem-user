@@ -90,7 +90,12 @@ export const DesktopSidebar = () => {
                     width={SIDEBAR_ICON_HEIGHT}
                     height={SIDEBAR_ICON_WIDTH}
                   />
-                  <IconText>{iconParam.text}</IconText>
+                  <IconText
+                    color={
+                      activeRoute === iconParam.linkTo ? 'white' : 'black'
+                    }>
+                    {iconParam.text}
+                  </IconText>
                 </IconLink>
               </IconContainer>
             );

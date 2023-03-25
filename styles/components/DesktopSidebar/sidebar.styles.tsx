@@ -26,6 +26,7 @@ export const MobileIconsContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: aliceblue;
 `;
 
 /**
@@ -72,4 +73,6 @@ export const IconLink = styled(Link)<{
   }
 `;
 
-export const IconText = styled.span``;
+export const IconText = styled.span<{ color: string }>`
+  color: ${props => props.color};
+`;
