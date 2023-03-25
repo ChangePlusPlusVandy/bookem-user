@@ -15,20 +15,26 @@ export const SIDEBAR_ICON_HEIGHT = 42.47;
  */
 export const SIDEBAR_ICON_PARAMS: SidebarIconParams[] = [
   {
-    defaultSrc: '/sidebar/home-white.png',
-    hoveredsrc: '/sidebar/home-black.png',
+    desktopDefaultSrc: '/sidebar/home-white.png',
+    mobileDefaultSrc: '',
+    desktopHoveredSrc: '/sidebar/home-black.png',
+    mobileHoveredSrc: '',
     linkTo: '/',
     text: 'Home',
   },
   {
-    defaultSrc: '/sidebar/volunteer-white.png',
-    hoveredsrc: '/sidebar/volunteer-black.png',
+    desktopDefaultSrc: '/sidebar/volunteer-white.png',
+    mobileDefaultSrc: '',
+    desktopHoveredSrc: '/sidebar/volunteer-black.png',
+    mobileHoveredSrc: '',
     linkTo: '/volunteer',
     text: 'Volunteer',
   },
   {
-    defaultSrc: '/sidebar/setting-white.png',
-    hoveredsrc: '/sidebar/setting-black.png',
+    desktopDefaultSrc: '/sidebar/setting-white.png',
+    mobileDefaultSrc: '',
+    desktopHoveredSrc: '/sidebar/setting-black.png',
+    mobileHoveredSrc: '',
     linkTo: '/settings',
     text: 'Settings',
   },

@@ -32,11 +32,11 @@ export const DesktopSidebar = () => {
       {/* Iterate through iconParamList to display icons */}
       {SIDEBAR_ICON_PARAMS.map(iconParam => {
         return (
-          <IconContainer key={iconParam.defaultSrc}>
+          <IconContainer key={iconParam.desktopDefaultSrc}>
             {/* Link that wraps around the icon */}
             <IconLink
               href={iconParam.linkTo}
-              hoveredsrc={iconParam.hoveredsrc}
+              hoveredsrc={iconParam.desktopHoveredSrc}
               // Dynamically assign the background color according to the current route
               backgroundcolor={
                 activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
@@ -44,14 +44,14 @@ export const DesktopSidebar = () => {
               // Dynamically assign the src of the icon according to the current route
               imgsrc={
                 activeRoute === iconParam.linkTo
-                  ? iconParam.hoveredsrc
-                  : iconParam.defaultSrc
+                  ? iconParam.desktopHoveredSrc
+                  : iconParam.desktopDefaultSrc
               }>
               {/* Desktop version only displays image */}
               <Media greaterThanOrEqual="sm">
                 {/* Icon image with default src */}
                 <Image
-                  src={iconParam.defaultSrc}
+                  src={iconParam.desktopDefaultSrc}
                   alt=""
                   width={SIDEBAR_ICON_HEIGHT}
                   height={SIDEBAR_ICON_WIDTH}
@@ -61,7 +61,7 @@ export const DesktopSidebar = () => {
               {/* Mobile version displays image + text */}
               <Media lessThan="sm">
                 <Image
-                  src={iconParam.defaultSrc}
+                  src={iconParam.desktopDefaultSrc}
                   alt=""
                   width={SIDEBAR_ICON_HEIGHT}
                   height={SIDEBAR_ICON_WIDTH}

@@ -36,8 +36,10 @@ export interface RegisterFormFunctions {
  * @linkTo where the link of icon directs to
  */
 export interface SidebarIconParams {
-  defaultSrc: string;
-  hoveredsrc: string;
+  desktopDefaultSrc: string;
+  mobileDefaultSrc: string;
+  desktopHoveredSrc: string;
+  mobileHoveredSrc: string;
   linkTo: string;
   text: string;
 }
