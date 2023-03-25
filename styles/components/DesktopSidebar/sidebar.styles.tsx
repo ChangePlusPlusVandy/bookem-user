@@ -50,7 +50,9 @@ export const IconLink = styled(Link)<{
   padding: 25px 0px 25px 0px;
   width: 100%;
   background-color: ${props => props.backgroundcolor};
-  border-radius: 10px;
+  @media (max-width: 767px) {
+    border-radius: 10px;
+  }
 
   img {
     content: url(${props => props.imgsrc});
