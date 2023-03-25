@@ -18,7 +18,7 @@ export const Container = styled.div`
     position: relative;
     /* text-align: center; */
     width: 100%;
-    background-color: white;
+    background-color: lightblue;
   }
 `;
 
@@ -31,6 +31,7 @@ export const IconContainer = styled.div`
   @media (max-width: 767px) {
     margin: 25px 0 0 0;
     width: 90%;
+    background-color: red;
   }
 `;
 
@@ -66,3 +67,5 @@ export const IconLink = styled(Link)<{
 `;
 
 export const IconText = styled.span``;
+
+export const MobileIconsContainer = styled.div``;
