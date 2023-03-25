@@ -4,7 +4,7 @@ import { DesktopSidebar } from '@/components/DesktopSidebar/DesktopSidebar';
 import { SessionProvider } from 'next-auth/react';
 import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';
-import MobileSidebar from '@/components/mobile/MobileSidebar/MobileSidebar';
+import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 
 export default function App({
   Component,
@@ -25,19 +25,19 @@ export default function App({
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <MediaContextProvider disableDynamicMediaQueries>
-      {/* <Media lessThan="sm">
-        <Container> */}
-      {/* TODO: add layout for mobile */}
-      {/* <MobileSidebar />
+      <Media lessThan="sm">
+        <Container>
+          {/* TODO: add layout for mobile */}
+          <MobileSidebar />
           <MainContent>{children}</MainContent>
-        </Container> */}
-      {/* </Media> */}
-      {/* <Media greaterThanOrEqual="sm"> */}
-      <Container>
-        <DesktopSidebar />
-        <MainContent>{children}</MainContent>
-      </Container>
-      {/* </Media> */}
+        </Container>
+      </Media>
+      <Media greaterThanOrEqual="sm">
+        <Container>
+          <DesktopSidebar />
+          <MainContent>{children}</MainContent>
+        </Container>
+      </Media>
     </MediaContextProvider>
   );
 };
