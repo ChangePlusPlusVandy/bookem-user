@@ -62,12 +62,6 @@ export const IconLink = styled(Link)<{
     content: url(${props => props.imgsrc});
   }
 
-  @media (max-width: 767px) {
-  }
-
-  @media (min-width: 767px) {
-  }
-
   &:hover {
     @media (min-width: 767px) {
       background-color: #d9d9d9;
