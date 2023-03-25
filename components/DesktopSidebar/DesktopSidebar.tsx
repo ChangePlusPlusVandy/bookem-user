@@ -72,7 +72,7 @@ export const DesktopSidebar = () => {
                 {/* Link that wraps around the icon */}
                 <IconLink
                   href={iconParam.linkTo}
-                  hoveredsrc={iconParam.desktopHoveredSrc}
+                  hoveredsrc={iconParam.mobileHoveredSrc}
                   // Dynamically assign the background color according to the current route
                   backgroundcolor={
                     activeRoute === iconParam.linkTo ? '#6d6d6d' : 'white'
@@ -80,12 +80,12 @@ export const DesktopSidebar = () => {
                   // Dynamically assign the src of the icon according to the current route
                   imgsrc={
                     activeRoute === iconParam.linkTo
-                      ? iconParam.desktopHoveredSrc
-                      : iconParam.desktopDefaultSrc
+                      ? iconParam.mobileHoveredSrc
+                      : iconParam.mobileDefaultSrc
                   }>
                   {/* Mobile version displays image + text */}
                   <Image
-                    src={iconParam.desktopDefaultSrc}
+                    src={iconParam.mobileDefaultSrc}
                     alt=""
                     width={SIDEBAR_ICON_HEIGHT}
                     height={SIDEBAR_ICON_WIDTH}
