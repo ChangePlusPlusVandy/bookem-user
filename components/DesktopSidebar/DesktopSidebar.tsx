@@ -75,7 +75,7 @@ export const DesktopSidebar = () => {
                   hoveredsrc={iconParam.desktopHoveredSrc}
                   // Dynamically assign the background color according to the current route
                   backgroundcolor={
-                    activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
+                    activeRoute === iconParam.linkTo ? '#6d6d6d' : 'white'
                   }
                   // Dynamically assign the src of the icon according to the current route
                   imgsrc={
