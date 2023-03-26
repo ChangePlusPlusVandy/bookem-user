@@ -8,6 +8,7 @@ import {
   IconText,
   MobileIconsContainer,
   MobileIconFlexBox,
+  Header,
 } from '@/styles/components/DesktopSidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
@@ -15,13 +16,17 @@ import {
   SIDEBAR_ICON_WIDTH,
 } from '@/utils/constants';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export const MobileSidebar = () => {
   const activeRoute = useActiveRoute();
 
   return (
     <Container>
-      <UserIcon />
+      <Header>
+        <UserIcon />
+        <Link href="#">abs</Link>
+      </Header>
 
       <MobileIconsContainer>
         {/* Iterate through icons */}

@@ -24,20 +24,31 @@ export const Container = styled.div`
   }
 `;
 
-export const Header = styled.div``;
+/**
+ * Contain user icon and cross button in mobile
+ */
+export const Header = styled.div`
+  @media (max-width: 767px) {
+    display: flex;
+    justify-content: space-between;
+  }
+`;
 
+/**
+ * Contains the icons other than user icon
+ */
 export const MobileIconsContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 /**
  * Container of icon
  */
 export const IconContainer = styled.div`
-  @media (min-width: 768px) {
-  }
   @media (max-width: 767px) {
     margin: 25px 0px 0 25px;
     width: 90%;
@@ -59,36 +70,52 @@ export const IconLink = styled(Link)<{
   padding: 25px 0px 25px 0px;
   width: 100%;
   background-color: ${props => props.backgroundcolor};
+
+  // Round border for mobile
   @media (max-width: 767px) {
     border-radius: 10px;
   }
 
+  // Change image of icon dynamically
   img {
     content: url(${props => props.imgsrc});
   }
 
+  // Change background color when hovered
   &:hover {
     @media (min-width: 767px) {
       background-color: #d9d9d9;
     }
+
+    // Change background color and text color when hovered
     @media (max-width: 767px) {
       background-color: #6d6d6d;
       span {
         color: white;
       }
     }
+
+    // Change image of icon when hovered
     img {
       content: url(${props => props.hoveredsrc});
     }
   }
 `;
 
+/**
+ * Contains the icon image + the text
+ * Flex horizontally
+ */
 export const MobileIconFlexBox = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
 `;
 
+/**
+ * Text associated with an icon
+ * @color Color of the text
+ */
 export const IconText = styled.span<{ color: string }>`
   color: ${props => props.color};
   font-family: 'Inter';
