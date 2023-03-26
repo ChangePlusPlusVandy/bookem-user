@@ -37,13 +37,26 @@ export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 60px;
+  gap: 30px;
   width: 50vw;
   height: 100vh;
   padding: 7vh 3% 7vh 7%;
   overflow-y: auto;
   @media (max-width: 767px) {
     width: 100vw;
+  }
+`;
+
+/**
+ * Form whose formatting adjusts on screen size
+ */
+export const Form = styled.form`
+  overflow: auto;
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
   }
 `;
 
@@ -266,7 +279,16 @@ export const LastPageText = styled.div<Props>`
 /**
  * Error messages for invalid inputs
  */
-export const Error = styled.span`
-  padding: 1vh;
+export const Error = styled.p`
+  margin: 0;
+  padding-left: 1vh;
   color: red;
+`;
+
+/**
+ * Guarantees white space above RegisterFlow component
+ */
+export const WhiteSpace = styled.div`
+  flex-grow: 1;
+  background: pink;
 `;

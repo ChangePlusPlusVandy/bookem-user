@@ -3,6 +3,7 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
+  Form,
   Header,
   SectionContainer,
   SectionHeader,
@@ -15,19 +16,11 @@ import {
   InputTextarea,
   InputContainer,
   CheckboxContainer,
+  WhiteSpace,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-import styled from 'styled-components';
 
 // TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
-const Form = styled.form`
-  @media (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-`;
 
 const RegisterPage2 = ({
   formFunctions: {
@@ -51,11 +44,11 @@ const RegisterPage2 = ({
 
   return (
     <RightContainer>
+      <Header>Next up</Header>
+
       <Form
         id="registerPage2"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <Header>Next up</Header>
-
         <SectionContainer>
           <SectionHeader>Select age range</SectionHeader>
 
@@ -135,6 +128,8 @@ const RegisterPage2 = ({
           {errors.volunteerReason && printError('A response is required')}
         </SectionContainer>
       </Form>
+
+      <WhiteSpace />
 
       <RegisterFlow
         currentPage={2}

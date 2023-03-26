@@ -1,13 +1,9 @@
-import React, {
-  ChangeEvent,
-  KeyboardEventHandler,
-  useRef,
-  useState,
-} from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
+  Form,
   Header,
   SectionContainer,
   SectionHeader,
@@ -19,19 +15,11 @@ import {
   LabelRadio,
   InputRadio,
   Button,
+  WhiteSpace,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-import styled from 'styled-components';
 
-// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
-const Form = styled.form`
-  @media (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-`;
+// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING FOR FORM COMPONENT?
 
 const RegisterPage3 = ({
   formFunctions: {
@@ -81,11 +69,11 @@ const RegisterPage3 = ({
 
   return (
     <RightContainer>
+      <Header>Almost there</Header>
+
       <Form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <Header>Almost there</Header>
-
         <SectionContainer>
           <SectionHeader>Occupation</SectionHeader>
 
@@ -154,11 +142,13 @@ const RegisterPage3 = ({
           </InputRadioVertical>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
-
-        <ButtonContainer>
-          <Button>Submit</Button>
-        </ButtonContainer>
       </Form>
+
+      <ButtonContainer>
+        <Button form="registerPage3">Submit</Button>
+      </ButtonContainer>
+
+      <WhiteSpace />
 
       <RegisterFlow
         currentPage={3}

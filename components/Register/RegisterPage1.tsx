@@ -3,25 +3,18 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
+  Form,
   Header,
   SectionContainer,
   SectionHeader,
   InputFlex,
   InputText,
   InputContainer,
+  WhiteSpace,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-import styled from 'styled-components';
 
 // TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
-const Form = styled.form`
-  @media (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-  }
-`;
 
 /**
  * auto-format inputted phone number
@@ -87,11 +80,11 @@ const RegisterPage1 = ({
 
   return (
     <RightContainer>
+      <Header>Tell us about yourself!</Header>
+
       <Form
         id="registerPage1"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <Header>Tell us about yourself!</Header>
-
         <SectionContainer>
           <SectionHeader>Basic Information</SectionHeader>
 
@@ -196,6 +189,8 @@ const RegisterPage1 = ({
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
       </Form>
+
+      <WhiteSpace />
 
       <RegisterFlow
         currentPage={1}
