@@ -35,6 +35,8 @@ const MobileContainer = styled.div`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
+  font-size: 16px;
+  line-height: 19.36px;
 `;
 
 const MobileTextContainer = styled.div`
@@ -42,8 +44,6 @@ const MobileTextContainer = styled.div`
 `;
 
 const MobileText = styled.p<Props>`
-  font-size: 16px;
-  line-height: 19.36px;
   text-align: center;
   &:first-child {
     font-size: 25px;
@@ -58,8 +58,8 @@ const MobileSignUpButton = styled.button`
   background: #6d6d6d;
   border: none;
   border-radius: 10px;
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 1rem;
+  line-height: 1rem;
   color: white;
   width: 296px;
   height: 53px;
