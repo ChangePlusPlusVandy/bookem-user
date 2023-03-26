@@ -1,7 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { convertToDate, getTime } from '@/utils/utils';
-import { EventType } from '@/utils/types';
+import Link from 'next/link';
 import {
   AddressContainer,
   AddressIcon,
@@ -13,6 +13,7 @@ import {
   InfoFlexChild,
   Name,
 } from '@/styles/components/eventCard.styles';
+import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 
 // EventCard specific implementation of sizeMap
 const sizeMap = new Map<string, number>([
@@ -31,64 +32,66 @@ const toRatio = (size: 'large' | 'medium' | 'small'): number => {
 const EventCard = ({
   eventData,
   size,
+  href,
 }: {
-  // TODO: change type of eventData
-  eventData: EventType;
+  // Volunteer program data
+  eventData: QueriedVolunteerProgramData;
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
+  // the link to redirect to when the EventCard is clicked
+  href?: string | undefined;
 }) => {
-  // convert the event date to Date format
-  const eventDate = new Date(eventData.date);
-
   // get ratio based on size to be used in computing distances
   const ratio = toRatio(size);
 
   return (
     <Container ratio={ratio}>
-      <EventImage ratio={ratio}>
-        <Image
-          src="/eventCard/event-image.png"
-          alt="Event image icon"
-          width={`${Math.round(ratio * 138)}`}
-          height={`${Math.round(ratio * 138)}`}
-        />
-      </EventImage>
-      <Name ratio={ratio}>{eventData.name}</Name>
-
-      <AddressContainer ratio={ratio}>
-        <AddressIcon>
+      <Link href={href || ''}>
+        <EventImage ratio={ratio}>
           <Image
-            src="/eventCard/map.png"
-            alt="Map icon"
-            width={`${Math.round(ratio * 21)}`}
-            height={`${Math.round(ratio * 23.99)}`}
+            src="/eventCard/event-image.png"
+            alt="Event image icon"
+            width={`${Math.round(ratio * 138)}`}
+            height={`${Math.round(ratio * 138)}`}
           />
-        </AddressIcon>
-        {eventData.location}
-      </AddressContainer>
+        </EventImage>
+        <Name ratio={ratio}>{eventData.name}</Name>
 
-      <InfoContainer ratio={ratio}>
-        <ClockIcon>
-          <Image
-            src="/eventCard/date-icon.png"
-            alt="Clock icon"
-            width={`${Math.round(ratio * 21.27)}`}
-            height={`${Math.round(ratio * 22.14)}`}
-          />
-        </ClockIcon>
+        <AddressContainer ratio={ratio}>
+          <AddressIcon>
+            <Image
+              src="/eventCard/map.png"
+              alt="Map icon"
+              width={`${Math.round(ratio * 21)}`}
+              height={`${Math.round(ratio * 23.99)}`}
+            />
+          </AddressIcon>
+          {eventData.location}
+        </AddressContainer>
 
-        <InfoFlex>
-          <InfoFlexChild ratio={ratio}>
-            {convertToDate(eventDate.toString()) +
-              ' ' +
-              getTime(eventDate.toString())}
-          </InfoFlexChild>
-          {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
-          <InfoFlexChild ratio={ratio}>
-            {eventData.availability} spots
-          </InfoFlexChild>
-        </InfoFlex>
-      </InfoContainer>
+        <InfoContainer ratio={ratio}>
+          <ClockIcon>
+            <Image
+              src="/eventCard/date-icon.png"
+              alt="Clock icon"
+              width={`${Math.round(ratio * 21.27)}`}
+              height={`${Math.round(ratio * 22.14)}`}
+            />
+          </ClockIcon>
+
+          <InfoFlex>
+            <InfoFlexChild ratio={ratio}>
+              {convertToDate(eventData.programDate.toString()) +
+                ' ' +
+                getTime(eventData.programDate.toString())}
+            </InfoFlexChild>
+            {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
+            <InfoFlexChild ratio={ratio}>
+              {eventData.maxSpot} spots
+            </InfoFlexChild>
+          </InfoFlex>
+        </InfoContainer>
+      </Link>
     </Container>
   );
 };

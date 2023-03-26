@@ -122,7 +122,7 @@ export default async function handler(
           // Insert NUM_OF_LOGS_PER_USER volunteer logs for each user
           for (let i = 0; i < NUM_OF_LOGS_PER_USER; i++) {
             bulkLogs.insert({
-              userID: new ObjectId(userId),
+              userId: new ObjectId(userId),
               school: faker.helpers.arrayElement(SCHOOLS),
               teacher: faker.name.firstName() + ' ' + faker.name.lastName(),
               date: faker.date.past(),
@@ -178,7 +178,10 @@ export default async function handler(
             name: programName,
             description: faker.lorem.paragraph(),
             school: faker.helpers.arrayElement(SCHOOLS),
-            programDate: faker.date.past(),
+            programDate: faker.date.between(
+              '2021-01-01T00:00:00.000Z',
+              '2025-01-01T00:00:00.000Z'
+            ),
             category: faker.helpers.arrayElement(CATEGORIES),
             isOpen: isOpen,
             // Only populate volunteers field when isOpen is true

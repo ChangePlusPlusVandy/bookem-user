@@ -18,7 +18,7 @@ export const authOptions = {
   adapter: MongoDBAdapter(clientPromise),
   session: {
     strategy: sessionStrategy,
-    maxAge: 24 * 60 * 60, // 1 day
+    maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   providers: [
     // Credentials docs: https://next-auth.js.org/providers/credentials
