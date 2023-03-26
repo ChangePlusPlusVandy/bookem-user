@@ -19,6 +19,29 @@ import Link from 'next/link';
 import { Media, MediaContextProvider } from '@/lib/media';
 import styled from 'styled-components';
 import Image from 'next/image';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+
+const eye = <FontAwesomeIcon icon={faEye} />;
+const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
+
+const PasswordWrapper = styled.div`
+  position: relative;
+  display: flex;
+`;
+
+const Eye = styled.i`
+  position: absolute;
+  top: 30%;
+  right: 5%;
+`;
+
+const ForgotPassword = styled.div`
+  margin: 0 10px 0 auto;
+  font-size: 15px;
+  line-height: 18px;
+  color: #6d6d6d;
+`;
 
 interface Props {
   hover?: boolean;
@@ -72,6 +95,9 @@ const LoginPage = () => {
   // state for going to mobile login page
   const [onMobileLogin, setOnMobileLogin] = useState(false);
 
+  // state for showing psasword
+  const [passwordShown, setPasswordShown] = useState(false);
+
   // React hook form.
   const {
     register,
@@ -122,6 +148,7 @@ const LoginPage = () => {
           </MobileContainer>
         )}
 
+        {/**TODO: maybe I should put the MobileLogin code on this page anyway and delete that component */}
         {onMobileLogin === true && <MobileLogin />}
       </Media>
       <Media greaterThanOrEqual="sm">
@@ -135,11 +162,22 @@ const LoginPage = () => {
                 onSubmit={handleSubmit(data => handleLogin(data))}>
                 <Input
                   {...register('email', { required: true })}
-                  placeholder="Email or Username"></Input>
-                <Input
-                  {...register('password', { required: true })}
-                  type="password"
-                  placeholder="Password"></Input>
+                  placeholder="Email or Username"
+                />
+                <PasswordWrapper>
+                  <Input
+                    {...register('password', { required: true })}
+                    type={passwordShown ? 'text' : 'password'}
+                    placeholder="Password"
+                  />
+
+                  <Eye onClick={() => setPasswordShown(!passwordShown)}>
+                    {passwordShown ? eye : eyeSlash}
+                  </Eye>
+                </PasswordWrapper>
+
+                <ForgotPassword>Forgot password?</ForgotPassword>
+
                 {errors.email && <span>Email is required</span>}
                 {errors.password && <span>Password is required</span>}
               </LoginForm>

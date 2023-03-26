@@ -67,6 +67,7 @@ export const Input = styled.input`
   height: 35px;
   border-radius: 18px;
   padding: 10px;
+  flex-grow: 1;
 `;
 
 export const SubmitButton = styled.input`

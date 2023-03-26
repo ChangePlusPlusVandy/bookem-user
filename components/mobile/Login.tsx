@@ -25,7 +25,7 @@ const MobileSubmitButton = styled(SubmitButton)`
   background: #6d6d6d;
   border-radius: 10px;
   font-size: 16px;
-  line-height: 19px;
+  line-height: 19.36px;
   color: white;
   width: 296px;
   height: 53px;
