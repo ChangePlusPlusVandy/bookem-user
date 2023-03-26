@@ -17,7 +17,14 @@ export const EventBox = styled.div`
  */
 export const MiddleBox = styled.div`
   display: flex;
-  margin: 45px auto auto 30px;
+  background-color: pink;
+  @media (min-width: 768px) {
+    margin: 45px auto auto 30px;
+  }
+
+  @media (max-width: 767px) {
+    margin: 30px auto auto auto;
+  }
 `;
 
 /**
