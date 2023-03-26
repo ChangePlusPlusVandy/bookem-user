@@ -1,4 +1,5 @@
 import Event from '@/components/Event/Event';
+import { fetchData } from '@/utils/utils';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -17,19 +18,11 @@ const EventDetail = () => {
   // use simple fetch to fetch when component is mounted
   useEffect(() => {
     if (pid) {
-      fetch('/api/event/' + pid)
-        .then(res => {
-          if (!res.ok) {
-            throw new Error(
-              'An error has occurred while fetching: ' + res.statusText
-            );
-          }
-          return res.json();
-        })
+      fetchData('/api/event/' + pid)
         .then(data => setEvent(data))
         .catch(err => setError(err));
     } else setError(new Error('No pid found'));
-  }, []);
+  }, [pid]);
 
   return (
     <>

@@ -140,7 +140,9 @@ export const LabelRadio = styled.label`
 export const InputRadio = styled.input`
   width: 21px;
   height: 21px;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /**
@@ -179,7 +181,9 @@ export const LabelCheckbox = styled.label`
 export const InputCheckbox = styled.input`
   width: 21px;
   height: 21px;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /**
@@ -209,7 +213,9 @@ export const ButtonContainer = styled.div`
  * Resume upload button
  */
 export const ResumeButton = styled.button`
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
   margin-top: 45px;
   border: 1px solid #6d6d6d;
   border-radius: 20px;
@@ -234,7 +240,9 @@ export const InputRadioVertical = styled.ul`
  * Submit and Let's go buttons
  */
 export const Button = styled.button`
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
   width: 215px;
   height: 47px;
   background: #6d6d6d;
