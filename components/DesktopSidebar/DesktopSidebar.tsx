@@ -5,9 +5,6 @@ import {
   IconContainer,
   IconLink,
   Container,
-  IconText,
-  MobileIconsContainer,
-  MobileIconFlexBox,
 } from '@/styles/components/DesktopSidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
