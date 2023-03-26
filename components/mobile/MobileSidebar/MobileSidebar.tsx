@@ -27,7 +27,7 @@ export const MobileSidebar = () => {
       <Header>
         <UserIcon />
         <Link href="#">
-          <Cross src="/sidebar/error.png" alt="" width={32} height={32} />
+          <Cross src="/sidebar/error.png" alt="" width={40} height={40} />
         </Link>
       </Header>
 

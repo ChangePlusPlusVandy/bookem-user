@@ -19,6 +19,7 @@ export const ImageContainer = styled.div`
     width: 100px;
     height: 100px;
     margin: auto;
+    // Round border
     border-radius: 100%;
     overflow: hidden;
   }
