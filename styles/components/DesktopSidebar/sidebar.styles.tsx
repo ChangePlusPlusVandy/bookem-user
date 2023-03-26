@@ -34,6 +34,9 @@ export const Header = styled.div`
   }
 `;
 
+/**
+ * Cross image
+ */
 export const Cross = styled(Image)`
   margin: 76px 29px 100px 0;
 `;
