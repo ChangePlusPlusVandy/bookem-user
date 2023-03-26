@@ -29,7 +29,7 @@ const MobileSubmitButton = styled(SubmitButton)`
   color: white;
   width: 296px;
   height: 53px;
-  margin-bottom: 91.5px;
+  margin-bottom: 71.5px;
   &:hover {
     background: #6d6d6d;
     cursor: pointer;

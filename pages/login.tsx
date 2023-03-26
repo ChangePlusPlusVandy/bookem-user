@@ -21,8 +21,6 @@ import styled from 'styled-components';
 import Image from 'next/image';
 
 interface Props {
-  fontSize?: number;
-  lineHeight?: number;
   hover?: boolean;
 }
 
@@ -31,18 +29,26 @@ const MobileContainer = styled.div`
   padding: 6% 13%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  gap: 20px;
 
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
 `;
 
+const MobileTextContainer = styled.div`
+  margin: auto;
+`;
+
 const MobileText = styled.p<Props>`
-  font-size: ${props => props.fontSize}px;
-  line-height: ${props => props.lineHeight}px;
+  font-size: 16px;
+  line-height: 19.36px;
   text-align: center;
+  &:first-child {
+    font-size: 25px;
+    line-height: 30.26px;
+  }
   &:hover {
     cursor: ${props => (props.hover ? `pointer` : `auto`)};
   }
@@ -57,7 +63,6 @@ const MobileSignUpButton = styled.button`
   color: white;
   width: 296px;
   height: 53px;
-  margin-bottom: 40px;
   &:hover {
     cursor: pointer;
   }
@@ -99,29 +104,21 @@ const LoginPage = () => {
               alt="BookEm Background"
             />
 
-            <div>
-              <MobileText fontSize={25} lineHeight={30.26}>
-                Welcome to Book&apos;em
-              </MobileText>
+            <MobileTextContainer>
+              <MobileText>Welcome to Book&apos;em</MobileText>
 
-              <MobileText fontSize={16} lineHeight={19.36}>
+              <MobileText>
                 Share the joy of reading and book ownership.
               </MobileText>
-            </div>
+            </MobileTextContainer>
 
-            <div>
-              <Link href={'/register'}>
-                <MobileSignUpButton>Sign up</MobileSignUpButton>
-              </Link>
+            <Link href={'/register'}>
+              <MobileSignUpButton>Sign up</MobileSignUpButton>
+            </Link>
 
-              <MobileText
-                fontSize={16}
-                lineHeight={19.36}
-                hover
-                onClick={() => setOnMobileLogin(true)}>
-                Or log in
-              </MobileText>
-            </div>
+            <MobileText hover onClick={() => setOnMobileLogin(true)}>
+              Or log in
+            </MobileText>
           </MobileContainer>
         )}
 
