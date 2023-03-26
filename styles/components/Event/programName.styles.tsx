@@ -17,7 +17,9 @@ export const SignupButton = styled.button`
   background: #5a5a5a;
   border-radius: 10px;
   border: none;
-  cursor: pointer;
   color: white;
   font-size: 25px;
+  &:hover {
+    cursor: pointer;
+  }
 `;

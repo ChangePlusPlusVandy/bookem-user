@@ -77,10 +77,12 @@ export const ButtonRight = styled.div`
 export const ArrowButton = styled.button`
   background: transparent;
   border: transparent;
-  cursor: pointer;
   border-radius: 50%;
   border: 2px solid black;
   padding: 0 2px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /**
@@ -101,5 +103,7 @@ export const SubmitButton = styled.button`
   background-color: white;
   border-radius: 10px;
   padding: 10px 30px;
-  cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 `;
