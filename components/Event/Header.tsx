@@ -4,6 +4,7 @@ import Link from 'next/link';
 import {
   HeaderBox,
   EventDetailText,
+  Line,
 } from '@/styles/components/Event/header.styles';
 import { Media } from '@/lib/media';
 
@@ -28,10 +29,10 @@ const Header = () => {
         <HeaderBox>
           <EventDetailText>Event Details</EventDetailText>
           <Link href="/">
-            <Image src="/event/error.png" alt="" fill />
+            <Image src="/event/error.png" alt="" width={40} height={40} />
           </Link>
         </HeaderBox>
-        <Image src="/event/line.png" alt="" />
+        <Line src="/event/line.png" alt="" width={100} height={1} />
       </Media>
     </>
   );
