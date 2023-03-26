@@ -9,6 +9,7 @@ export const EventBox = styled.div`
   }
   @media (max-width: 767px) {
     padding: 30px;
+    background-color: aliceblue;
   }
 `;
 

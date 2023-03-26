@@ -8,6 +8,7 @@ export const HeaderBox = styled.div`
   @media (max-width: 767px) {
     justify-content: space-between;
     align-items: center;
+    background-color: lightblue;
   }
 `;
 
