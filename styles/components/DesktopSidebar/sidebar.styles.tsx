@@ -24,6 +24,8 @@ export const Container = styled.div`
   }
 `;
 
+export const Header = styled.div``;
+
 export const MobileIconsContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -37,7 +39,7 @@ export const IconContainer = styled.div`
   @media (min-width: 768px) {
   }
   @media (max-width: 767px) {
-    margin: 25px 0 0 0;
+    margin: 25px 0px 0 25px;
     width: 90%;
   }
 `;
