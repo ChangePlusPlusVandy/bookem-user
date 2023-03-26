@@ -36,7 +36,6 @@ export const Container = styled.div`
 export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   gap: 30px;
   width: 50vw;
   height: 100vh;
@@ -52,6 +51,7 @@ export const RightContainer = styled.div`
  */
 export const Form = styled.form`
   overflow: auto;
+  margin-bottom: auto;
   @media (max-width: 767px) {
     display: flex;
     flex-direction: column;
@@ -283,11 +283,4 @@ export const Error = styled.p`
   margin: 0;
   padding-left: 1vh;
   color: red;
-`;
-
-/**
- * Guarantees white space above RegisterFlow component
- */
-export const WhiteSpace = styled.div`
-  flex-grow: 1;
 `;

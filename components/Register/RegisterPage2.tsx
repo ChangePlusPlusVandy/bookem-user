@@ -16,7 +16,6 @@ import {
   InputTextarea,
   InputContainer,
   CheckboxContainer,
-  WhiteSpace,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
@@ -128,8 +127,6 @@ const RegisterPage2 = ({
           {errors.volunteerReason && printError('A response is required')}
         </SectionContainer>
       </Form>
-
-      <WhiteSpace />
 
       <RegisterFlow
         currentPage={2}

@@ -10,7 +10,6 @@ import {
   InputFlex,
   InputText,
   InputContainer,
-  WhiteSpace,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
@@ -189,8 +188,6 @@ const RegisterPage1 = ({
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
       </Form>
-
-      <WhiteSpace />
 
       <RegisterFlow
         currentPage={1}

@@ -15,7 +15,6 @@ import {
   LabelRadio,
   InputRadio,
   Button,
-  WhiteSpace,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
@@ -147,8 +146,6 @@ const RegisterPage3 = ({
       <ButtonContainer>
         <Button form="registerPage3">Submit</Button>
       </ButtonContainer>
-
-      <WhiteSpace />
 
       <RegisterFlow
         currentPage={3}
