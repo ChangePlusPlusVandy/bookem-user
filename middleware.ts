@@ -15,3 +15,6 @@ export const config = {
   // adapted from: https://nextjs.org/docs/messages/invalid-route-source
   matcher: ['/api/((?!users/create).*)'],
 };
+
+// Comment everything and uncomment this to test
+// export function middleware() {}
