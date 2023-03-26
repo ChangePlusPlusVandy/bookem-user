@@ -290,5 +290,4 @@ export const Error = styled.p`
  */
 export const WhiteSpace = styled.div`
   flex-grow: 1;
-  background: pink;
 `;
