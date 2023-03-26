@@ -292,7 +292,7 @@ export const LastPageText = styled.div<Props>`
  * Error messages for invalid inputs
  */
 export const Error = styled.p`
-  margin: 0;
+  margin: 0 0 -10px 0;
   padding-left: 1vh;
   color: red;
 `;

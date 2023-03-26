@@ -69,7 +69,7 @@ const RegisterPage4 = ({
               )
             )}
           </InputRadioVertical>
-          {errors.gender && printError('Gender is required')}
+          {errors.gender && printError('A selection is required')}
 
           <SectionHeader>Race</SectionHeader>
           <InputRadioVertical>
@@ -92,7 +92,7 @@ const RegisterPage4 = ({
               </LabelRadio>
             ))}
           </InputRadioVertical>
-          {errors.race && printError('Race is required')}
+          {errors.race && printError('A selection is required')}
         </SectionContainer>
       </Form>
 

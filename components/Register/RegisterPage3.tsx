@@ -90,7 +90,7 @@ const RegisterPage3 = ({
             />
           </InputContainer>
 
-          {errors.occupation && printError('An occupation is required')}
+          {errors.occupation && printError('A selection is required')}
           {errors.occupationTitle &&
             printError('An occupation title is required')}
           {errors.occupationBoss &&
