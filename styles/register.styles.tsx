@@ -52,9 +52,10 @@ export const RightContainer = styled.div`
 export const Form = styled.form`
   overflow: auto;
   margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
   @media (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
     justify-content: space-between;
     height: 100%;
   }
@@ -234,6 +235,9 @@ export const ResumeButton = styled.button`
 export const InputRadioVertical = styled.ul`
   list-style-type: none;
   padding: 1vh;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 `;
 
 /**

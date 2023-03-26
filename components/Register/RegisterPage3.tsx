@@ -10,15 +10,16 @@ import {
   InputContainer,
   InputText,
   ButtonContainer,
-  ResumeButton,
   InputRadioVertical,
   LabelRadio,
   InputRadio,
   Button,
+  CheckboxColumns,
+  CheckboxContainer,
+  LabelCheckbox,
+  InputCheckbox,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-
-// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING FOR FORM COMPONENT?
 
 const RegisterPage3 = ({
   formFunctions: {
@@ -29,10 +30,8 @@ const RegisterPage3 = ({
     handleLeftArrow,
     handleRightArrow,
   },
-  formResumeData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formResumeData: File | undefined;
 }) => {
   // react hook form
   const {
@@ -43,29 +42,6 @@ const RegisterPage3 = ({
     formState: { errors },
   } = handleForm;
 
-  /* resume upload handling */
-  /* based on https://codefrontend.com/file-upload-reactjs/, only works for files with <= 16 MB I think */
-
-  // state for uploaded resume file
-  const [resume, setResume] = useState<File | undefined>(formResumeData);
-
-  // object that helps with handling clicking on resume upload button
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  // handles clicking on resume upload button
-  const handleUploadClick = () => {
-    inputRef.current?.click();
-  };
-
-  // updates name of resume upload button to the name of the file uploaded
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
-    }
-    setValue('resume', e.target.files[0]);
-    setResume(e.target.files[0]);
-  };
-
   return (
     <RightContainer>
       <Header>Almost there</Header>
@@ -74,46 +50,51 @@ const RegisterPage3 = ({
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer>
-          <SectionHeader>Occupation</SectionHeader>
+          <SectionHeader>Current Occupation</SectionHeader>
+
+          <fieldset style={{ border: 'none' }}>
+            <CheckboxColumns>
+              {['Employed', 'Student', 'Not employed', 'Retired'].map(
+                occupation => (
+                  <CheckboxContainer key={occupation}>
+                    <LabelCheckbox>
+                      <InputCheckbox
+                        type="checkbox"
+                        value={occupation}
+                        {...register('occupation', { required: true })}
+                        onKeyDown={handleEnter}
+                      />
+                      {occupation}
+                    </LabelCheckbox>
+                  </CheckboxContainer>
+                )
+              )}
+            </CheckboxColumns>
+          </fieldset>
 
           <InputContainer>
             <InputText
-              {...register('jobTitle1', { required: true })}
+              {...register('occupationTitle', { required: true })}
               onKeyDown={handleEnter}
-              placeholder="Job Title 1"
+              placeholder="Occupation Title"
               width="100%"
             />
           </InputContainer>
 
           <InputContainer>
             <InputText
-              {...register('jobTitle2')}
+              {...register('occupationBoss', { required: true })}
               onKeyDown={handleEnter}
-              placeholder="Job Title 2 (Optional)"
+              placeholder="Name of Employer or School"
               width="100%"
             />
           </InputContainer>
 
-          {errors.jobTitle1 && printError('A job title is required')}
-        </SectionContainer>
-
-        <SectionContainer>
-          <SectionHeader>Please upload your resume (Optional)</SectionHeader>
-
-          <ButtonContainer>
-            <ResumeButton type="button" onClick={handleUploadClick}>
-              {resume ? `${resume.name}` : 'Click here to upload'}
-            </ResumeButton>
-          </ButtonContainer>
-
-          <input
-            type="file"
-            {...register('resume')}
-            onKeyDown={handleEnter}
-            ref={inputRef}
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
+          {errors.occupation && printError('An occupation is required')}
+          {errors.occupationTitle &&
+            printError('An occupation title is required')}
+          {errors.occupationBoss &&
+            printError('An employer/school name is required')}
         </SectionContainer>
 
         <SectionContainer>
@@ -143,9 +124,9 @@ const RegisterPage3 = ({
         </SectionContainer>
       </Form>
 
-      <ButtonContainer>
+      {/* <ButtonContainer>
         <Button form="registerPage3">Submit</Button>
-      </ButtonContainer>
+      </ButtonContainer> */}
 
       <RegisterFlow
         currentPage={3}

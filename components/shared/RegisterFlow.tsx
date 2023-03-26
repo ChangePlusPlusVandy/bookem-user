@@ -14,7 +14,7 @@ import {
  */
 const formatPageDots = (currentPage: number) => {
   // list of register page numbers
-  const pages = [1, 2, 3];
+  const pages = [1, 2, 3, 4, 5];
 
   // maps each register page number to the correct colored dot
   const listDots = pages.map(page => {
@@ -83,8 +83,8 @@ const RegisterFlow = ({
       {/* format the page dots */}
       {formatPageDots(currentPage)}
 
-      {/* right arrow does not appear on register page 4 */}
-      <Arrow visible={Number(currentPage) != 3}>
+      {/* right arrow does not appear on register page 5 */}
+      <Arrow visible={Number(currentPage) != 5}>
         <input
           form={form}
           type="image"

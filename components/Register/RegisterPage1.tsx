@@ -13,8 +13,6 @@ import {
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
-// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
-
 /**
  * auto-format inputted phone number
  * adapted from https://tomduffytech.com/how-to-format-phone-number-in-react/
@@ -102,8 +100,18 @@ const RegisterPage1 = ({
             />
           </InputFlex>
 
+          <InputContainer>
+            <InputText
+              {...register('birthday', { required: true })}
+              onKeyDown={handleEnter}
+              placeholder="Date of birth (MM-DD-YYYY)"
+              width="100%"
+            />
+          </InputContainer>
+
           {errors.firstName && printError('First name is required')}
           {errors.lastName && printError('Last name is required')}
+          {errors.birthday && printError('Date of birth is required')}
         </SectionContainer>
 
         <SectionContainer>

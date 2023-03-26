@@ -1,37 +1,109 @@
-import React from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
+import React, { ChangeEvent, useRef, useState } from 'react';
+import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
+import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
-  LastPageContainer,
-  LastPageTextContainer,
-  LastPageText,
+  RightContainer,
+  Form,
+  Header,
+  SectionContainer,
+  SectionHeader,
+  InputContainer,
+  InputText,
+  ButtonContainer,
+  InputRadioVertical,
+  LabelRadio,
+  InputRadio,
   Button,
+  CheckboxColumns,
+  CheckboxContainer,
+  LabelCheckbox,
+  InputCheckbox,
 } from '@/styles/register.styles';
+import { RegisterFormFunctions } from '@/utils/types';
 
-const RegisterPage4 = () => {
+// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING FOR FORM COMPONENT?
+
+const RegisterPage4 = ({
+  formFunctions: {
+    handleForm,
+    onSubmit,
+    handleEnter,
+    printError,
+    handleLeftArrow,
+    handleRightArrow,
+  },
+}: {
+  formFunctions: RegisterFormFunctions;
+}) => {
+  // react hook form
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors },
+  } = handleForm;
+
   return (
-    <LastPageContainer>
-      <LastPageTextContainer>
-        <LastPageText>Thank you!</LastPageText>
-        <LastPageText>
-          Your registration for Volunteer is complete!
-        </LastPageText>
-        <LastPageText>
-          Press the button below to log in to your account
-        </LastPageText>
-      </LastPageTextContainer>
+    <RightContainer>
+      <Header>Finally</Header>
 
-      <Image
-        src="/registerFlow/user-circle.png"
-        alt="User profile stock image"
-        width="226"
-        height="226"
+      <Form
+        id="registerPage4"
+        onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
+        <SectionContainer>
+          <SectionHeader>Voluntary gender & race identification</SectionHeader>
+          <SectionHeader>Gender</SectionHeader>
+          <InputRadioVertical>
+            {['Female', 'Male', 'Nonbinary', 'Prefer not to answer'].map(
+              gender => (
+                <LabelRadio key={gender}>
+                  <InputRadio
+                    type="radio"
+                    value={gender}
+                    {...register('gender', { required: true })}
+                    onKeyDown={handleEnter}
+                  />
+                  {gender}
+                </LabelRadio>
+              )
+            )}
+          </InputRadioVertical>
+          {errors.gender && printError('Gender is required')}
+
+          <SectionHeader>Race</SectionHeader>
+          <InputRadioVertical>
+            {[
+              'Asian',
+              'Black or African American',
+              'Hispanic or Latino',
+              'Native Hawaiian or Other Pacific Islander',
+              'White',
+              'Two or More Races',
+            ].map(race => (
+              <LabelRadio key={race}>
+                <InputRadio
+                  type="radio"
+                  value={race}
+                  {...register('race', { required: true })}
+                  onKeyDown={handleEnter}
+                />
+                {race}
+              </LabelRadio>
+            ))}
+          </InputRadioVertical>
+          {errors.race && printError('Race is required')}
+        </SectionContainer>
+      </Form>
+
+      <RegisterFlow
+        currentPage={4}
+        form="registerPage4"
+        getValues={getValues}
+        handleLeftArrow={handleLeftArrow}
+        handleRightArrow={handleRightArrow}
       />
-
-      <Button>
-        <Link href="/">Let&apos;s go</Link>
-      </Button>
-    </LastPageContainer>
+    </RightContainer>
   );
 };
 

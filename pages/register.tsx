@@ -6,6 +6,7 @@ import RegisterPage1 from '@/components/Register/RegisterPage1';
 import RegisterPage2 from '@/components/Register/RegisterPage2';
 import RegisterPage3 from '@/components/Register/RegisterPage3';
 import RegisterPage4 from '@/components/Register/RegisterPage4';
+import LastRegisterPage from '@/components/Register/LastRegisterPage';
 import { Container, Error } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 import { Media, MediaContextProvider } from '@/lib/media';
@@ -26,11 +27,12 @@ const printError = (message: string) => {
 
 const RegisterPage = () => {
   // state for form data
-  // TODO: add state to formData
+  // TODO: add type to formdata
   const [formData, setFormData] = useState({
     page: 1,
     firstName: '',
     lastName: '',
+    birthday: '',
     phone: '',
     email: '',
     password: '',
@@ -38,13 +40,17 @@ const RegisterPage = () => {
     city: '',
     state: '',
     zip: '',
-    ageRange: '',
+    emergencyFirstName: '',
+    emergencyLastName: '',
+    emergencyPhone: '',
+    emergencyRelationship: '',
     members: [],
     volunteerReason: '',
-    jobTitle1: '',
-    jobTitle2: '',
-    resume: undefined,
+    occupationTitle: '',
+    occupationBoss: '',
     joinNewsletter: '',
+    gender: '',
+    race: '',
   });
 
   /* page number handling */
@@ -79,8 +85,8 @@ const RegisterPage = () => {
     console.log(data);
     setFormData({ ...formData, page: nextPage, ...data });
 
-    // when user clicks on final submit button on page 4
-    if (formData.page === 3 && nextPage === formData.page) {
+    // when user clicks on final submit button on page 5
+    if (formData.page === 5 && nextPage === formData.page) {
       // check if user is registered successfully
       const error = await onFinished(formData);
       console.log(error);
@@ -148,7 +154,6 @@ const RegisterPage = () => {
     handleRightArrow,
   };
 
-  // TODO: is changing the register styles css for RightContainer the right way to do the mobile responsiveness stuff?
   // TODO: should I adjust everything's font size?
   return (
     <MediaContextProvider disableDynamicMediaQueries>
@@ -165,16 +170,18 @@ const RegisterPage = () => {
           />
         )}
 
-        {formData.page === 2 && <RegisterPage2 formFunctions={formFunctions} />}
-
-        {formData.page === 3 && (
-          <RegisterPage3
+        {formData.page === 2 && (
+          <RegisterPage2
             formFunctions={formFunctions}
-            formResumeData={formData.resume}
+            formPhoneData={formData.emergencyPhone}
           />
         )}
 
-        {formData.page === 4 && <RegisterPage4 />}
+        {formData.page === 3 && <RegisterPage3 formFunctions={formFunctions} />}
+
+        {formData.page === 4 && <RegisterPage4 formFunctions={formFunctions} />}
+
+        {formData.page === 5 && <LastRegisterPage />}
       </Container>
     </MediaContextProvider>
   );

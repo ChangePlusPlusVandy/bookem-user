@@ -37,7 +37,7 @@ const Eye = styled.i`
 `;
 
 const ForgotPassword = styled.div`
-  margin: 0 10px 0 auto;
+  margin: -10px 10px 0 auto;
   font-size: 15px;
   line-height: 18px;
   color: #6d6d6d;
@@ -121,7 +121,10 @@ const LoginPage = () => {
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
-        {onMobileLogin === false && (
+        {onMobileLogin ? (
+          // TODO: put the MobileLogin code on this page anyway and delete that component
+          <MobileLogin />
+        ) : (
           <MobileContainer>
             <Image
               src={'/bookemkids.png'}
@@ -147,9 +150,6 @@ const LoginPage = () => {
             </MobileText>
           </MobileContainer>
         )}
-
-        {/**TODO: maybe I should put the MobileLogin code on this page anyway and delete that component */}
-        {onMobileLogin === true && <MobileLogin />}
       </Media>
       <Media greaterThanOrEqual="sm">
         <Container>

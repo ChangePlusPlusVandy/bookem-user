@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
@@ -16,10 +16,40 @@ import {
   InputTextarea,
   InputContainer,
   CheckboxContainer,
+  InputText,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
-// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING?
+// TODO: HAVE 1 FORMATPHONENUMBER FUNCTION
+
+/**
+ * auto-format inputted phone number
+ * adapted from https://tomduffytech.com/how-to-format-phone-number-in-react/
+ * @param value inputted phone number
+ * @returns phone number in the form of (xxx) xxx-xxxx
+ */
+const formatPhoneNumber = (value: string) => {
+  // if no input, return
+  if (!value) return value;
+
+  // phone number only has numbers
+  const phoneNumber: string = value.replace(/[^\d]/g, '');
+
+  // length of phone number
+  const phoneNumberLength: number = phoneNumber.length;
+
+  // auto-format based on length of numbers inputted
+  if (phoneNumberLength < 4) return phoneNumber;
+
+  if (phoneNumberLength < 7) {
+    return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+  }
+
+  return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+    3,
+    6
+  )}-${phoneNumber.slice(6, 10)}`;
+};
 
 const RegisterPage2 = ({
   formFunctions: {
@@ -30,8 +60,10 @@ const RegisterPage2 = ({
     handleLeftArrow,
     handleRightArrow,
   },
+  formPhoneData,
 }: {
   formFunctions: RegisterFormFunctions;
+  formPhoneData: string;
 }) => {
   // react hook form
   const {
@@ -41,6 +73,17 @@ const RegisterPage2 = ({
     formState: { errors },
   } = handleForm;
 
+  /* phone number format handling */
+
+  // state for phone number
+  const [phoneValue, setPhoneValue] = useState<string>(formPhoneData);
+
+  // updates phone number with correct format
+  const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
+    const formattedPhoneNumber = formatPhoneNumber(e.target.value);
+    setPhoneValue(formattedPhoneNumber);
+  };
+
   return (
     <RightContainer>
       <Header>Next up</Header>
@@ -49,6 +92,52 @@ const RegisterPage2 = ({
         id="registerPage2"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer>
+          <SectionHeader>Emergency Contact</SectionHeader>
+
+          <InputFlex>
+            <InputText
+              {...register('emergencyFirstName', { required: true })}
+              onKeyDown={handleEnter}
+              placeholder="First name"
+              width="45%"
+            />
+            <InputText
+              {...register('emergencyLastName', { required: true })}
+              onKeyDown={handleEnter}
+              placeholder="Last name"
+              width="45%"
+            />
+          </InputFlex>
+
+          <InputContainer>
+            <InputText
+              {...register('emergencyPhone', { required: true })}
+              onKeyDown={handleEnter}
+              placeholder="Phone number"
+              onChange={e => handlePhone(e)}
+              value={phoneValue}
+              width="100%"
+            />
+          </InputContainer>
+
+          <InputContainer>
+            <InputText
+              {...register('emergencyRelationship', { required: true })}
+              onKeyDown={handleEnter}
+              placeholder="Relationship"
+              width="100%"
+            />
+          </InputContainer>
+
+          {errors.emergencyFirstName && printError('First name is required')}
+          {errors.emergencyLastName && printError('Last name is required')}
+          {errors.emergencyPhone &&
+            phoneValue == '' &&
+            printError('Phone number is required')}
+          {errors.emergencyRelationship &&
+            printError('Relationship is required')}
+        </SectionContainer>
+        {/* <SectionContainer>
           <SectionHeader>Select age range</SectionHeader>
 
           <InputFlex>
@@ -82,7 +171,7 @@ const RegisterPage2 = ({
           </InputFlex>
 
           {errors.ageRange && printError('A selection is required')}
-        </SectionContainer>
+        </SectionContainer> */}
 
         <SectionContainer>
           <SectionHeader>
@@ -94,8 +183,8 @@ const RegisterPage2 = ({
               {[
                 'Rotary member',
                 'Kiwanis member',
-                'Current board member',
-                'Former board member',
+                "Current Book'em board member",
+                "Former Book'em board member",
                 'Junior League member or sustainer',
               ].map(member => (
                 <CheckboxContainer key={member}>
@@ -116,7 +205,7 @@ const RegisterPage2 = ({
 
         <SectionContainer>
           <SectionHeader>
-            Why do you want to become a community volunteer?
+            Why do you want to become a Book&apos;em volunteer?
           </SectionHeader>
           <InputContainer>
             <InputTextarea
