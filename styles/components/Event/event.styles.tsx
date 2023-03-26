@@ -4,7 +4,12 @@ import styled from 'styled-components';
  * Contain everything
  */
 export const EventBox = styled.div`
-  padding: 50px;
+  @media (min-width: 768px) {
+    padding: 50px;
+  }
+  @media (max-width: 767px) {
+    padding: 30px;
+  }
 `;
 
 /**

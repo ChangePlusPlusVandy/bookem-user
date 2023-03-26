@@ -5,7 +5,7 @@ export const HeaderBox = styled.div`
   display: flex;
   height: 48px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     justify-content: space-between;
     align-items: center;
   }
