@@ -18,6 +18,7 @@ const Header = () => {
       <Media greaterThanOrEqual="sm">
         <HeaderBox>
           <Link href="/">
+            {/* Arrow icon */}
             <Image src="/event/arrow-left.png" alt="" width={48} height={48} />
           </Link>
           <EventDetailText>Event Details</EventDetailText>
@@ -28,10 +29,14 @@ const Header = () => {
       <Media lessThan="sm">
         <HeaderBox>
           <EventDetailText>Event Details</EventDetailText>
+
+          {/* Cross icon */}
           <Link href="/">
             <Image src="/event/error.png" alt="" width={40} height={40} />
           </Link>
         </HeaderBox>
+
+        {/* Horizontal line */}
         <Line src="/event/line.png" alt="" width={100} height={1} />
       </Media>
     </>
