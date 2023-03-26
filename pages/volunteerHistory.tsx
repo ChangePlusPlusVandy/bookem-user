@@ -1,4 +1,4 @@
-import LongEventCard from '@/components/LongEventCard';
+import LongEventCard from '@/components/shared/LongEventCard';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserData } from 'bookem-shared/src/types/database';
-import LeftDisplay from '@/components/LeftDisplay';
+import LeftDisplay from '@/components/Register/LeftDisplay';
 import RegisterPage1 from '@/components/Register/RegisterPage1';
 import RegisterPage2 from '@/components/Register/RegisterPage2';
 import RegisterPage3 from '@/components/Register/RegisterPage3';

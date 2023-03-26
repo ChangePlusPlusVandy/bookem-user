@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import EventCard from '@/components/EventCard';
+import EventCard from '@/components/shared/EventCard';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import mongoose from 'mongoose';
 import { fetchData } from '@/utils/utils';
