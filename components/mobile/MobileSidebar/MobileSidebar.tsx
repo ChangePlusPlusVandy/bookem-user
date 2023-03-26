@@ -9,6 +9,7 @@ import {
   MobileIconsContainer,
   MobileIconFlexBox,
   Header,
+  Cross,
 } from '@/styles/components/DesktopSidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
@@ -25,7 +26,9 @@ export const MobileSidebar = () => {
     <Container>
       <Header>
         <UserIcon />
-        <Link href="#">abs</Link>
+        <Link href="#">
+          <Cross src="/sidebar/error.png" alt="" width={32} height={32} />
+        </Link>
       </Header>
 
       <MobileIconsContainer>

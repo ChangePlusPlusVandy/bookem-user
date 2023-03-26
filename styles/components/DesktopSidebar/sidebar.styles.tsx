@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -16,7 +17,6 @@ export const Container = styled.div`
   }
   @media (max-width: 767px) {
     position: absolute;
-    /* text-align: center; */
     width: 100%;
     height: 100%;
     background-color: white;
@@ -32,6 +32,10 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
   }
+`;
+
+export const Cross = styled(Image)`
+  margin: 76px 29px 100px 0;
 `;
 
 /**
