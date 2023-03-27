@@ -2,7 +2,7 @@ import dbConnect from '@/lib/dbConnect';
 import { hash } from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Users from 'bookem-shared/src/models/Users';
-import { QueriedUserData } from 'bookem-shared/src/types/database';
+import { QueriedUserData, UserData } from 'bookem-shared/src/types/database';
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,7 +12,7 @@ export default async function handler(
     case 'POST':
       try {
         // start a try catch block to catch any errors in parsing the request body
-        const user = JSON.parse(req.body) as QueriedUserData;
+        const user = req.body as UserData;
 
         // Get the user's email and password from the request body
         const { email, password, name } = user;
