@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
