@@ -5,7 +5,7 @@ import {
   IconContainer,
   IconLink,
   Container,
-} from '@/styles/components/DesktopSidebar/sidebar.styles';
+} from '@/styles/components/Sidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
   SIDEBAR_ICON_PARAMS,

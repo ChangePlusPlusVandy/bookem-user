@@ -10,7 +10,7 @@ import {
   MobileIconFlexBox,
   Header,
   Cross,
-} from '@/styles/components/DesktopSidebar/sidebar.styles';
+} from '@/styles/components/Sidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
   SIDEBAR_ICON_PARAMS,
@@ -19,24 +19,25 @@ import {
 import Image from 'next/image';
 import Link from 'next/link';
 
-export const MobileSidebar = () => {
+export const MobileSidebar = ({
+  showSidebar,
+  handleHideSidebar,
+}: {
+  showSidebar: boolean;
+  handleHideSidebar: () => void;
+}) => {
   const activeRoute = useActiveRoute();
-  const [isVisible, setIsVisible] = useState(true);
-
-  const handleClick = () => {
-    setIsVisible(false);
-  };
 
   return (
     <>
-      {isVisible && (
+      {showSidebar && (
         <Container>
           <Header>
             <UserIcon />
             <Link href="#">
               <Cross
                 src="/sidebar/error.png"
-                onClick={handleClick}
+                onClick={handleHideSidebar}
                 alt=""
                 width={40}
                 height={40}

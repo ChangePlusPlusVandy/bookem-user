@@ -2,7 +2,7 @@ import { useActiveRoute } from '@/lib/useActiveRoute';
 import {
   IconContainer,
   IconLink,
-} from '@/styles/components/DesktopSidebar/sidebar.styles';
+} from '@/styles/components/Sidebar/sidebar.styles';
 import {
   ImageContainer,
   Name,

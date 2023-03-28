@@ -5,6 +5,7 @@ import { SessionProvider } from 'next-auth/react';
 import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';
 import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
+import { useState } from 'react';
 
 export default function App({
   Component,
@@ -23,12 +24,22 @@ export default function App({
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const [showSidebar, setShowSidebar] = useState(true);
+  const handleShowSidebar = () => {
+    setShowSidebar(true);
+  };
+
+  const handleHideSidebar = () => {
+    setShowSidebar(false);
+  };
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
         <Container>
-          {/* TODO: add layout for mobile */}
-          <MobileSidebar />
+          <MobileSidebar
+            showSidebar={showSidebar}
+            handleHideSidebar={handleHideSidebar}
+          />
           <MainContent>{children}</MainContent>
         </Container>
       </Media>

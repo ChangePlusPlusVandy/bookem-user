@@ -4,7 +4,7 @@ import {
   ImageContainer,
   Name,
   UserIconContainer,
-} from '@/styles/components/DesktopSidebar/userIcon.styles';
+} from '@/styles/components/Sidebar/userIcon.styles';
 import { Media } from '@/lib/media';
 
 export const UserIcon = () => {
