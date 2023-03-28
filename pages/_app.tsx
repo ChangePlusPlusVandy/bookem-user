@@ -32,12 +32,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   const route = useActiveRoute();
 
   const [showSidebar, setShowSidebar] = useState(false);
-  const handleShowSidebar = () => {
-    setShowSidebar(true);
-  };
-  const handleHideSidebar = () => {
-    setShowSidebar(false);
-  };
+  const handleShowSidebar = () => setShowSidebar(true);
+  const handleHideSidebar = () => setShowSidebar(false);
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
