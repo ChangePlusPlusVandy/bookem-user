@@ -6,7 +6,10 @@ import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';
 import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 import { useState } from 'react';
-import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
+import {
+  Hamburger,
+  HamburgerContainer,
+} from '@/styles/components/Sidebar/hamburger.styles';
 import Link from 'next/link';
 
 export default function App({
@@ -43,14 +46,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             handleHideSidebar={handleHideSidebar}
           />
           <MainContent>{children}</MainContent>
-          <Link href="#" onClick={handleShowSidebar}>
+          <HamburgerContainer href="#" onClick={handleShowSidebar}>
             <Hamburger
               src="/sidebar/hamburger.png"
               alt=""
               width={32}
               height={32}
             />
-          </Link>
+          </HamburgerContainer>
         </Container>
       </Media>
       <Media greaterThanOrEqual="sm">
