@@ -29,7 +29,7 @@ export default function App({
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [showSidebar, setShowSidebar] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
     setShowSidebar(true);
   };
