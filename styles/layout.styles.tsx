@@ -11,7 +11,7 @@ export const MainContent = styled.div`
     width: calc(100vw - 120px);
   }
 
-  @media (min-width: 768px) {
+  @media (max-width: 767px) {
     width: calc(100vw);
   }
   overflow-y: scroll;
