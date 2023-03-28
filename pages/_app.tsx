@@ -27,13 +27,14 @@ export default function App({
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  // Only display hamburger in these routes
   const HAMBURGER_ROUTES = ['/', '/volunteer', '/settings'];
   const route = useActiveRoute();
+
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
     setShowSidebar(true);
   };
-
   const handleHideSidebar = () => {
     setShowSidebar(false);
   };
