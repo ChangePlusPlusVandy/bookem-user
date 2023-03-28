@@ -3,9 +3,10 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 /**
- * Container of sidebar
+ * Container of sidebar icons
  */
 export const Container = styled.div`
+  // Desktop version is a flex box that contains sidebar + user icon
   @media (min-width: 768px) {
     display: flex;
     position: relative;
@@ -15,6 +16,8 @@ export const Container = styled.div`
     width: 120px;
     background-color: #6d6d6d;
   }
+
+  // Mobile version is not flex
   @media (max-width: 767px) {
     position: absolute;
     width: 100%;
@@ -39,10 +42,13 @@ export const Header = styled.div`
  */
 export const Cross = styled(Image)`
   margin: 76px 29px 100px 0;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /**
- * Contains the icons other than user icon
+ * Flexbox that contains the icons other than user icon
  */
 export const MobileIconsContainer = styled.div`
   @media (max-width: 767px) {

@@ -34,15 +34,13 @@ export const MobileSidebar = ({
         <Container>
           <Header>
             <UserIcon />
-            <Link href="#">
-              <Cross
-                src="/sidebar/error.png"
-                onClick={handleHideSidebar}
-                alt=""
-                width={40}
-                height={40}
-              />
-            </Link>
+            <Cross
+              onClick={handleHideSidebar}
+              src="/sidebar/error.png"
+              alt=""
+              width={40}
+              height={40}
+            />
           </Header>
 
           <MobileIconsContainer>

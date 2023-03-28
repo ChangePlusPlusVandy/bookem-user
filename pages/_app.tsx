@@ -6,10 +6,7 @@ import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';
 import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 import { useState } from 'react';
-import {
-  Hamburger,
-  HamburgerContainer,
-} from '@/styles/components/Sidebar/hamburger.styles';
+import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
 import Link from 'next/link';
 
 export default function App({
@@ -41,19 +38,23 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
         <Container>
+          {/* Sidebar */}
           <MobileSidebar
             showSidebar={showSidebar}
             handleHideSidebar={handleHideSidebar}
           />
+
+          {/* The rest of components */}
           <MainContent>{children}</MainContent>
-          <HamburgerContainer href="#" onClick={handleShowSidebar}>
-            <Hamburger
-              src="/sidebar/hamburger.png"
-              alt=""
-              width={32}
-              height={32}
-            />
-          </HamburgerContainer>
+
+          {/* Hamburger */}
+          <Hamburger
+            src="/sidebar/hamburger.png"
+            alt=""
+            onClick={handleShowSidebar}
+            width={32}
+            height={32}
+          />
         </Container>
       </Media>
       <Media greaterThanOrEqual="sm">
