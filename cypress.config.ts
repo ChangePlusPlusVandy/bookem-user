@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import fetch from 'node-fetch';
+import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
@@ -10,8 +10,10 @@ export default defineConfig({
       on('task', {
         'db:seed': async () => {
           // Send request to backend API to re-seed database with test data
-          const res = await fetch(`http://127.0.0.1:3000/api/scripts/seedDb`);
-          return res;
+          const { data } = await axios.post(
+            `http://127..0.0.1:3000/api/scripts/seedDb`
+          );
+          return data;
         },
       });
     },
