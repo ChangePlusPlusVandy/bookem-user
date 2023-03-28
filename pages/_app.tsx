@@ -27,7 +27,7 @@ export default function App({
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const HAMBURGER_ROUTES = ['/', '/volunteer', '/setting'];
+  const HAMBURGER_ROUTES = ['/', '/volunteer', '/settings'];
   const route = useActiveRoute();
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
