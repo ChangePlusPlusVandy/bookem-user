@@ -8,6 +8,7 @@ import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 import { useState } from 'react';
 import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
 import Link from 'next/link';
+import { useActiveRoute } from '@/lib/useActiveRoute';
 
 export default function App({
   Component,
@@ -26,6 +27,8 @@ export default function App({
 }
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
+  const HAMBURGER_ROUTES = ['/', '/volunteer', '/setting'];
+  const route = useActiveRoute();
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => {
     setShowSidebar(true);
@@ -48,13 +51,17 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           <MainContent>{children}</MainContent>
 
           {/* Hamburger */}
-          <Hamburger
-            src="/sidebar/hamburger.png"
-            alt=""
-            onClick={handleShowSidebar}
-            width={32}
-            height={32}
-          />
+          {HAMBURGER_ROUTES.includes(route) ? (
+            <Hamburger
+              src="/sidebar/hamburger.png"
+              alt=""
+              onClick={handleShowSidebar}
+              width={32}
+              height={32}
+            />
+          ) : (
+            <></>
+          )}
         </Container>
       </Media>
       <Media greaterThanOrEqual="sm">

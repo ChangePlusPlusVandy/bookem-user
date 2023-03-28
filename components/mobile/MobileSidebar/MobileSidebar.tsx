@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { UserIcon } from '@/components/DesktopSidebar/UserIcon';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import {
@@ -17,7 +17,6 @@ import {
   SIDEBAR_ICON_WIDTH,
 } from '@/utils/constants';
 import Image from 'next/image';
-import Link from 'next/link';
 
 export const MobileSidebar = ({
   showSidebar,
