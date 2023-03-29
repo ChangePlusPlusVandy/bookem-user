@@ -39,10 +39,9 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
       if (response.status === 200) {
         const message = await response.json();
         console.log(message);
+        // Update sign up state
+        setSignedUp(!signedUp);
       }
-
-      // Update sign up state
-      setSignedUp(!signedUp);
     } catch (error) {
       console.error(error);
     }
