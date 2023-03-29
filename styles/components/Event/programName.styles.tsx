@@ -1,13 +1,27 @@
 import styled from 'styled-components';
 
 export const ProgramNameBox = styled.div`
-  margin-left: 82px;
   height: auto;
+  margin-left: 82px;
+  @media (min-width: 768px) {
+  }
+
+  @media (max-width: 767px) {
+    background-color: lightyellow;
+    padding-top: 70px;
+  }
 `;
 
 export const NameAndSpot = styled.div`
-  font-size: 30px;
-  line-height: 50px;
+  @media (min-width: 768px) {
+    font-size: 30px;
+    line-height: 50px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 25px;
+    line-height: 40px;
+  }
 `;
 
 export const SignupButton = styled.button`
