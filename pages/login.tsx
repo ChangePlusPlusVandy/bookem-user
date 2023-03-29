@@ -19,11 +19,6 @@ import Link from 'next/link';
 import { Media, MediaContextProvider } from '@/lib/media';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-
-const eye = <FontAwesomeIcon icon={faEye} />;
-const eyeSlash = <FontAwesomeIcon icon={faEyeSlash} />;
 
 const PasswordWrapper = styled.div`
   position: relative;
