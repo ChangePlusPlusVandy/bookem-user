@@ -65,7 +65,6 @@ export const Form = styled.form`
  * Header of each register page
  */
 export const Header = styled.div`
-  margin-bottom: 2vh;
   padding: 1vh;
   font-weight: 700;
   font-size: 30px;

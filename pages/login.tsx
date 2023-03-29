@@ -32,8 +32,8 @@ const PasswordWrapper = styled.div`
 
 const Eye = styled.i`
   position: absolute;
-  top: 30%;
-  right: 5%;
+  top: 13%;
+  right: 4%;
 `;
 
 const ForgotPassword = styled.div`
@@ -172,7 +172,21 @@ const LoginPage = () => {
                   />
 
                   <Eye onClick={() => setPasswordShown(!passwordShown)}>
-                    {passwordShown ? eye : eyeSlash}
+                    {passwordShown ? (
+                      <Image
+                        src={'/login/eye.png'}
+                        width="25"
+                        height="25"
+                        alt="Eye"
+                      />
+                    ) : (
+                      <Image
+                        src={'/login/eye-slash.png'}
+                        width="25"
+                        height="25"
+                        alt="Eye with slash"
+                      />
+                    )}
                   </Eye>
                 </PasswordWrapper>
 
