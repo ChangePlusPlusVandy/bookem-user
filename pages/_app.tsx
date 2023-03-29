@@ -30,7 +30,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       </Media> */}
       {/* <Media greaterThanOrEqual="sm"> */}
       <Container>
-        <Sidebar />
+        {/* <Sidebar /> */}
         <MainContent>{children}</MainContent>
       </Container>
       {/* </Media> */}
