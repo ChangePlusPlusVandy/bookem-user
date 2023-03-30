@@ -4,8 +4,12 @@ import {
   ProgramNameBox,
   NameAndSpot,
   SignupButton,
+  Status,
+  StatusBox,
 } from '@/styles/components/Event/programName.styles';
 import { useSession } from 'next-auth/react';
+import { Media } from '@/lib/media';
+import Image from 'next/image';
 
 /**
  * Contain the Program name and sign up button
@@ -67,13 +71,32 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
 
   return (
     <ProgramNameBox>
-      <NameAndSpot>
-        <b>{program.name}</b> ({program.category}) <br />
-        {getProgramLength()}/{program.maxSpot} spots filled
-      </NameAndSpot>
-      <SignupButton onClick={signUpEvent}>
-        <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
-      </SignupButton>
+      {/* Desktop */}
+      <Media greaterThanOrEqual="sm">
+        <NameAndSpot>
+          <b>{program.name}</b> ({program.category}) <br />
+          {getProgramLength()}/{program.maxSpot} spots filled
+        </NameAndSpot>
+        <SignupButton onClick={signUpEvent}>
+          <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
+        </SignupButton>
+      </Media>
+
+      {/* Mobile */}
+      <Media lessThan="sm">
+        <NameAndSpot>
+          <b>{program.name}</b> <span>({program.category}) </span>
+          <br />
+          {/* {getProgramLength()}/{program.maxSpot} spots filled */}
+          <StatusBox>
+            <Image src="/event/dot.png" alt="" width={10} height={10} />
+            <Status>ongoing</Status>
+          </StatusBox>
+        </NameAndSpot>
+        {/* <SignupButton onClick={signUpEvent}>
+          <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
+        </SignupButton> */}
+      </Media>
     </ProgramNameBox>
   );
 };

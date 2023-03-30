@@ -8,7 +8,7 @@ export const ProgramNameBox = styled.div`
 
   @media (max-width: 767px) {
     background-color: lightyellow;
-    padding-top: 70px;
+    padding-top: 30px;
   }
 `;
 
@@ -22,6 +22,20 @@ export const NameAndSpot = styled.div`
     font-size: 25px;
     line-height: 40px;
   }
+`;
+
+export const StatusBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const StatusBullet = styled.li`
+  font-size: 40px;
+`;
+export const Status = styled.span`
+  font-size: 25px;
+  line-height: 40px;
+  margin-left: 20px;
 `;
 
 export const SignupButton = styled.button`
