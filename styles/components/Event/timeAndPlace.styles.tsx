@@ -3,7 +3,9 @@ import styled from 'styled-components';
 export const TimeAndPlaceBox = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  @media (min-width: 768px) {
+    justify-content: space-around;
+  }
   align-items: center;
   height: 50px;
   margin-top: 20px;
@@ -15,6 +17,9 @@ export const TimeAndPlaceBox = styled.div`
 export const IconBox = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 767px) {
+    margin-left: 20px;
+  }
 `;
 
 export const IconText = styled.span`
