@@ -10,11 +10,10 @@ import {
   InputContainer,
   InputText,
   ButtonContainer,
-  InputRadioVertical,
   LabelRadio,
   InputRadio,
   Button,
-  CheckboxColumns,
+  Columns,
   CheckboxContainer,
   LabelCheckbox,
   InputCheckbox,
@@ -53,23 +52,21 @@ const RegisterPage3 = ({
           <SectionHeader>Current Occupation</SectionHeader>
 
           <fieldset style={{ border: 'none' }}>
-            <CheckboxColumns>
+            <Columns>
               {['Employed', 'Student', 'Not employed', 'Retired'].map(
                 occupation => (
-                  <CheckboxContainer key={occupation}>
-                    <LabelCheckbox>
-                      <InputCheckbox
-                        type="checkbox"
-                        value={occupation}
-                        {...register('occupation', { required: true })}
-                        onKeyDown={handleEnter}
-                      />
-                      {occupation}
-                    </LabelCheckbox>
-                  </CheckboxContainer>
+                  <LabelRadio key={occupation}>
+                    <InputRadio
+                      type="radio"
+                      value={occupation}
+                      {...register('occupation', { required: true })}
+                      onKeyDown={handleEnter}
+                    />
+                    {occupation}
+                  </LabelRadio>
                 )
               )}
-            </CheckboxColumns>
+            </Columns>
           </fieldset>
 
           <InputContainer>
@@ -100,7 +97,7 @@ const RegisterPage3 = ({
         <SectionContainer>
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
-          <InputRadioVertical>
+          <InputContainer>
             <LabelRadio>
               <InputRadio
                 type="radio"
@@ -119,7 +116,7 @@ const RegisterPage3 = ({
               />
               No, thanks
             </LabelRadio>
-          </InputRadioVertical>
+          </InputContainer>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
       </Form>

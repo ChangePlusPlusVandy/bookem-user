@@ -10,7 +10,7 @@ import {
   InputFlex,
   LabelRadio,
   InputRadio,
-  CheckboxColumns,
+  Columns,
   LabelCheckbox,
   InputCheckbox,
   InputTextarea,
@@ -179,7 +179,7 @@ const RegisterPage2 = ({
           </SectionHeader>
 
           <fieldset style={{ border: 'none' }}>
-            <CheckboxColumns>
+            <Columns>
               {[
                 'Rotary member',
                 'Kiwanis member',
@@ -199,7 +199,7 @@ const RegisterPage2 = ({
                   </LabelCheckbox>
                 </CheckboxContainer>
               ))}
-            </CheckboxColumns>
+            </Columns>
           </fieldset>
         </SectionContainer>
 

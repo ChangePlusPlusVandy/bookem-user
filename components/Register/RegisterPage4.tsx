@@ -10,11 +10,10 @@ import {
   InputContainer,
   InputText,
   ButtonContainer,
-  InputRadioVertical,
   LabelRadio,
   InputRadio,
   Button,
-  CheckboxColumns,
+  Columns,
   CheckboxContainer,
   LabelCheckbox,
   InputCheckbox,
@@ -54,7 +53,7 @@ const RegisterPage4 = ({
         <SectionContainer>
           <SectionHeader>Voluntary gender & race identification</SectionHeader>
           <SectionHeader>Gender</SectionHeader>
-          <InputRadioVertical>
+          <InputContainer>
             {['Female', 'Male', 'Nonbinary', 'Prefer not to answer'].map(
               gender => (
                 <LabelRadio key={gender}>
@@ -68,11 +67,11 @@ const RegisterPage4 = ({
                 </LabelRadio>
               )
             )}
-          </InputRadioVertical>
+          </InputContainer>
           {errors.gender && printError('A selection is required')}
 
           <SectionHeader>Race</SectionHeader>
-          <InputRadioVertical>
+          <InputContainer>
             {[
               'Asian',
               'Black or African American',
@@ -91,7 +90,7 @@ const RegisterPage4 = ({
                 {race}
               </LabelRadio>
             ))}
-          </InputRadioVertical>
+          </InputContainer>
           {errors.race && printError('A selection is required')}
         </SectionContainer>
       </Form>

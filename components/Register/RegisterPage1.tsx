@@ -42,6 +42,64 @@ const formatPhoneNumber = (value: string) => {
   )}-${phoneNumber.slice(6, 10)}`;
 };
 
+/**
+ * auto-format inputted birthday
+ * @param value inputted birthday
+ * @returns birthday in the form of MM-DD-YYYY
+ */
+const formatBirthday = (value: string) => {
+  if (!value) return value;
+
+  const birthday: string = value.replace(/[^\d]/g, '');
+
+  const birthdayLength: number = birthday.length;
+
+  if (birthdayLength < 3) return birthday;
+
+  if (birthdayLength < 5) {
+    return `${birthday.slice(0, 2)}-${birthday.slice(2)}`;
+  }
+
+  return `${birthday.slice(0, 2)}-${birthday.slice(2, 4)}-${birthday.slice(
+    4,
+    8
+  )}`;
+};
+
+/**
+ * validate inputted birthday in the format
+ * adapted from https://bobbyhadz.com/blog/javascript-check-if-date-is-valid#validate-a-date-formatted-as-ddmmyyyy-in-javascript
+ * @param dateStr inputted birthday MM-DD-YYYY
+ * @returns true if input is a valid birthday
+ */
+const dateIsValid = (dateStr: string) => {
+  const regex = /^\d{2}\-\d{2}\-\d{4}$/;
+  // console.log('hi');
+
+  if (dateStr.match(regex) === null) {
+    return false;
+  }
+
+  // 👇️ only changed the order of destructuring assignment
+  const [month, day, year] = dateStr.split('-');
+
+  // 👇️ format Date string as `yyyy-mm-dd`
+  const isoFormattedStr = `${year}-${month}-${day}`;
+
+  const date = new Date(isoFormattedStr);
+
+  const timestamp = date.getTime();
+
+  if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
+    console.log(timestamp);
+    return false;
+  }
+
+  console.log(date.toISOString().startsWith(isoFormattedStr));
+
+  return date.toISOString().startsWith(isoFormattedStr);
+};
+
 const RegisterPage1 = ({
   formFunctions: {
     handleForm,
@@ -64,15 +122,22 @@ const RegisterPage1 = ({
     formState: { errors },
   } = handleForm;
 
-  /* phone number format handling */
-
   // state for phone number
   const [phoneValue, setPhoneValue] = useState<string>(formPhoneData);
+
+  // state for birthday
+  const [birthdayValue, setBirthdayValue] = useState('');
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
     setPhoneValue(formattedPhoneNumber);
+  };
+
+  // updates birthday with correct format
+  const handleBirthday = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const formattedBirthday = formatBirthday(e.target.value);
+    setBirthdayValue(formattedBirthday);
   };
 
   return (
@@ -102,16 +167,21 @@ const RegisterPage1 = ({
 
           <InputContainer>
             <InputText
-              {...register('birthday', { required: true })}
+              {...register('birthday', {
+                required: true,
+                validate: { dateIsValid },
+              })}
               onKeyDown={handleEnter}
               placeholder="Date of birth (MM-DD-YYYY)"
+              onChange={e => handleBirthday(e)}
+              value={birthdayValue}
               width="100%"
             />
           </InputContainer>
 
           {errors.firstName && printError('First name is required')}
           {errors.lastName && printError('Last name is required')}
-          {errors.birthday && printError('Date of birth is required')}
+          {errors.birthday && printError('Date of birth is invalid')}
         </SectionContainer>
 
         <SectionContainer>

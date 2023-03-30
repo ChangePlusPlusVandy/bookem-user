@@ -128,8 +128,7 @@ export const LabelRadio = styled.label`
   display: grid;
   grid-template-columns: 18px auto;
   gap: 18px;
-  width: 33vh;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 
   ${InputGenericFont};
 `;
@@ -153,9 +152,9 @@ export const CheckboxContainer = styled.li`
 `;
 
 /**
- * Format checkboxes in columns
+ * Format inputs in columns
  */
-export const CheckboxColumns = styled.ul`
+export const Columns = styled.ul`
   columns: 2;
   list-style-type: none;
   padding: 0;
@@ -226,17 +225,6 @@ export const ResumeButton = styled.button`
 
   ${InputGenericFont};
   color: #6d6d6d;
-`;
-
-/**
- * Formats radio buttons vertically
- */
-export const InputRadioVertical = styled.ul`
-  list-style-type: none;
-  padding: 1vh;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
 `;
 
 /**
