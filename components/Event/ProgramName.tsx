@@ -90,7 +90,8 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
           {/* {getProgramLength()}/{program.maxSpot} spots filled */}
           <StatusBox>
             <Image src="/event/dot.png" alt="" width={10} height={10} />
-            <Status>ongoing</Status>
+            {/* TODO: display this dynamically after database schema is updated */}
+            <Status>{'ongoing'}</Status>
           </StatusBox>
         </NameAndSpot>
         {/* <SignupButton onClick={signUpEvent}>
