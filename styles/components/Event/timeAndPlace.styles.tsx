@@ -6,6 +6,9 @@ export const TimeAndPlaceBox = styled.div`
   @media (min-width: 768px) {
     justify-content: space-around;
   }
+  @media (max-width: 767px) {
+    justify-content: space-between;
+  }
   align-items: center;
   height: 50px;
   margin-top: 20px;
@@ -18,7 +21,7 @@ export const IconBox = styled.div`
   display: flex;
   align-items: center;
   @media (max-width: 767px) {
-    margin-left: 20px;
+    margin-right: 200px;
   }
 `;
 

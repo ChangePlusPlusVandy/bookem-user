@@ -46,19 +46,19 @@ const TimeAndPlace = ({
         <TimeAndPlaceBox>
           {/* Calendar */}
           <IconBox>
-            <Image src={'/event/calendar.png'} alt="" width={50} height={50} />
+            <Image src={'/event/calendar.png'} alt="" width={40} height={40} />
             <IconText>{convertToDate(programDate.toString())}</IconText>
           </IconBox>
 
           {/* Clock */}
           <IconBox>
-            <Image src={'/event/clock.png'} alt="" width={50} height={50} />
+            <Image src={'/event/clock.png'} alt="" width={40} height={40} />
             <IconText>{getTime(programDate.toString())}</IconText>
           </IconBox>
         </TimeAndPlaceBox>
         {/* Location */}
         <IconBox>
-          <Image src={'/event/map-pin.png'} alt="" width={50} height={50} />
+          <Image src={'/event/map-pin.png'} alt="" width={40} height={40} />
           <IconText>{location}</IconText>
         </IconBox>
       </Media>
