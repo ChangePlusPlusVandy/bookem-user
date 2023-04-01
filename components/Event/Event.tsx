@@ -11,6 +11,7 @@ import {
   MiddleBox,
   BottomBox,
 } from '@/styles/components/Event/event.styles';
+import { Media } from '@/lib/media';
 
 /**
  * Event Detail
@@ -31,10 +32,18 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       <TimeAndPlace programDate={event.programDate} location={event.location} />
 
       {/* Program Description and Contact Info */}
-      <BottomBox>
-        <About description={event.description} />
-        <Contact phone={event.phone} email={event.email} />
-      </BottomBox>
+      <Media greaterThanOrEqual="sm">
+        <BottomBox>
+          <About description={event.description} />
+          <Contact phone={event.phone} email={event.email} />
+        </BottomBox>
+      </Media>
+      <Media lessThan="sm">
+        <BottomBox>
+          <About description={event.description} />
+          <Contact phone={event.phone} email={event.email} />
+        </BottomBox>
+      </Media>
     </EventBox>
   );
 };

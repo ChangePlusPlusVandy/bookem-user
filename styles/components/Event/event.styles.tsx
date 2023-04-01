@@ -35,4 +35,5 @@ export const BottomBox = styled.div`
   display: flex;
   justify-content: flex-start;
   margin-top: 51px;
+  background-color: lightgreen;
 `;

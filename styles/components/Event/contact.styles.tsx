@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ContactBox = styled.div`
   width: 500px;
   margin-left: 147px;
+  background-color: lightyellow;
 `;
 
 export const ContactHeader = styled.div`

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const AboutBox = styled.div`
   width: 700px;
+  background-color: orange;
 `;
 
 export const AboutHeader = styled.div`
