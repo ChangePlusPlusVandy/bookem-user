@@ -67,68 +67,72 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
   };
 
   return (
-    <EventBox>
-      <Header />
+    <>
+      <EventBox>
+        <Header />
 
-      {/* Book Icon and Program name */}
-      <MiddleBox>
-        <BookIcon />
+        {/* Book Icon and Program name */}
+        <MiddleBox>
+          <BookIcon />
 
-        {/* Pass states to child to manage */}
-        <ProgramName
-          signedUp={signedUp}
-          setSignedUp={setSignedUp}
-          program={event}
-          signUpEvent={signUpEvent}
+          {/* Pass states to child to manage */}
+          <ProgramName
+            signedUp={signedUp}
+            setSignedUp={setSignedUp}
+            program={event}
+            signUpEvent={signUpEvent}
+          />
+        </MiddleBox>
+
+        {/* Time and Place of the program */}
+        <TimeAndPlace
+          programDate={event.programDate}
+          location={event.location}
         />
-      </MiddleBox>
 
-      {/* Time and Place of the program */}
-      <TimeAndPlace programDate={event.programDate} location={event.location} />
+        {/* Desktop */}
+        <Media greaterThanOrEqual="sm">
+          {/* Program Description and Contact Info */}
+          <BottomBox>
+            <About description={event.description} />
+            <Contact phone={event.phone} email={event.email} />
+          </BottomBox>
+        </Media>
 
-      {/* Desktop */}
-      <Media greaterThanOrEqual="sm">
-        {/* Program Description and Contact Info */}
-        <BottomBox>
-          <About description={event.description} />
-          <Contact phone={event.phone} email={event.email} />
-        </BottomBox>
-      </Media>
+        {/* Mobile */}
+        <Media lessThan="sm">
+          <BottomBox>
+            {/* Customize background color and text color according to showAbout state */}
+            <ButtonBox>
+              {/* About Button */}
+              <AboutContactButton
+                backgroundcolor={showAbout ? '#6b6b6b' : '#D9D9D9'}
+                textcolor={showAbout ? 'white' : 'black'}
+                onClick={handleShowAbout}>
+                About
+              </AboutContactButton>
+              {/* Contact Button */}
+              <AboutContactButton
+                backgroundcolor={showAbout ? '#D9D9D9' : '#6b6b6b'}
+                textcolor={showAbout ? 'black' : 'white'}
+                onClick={handleShowContact}>
+                Contact
+              </AboutContactButton>
+            </ButtonBox>
 
-      {/* Mobile */}
-      <Media lessThan="sm">
-        <BottomBox>
-          {/* Customize background color and text color according to showAbout state */}
-          <ButtonBox>
-            {/* About Button */}
-            <AboutContactButton
-              backgroundcolor={showAbout ? '#6b6b6b' : '#D9D9D9'}
-              textcolor={showAbout ? 'white' : 'black'}
-              onClick={handleShowAbout}>
-              About
-            </AboutContactButton>
-            {/* Contact Button */}
-            <AboutContactButton
-              backgroundcolor={showAbout ? '#D9D9D9' : '#6b6b6b'}
-              textcolor={showAbout ? 'black' : 'white'}
-              onClick={handleShowContact}>
-              Contact
-            </AboutContactButton>
-          </ButtonBox>
-
-          {/* Display About and Contact according to showAbout state */}
-          {showAbout && <About description={event.description} />}
-          {!showAbout && <Contact phone={event.phone} email={event.email} />}
-        </BottomBox>
-
-        <Footer
-          signedUp={signedUp}
-          setSignedUp={setSignedUp}
-          program={event}
-          signUpEvent={signUpEvent}
-        />
-      </Media>
-    </EventBox>
+            {/* Display About and Contact according to showAbout state */}
+            {showAbout && <About description={event.description} />}
+            {!showAbout && <Contact phone={event.phone} email={event.email} />}
+          </BottomBox>
+        </Media>
+      </EventBox>
+      <Footer
+        signedUp={signedUp}
+        setSignedUp={setSignedUp}
+        program={event}
+        signUpEvent={signUpEvent}
+      />
+    </>
   );
 };
 

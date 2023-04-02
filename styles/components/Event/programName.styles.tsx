@@ -37,17 +37,3 @@ export const Status = styled.span`
   line-height: 40px;
   margin-left: 20px;
 `;
-
-export const SignupButton = styled.button`
-  width: 150px;
-  margin-top: 30px;
-  padding: 12px;
-  background: #5a5a5a;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  font-size: 25px;
-  &:hover {
-    cursor: pointer;
-  }
-`;

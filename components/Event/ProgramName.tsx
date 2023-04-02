@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react';
 import {
   ProgramNameBox,
   NameAndSpot,
-  SignupButton,
   Status,
   StatusBox,
 } from '@/styles/components/Event/programName.styles';
 import { useSession } from 'next-auth/react';
 import { Media } from '@/lib/media';
 import Image from 'next/image';
+import { SignupButton } from '@/styles/components/Event/event.styles';
 
 /**
  * Calculate the length of the program volunteers

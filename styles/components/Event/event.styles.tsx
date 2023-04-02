@@ -90,16 +90,31 @@ export const AboutContactButton = styled.button<{
   }
 `;
 
-export const SignupBox = styled.div`
-  background-color: pink;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  position: fixed;
-  bottom: 0;
-  height: 50px;
+export const SignupButton = styled.button`
+  @media (min-width: 768px) {
+    width: 150px;
+    margin-top: 30px;
+    padding: 12px;
+    background: #5a5a5a;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 25px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  @media (max-width: 767px) {
+    width: 150px;
+    margin-top: 30px;
+    padding: 12px;
+    background: #5a5a5a;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-size: 25px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
-
-export const MaxSpot = styled.span``;
-
-export const SignupButton = styled.button``;

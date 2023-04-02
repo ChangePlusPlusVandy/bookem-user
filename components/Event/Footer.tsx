@@ -1,9 +1,9 @@
-import { MaxSpot, SignupBox } from '@/styles/components/Event/event.styles';
-import { SignupButton } from '@/styles/components/Event/programName.styles';
+import { SignupButton } from '@/styles/components/Event/event.styles';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
 import { getProgramLength } from './ProgramName';
+import { MaxSpot, SignupBox } from '@/styles/components/Event/footer.styles';
 
 const Footer = ({
   signedUp,
