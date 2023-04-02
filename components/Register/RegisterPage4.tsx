@@ -69,7 +69,7 @@ const RegisterPage4 = ({
                   <InputRadio
                     type="radio"
                     value={gender}
-                    {...register('gender', { required: true })}
+                    {...register('gender')}
                     onKeyDown={handleEnter}
                   />
                   {gender}
@@ -80,7 +80,7 @@ const RegisterPage4 = ({
             <OtherRadio>
               <LabelRadio>
                 <InputRadio
-                  {...register('gender', { required: true })}
+                  {...register('gender')}
                   type="radio"
                   value={'other'}
                   onKeyDown={handleEnter}
@@ -96,9 +96,8 @@ const RegisterPage4 = ({
                 width="30%"
               />
             </OtherRadio>
+            {/**TODO should I make an error for the otherRace required field if other is selected? */}
           </InputContainer>
-          {errors.gender && printError('A selection is required')}
-          {/**TODO should I make an error for the otherGender required field if other is selected? */}
 
           <SectionHeader>Race</SectionHeader>
           <InputContainer>
@@ -114,7 +113,7 @@ const RegisterPage4 = ({
                 <InputRadio
                   type="radio"
                   value={race}
-                  {...register('race', { required: true })}
+                  {...register('race')}
                   onKeyDown={handleEnter}
                 />
                 {race}
@@ -124,7 +123,7 @@ const RegisterPage4 = ({
             <OtherRadio>
               <LabelRadio>
                 <InputRadio
-                  {...register('race', { required: true })}
+                  {...register('race')}
                   type="radio"
                   value={'other'}
                   onKeyDown={handleEnter}
@@ -141,7 +140,6 @@ const RegisterPage4 = ({
               />
             </OtherRadio>
           </InputContainer>
-          {errors.race && printError('A selection is required')}
           {/**TODO should I make an error for the otherRace required field if other is selected? */}
         </SectionContainer>
       </Form>

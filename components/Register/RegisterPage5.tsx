@@ -186,7 +186,7 @@ const RegisterPage5 = ({
                     <LabelRadio key={occupation}>
                       <InputRadio
                         type="radio"
-                        checked={formData.occupation.includes(occupation)}
+                        checked={formData.occupation === occupation}
                         disabled
                       />
                       {occupation}
@@ -222,7 +222,7 @@ const RegisterPage5 = ({
               <LabelRadio>
                 <InputRadio
                   type="radio"
-                  checked={formData.joinNewsletter.includes('yes')}
+                  checked={formData.joinNewsletter === 'yes'}
                   disabled
                 />
                 Yes, please!
@@ -230,7 +230,7 @@ const RegisterPage5 = ({
               <LabelRadio>
                 <InputRadio
                   type="radio"
-                  checked={formData.joinNewsletter.includes('no')}
+                  checked={formData.joinNewsletter === 'no'}
                   disabled
                 />
                 No, thanks
@@ -249,7 +249,7 @@ const RegisterPage5 = ({
                   <LabelRadio key={gender}>
                     <InputRadio
                       type="radio"
-                      checked={formData.gender.includes(gender)}
+                      checked={formData.gender === gender}
                       disabled
                     />
                     {gender}
@@ -288,7 +288,7 @@ const RegisterPage5 = ({
                 <LabelRadio key={race}>
                   <InputRadio
                     type="radio"
-                    checked={formData.race.includes(race)}
+                    checked={formData.race === race}
                     disabled
                   />
                   {race}
