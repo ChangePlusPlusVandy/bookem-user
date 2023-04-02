@@ -13,6 +13,7 @@ import { Media } from '@/lib/media';
 const About = ({ description }: { description: string }) => {
   return (
     <>
+      {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <AboutBox>
           <AboutHeader>About</AboutHeader>
@@ -20,6 +21,7 @@ const About = ({ description }: { description: string }) => {
         </AboutBox>
       </Media>
 
+      {/* Mobile */}
       <Media lessThan="sm">
         <AboutContent>{description}</AboutContent>
       </Media>

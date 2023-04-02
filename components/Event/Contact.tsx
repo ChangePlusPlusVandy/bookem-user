@@ -18,6 +18,7 @@ import { Media } from '@/lib/media';
  */
 const Contact = ({ phone, email }: { phone: string; email: string }) => (
   <ContactBox>
+    {/* Header only for Desktop */}
     <Media greaterThanOrEqual="sm">
       <ContactHeader>Contact</ContactHeader>
     </Media>

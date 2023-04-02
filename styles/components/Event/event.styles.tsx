@@ -32,38 +32,57 @@ export const MiddleBox = styled.div`
  * Contain About and Contact info
  */
 export const BottomBox = styled.div`
+  // Desktop: Flex box
   @media (min-width: 768px) {
     display: flex;
     justify-content: flex-start;
     margin-top: 51px;
   }
+
+  // Mobile
   @media (max-width: 768px) {
     margin-top: 30px;
     background-color: lightgreen;
   }
 `;
 
+/**
+ * Contains two buttons in mobile
+ */
 export const ButtonBox = styled.div`
   display: flex;
   align-item: center;
   margin: 0 20px 0 20px;
 `;
 
+/**
+ * Button to swtich to either About or Contact in Mobile
+ * @param backgroundcolor
+ * @param textcolor
+ */
 export const AboutContactButton = styled.button<{
   backgroundcolor: string;
   textcolor: string;
 }>`
-  background-color: ${props => props.backgroundcolor};
   width: 50vw;
   height: 35px;
+
+  // Round border
   border-radius: 10px;
   border: 0px solid;
+
+  // Customize color
+  background-color: ${props => props.backgroundcolor};
   color: ${props => props.textcolor};
+
+  // Fonts
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+
+  // Change background color and text color when hovered
   &:hover {
     cursor: pointer;
     background-color: #6b6b6b;

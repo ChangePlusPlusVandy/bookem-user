@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const ContactBox = styled.div`
+  background-color: lightyellow;
   @media (min-width: 768px) {
     width: 500px;
     margin: 0 0 0 147px;
@@ -8,8 +9,6 @@ export const ContactBox = styled.div`
   @media (max-width: 767px) {
     margin: 20px 20px 0 20px;
   }
-
-  background-color: lightyellow;
 `;
 
 export const ContactHeader = styled.div`
@@ -32,6 +31,7 @@ export const IconBox = styled.div`
 `;
 
 export const IconText = styled.span`
+  font-size: 18px;
   @media (min-width: 768px) {
     margin-left: 37px;
   }
@@ -39,5 +39,4 @@ export const IconText = styled.span`
   @media (max-width: 767px) {
     margin-left: 20px;
   }
-  font-size: 18px;
 `;
