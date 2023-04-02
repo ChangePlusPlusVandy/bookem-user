@@ -17,7 +17,7 @@ const TimeAndPlace = ({
   location,
 }: {
   programDate: Date;
-  location: string;
+  location: { street: string; city: string; state: string; zip: number };
 }) => {
   return (
     <>
@@ -38,7 +38,7 @@ const TimeAndPlace = ({
           {/* Location */}
           <IconBox>
             <Image src={'/event/map-pin.png'} alt="" width={50} height={50} />
-            <IconText>{location}</IconText>
+            <IconText>{location.street}</IconText>
           </IconBox>
         </TimeAndPlaceBox>
       </Media>
@@ -59,7 +59,7 @@ const TimeAndPlace = ({
         {/* Location */}
         <IconBox>
           <Image src={'/event/map-pin.png'} alt="" width={40} height={40} />
-          <IconText>{location}</IconText>
+          <IconText>{location.street}</IconText>
         </IconBox>
       </Media>
     </>

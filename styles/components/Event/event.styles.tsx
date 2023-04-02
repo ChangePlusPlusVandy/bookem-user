@@ -32,8 +32,18 @@ export const MiddleBox = styled.div`
  * Contain About and Contact info
  */
 export const BottomBox = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  margin-top: 51px;
-  background-color: lightgreen;
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 51px;
+    background-color: lightgreen;
+  }
+  @media (max-width: 768px) {
+    margin-top: 30px;
+    background-color: lightgreen;
+  }
+`;
+
+export const AboutButton = styled.button`
+  background-color: #6b6b6b;
 `;

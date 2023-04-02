@@ -18,7 +18,12 @@ export const dummyEventData: QueriedVolunteerProgramData = {
   isOpen: true,
   volunteers: [],
   maxSpot: 11,
-  location: '3593 Cedar Rd. Nashville',
+  location: {
+    street: 'Dummy street',
+    city: 'Nashville',
+    state: 'TN',
+    zip: 37235,
+  },
   phone: '123-456-7890',
   email: 'test_user@bookem.com',
   createdAt: new Date(),

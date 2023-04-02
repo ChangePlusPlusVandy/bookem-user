@@ -66,7 +66,7 @@ const EventCard = ({
               height={`${Math.round(ratio * 23.99)}`}
             />
           </AddressIcon>
-          {eventData.location}
+          {eventData.location.street}
         </AddressContainer>
 
         <InfoContainer ratio={ratio}>

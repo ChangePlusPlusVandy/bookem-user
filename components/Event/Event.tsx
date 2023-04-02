@@ -1,5 +1,5 @@
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
-import React from 'react';
+import React, { useState } from 'react';
 import Header from './Header';
 import BookIcon from './BookIcon';
 import ProgramName from './ProgramName';
@@ -10,6 +10,7 @@ import {
   EventBox,
   MiddleBox,
   BottomBox,
+  AboutButton,
 } from '@/styles/components/Event/event.styles';
 import { Media } from '@/lib/media';
 
@@ -18,6 +19,7 @@ import { Media } from '@/lib/media';
  * @param event Data about the event
  */
 const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
+  const [showAbout, setShowAbout] = useState<boolean>(true);
   return (
     <EventBox>
       <Header />
@@ -40,6 +42,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       </Media>
       <Media lessThan="sm">
         <BottomBox>
+          <AboutButton>About</AboutButton>
           <About description={event.description} />
           <Contact phone={event.phone} email={event.email} />
         </BottomBox>
