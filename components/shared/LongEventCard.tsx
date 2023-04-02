@@ -14,6 +14,7 @@ import {
   Container,
 } from '@/styles/components/longEventCard.styles';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 /**
  * Helper function to format the time into a readable AM/PM format.
@@ -61,7 +62,7 @@ const LongEventCard = ({
             height={`${Math.round((300 / 328) * 23.99)}`}
           />
         </AddressIcon>
-        <Address>{eventData.location}</Address>
+        <Address>{convertLocationToString(eventData.location)}</Address>
       </AddressContainer>
 
       <InfoContainer>
