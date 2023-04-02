@@ -11,11 +11,12 @@ export const SignupBox = styled.div`
   // Fixed position to bottom
   position: fixed;
   bottom: 0;
+  background-color: white;
 
   width: 100%;
   height: 60px;
 
-  padding: 0 35px 0 35px;
+  padding: 0 35px 0 45px;
 `;
 
 /**
