@@ -5,13 +5,13 @@ export const TimeAndPlaceBox = styled.div`
   flex-direction: row;
   @media (min-width: 768px) {
     justify-content: space-around;
+    margin-top: 20px;
   }
   @media (max-width: 767px) {
     justify-content: space-between;
   }
   align-items: center;
   height: 50px;
-  margin-top: 20px;
 `;
 
 /**
@@ -22,6 +22,7 @@ export const IconBox = styled.div`
   align-items: center;
   @media (max-width: 767px) {
     margin-right: 200px;
+    margin-top: 30px;
   }
 `;
 
