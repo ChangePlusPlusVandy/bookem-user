@@ -68,7 +68,7 @@ const ProgramName = ({
           <b>{program.name}</b> <span>({program.category}) </span>
           <br />
           <StatusBox>
-            <Image src="/event/dot.png" alt="" width={10} height={10} />
+            <Image src="/event/dot.svg" alt="" width={10} height={10} />
             {/* TODO: display this dynamically after database schema is updated */}
             <Status>{'ongoing'}</Status>
           </StatusBox>

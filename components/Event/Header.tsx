@@ -32,7 +32,7 @@ const Header = () => {
 
           {/* Cross icon */}
           <Link href="/">
-            <Image src="/event/error.png" alt="" width={40} height={40} />
+            <Image src="/event/error.svg" alt="" width={40} height={40} />
           </Link>
         </HeaderBox>
 

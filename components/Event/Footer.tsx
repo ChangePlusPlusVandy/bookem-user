@@ -5,6 +5,13 @@ import React, { useEffect } from 'react';
 import { getProgramLength } from './ProgramName';
 import { MaxSpot, SignupBox } from '@/styles/components/Event/footer.styles';
 
+/**
+ * Contains spots filled and Sign Up button in Mobile
+ * @param signedUp
+ * @param setSignedUp
+ * @param program
+ * @param signUpEvent
+ */
 const Footer = ({
   signedUp,
   setSignedUp,
@@ -16,6 +23,7 @@ const Footer = ({
   program: QueriedVolunteerProgramData;
   signUpEvent: () => void;
 }) => {
+  // Get user id in session
   const { data: session } = useSession();
 
   useEffect(() => {

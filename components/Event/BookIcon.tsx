@@ -13,7 +13,12 @@ const BookIcon = () => {
       </Media>
 
       <Media lessThan="sm">
-        <Icon src="/event/bookmark.png" alt="" width={100} height={100} />
+        <Icon
+          src="/event/mobile-bookmark.svg"
+          alt=""
+          width={100}
+          height={100}
+        />
       </Media>
     </IconContainer>
   );

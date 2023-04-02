@@ -9,7 +9,6 @@ export const EventBox = styled.div`
   }
   @media (max-width: 767px) {
     padding: 30px;
-    background-color: aliceblue;
   }
 `;
 
@@ -18,7 +17,6 @@ export const EventBox = styled.div`
  */
 export const MiddleBox = styled.div`
   display: flex;
-  background-color: pink;
   @media (min-width: 768px) {
     margin: 45px auto auto 30px;
   }
@@ -42,7 +40,6 @@ export const BottomBox = styled.div`
   // Mobile
   @media (max-width: 768px) {
     margin-top: 30px;
-    background-color: lightgreen;
   }
 `;
 
@@ -90,36 +87,37 @@ export const AboutContactButton = styled.button<{
   }
 `;
 
+/**
+ * Sign up Button
+ */
 export const SignupButton = styled.button`
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  // Desktop
   @media (min-width: 768px) {
     width: 150px;
     margin-top: 30px;
-    padding: 12px;
     background: #5a5a5a;
-    border-radius: 10px;
-    border: none;
-    color: white;
     font-size: 25px;
-    &:hover {
-      cursor: pointer;
-    }
   }
+
+  // Mobile
   @media (max-width: 767px) {
     width: 120px;
     height: 40px;
-    padding: 12px;
     background: black;
-    border-radius: 10px;
-    border: none;
 
-    color: white;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    &:hover {
-      cursor: pointer;
-    }
   }
 `;

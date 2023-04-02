@@ -1,7 +1,9 @@
 import styled from 'styled-components';
-export const SignupBox = styled.div`
-  background-color: pink;
 
+/**
+ * Contains both sops filled and Sign up button
+ */
+export const SignupBox = styled.div`
   // Flex box
   display: flex;
   justify-content: space-between;
@@ -16,6 +18,9 @@ export const SignupBox = styled.div`
   padding: 0 35px 0 35px;
 `;
 
+/**
+ * Spots filled
+ */
 export const MaxSpot = styled.span`
   margin: 10px 0 0 0;
 

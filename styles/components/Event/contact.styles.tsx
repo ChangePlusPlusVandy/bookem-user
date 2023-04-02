@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const ContactBox = styled.div`
-  background-color: lightyellow;
   @media (min-width: 768px) {
     width: 500px;
     margin: 0 0 0 147px;
