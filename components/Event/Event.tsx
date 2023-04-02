@@ -126,12 +126,16 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
           </BottomBox>
         </Media>
       </EventBox>
-      <Footer
-        signedUp={signedUp}
-        setSignedUp={setSignedUp}
-        program={event}
-        signUpEvent={signUpEvent}
-      />
+
+      {/* Footer in mobile */}
+      <Media lessThan="sm">
+        <Footer
+          signedUp={signedUp}
+          setSignedUp={setSignedUp}
+          program={event}
+          signUpEvent={signUpEvent}
+        />
+      </Media>
     </>
   );
 };

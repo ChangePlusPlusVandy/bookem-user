@@ -67,7 +67,6 @@ const ProgramName = ({
         <NameAndSpot>
           <b>{program.name}</b> <span>({program.category}) </span>
           <br />
-          {/* {getProgramLength()}/{program.maxSpot} spots filled */}
           <StatusBox>
             <Image src="/event/dot.png" alt="" width={10} height={10} />
             {/* TODO: display this dynamically after database schema is updated */}
