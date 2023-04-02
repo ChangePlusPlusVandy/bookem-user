@@ -28,6 +28,44 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
   const [showAbout, setShowAbout] = useState<boolean>(true);
   const handleShowAbout = () => !showAbout && setShowAbout(!showAbout);
   const handleShowContact = () => showAbout && setShowAbout(!showAbout);
+
+  /**
+   * Keep track of whether this event is signed up or not
+   */
+  const [signedUp, setSignedUp] = useState(false);
+  /**
+   * Sign up/Unsign up the current user to the event
+   * @param event
+   */
+  const signUpEvent = async () => {
+    try {
+      // If the event is not open, users need to submit an application
+      if (!event.isOpen) {
+        // TODO: redirect to event application page
+        alert('Go to program application!');
+        return;
+      }
+
+      // Send POST request to sign up
+      const response = await fetch('/api/event/' + event._id, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // Success
+      if (response.status === 200) {
+        const message = await response.json();
+        console.log(message);
+        // Update sign up state
+        setSignedUp(!signedUp);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <EventBox>
       <Header />
@@ -35,7 +73,14 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       {/* Book Icon and Program name */}
       <MiddleBox>
         <BookIcon />
-        <ProgramName program={event} />
+
+        {/* Pass states to child to manage */}
+        <ProgramName
+          signedUp={signedUp}
+          setSignedUp={setSignedUp}
+          program={event}
+          signUpEvent={signUpEvent}
+        />
       </MiddleBox>
 
       {/* Time and Place of the program */}
