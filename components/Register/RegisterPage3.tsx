@@ -18,6 +18,7 @@ import {
   LabelCheckbox,
   InputCheckbox,
   InputTextarea,
+  JoinNewsletterContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 import { Media, MediaContextProvider } from '@/lib/media';
@@ -121,7 +122,7 @@ const RegisterPage3 = ({
         <SectionContainer>
           <SectionHeader>Would you like to join our newsletter?</SectionHeader>
 
-          <InputContainer>
+          <JoinNewsletterContainer>
             <LabelRadio>
               <InputRadio
                 type="radio"
@@ -140,7 +141,7 @@ const RegisterPage3 = ({
               />
               No, thanks
             </LabelRadio>
-          </InputContainer>
+          </JoinNewsletterContainer>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
       </Form>

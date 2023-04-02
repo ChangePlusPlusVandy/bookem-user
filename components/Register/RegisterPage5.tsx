@@ -156,7 +156,10 @@ const RegisterPage5 = ({
                     <LabelCheckbox>
                       <InputCheckbox
                         type="checkbox"
-                        checked={formData.members.includes(member)}
+                        checked={
+                          formData.members.length > 0 &&
+                          formData.members.includes(member)
+                        }
                         disabled
                       />
                       {member}

@@ -176,6 +176,24 @@ export const InputRadio = styled.input`
 `;
 
 /**
+ * Container for joining newsletter section
+ */
+export const JoinNewsletterContainer = styled.div`
+  @media (min-width: 767px) {
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 767px) {
+    columns: 2;
+    list-style-type: none;
+    padding: 1vh 2vh;
+    margin: 0;
+  }
+`;
+
+/**
  * Container for radio input button with a text field
  */
 export const OtherRadio = styled.div`
@@ -283,6 +301,10 @@ export const LastPageContainer = styled(RightContainer)`
   align-items: center;
   padding: 10vh;
   justify-content: space-between;
+
+  @media (max-width: 767px) {
+    padding: 10vh 7.7vw;
+  }
 `;
 
 /**
