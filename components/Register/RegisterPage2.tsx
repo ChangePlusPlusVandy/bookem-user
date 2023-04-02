@@ -60,10 +60,10 @@ const RegisterPage2 = ({
     handleLeftArrow,
     handleRightArrow,
   },
-  formPhoneData,
+  formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formPhoneData: string;
+  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
 }) => {
   // react hook form
   const {
@@ -76,7 +76,7 @@ const RegisterPage2 = ({
   /* phone number format handling */
 
   // state for phone number
-  const [phoneValue, setPhoneValue] = useState(formPhoneData);
+  const [phoneValue, setPhoneValue] = useState(formData.emergencyPhone);
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {

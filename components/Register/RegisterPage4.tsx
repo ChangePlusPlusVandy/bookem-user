@@ -32,12 +32,10 @@ const RegisterPage4 = ({
     handleLeftArrow,
     handleRightArrow,
   },
-  formOtherGenderData,
-  formOtherRaceData,
+  formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formOtherGenderData: string;
-  formOtherRaceData: string;
+  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
 }) => {
   // react hook form
   const {
@@ -49,10 +47,10 @@ const RegisterPage4 = ({
   } = handleForm;
 
   // state for other gender
-  const [otherGender, setOtherGender] = useState(formOtherGenderData);
+  const [otherGender, setOtherGender] = useState(formData.otherGender);
 
   // state for other race
-  const [otherRace, setOtherRace] = useState(formOtherRaceData);
+  const [otherRace, setOtherRace] = useState(formData.otherRace);
 
   return (
     <RightContainer>

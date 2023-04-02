@@ -6,6 +6,7 @@ import RegisterPage1 from '@/components/Register/RegisterPage1';
 import RegisterPage2 from '@/components/Register/RegisterPage2';
 import RegisterPage3 from '@/components/Register/RegisterPage3';
 import RegisterPage4 from '@/components/Register/RegisterPage4';
+import RegisterPage5 from '@/components/Register/RegisterPage5';
 import LastRegisterPage from '@/components/Register/LastRegisterPage';
 import { Container, Error } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
@@ -46,6 +47,7 @@ const RegisterPage = () => {
     emergencyRelationship: '',
     members: [],
     volunteerReason: '',
+    occupation: '',
     occupationTitle: '',
     occupationBoss: '',
     joinNewsletter: '',
@@ -166,31 +168,26 @@ const RegisterPage = () => {
         </Media>
 
         {formData.page === 1 && (
-          <RegisterPage1
-            formFunctions={formFunctions}
-            formPhoneData={formData.phone}
-            formBirthdayData={formData.birthday}
-          />
+          <RegisterPage1 formFunctions={formFunctions} formData={formData} />
         )}
 
         {formData.page === 2 && (
-          <RegisterPage2
-            formFunctions={formFunctions}
-            formPhoneData={formData.emergencyPhone}
-          />
+          <RegisterPage2 formFunctions={formFunctions} formData={formData} />
         )}
 
-        {formData.page === 3 && <RegisterPage3 formFunctions={formFunctions} />}
+        {formData.page === 3 && (
+          <RegisterPage3 formFunctions={formFunctions} formData={formData} />
+        )}
 
         {formData.page === 4 && (
-          <RegisterPage4
-            formFunctions={formFunctions}
-            formOtherGenderData={formData.otherGender}
-            formOtherRaceData={formData.otherRace}
-          />
+          <RegisterPage4 formFunctions={formFunctions} formData={formData} />
         )}
 
-        {formData.page === 5 && <LastRegisterPage />}
+        {formData.page === 5 && (
+          <RegisterPage5 formFunctions={formFunctions} formData={formData} />
+        )}
+
+        {formData.page === 6 && <LastRegisterPage />}
       </Container>
     </MediaContextProvider>
   );

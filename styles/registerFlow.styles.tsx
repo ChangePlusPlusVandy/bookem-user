@@ -10,7 +10,7 @@ interface Props {
 export const DotsFlex = styled.div`
   display: flex;
   justify-content: space-between;
-  width: 84px;
+  width: 156px;
 `;
 
 /**
@@ -31,5 +31,5 @@ export const ProgressContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 256px;
+  width: 291px;
 `;

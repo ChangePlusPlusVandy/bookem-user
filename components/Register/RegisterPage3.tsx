@@ -29,8 +29,10 @@ const RegisterPage3 = ({
     handleLeftArrow,
     handleRightArrow,
   },
+  formData,
 }: {
   formFunctions: RegisterFormFunctions;
+  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
 }) => {
   // react hook form
   const {
