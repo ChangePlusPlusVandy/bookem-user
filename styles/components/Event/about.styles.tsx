@@ -12,7 +12,7 @@ export const AboutContent = styled.div`
     margin-top: 33px;
   }
   @media (max-width: 767px) {
-    margin-top: 15px;
+    margin: 15px 20px 0 20px;
   }
   line-height: 40px;
 `;

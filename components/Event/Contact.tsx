@@ -11,13 +11,16 @@ import {
   EVENT_CONTACT_ICON_WIDTH,
   EVENT_CONTACT_ICON_HEIGHT,
 } from '@/utils/constants';
+import { Media } from '@/lib/media';
 
 /**
  * Contain Contact info
  */
 const Contact = ({ phone, email }: { phone: string; email: string }) => (
   <ContactBox>
-    <ContactHeader>Contact</ContactHeader>
+    <Media greaterThanOrEqual="sm">
+      <ContactHeader>Contact</ContactHeader>
+    </Media>
     <BigIconBox>
       {/* Phone */}
       <IconBox>
