@@ -19,6 +19,7 @@ import {
   InputText,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
+import { Media, MediaContextProvider } from '@/lib/media';
 
 // TODO: HAVE 1 FORMATPHONENUMBER FUNCTION
 
@@ -203,18 +204,23 @@ const RegisterPage2 = ({
           </fieldset>
         </SectionContainer>
 
-        <SectionContainer>
-          <SectionHeader>
-            Why do you want to become a Book&apos;em volunteer?
-          </SectionHeader>
-          <InputContainer>
-            <InputTextarea
-              placeholder="Start here..."
-              {...register('volunteerReason', { required: true })}
-            />
-          </InputContainer>
-          {errors.volunteerReason && printError('A response is required')}
-        </SectionContainer>
+        <MediaContextProvider disableDynamicMediaQueries>
+          <Media lessThan="sm">{/** Moved to next register page */}</Media>
+          <Media greaterThanOrEqual="sm">
+            <SectionContainer>
+              <SectionHeader>
+                Why do you want to become a Book&apos;em volunteer?
+              </SectionHeader>
+              <InputContainer>
+                <InputTextarea
+                  placeholder="Start here..."
+                  {...register('volunteerReason', { required: true })}
+                />
+              </InputContainer>
+              {errors.volunteerReason && printError('A response is required')}
+            </SectionContainer>
+          </Media>
+        </MediaContextProvider>
       </Form>
 
       <RegisterFlow

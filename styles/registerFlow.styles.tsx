@@ -11,6 +11,10 @@ export const DotsFlex = styled.div`
   display: flex;
   justify-content: space-between;
   width: 156px;
+
+  @media (max-width: 767px) {
+    width: 134px;
+  }
 `;
 
 /**
@@ -27,9 +31,21 @@ export const Arrow = styled.div<Props>`
  * Spaces out and centers page dots and arrows
  */
 export const ProgressContainer = styled.div`
-  align-self: center;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 291px;
+
+  @media (max-width: 767px) {
+    width: 212px;
+  }
+`;
+
+/**
+ * Centers ProgressContainer (only necessary for use with MediaContextProvider)
+ */
+
+export const Container = styled.div`
+  display: flex;
+  justify-content: center;
 `;

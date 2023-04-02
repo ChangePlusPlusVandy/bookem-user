@@ -17,6 +17,11 @@ const InputGenericFont = `
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
 
 /**
@@ -84,6 +89,12 @@ export const Header = styled.div`
   font-weight: 700;
   font-size: 30px;
   line-height: 36px;
+
+  @media (max-width: 767px) {
+    font-weight: 400;
+    font-size: 25px;
+    line-height: 30px;
+  }
 `;
 
 /**
@@ -91,8 +102,7 @@ export const Header = styled.div`
  * 'margin' is used to determine its margin-bottom
  */
 export const SectionContainer = styled.div<Props>`
-  /* margin: 5vh 5vh ${props => props.margin} 0vh; */
-  margin: 10px 0 0 0;
+  margin-top: 10px;
 `;
 
 /**
@@ -102,6 +112,12 @@ export const SectionHeader = styled.div`
   padding: 1vh;
   font-weight: 700;
   font-size: 20px;
+  line-height: 22px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
 
 /**
@@ -144,7 +160,7 @@ export const LabelRadio = styled.label`
   grid-template-columns: 18px auto;
   gap: 18px;
   margin-bottom: 20px;
-
+  align-items: center;
   ${InputGenericFont};
 `;
 
@@ -199,9 +215,14 @@ export const LabelCheckbox = styled.label`
   grid-template-columns: 18px auto;
   gap: 18px;
   align-items: center;
-
   font-weight: 400;
-  font-size: 20px;
+  font-size: 19px;
+  line-height: 40px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
 
 /**
@@ -236,25 +257,6 @@ export const InputTextarea = styled.textarea`
  */
 export const ButtonContainer = styled.div`
   text-align: center;
-`;
-
-/**
- * Resume upload button
- */
-export const ResumeButton = styled.button`
-  &:hover {
-    cursor: pointer;
-  }
-  margin-top: 45px;
-  border: 1px solid #6d6d6d;
-  border-radius: 20px;
-  background: #ffffff;
-  width: 334px;
-  height: fit-content;
-  padding: 10px 20px;
-
-  ${InputGenericFont};
-  color: #6d6d6d;
 `;
 
 /**
@@ -298,7 +300,7 @@ export const LastPageTextContainer = styled.div`
 export const LastPageText = styled.div<Props>`
   font-weight: 400;
   font-size: 25px;
-  line-height: 30.26px;
+  line-height: 30px;
 
   &:first-child {
     font-size: 30px;

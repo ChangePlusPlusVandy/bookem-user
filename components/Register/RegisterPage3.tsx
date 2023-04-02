@@ -17,8 +17,10 @@ import {
   CheckboxContainer,
   LabelCheckbox,
   InputCheckbox,
+  InputTextarea,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
+import { Media, MediaContextProvider } from '@/lib/media';
 
 const RegisterPage3 = ({
   formFunctions: {
@@ -50,6 +52,26 @@ const RegisterPage3 = ({
       <Form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
+        <MediaContextProvider disableDynamicMediaQueries>
+          <Media lessThan="sm">
+            <SectionContainer>
+              <SectionHeader>
+                Why do you want to become a Book&apos;em volunteer?
+              </SectionHeader>
+              <InputContainer>
+                <InputTextarea
+                  placeholder="Start here..."
+                  {...register('volunteerReason', { required: true })}
+                />
+              </InputContainer>
+              {errors.volunteerReason && printError('A response is required')}
+            </SectionContainer>
+          </Media>
+          <Media greaterThanOrEqual="sm">
+            {/** Moved to previous register page */}
+          </Media>
+        </MediaContextProvider>
+
         <SectionContainer>
           <SectionHeader>Current Occupation</SectionHeader>
 
