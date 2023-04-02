@@ -2,33 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EventCard from '@/components/shared/EventCard';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
-import mongoose from 'mongoose';
 import { fetchData } from '@/utils/utils';
-
-/**
- * Dummy data for event cards
- */
-export const dummyEventData: QueriedVolunteerProgramData = {
-  _id: new mongoose.Types.ObjectId(),
-  name: 'Distribute books (BNFK)',
-  description: 'blablabla',
-  schools: [],
-  programDate: new Date('2005-12-17T13:24:00'),
-  category: 'RFR',
-  isOpen: true,
-  volunteers: [],
-  maxSpot: 11,
-  location: {
-    street: 'Dummy street',
-    city: 'Nashville',
-    state: 'TN',
-    zip: 37235,
-  },
-  phone: '123-456-7890',
-  email: 'test_user@bookem.com',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-};
 
 /**
  * Container for all event cards

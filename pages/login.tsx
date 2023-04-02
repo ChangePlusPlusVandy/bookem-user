@@ -40,41 +40,41 @@ const LoginPage = () => {
 
   return (
     <MediaContextProvider disableDynamicMediaQueries>
-      <Media lessThan="sm">
-        {/* TODO:  */}
-        Hello Mobile!
-      </Media>
-      <Media greaterThanOrEqual="sm">
-        <Container>
-          <LeftDisplay />
-          <RightContainer>
-            <ContentContainer>
-              <LoginHeader>Logging you in</LoginHeader>
-              <LoginForm
-                id="loginForm"
-                onSubmit={handleSubmit(data => handleLogin(data))}>
-                <Input
-                  {...register('email', { required: true })}
-                  placeholder="Email or Username"></Input>
-                <Input
-                  {...register('password', { required: true })}
-                  type="password"
-                  placeholder="Password"></Input>
-                {errors.email && <span>Email is required</span>}
-                {errors.password && <span>Password is required</span>}
-              </LoginForm>
-              <SubmitButton form="loginForm" type="submit" value="Log in" />
-            </ContentContainer>
+      {/* <Media lessThan="sm"> */}
+      {/* TODO:  */}
+      {/* Hello Mobile! */}
+      {/* </Media> */}
+      {/* <Media greaterThanOrEqual="sm"> */}
+      <Container>
+        <LeftDisplay />
+        <RightContainer>
+          <ContentContainer>
+            <LoginHeader>Logging you in</LoginHeader>
+            <LoginForm
+              id="loginForm"
+              onSubmit={handleSubmit(data => handleLogin(data))}>
+              <Input
+                {...register('email', { required: true })}
+                placeholder="Email or Username"></Input>
+              <Input
+                {...register('password', { required: true })}
+                type="password"
+                placeholder="Password"></Input>
+              {errors.email && <span>Email is required</span>}
+              {errors.password && <span>Password is required</span>}
+            </LoginForm>
+            <SubmitButton form="loginForm" type="submit" value="Log in" />
+          </ContentContainer>
 
-            <Footer>
-              <LittleText>New here? Come join us!</LittleText>
-              <Link href={'/register'}>
-                <CreateButton>Create Account</CreateButton>
-              </Link>
-            </Footer>
-          </RightContainer>
-        </Container>
-      </Media>
+          <Footer>
+            <LittleText>New here? Come join us!</LittleText>
+            <Link href={'/register'}>
+              <CreateButton>Create Account</CreateButton>
+            </Link>
+          </Footer>
+        </RightContainer>
+      </Container>
+      {/* </Media> */}
     </MediaContextProvider>
   );
 };
