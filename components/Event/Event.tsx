@@ -121,7 +121,12 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
           {!showAbout && <Contact phone={event.phone} email={event.email} />}
         </BottomBox>
 
-        <Footer event={event} />
+        <Footer
+          signedUp={signedUp}
+          setSignedUp={setSignedUp}
+          program={event}
+          signUpEvent={signUpEvent}
+        />
       </Media>
     </EventBox>
   );

@@ -12,6 +12,16 @@ import { Media } from '@/lib/media';
 import Image from 'next/image';
 
 /**
+ * Calculate the length of the program volunteers
+ * If program.volunteers is undefined, return 0
+ */
+export const getProgramLength = (program: QueriedVolunteerProgramData) => {
+  if (program.volunteers && program.volunteers.length)
+    return program.volunteers.length;
+  else return 0;
+};
+
+/**
  * Contain the program name and sign up button
  * @param signedUp
  * @param setSignedUp
@@ -39,23 +49,13 @@ const ProgramName = ({
     }
   }, [program.volunteers, session?.user, setSignedUp]);
 
-  /**
-   * Calculate the length of the program volunteers
-   * If program.volunteers is undefined, return 0
-   */
-  const getProgramLength = () => {
-    if (program.volunteers && program.volunteers.length)
-      return program.volunteers.length;
-    else return 0;
-  };
-
   return (
     <ProgramNameBox>
       {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <NameAndSpot>
           <b>{program.name}</b> ({program.category}) <br />
-          {getProgramLength()}/{program.maxSpot} spots filled
+          {getProgramLength(program)}/{program.maxSpot} spots filled
         </NameAndSpot>
         <SignupButton onClick={signUpEvent}>
           <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
@@ -74,12 +74,8 @@ const ProgramName = ({
             <Status>{'ongoing'}</Status>
           </StatusBox>
         </NameAndSpot>
-        {/* <SignupButton onClick={signUpEvent}>
-          <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
-        </SignupButton> */}
       </Media>
     </ProgramNameBox>
   );
 };
-
 export default ProgramName;
