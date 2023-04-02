@@ -32,6 +32,7 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
         return;
       }
 
+      // Send POST request to sign up
       const response = await fetch('/api/event/' + program._id, {
         method: 'POST',
         headers: {

@@ -99,3 +99,7 @@ export const SignupBox = styled.div`
   bottom: 0;
   height: 50px;
 `;
+
+export const MaxSpot = styled.span``;
+
+export const SignupButton = styled.button``;

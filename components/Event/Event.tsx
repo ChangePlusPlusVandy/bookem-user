@@ -12,9 +12,9 @@ import {
   BottomBox,
   ButtonBox,
   AboutContactButton,
-  SignupBox,
 } from '@/styles/components/Event/event.styles';
 import { Media } from '@/lib/media';
+import Footer from './Footer';
 
 /**
  * Event Detail
@@ -26,16 +26,8 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
    * False: display Contact
    */
   const [showAbout, setShowAbout] = useState<boolean>(true);
-  const handleShowAbout = () => {
-    if (!showAbout) {
-      setShowAbout(!showAbout);
-    }
-  };
-  const handleShowContact = () => {
-    if (showAbout) {
-      setShowAbout(!showAbout);
-    }
-  };
+  const handleShowAbout = () => !showAbout && setShowAbout(!showAbout);
+  const handleShowContact = () => showAbout && setShowAbout(!showAbout);
   return (
     <EventBox>
       <Header />
@@ -84,7 +76,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
           {!showAbout && <Contact phone={event.phone} email={event.email} />}
         </BottomBox>
 
-        <SignupBox></SignupBox>
+        <Footer event={event} />
       </Media>
     </EventBox>
   );
