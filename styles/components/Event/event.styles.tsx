@@ -36,7 +36,6 @@ export const BottomBox = styled.div`
     display: flex;
     justify-content: flex-start;
     margin-top: 51px;
-    background-color: lightgreen;
   }
   @media (max-width: 768px) {
     margin-top: 30px;
@@ -44,6 +43,15 @@ export const BottomBox = styled.div`
   }
 `;
 
-export const AboutButton = styled.button`
+export const ButtonBox = styled.div`
+  display: flex;
+  align-item: center;
+  margin: 0 20px 0 20px;
+`;
+
+export const AboutContactButton = styled.button`
   background-color: #6b6b6b;
+  width: 50vw;
+  height: 35px;
+  color: white;
 `;

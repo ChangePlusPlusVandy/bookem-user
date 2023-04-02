@@ -10,7 +10,8 @@ import {
   EventBox,
   MiddleBox,
   BottomBox,
-  AboutButton,
+  ButtonBox,
+  AboutContactButton,
 } from '@/styles/components/Event/event.styles';
 import { Media } from '@/lib/media';
 
@@ -42,7 +43,10 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       </Media>
       <Media lessThan="sm">
         <BottomBox>
-          <AboutButton>About</AboutButton>
+          <ButtonBox>
+            <AboutContactButton>About</AboutContactButton>
+            <AboutContactButton>Contact</AboutContactButton>
+          </ButtonBox>
           <About description={event.description} />
           <Contact phone={event.phone} email={event.email} />
         </BottomBox>
