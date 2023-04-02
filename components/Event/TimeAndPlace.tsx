@@ -8,6 +8,7 @@ import {
 } from '@/styles/components/Event/timeAndPlace.styles';
 import { VolunteerProgramLocation } from 'bookem-shared/src/types/database';
 import { convertLocationToString } from 'bookem-shared/src/utils/utils';
+import { Media } from '@/lib/media';
 
 /**
  * Contain Program's date and location
@@ -60,7 +61,7 @@ const TimeAndPlace = ({
         {/* Location */}
         <IconBox>
           <Image src={'/event/map-pin.png'} alt="" width={40} height={40} />
-          <IconText>{location.street}</IconText>
+          <IconText>{convertLocationToString(location)}</IconText>
         </IconBox>
       </Media>
     </>
