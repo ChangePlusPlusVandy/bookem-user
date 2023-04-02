@@ -7,15 +7,7 @@ import {
   IconText,
 } from '@/styles/components/Event/timeAndPlace.styles';
 import { VolunteerProgramLocation } from 'bookem-shared/src/types/database';
-
-/**
- * Helper function to convert location to string
- * @param location The location of the program
- * @returns The location in string format
- */
-const convertLocationToString = (location: VolunteerProgramLocation) => {
-  return `${location.street} ${location.city}, ${location.state} ${location.zip}`;
-};
+import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 /**
  * Contain Program's date and location
