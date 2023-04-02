@@ -110,9 +110,11 @@ const RegisterPage1 = ({
     handleRightArrow,
   },
   formPhoneData,
+  formBirthdayData,
 }: {
   formFunctions: RegisterFormFunctions;
   formPhoneData: string;
+  formBirthdayData: string;
 }) => {
   // react hook form
   const {
@@ -123,10 +125,10 @@ const RegisterPage1 = ({
   } = handleForm;
 
   // state for phone number
-  const [phoneValue, setPhoneValue] = useState<string>(formPhoneData);
+  const [phoneValue, setPhoneValue] = useState(formPhoneData);
 
   // state for birthday
-  const [birthdayValue, setBirthdayValue] = useState('');
+  const [birthdayValue, setBirthdayValue] = useState(formBirthdayData);
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {

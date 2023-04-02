@@ -76,7 +76,7 @@ const RegisterPage2 = ({
   /* phone number format handling */
 
   // state for phone number
-  const [phoneValue, setPhoneValue] = useState<string>(formPhoneData);
+  const [phoneValue, setPhoneValue] = useState(formPhoneData);
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {

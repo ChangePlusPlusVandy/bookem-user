@@ -50,7 +50,9 @@ const RegisterPage = () => {
     occupationBoss: '',
     joinNewsletter: '',
     gender: '',
+    otherGender: '',
     race: '',
+    otherRace: '',
   });
 
   /* page number handling */
@@ -167,6 +169,7 @@ const RegisterPage = () => {
           <RegisterPage1
             formFunctions={formFunctions}
             formPhoneData={formData.phone}
+            formBirthdayData={formData.birthday}
           />
         )}
 
@@ -179,7 +182,13 @@ const RegisterPage = () => {
 
         {formData.page === 3 && <RegisterPage3 formFunctions={formFunctions} />}
 
-        {formData.page === 4 && <RegisterPage4 formFunctions={formFunctions} />}
+        {formData.page === 4 && (
+          <RegisterPage4
+            formFunctions={formFunctions}
+            formOtherGenderData={formData.otherGender}
+            formOtherRaceData={formData.otherRace}
+          />
+        )}
 
         {formData.page === 5 && <LastRegisterPage />}
       </Container>

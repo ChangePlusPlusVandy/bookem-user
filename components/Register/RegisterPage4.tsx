@@ -17,6 +17,7 @@ import {
   CheckboxContainer,
   LabelCheckbox,
   InputCheckbox,
+  OtherRadio,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
@@ -31,8 +32,12 @@ const RegisterPage4 = ({
     handleLeftArrow,
     handleRightArrow,
   },
+  formOtherGenderData,
+  formOtherRaceData,
 }: {
   formFunctions: RegisterFormFunctions;
+  formOtherGenderData: string;
+  formOtherRaceData: string;
 }) => {
   // react hook form
   const {
@@ -42,6 +47,12 @@ const RegisterPage4 = ({
     getValues,
     formState: { errors },
   } = handleForm;
+
+  // state for other gender
+  const [otherGender, setOtherGender] = useState(formOtherGenderData);
+
+  // state for other race
+  const [otherRace, setOtherRace] = useState(formOtherRaceData);
 
   return (
     <RightContainer>
@@ -67,8 +78,29 @@ const RegisterPage4 = ({
                 </LabelRadio>
               )
             )}
+
+            <OtherRadio>
+              <LabelRadio>
+                <InputRadio
+                  {...register('gender', { required: true })}
+                  type="radio"
+                  value={otherGender}
+                  onKeyDown={handleEnter}
+                />
+                Other:
+              </LabelRadio>
+              <InputText
+                {...register('otherGender')}
+                value={otherGender}
+                onKeyDown={handleEnter}
+                placeholder="Enter text"
+                onChange={e => setOtherGender(e.target.value)}
+                width="30%"
+              />
+            </OtherRadio>
           </InputContainer>
           {errors.gender && printError('A selection is required')}
+          {/**TODO should I make an error for the otherGender required field if other is selected? */}
 
           <SectionHeader>Race</SectionHeader>
           <InputContainer>
@@ -90,8 +122,29 @@ const RegisterPage4 = ({
                 {race}
               </LabelRadio>
             ))}
+
+            <OtherRadio>
+              <LabelRadio>
+                <InputRadio
+                  {...register('race', { required: true })}
+                  type="radio"
+                  value={otherRace}
+                  onKeyDown={handleEnter}
+                />
+                Other:
+              </LabelRadio>
+              <InputText
+                {...register('otherRace')}
+                value={otherRace}
+                onKeyDown={handleEnter}
+                placeholder="Enter text"
+                onChange={e => setOtherRace(e.target.value)}
+                width="30%"
+              />
+            </OtherRadio>
           </InputContainer>
           {errors.race && printError('A selection is required')}
+          {/**TODO should I make an error for the otherRace required field if other is selected? */}
         </SectionContainer>
       </Form>
 

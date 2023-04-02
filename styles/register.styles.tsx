@@ -145,6 +145,17 @@ export const InputRadio = styled.input`
 `;
 
 /**
+ * Container for radio input button with a text field
+ */
+export const OtherRadio = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  height: 27px;
+`;
+
+/**
  * Contain checkbox plus text associated with it
  */
 export const CheckboxContainer = styled.li`
