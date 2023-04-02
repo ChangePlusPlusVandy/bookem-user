@@ -14,10 +14,8 @@ const RegisterPage4 = () => {
       <LastPageTextContainer>
         <LastPageText>Thank you!</LastPageText>
         <LastPageText>
-          Your registration for Volunteer is complete!
-        </LastPageText>
-        <LastPageText>
-          Press the button below to log in to your account
+          Your registration for the Book&apos;em Volunteer Portal is complete!
+          Press the button below to log in to your account.
         </LastPageText>
       </LastPageTextContainer>
 

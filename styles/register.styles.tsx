@@ -185,6 +185,10 @@ export const Columns = styled.ul`
   list-style-type: none;
   padding: 0;
   margin: 0;
+
+  @media (max-width: 767px) {
+    columns: 1;
+  }
 `;
 
 /**
@@ -276,6 +280,7 @@ export const Button = styled.button`
 export const LastPageContainer = styled(RightContainer)`
   align-items: center;
   padding: 10vh;
+  justify-content: space-between;
 `;
 
 /**
@@ -291,13 +296,14 @@ export const LastPageTextContainer = styled.div`
  * 'fontSize' determines font-size
  */
 export const LastPageText = styled.div<Props>`
-  margin-bottom: ${props => (props.margin ? props.margin : '2vh')};
   font-weight: 400;
-  font-size: ${props => (props.fontSize ? props.fontSize : '25px')};
-  line-height: 36px;
+  font-size: 25px;
+  line-height: 30.26px;
 
   &:first-child {
     font-size: 30px;
+    line-height: 36.31px;
+    margin-bottom: 5vh;
   }
 `;
 
