@@ -32,7 +32,7 @@
     "@artsy/fresnel": "^6.1.0",
     "@next-auth/mongodb-adapter": "^1.1.1",
     "bcrypt": "^5.1.0",
-    "bookem-shared": "github:ChangePlusPlusVandy/bookem-shared",
+    "bookem-shared": "github:ChangePlusPlusVandy/bookem-shared#major-changes",
     "dotenv": "^16.0.3",
     "mongodb": "^4.11.0",
     "mongoose": "^6.7.2",
