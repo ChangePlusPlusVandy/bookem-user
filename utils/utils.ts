@@ -7,7 +7,7 @@ export const getTime = (str: string) => {
   const date = new Date(str);
   let ampm: String = 'AM';
   let hours: Number;
-  let minuteStr: String = '';
+  let minuteStr: string = date.getMinutes().toString();
 
   if (date.getHours() == 0) {
     hours = 12;
