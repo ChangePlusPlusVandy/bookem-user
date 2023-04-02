@@ -12,6 +12,7 @@ import {
   BottomBox,
   ButtonBox,
   AboutContactButton,
+  SignupBox,
 } from '@/styles/components/Event/event.styles';
 import { Media } from '@/lib/media';
 
@@ -82,6 +83,8 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
           {showAbout && <About description={event.description} />}
           {!showAbout && <Contact phone={event.phone} email={event.email} />}
         </BottomBox>
+
+        <SignupBox></SignupBox>
       </Media>
     </EventBox>
   );
