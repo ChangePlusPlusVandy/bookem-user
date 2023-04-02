@@ -1,7 +1,7 @@
 import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
-import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
@@ -25,7 +25,7 @@ export default async function handler(
      * @route GET /api/event/[id]
      * @desc Get program by id
      * @req program id, user in session
-     * @res QueriedVolunteerProgramData
+     * @res QueriedVolunteerEventData
      */
     case 'GET':
       try {
@@ -38,8 +38,8 @@ export default async function handler(
           return res.status(400).json({ message: 'Invalid id' });
 
         // Query program
-        const program: QueriedVolunteerProgramData =
-          (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
+        const program: QueriedVolunteerEventData =
+          (await VolunteerEvents.findById(id)) as QueriedVolunteerEventData;
 
         // if program is not found
         if (!program)
@@ -63,7 +63,7 @@ export default async function handler(
         await dbConnect();
 
         // Query program
-        const program = await VolunteerPrograms.findById(id);
+        const program = await VolunteerEvents.findById(id);
 
         // Query logged in user
         const user = await Users.findById(session.user._id);

@@ -2,19 +2,19 @@ import React, { Suspense } from 'react';
 const EventCard = React.lazy(() => import('@/components/shared/EventCard')); // implement lazy loading
 import { Container, Header } from '@/styles/components/pastActivity.styles';
 import mongoose from 'mongoose';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 
 /**
  * Dummy data for event cards
  */
-const dummyEventData: QueriedVolunteerProgramData = {
+const dummyEventData: QueriedVolunteerEventData = {
   _id: new mongoose.Types.ObjectId(),
   name: 'Distribute books (BNFK)',
   description: 'blablabla',
-  schools: [],
-  programDate: new Date('2005-12-17T13:24:00'),
-  category: 'RFR',
-  isOpen: true,
+  startDate: new Date('2005-12-17T13:24:00'),
+  endDate: new Date('2005-12-17T13:24:00'),
+  tags: [],
+  requireApplication: true,
   volunteers: [],
   maxSpot: 11,
   location: {

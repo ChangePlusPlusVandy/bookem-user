@@ -5,7 +5,7 @@ import { faker } from '@faker-js/faker';
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
 import { ObjectId } from 'mongodb';
 import { hash } from 'bcrypt';
-import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
+import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 
 // Important: this script is only for development purposes!
 if (process.env.NODE_ENV !== 'development')
@@ -139,11 +139,11 @@ export default async function handler(
         // ----------------- REPOPULATE PROGRAMS -----------------
 
         // Remove all volunteer programs from the database
-        await VolunteerPrograms.deleteMany({});
+        await VolunteerEvents.deleteMany({});
 
-        // Create a bulk insert operation for VolunteerPrograms
+        // Create a bulk insert operation for VolunteerEvents
         const bulkPrograms =
-          VolunteerPrograms.collection.initializeUnorderedBulkOp();
+          VolunteerEvents.collection.initializeUnorderedBulkOp();
 
         // Create a new bulk insert operation for Users
         const bulkUsers2 = Users.collection.initializeUnorderedBulkOp();

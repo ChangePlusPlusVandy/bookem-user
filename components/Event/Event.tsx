@@ -1,4 +1,4 @@
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import React from 'react';
 import Header from './Header';
 import BookIcon from './BookIcon';
@@ -16,7 +16,7 @@ import {
  * Event Detail
  * @param event Data about the event
  */
-const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
+const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
   return (
     <EventBox>
       <Header />
@@ -28,7 +28,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       </MiddleBox>
 
       {/* Time and Place of the program */}
-      <TimeAndPlace programDate={event.programDate} location={event.location} />
+      <TimeAndPlace programDate={event.startDate} location={event.location} />
 
       {/* Program Description and Contact Info */}
       <BottomBox>

@@ -1,5 +1,5 @@
 import dbConnect from '@/lib/dbConnect';
-import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
+import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -13,14 +13,14 @@ export default async function handler(
     /**
      * @route GET /api/events/upcoming
      * @desc Get all programs in the future
-     * @res QueriedVolunteerProgramData[]
+     * @res QueriedVolunteerEventData[]
      */
     case 'GET':
       try {
         await dbConnect();
 
         // Select all programs where programDate > today order by progamDate ascending
-        const programs = await VolunteerPrograms.find({
+        const programs = await VolunteerEvents.find({
           programDate: { $gt: new Date() },
         }).sort({ programDate: 1 });
 

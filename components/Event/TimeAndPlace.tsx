@@ -6,7 +6,7 @@ import {
   IconBox,
   IconText,
 } from '@/styles/components/Event/timeAndPlace.styles';
-import { VolunteerProgramLocation } from 'bookem-shared/src/types/database';
+import { VolunteerEventLocation } from 'bookem-shared/src/types/database';
 import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 /**
@@ -18,7 +18,7 @@ const TimeAndPlace = ({
   location,
 }: {
   programDate: Date;
-  location: VolunteerProgramLocation;
+  location: VolunteerEventLocation;
 }) => {
   return (
     <TimeAndPlaceBox>

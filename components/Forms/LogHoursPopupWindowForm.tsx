@@ -35,7 +35,7 @@ const LogHoursPopupWindowForm = ({
 
   // sends a post request to insert the volunteer form
   const createVolunteerLog = async (data: any) => {
-    // TODO: implement endpoint for VolunteerProgramApplication and call it
+    // TODO: implement endpoint for VolunteerEventApplication and call it
     await fetch('/api/volunteerLogs/create', {
       method: 'POST',
       body: data,

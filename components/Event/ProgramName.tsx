@@ -1,4 +1,4 @@
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import React, { useEffect, useState } from 'react';
 import {
   ProgramNameBox,
@@ -11,7 +11,7 @@ import { useSession } from 'next-auth/react';
  * Contain the Program name and sign up button
  * @param program
  */
-const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
+const ProgramName = ({ program }: { program: QueriedVolunteerEventData }) => {
   const [signedUp, setSignedUp] = useState(false);
   const { data: session } = useSession();
 
@@ -22,7 +22,7 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
   const signUpEvent = async () => {
     try {
       // If the program is not open, users need to submit an application
-      if (!program.isOpen) {
+      if (!program.requireApplication) {
         // TODO: redirect to program application page
         alert('Go to program application!');
         return;
@@ -68,7 +68,9 @@ const ProgramName = ({ program }: { program: QueriedVolunteerProgramData }) => {
   return (
     <ProgramNameBox>
       <NameAndSpot>
-        <b>{program.name}</b> ({program.category}) <br />
+        {/* TODO: get the name of the tags rather the mongodb id. do this after tag management is complete */}
+        <b>{program.name}</b>({program.tags[0].toString()})
+        <br />
         {getProgramLength()}/{program.maxSpot} spots filled
       </NameAndSpot>
       <SignupButton onClick={signUpEvent}>

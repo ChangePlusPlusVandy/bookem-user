@@ -13,7 +13,7 @@ import {
   InfoFlexChild,
   Name,
 } from '@/styles/components/eventCard.styles';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 // EventCard specific implementation of sizeMap
@@ -36,7 +36,7 @@ const EventCard = ({
   href,
 }: {
   // Volunteer program data
-  eventData: QueriedVolunteerProgramData;
+  eventData: QueriedVolunteerEventData;
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
   // the link to redirect to when the EventCard is clicked
@@ -82,9 +82,9 @@ const EventCard = ({
 
           <InfoFlex>
             <InfoFlexChild ratio={ratio}>
-              {convertToDate(eventData.programDate.toString()) +
+              {convertToDate(eventData.startDate.toString()) +
                 ' ' +
-                getTime(eventData.programDate.toString())}
+                getTime(eventData.startDate.toString())}
             </InfoFlexChild>
             {/* <InfoFlexChild ratio={ratio}>{eventData.time}</InfoFlexChild> */}
             <InfoFlexChild ratio={ratio}>
