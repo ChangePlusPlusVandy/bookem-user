@@ -44,15 +44,21 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       <Media lessThan="sm">
         <BottomBox>
           <ButtonBox>
-            <AboutContactButton backgroundcolor="#6b6b6b" textcolor="white">
+            <AboutContactButton
+              backgroundcolor={showAbout ? '#6b6b6b' : '#D9D9D9'}
+              textcolor={showAbout ? 'white' : 'black'}
+              onClick={() => setShowAbout(!showAbout)}>
               About
             </AboutContactButton>
-            <AboutContactButton backgroundcolor="#D9D9D9" textcolor="black">
+            <AboutContactButton
+              backgroundcolor={showAbout ? '#D9D9D9' : '#6b6b6b'}
+              textcolor={showAbout ? 'black' : 'white'}
+              onClick={() => setShowAbout(!showAbout)}>
               Contact
             </AboutContactButton>
           </ButtonBox>
-          <About description={event.description} />
-          <Contact phone={event.phone} email={event.email} />
+          {showAbout && <About description={event.description} />}
+          {!showAbout && <Contact phone={event.phone} email={event.email} />}
         </BottomBox>
       </Media>
     </EventBox>
