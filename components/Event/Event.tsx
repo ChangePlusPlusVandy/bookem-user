@@ -44,8 +44,12 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       <Media lessThan="sm">
         <BottomBox>
           <ButtonBox>
-            <AboutContactButton>About</AboutContactButton>
-            <AboutContactButton>Contact</AboutContactButton>
+            <AboutContactButton backgroundcolor="#6b6b6b" textcolor="white">
+              About
+            </AboutContactButton>
+            <AboutContactButton backgroundcolor="#D9D9D9" textcolor="black">
+              Contact
+            </AboutContactButton>
           </ButtonBox>
           <About description={event.description} />
           <Contact phone={event.phone} email={event.email} />

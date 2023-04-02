@@ -49,9 +49,24 @@ export const ButtonBox = styled.div`
   margin: 0 20px 0 20px;
 `;
 
-export const AboutContactButton = styled.button`
-  background-color: #6b6b6b;
+export const AboutContactButton = styled.button<{
+  backgroundcolor: string;
+  textcolor: string;
+}>`
+  background-color: ${props => props.backgroundcolor};
   width: 50vw;
   height: 35px;
-  color: white;
+  border-radius: 10px;
+  border: 0px solid;
+  color: ${props => props.textcolor};
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  &:hover {
+    cursor: pointer;
+    background-color: #6b6b6b;
+    color: white;
+  }
 `;
