@@ -82,7 +82,7 @@ const RegisterPage4 = ({
                 <InputRadio
                   {...register('gender', { required: true })}
                   type="radio"
-                  value={otherGender}
+                  value={'other'}
                   onKeyDown={handleEnter}
                 />
                 Other:
@@ -126,7 +126,7 @@ const RegisterPage4 = ({
                 <InputRadio
                   {...register('race', { required: true })}
                   type="radio"
-                  value={otherRace}
+                  value={'other'}
                   onKeyDown={handleEnter}
                 />
                 Other:

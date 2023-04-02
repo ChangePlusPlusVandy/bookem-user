@@ -123,10 +123,6 @@ const RegisterPage3 = ({
         </SectionContainer>
       </Form>
 
-      {/* <ButtonContainer>
-        <Button form="registerPage3">Submit</Button>
-      </ButtonContainer> */}
-
       <RegisterFlow
         currentPage={3}
         form="registerPage3"

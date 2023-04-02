@@ -36,7 +36,7 @@ export const Container = styled.div`
 export const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 50px;
   width: 50vw;
   height: 100vh;
   padding: 7vh 3% 7vh 7%;
@@ -51,6 +51,7 @@ export const RightContainer = styled.div`
  */
 export const Form = styled.form`
   overflow: auto;
+  margin-top: -40px;
   margin-bottom: auto;
   display: flex;
   flex-direction: column;
@@ -59,6 +60,20 @@ export const Form = styled.form`
     justify-content: space-between;
     height: 100%;
   }
+  &:last-child {
+    margin-top: 0px;
+  }
+`;
+
+/**
+ * Form border on RegisterPage5 (Review Information page)
+ */
+export const FormBorder = styled.div`
+  overflow: auto;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: -20px -20px -20px -20px;
+  padding: 5px 20px 20px 20px;
 `;
 
 /**
