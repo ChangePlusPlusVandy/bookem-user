@@ -7,8 +7,8 @@ import type { AppProps } from 'next/app';
 import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 import { useState } from 'react';
 import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
-import Link from 'next/link';
 import { useActiveRoute } from '@/lib/useActiveRoute';
+import { AVAILABLE_ROUTES_ARRAY } from '@/utils/constants';
 
 export default function App({
   Component,
@@ -28,12 +28,13 @@ export default function App({
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   // Only display hamburger in these routes
-  const HAMBURGER_ROUTES = ['/', '/volunteer', '/settings'];
+  const HAMBURGER_ROUTES = AVAILABLE_ROUTES_ARRAY;
   const route = useActiveRoute();
 
   const [showSidebar, setShowSidebar] = useState(false);
   const handleShowSidebar = () => setShowSidebar(true);
   const handleHideSidebar = () => setShowSidebar(false);
+
   return (
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
