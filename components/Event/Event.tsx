@@ -21,6 +21,17 @@ import { Media } from '@/lib/media';
  */
 const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
   const [showAbout, setShowAbout] = useState<boolean>(true);
+  const handleShowAbout = () => {
+    if (!showAbout) {
+      setShowAbout(!showAbout);
+    }
+  };
+
+  const handleShowContact = () => {
+    if (showAbout) {
+      setShowAbout(!showAbout);
+    }
+  };
   return (
     <EventBox>
       <Header />
@@ -47,13 +58,13 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
             <AboutContactButton
               backgroundcolor={showAbout ? '#6b6b6b' : '#D9D9D9'}
               textcolor={showAbout ? 'white' : 'black'}
-              onClick={() => setShowAbout(!showAbout)}>
+              onClick={handleShowAbout}>
               About
             </AboutContactButton>
             <AboutContactButton
               backgroundcolor={showAbout ? '#D9D9D9' : '#6b6b6b'}
               textcolor={showAbout ? 'black' : 'white'}
-              onClick={() => setShowAbout(!showAbout)}>
+              onClick={handleShowContact}>
               Contact
             </AboutContactButton>
           </ButtonBox>
