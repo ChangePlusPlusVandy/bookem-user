@@ -105,14 +105,19 @@ export const SignupButton = styled.button`
     }
   }
   @media (max-width: 767px) {
-    width: 150px;
-    margin-top: 30px;
+    width: 120px;
+    height: 40px;
     padding: 12px;
-    background: #5a5a5a;
+    background: black;
     border-radius: 10px;
     border: none;
+
     color: white;
-    font-size: 25px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
     &:hover {
       cursor: pointer;
     }

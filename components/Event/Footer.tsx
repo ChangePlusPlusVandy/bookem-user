@@ -29,7 +29,7 @@ const Footer = ({
     <>
       <SignupBox>
         <MaxSpot>
-          {getProgramLength(program)}/{program.maxSpot} spot
+          {getProgramLength(program)}/{program.maxSpot} spots filled
         </MaxSpot>
         <SignupButton onClick={signUpEvent}>
           <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
