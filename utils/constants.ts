@@ -1,6 +1,24 @@
 import { SidebarIconParams } from '@/utils/types';
 
 /**
+ * Available routes as object
+ */
+export const AVAILABLE_ROUTES = {
+  HOME: '/',
+  VOLUNTEER: '/volunteer',
+  SETTINGS: '/settings',
+};
+
+/**
+ * Array of available routes
+ *
+ * e.g. ['./', '/volunteer', '/settings']
+ */
+export const AVAILABLE_ROUTES_ARRAY: string[] = Object.entries(
+  AVAILABLE_ROUTES
+).map(([_, value]) => value);
+
+/**
  * Default width of icons
  */
 export const SIDEBAR_ICON_WIDTH = 41.25;
@@ -15,19 +33,28 @@ export const SIDEBAR_ICON_HEIGHT = 42.47;
  */
 export const SIDEBAR_ICON_PARAMS: SidebarIconParams[] = [
   {
-    defaultSrc: '/sidebar/home-white.png',
-    hoveredsrc: '/sidebar/home-black.png',
-    linkTo: '/',
+    desktopDefaultSrc: '/sidebar/home-white.png',
+    mobileDefaultSrc: '/sidebar/home-black.png',
+    desktopHoveredSrc: '/sidebar/home-black.png',
+    mobileHoveredSrc: '/sidebar/home-white.png',
+    linkTo: AVAILABLE_ROUTES.HOME,
+    text: 'Home',
   },
   {
-    defaultSrc: '/sidebar/volunteer-white.png',
-    hoveredsrc: '/sidebar/volunteer-black.png',
-    linkTo: '/volunteer',
+    desktopDefaultSrc: '/sidebar/volunteer-white.png',
+    mobileDefaultSrc: '/sidebar/volunteer-black.png',
+    desktopHoveredSrc: '/sidebar/volunteer-black.png',
+    mobileHoveredSrc: '/sidebar/volunteer-white.png',
+    linkTo: AVAILABLE_ROUTES.VOLUNTEER,
+    text: 'Volunteer',
   },
   {
-    defaultSrc: '/sidebar/setting-white.png',
-    hoveredsrc: '/sidebar/setting-black.png',
-    linkTo: '/settings',
+    desktopDefaultSrc: '/sidebar/setting-white.png',
+    mobileDefaultSrc: '/sidebar/setting-black.png',
+    desktopHoveredSrc: '/sidebar/setting-black.png',
+    mobileHoveredSrc: '/sidebar/setting-white.png',
+    linkTo: AVAILABLE_ROUTES.SETTINGS,
+    text: 'Settings',
   },
 ];
 

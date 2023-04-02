@@ -14,6 +14,7 @@ import {
   Name,
 } from '@/styles/components/eventCard.styles';
 import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 // EventCard specific implementation of sizeMap
 const sizeMap = new Map<string, number>([
@@ -66,7 +67,7 @@ const EventCard = ({
               height={`${Math.round(ratio * 23.99)}`}
             />
           </AddressIcon>
-          {eventData.location}
+          {convertLocationToString(eventData.location)}
         </AddressContainer>
 
         <InfoContainer ratio={ratio}>
