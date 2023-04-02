@@ -6,6 +6,16 @@ import {
   IconBox,
   IconText,
 } from '@/styles/components/Event/timeAndPlace.styles';
+import { VolunteerProgramLocation } from 'bookem-shared/src/types/database';
+
+/**
+ * Helper function to convert location to string
+ * @param location The location of the program
+ * @returns The location in string format
+ */
+const convertLocationToString = (location: VolunteerProgramLocation) => {
+  return `${location.street} ${location.city}, ${location.state} ${location.zip}`;
+};
 
 /**
  * Contain Program's date and location
@@ -16,7 +26,7 @@ const TimeAndPlace = ({
   location,
 }: {
   programDate: Date;
-  location: string;
+  location: VolunteerProgramLocation;
 }) => {
   return (
     <TimeAndPlaceBox>
@@ -35,7 +45,7 @@ const TimeAndPlace = ({
       {/* Location */}
       <IconBox>
         <Image src={'/event/map-pin.png'} alt="" width={50} height={50} />
-        <IconText>{location}</IconText>
+        <IconText>{convertLocationToString(location)}</IconText>
       </IconBox>
     </TimeAndPlaceBox>
   );
