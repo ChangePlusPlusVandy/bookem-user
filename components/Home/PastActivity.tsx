@@ -13,9 +13,6 @@ const dummyEventData: QueriedVolunteerEventData = {
   description: 'blablabla',
   startDate: new Date('2005-12-17T13:24:00'),
   endDate: new Date('2005-12-17T13:24:00'),
-  tags: [],
-  requireApplication: true,
-  volunteers: [],
   maxSpot: 11,
   location: {
     street: '3593 Cedar Rd',
@@ -23,6 +20,13 @@ const dummyEventData: QueriedVolunteerEventData = {
   },
   phone: '123-456-7890',
   email: 'test_user@bookem.com',
+  program: {
+    _id: new mongoose.Types.ObjectId(),
+    tagName: 'BNFK',
+  },
+  requireApplication: true,
+  volunteers: [],
+  tags: [],
   createdAt: new Date(),
   updatedAt: new Date(),
 };
