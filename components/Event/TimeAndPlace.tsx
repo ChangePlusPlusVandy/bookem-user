@@ -10,14 +10,14 @@ import { VolunteerEventLocation } from 'bookem-shared/src/types/database';
 import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 /**
- * Contain Program's date and location
- * @param programDate
+ * Contain Event's date and location
+ * @param eventDate
  */
 const TimeAndPlace = ({
-  programDate,
+  eventDate,
   location,
 }: {
-  programDate: Date;
+  eventDate: Date;
   location: VolunteerEventLocation;
 }) => {
   return (
@@ -25,13 +25,13 @@ const TimeAndPlace = ({
       {/* Calendar */}
       <IconBox>
         <Image src={'/event/calendar.png'} alt="" width={50} height={50} />
-        <IconText>{convertToDate(programDate.toString())}</IconText>
+        <IconText>{convertToDate(eventDate.toString())}</IconText>
       </IconBox>
 
       {/* Clock */}
       <IconBox>
         <Image src={'/event/clock.png'} alt="" width={50} height={50} />
-        <IconText>{getTime(programDate.toString())}</IconText>
+        <IconText>{getTime(eventDate.toString())}</IconText>
       </IconBox>
 
       {/* Location */}

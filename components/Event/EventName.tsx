@@ -1,34 +1,34 @@
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import React, { useEffect, useState } from 'react';
 import {
-  ProgramNameBox,
+  EventNameBox,
   NameAndSpot,
   SignupButton,
-} from '@/styles/components/Event/programName.styles';
+} from '@/styles/components/Event/eventName.styles';
 import { useSession } from 'next-auth/react';
 
 /**
- * Contain the Program name and sign up button
- * @param program
+ * Contain the Event name and sign up button
+ * @param event
  */
-const ProgramName = ({ program }: { program: QueriedVolunteerEventData }) => {
+const EventName = ({ event }: { event: QueriedVolunteerEventData }) => {
   const [signedUp, setSignedUp] = useState(false);
   const { data: session } = useSession();
 
   /**
    * Sign up/Unsign up the current user to the event
-   * @param program
+   * @param event
    */
   const signUpEvent = async () => {
     try {
-      // If the program is not open, users need to submit an application
-      if (!program.requireApplication) {
-        // TODO: redirect to program application page
-        alert('Go to program application!');
+      // If the event is not open, users need to submit an application
+      if (!event.requireApplication) {
+        // TODO: redirect to event application page
+        alert('Go to event application!');
         return;
       }
 
-      const response = await fetch('/api/event/' + program._id, {
+      const response = await fetch('/api/event/' + event._id, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,36 +48,36 @@ const ProgramName = ({ program }: { program: QueriedVolunteerEventData }) => {
   };
 
   useEffect(() => {
-    // Initialize signedUp according to whether the current program
+    // Initialize signedUp according to whether the current event
     // contains the user or not
     if (session?.user) {
-      setSignedUp(program.volunteers.includes(session.user._id));
+      setSignedUp(event.volunteers.includes(session.user._id));
     }
-  }, [program.volunteers, session?.user]);
+  }, [event.volunteers, session?.user]);
 
   /**
-   * Calculate the length of the program volunteers
-   * If program.volunteers is undefined, return 0
+   * Calculate the length of the event volunteers
+   * If event.volunteers is undefined, return 0
    */
-  const getProgramLength = () => {
-    if (program.volunteers && program.volunteers.length)
-      return program.volunteers.length;
+  const getEventLength = () => {
+    if (event.volunteers && event.volunteers.length)
+      return event.volunteers.length;
     else return 0;
   };
 
   return (
-    <ProgramNameBox>
+    <EventNameBox>
       <NameAndSpot>
         {/* TODO: get the name of the tags rather the mongodb id. do this after tag management is complete */}
-        <b>{program.name}</b>({program.tags[0].toString()})
+        <b>{event.name}</b>({event.tags[0].toString()})
         <br />
-        {getProgramLength()}/{program.maxSpot} spots filled
+        {getEventLength()}/{event.maxSpot} spots filled
       </NameAndSpot>
       <SignupButton onClick={signUpEvent}>
         <span>{signedUp ? 'Signed up' : 'Sign up'}</span>
       </SignupButton>
-    </ProgramNameBox>
+    </EventNameBox>
   );
 };
 
-export default ProgramName;
+export default EventName;

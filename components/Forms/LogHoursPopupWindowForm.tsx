@@ -18,12 +18,14 @@ const LogHoursPopupWindowForm = ({
   // get functions from react hook form
   const { register, handleSubmit } = useForm();
 
+  // TODO: combine event and program into one so users only need to select event
+  // that they signed up for (which is automatically under a program)
   const pages = ['Event', 'Program', 'Numbers', 'Comments'];
 
   // handle form submission by parsing data and calling createVolunteerLog
   const onSubmit = (data: any) => {
     const results = JSON.stringify({
-      // program: data.Program,
+      // event: data.Event,
       hours: parseInt(data.NumberOfHours),
       date: data.DateOfVisit,
       feedback: data.Comment,
@@ -50,10 +52,11 @@ const LogHoursPopupWindowForm = ({
         components={[
           // Page 1 - Event
           <LogHoursForm key={pages[0]}>
-            TODO: show table of volunteer programs
+            TODO: show events volunteer signed up for
           </LogHoursForm>,
 
           // Page 2 - Program
+          // TODO: remove this
           <LogHoursForm key={pages[1]}>
             <FormHeader>Please select one program</FormHeader>
             <FormLabel>

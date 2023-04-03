@@ -8,7 +8,7 @@ export const EventBox = styled.div`
 `;
 
 /**
- * Contains the book icon and the program name info
+ * Contains the book icon and the event name info
  */
 export const MiddleBox = styled.div`
   display: flex;

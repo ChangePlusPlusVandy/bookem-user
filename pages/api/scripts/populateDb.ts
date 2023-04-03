@@ -6,6 +6,7 @@ import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
 import { ObjectId } from 'mongodb';
 import { hash } from 'bcrypt';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
+import { UserData } from 'bookem-shared/src/types/database';
 
 // Important: this script is only for development purposes!
 if (process.env.NODE_ENV !== 'development')
@@ -65,7 +66,7 @@ export default async function handler(
           name: 'Bookem User',
           email: process.env.TEST_EMAIL || 'test_user@bookem.org',
           password: await hash(process.env.TEST_USER_PASSWD || '', 12),
-          phone: '615-555-5555',
+          phone: '(615) 555-5555',
           address: faker.address.streetAddress(),
           sourceHeardFrom: SOURCES[0],
           ethnicity: faker.helpers.arrayElement(ETHNICITY),
@@ -74,10 +75,9 @@ export default async function handler(
             passed: true,
             expirationDate: new Date(),
           },
-          userType: USERTYPES[0],
-          programs: [],
-          tags: CATEGORIES[0],
-        });
+          tags: [CATEGORIES[0]],
+          events: [],
+        } as UserData);
 
         // Insert NUM_OF_USERS users into the database
         for (let i = 0; i < NUM_OF_USERS; i++) {

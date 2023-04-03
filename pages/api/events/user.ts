@@ -40,8 +40,8 @@ export default async function handler(
         // sorted in descending order
         const volunteerEvents = await VolunteerEvents.find({
           userId: session.user._id,
-          programDate: { $lt: new Date() },
-        }).sort({ programDate: -1 });
+          startDate: { $lt: new Date() },
+        }).sort({ startDate: -1 });
 
         // return the result
         res.status(200).json(volunteerEvents);

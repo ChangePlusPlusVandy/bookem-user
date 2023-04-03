@@ -35,7 +35,7 @@ const EventCard = ({
   size,
   href,
 }: {
-  // Volunteer program data
+  // Volunteer event data
   eventData: QueriedVolunteerEventData;
   // specify the size of the EventCard
   size: 'large' | 'medium' | 'small';
