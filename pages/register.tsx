@@ -122,12 +122,11 @@ const RegisterPage = () => {
       sourceHeardFrom: 'somethingrandomidkwhattoputhere',
       ethnicity: 'somethingrandomidkwhattoputhere',
       gender: 'somethingrandomidkwhattoputhere',
-      programs: [],
+      events: [],
       backgroundCheck: {
         passed: false,
         expirationDate: new Date(),
       },
-      userType: '',
       tags: [],
     };
 

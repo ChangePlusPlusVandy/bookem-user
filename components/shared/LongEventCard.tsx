@@ -13,7 +13,7 @@ import {
   CheckmarkIcon,
   Container,
 } from '@/styles/components/longEventCard.styles';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 
 /**
@@ -36,10 +36,10 @@ const formatAMPM = (date: { getHours: () => any; getMinutes: () => any }) => {
 const LongEventCard = ({
   eventData,
 }: {
-  eventData: QueriedVolunteerProgramData;
+  eventData: QueriedVolunteerEventData;
 }) => {
   // create a date object with JavaScript's Date constructor
-  const date = new Date(eventData.programDate);
+  const date = new Date(eventData.startDate);
 
   return (
     <Container>
