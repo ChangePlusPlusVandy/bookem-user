@@ -14,7 +14,7 @@ import {
   SubmitButton,
 } from '@/styles/login.styles';
 import LeftDisplay from '@/components/Register/LeftDisplay';
-import MobileLogin from '@/components/mobile/Login';
+import MobileLogin from '@/components/mobile/MobileLogin/MobileLogin';
 import Link from 'next/link';
 import { Media, MediaContextProvider } from '@/lib/media';
 import styled from 'styled-components';
