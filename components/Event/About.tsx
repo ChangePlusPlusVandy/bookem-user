@@ -7,7 +7,7 @@ import {
 import { Media } from '@/lib/media';
 
 /**
- * Contains the program description
+ * Contains the event description
  * @param description Description of the current event
  */
 const About = ({ description }: { description: string }) => {

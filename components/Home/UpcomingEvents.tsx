@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import EventCard from '@/components/shared/EventCard';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
 
 /**
@@ -20,7 +20,7 @@ const Container = styled.div`
  * format horizontal upcoming event scroll bar on home page
  */
 const UpcomingEvents = () => {
-  const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
+  const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
   const [error, setError] = useState<Error>();
   // Fetch upcoming events when rendered
   useEffect(() => {

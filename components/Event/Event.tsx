@@ -1,8 +1,8 @@
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import React, { useState } from 'react';
 import Header from './Header';
 import BookIcon from './BookIcon';
-import ProgramName from './ProgramName';
+import EventName from './EventName';
 import TimeAndPlace from './TimeAndPlace';
 import About from './About';
 import Contact from './Contact';
@@ -20,7 +20,7 @@ import Footer from './Footer';
  * Event Detail
  * @param event Data about the event
  */
-const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
+const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
   /**
    * True: display About
    * False: display Contact
@@ -39,10 +39,10 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
    */
   const signUpEvent = async () => {
     try {
-      // If the event is not open, users need to submit an application
-      if (!event.isOpen) {
+      // If the event requires application, redirect to application page
+      if (!event.requireApplication) {
         // TODO: redirect to event application page
-        alert('Go to program application!');
+        alert('Go to event application!');
         return;
       }
 
@@ -71,28 +71,25 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
       <EventBox>
         <Header />
 
-        {/* Book Icon and Program name */}
+        {/* Book Icon and Event name */}
         <MiddleBox>
           <BookIcon />
 
           {/* Pass states to child to manage */}
-          <ProgramName
+          <EventName
             signedUp={signedUp}
             setSignedUp={setSignedUp}
-            program={event}
+            event={event}
             signUpEvent={signUpEvent}
           />
         </MiddleBox>
 
-        {/* Time and Place of the program */}
-        <TimeAndPlace
-          programDate={event.programDate}
-          location={event.location}
-        />
+        {/* Time and Place of the event */}
+        <TimeAndPlace eventDate={event.startDate} location={event.location} />
 
         {/* Desktop */}
         <Media greaterThanOrEqual="sm">
-          {/* Program Description and Contact Info */}
+          {/* Event Description and Contact Info */}
           <BottomBox>
             <About description={event.description} />
             <Contact phone={event.phone} email={event.email} />
@@ -132,7 +129,7 @@ const Event = ({ event }: { event: QueriedVolunteerProgramData }) => {
         <Footer
           signedUp={signedUp}
           setSignedUp={setSignedUp}
-          program={event}
+          event={event}
           signUpEvent={signUpEvent}
         />
       </Media>

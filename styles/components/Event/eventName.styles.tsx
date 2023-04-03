@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 /**
- * Contain program name, spots filled, and status
+ * Contain event name, spots filled, and status
  */
-export const ProgramNameBox = styled.div`
+export const EventNameBox = styled.div`
   height: auto;
   margin-left: 82px;
 
@@ -13,7 +13,7 @@ export const ProgramNameBox = styled.div`
 `;
 
 /**
- * Contain program name and spots filled
+ * Contain event name and spots filled
  */
 export const NameAndSpot = styled.div`
   @media (min-width: 768px) {
