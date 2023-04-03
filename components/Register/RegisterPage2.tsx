@@ -238,7 +238,7 @@ const RegisterPage2 = ({
                   placeholder="Start here..."
                   {...register('volunteerReason', {
                     required: screenSize.width > 767,
-                  })} // max-width: 767px
+                  })}
                 />
               </InputContainer>
               {errors.volunteerReason && printError('A response is required')}
