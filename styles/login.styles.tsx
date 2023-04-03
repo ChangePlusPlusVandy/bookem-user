@@ -65,7 +65,7 @@ export const LoginHeader = styled.div`
 export const Input = styled.input`
   border: 1px solid;
   height: 35px;
-  border-radius: 18px;
+  border-radius: 10px;
   padding: 10px;
   flex-grow: 1;
 `;
