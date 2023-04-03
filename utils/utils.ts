@@ -5,8 +5,9 @@ export const convertToDate = (str: string) => {
 
 export const getTime = (str: string) => {
   const date = new Date(str);
-  var ampm: String = 'AM';
-  var hours: Number;
+  let ampm: String = 'AM';
+  let hours: Number;
+  let minuteStr: string = date.getMinutes().toString();
 
   if (date.getHours() == 0) {
     hours = 12;
@@ -19,7 +20,11 @@ export const getTime = (str: string) => {
     }
   }
 
-  return hours + ':' + date.getMinutes().toString() + ' ' + ampm;
+  if (date.getMinutes() < 10) {
+    minuteStr = '0' + date.getMinutes();
+  }
+
+  return hours + ':' + minuteStr + ' ' + ampm;
 };
 
 /**

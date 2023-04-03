@@ -1,6 +1,7 @@
 import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
+import Tags from 'bookem-shared/src/models/Tags';
 import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
@@ -35,6 +36,9 @@ export default async function handler(
         // check if id is a valid mongoose id
         if (!ObjectId.isValid(id as string))
           return res.status(400).json({ message: 'Invalid id' });
+
+        // TODO: remove this after development
+        await Tags.find({});
 
         // query event and populate fields with mongoose refs
         const event = await VolunteerEvents.findById(id)

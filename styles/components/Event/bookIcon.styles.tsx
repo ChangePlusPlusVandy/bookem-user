@@ -7,7 +7,9 @@ export const IconContainer = styled.div`
   justify-content: center;
   align-self: center;
   width: max(17vw, 150px);
+  min-width: 180px;
   height: max(17vw, 150px);
+  min-height: 180px;
   border-radius: 50%;
   border: 10px solid #5a5a5a;
 `;
