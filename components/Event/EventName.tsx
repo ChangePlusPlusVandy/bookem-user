@@ -69,7 +69,8 @@ const EventName = ({ event }: { event: QueriedVolunteerEventData }) => {
     <EventNameBox>
       <NameAndSpot>
         {/* TODO: get the name of the tags rather the mongodb id. do this after tag management is complete */}
-        <b>{event.name}</b>({event.tags[0].toString()})
+        <b>{event.name}</b>
+        {event.tags.length > 0 && <p>({event.program.tagName})</p>}
         <br />
         {getEventLength()}/{event.maxSpot} spots filled
       </NameAndSpot>
