@@ -44,7 +44,7 @@ interface Props {
 
 const MobileContainer = styled.div`
   height: 100vh;
-  padding: 6% 13%;
+  padding: 6% 24%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -53,8 +53,8 @@ const MobileContainer = styled.div`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 19.36px;
+  font-size: 25px;
+  line-height: 30.26px;
 `;
 
 const MobileTextContainer = styled.div`
@@ -63,16 +63,16 @@ const MobileTextContainer = styled.div`
 
 const MobileText = styled.p<Props>`
   text-align: center;
-  &:first-child {
-    font-size: 25px;
-    line-height: 30.26px;
+  &:last-child {
+    font-size: 16px;
+    line-height: 19.36px;
   }
   &:hover {
     cursor: ${props => (props.hover ? `pointer` : `auto`)};
   }
 `;
 
-const MobileSignUpButton = styled.button`
+const MobileLoginButton = styled.button`
   background: #6d6d6d;
   border: none;
   border-radius: 10px;
@@ -117,7 +117,6 @@ const LoginPage = () => {
     <MediaContextProvider disableDynamicMediaQueries>
       <Media lessThan="sm">
         {onMobileLogin ? (
-          // TODO: put the MobileLogin code on this page anyway and delete that component
           <MobileLogin />
         ) : (
           <MobileContainer>
@@ -129,20 +128,22 @@ const LoginPage = () => {
             />
 
             <MobileTextContainer>
-              <MobileText>Welcome to Book&apos;em</MobileText>
+              <MobileText>
+                Welcome to the Book&apos;em Volunteer Portal
+              </MobileText>
 
               <MobileText>
                 Share the joy of reading and book ownership.
               </MobileText>
             </MobileTextContainer>
 
-            <Link href={'/register'}>
-              <MobileSignUpButton>Sign up</MobileSignUpButton>
-            </Link>
+            <MobileLoginButton onClick={() => setOnMobileLogin(true)}>
+              Log in
+            </MobileLoginButton>
 
-            <MobileText hover onClick={() => setOnMobileLogin(true)}>
-              Or log in
-            </MobileText>
+            <Link href={'/register'}>
+              <MobileText hover>Or sign up</MobileText>
+            </Link>
           </MobileContainer>
         )}
       </Media>
