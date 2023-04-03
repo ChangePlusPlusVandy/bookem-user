@@ -61,8 +61,8 @@ const formatPageDots = (currentPage: number) => {
           <Image
             src="/registerFlow/white-dot.png"
             alt="Dot for other page"
-            width="10"
-            height="10"
+            width="12"
+            height="12"
             key={page}
           />
         </Media>
