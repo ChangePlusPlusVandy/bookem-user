@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
@@ -84,6 +84,28 @@ const RegisterPage2 = ({
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
     setPhoneValue(formattedPhoneNumber);
   };
+
+  //TODO FIX THE ORGANIZATION OF LOGIC HERE, this is for textarea input
+  // https://www.datainfinities.com/45/get-window-width-and-height-in-react
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener('resize', updateDimension);
+
+    return () => {
+      window.removeEventListener('resize', updateDimension);
+    };
+  }, [screenSize]);
 
   return (
     <RightContainer>
@@ -214,7 +236,9 @@ const RegisterPage2 = ({
               <InputContainer>
                 <InputTextarea
                   placeholder="Start here..."
-                  {...register('volunteerReason', { required: true })}
+                  {...register('volunteerReason', {
+                    required: screenSize.width > 767,
+                  })} // max-width: 767px
                 />
               </InputContainer>
               {errors.volunteerReason && printError('A response is required')}

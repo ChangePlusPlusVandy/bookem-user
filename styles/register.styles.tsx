@@ -64,6 +64,7 @@ export const Form = styled.form`
   @media (max-width: 767px) {
     justify-content: space-between;
     height: 100%;
+    gap: 7px;
   }
   &:last-child {
     margin-top: 0px;
