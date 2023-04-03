@@ -1,7 +1,6 @@
 import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
@@ -37,9 +36,10 @@ export default async function handler(
         if (!ObjectId.isValid(id as string))
           return res.status(400).json({ message: 'Invalid id' });
 
-        // Query event
-        const event: QueriedVolunteerEventData =
-          (await VolunteerEvents.findById(id)) as QueriedVolunteerEventData;
+        // query event and populate fields with mongoose refs
+        const event = await VolunteerEvents.findById(id)
+          .populate({ path: 'program' })
+          .exec();
 
         // if event is not found
         if (!event) return res.status(400).json({ message: 'Event not found' });
