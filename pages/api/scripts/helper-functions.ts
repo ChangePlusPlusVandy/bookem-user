@@ -3,14 +3,12 @@ import { hash } from 'bcrypt';
 import {
   AdminStatus,
   QueriedTagData,
-  TagData,
   VolunteerEventData,
 } from 'bookem-shared/src/types/database';
 import { AdminData, UserData } from 'bookem-shared/src/types/database';
 import {
   ETHNICITY,
   EVENTS,
-  EventStatus,
   GENDERS,
   INSERTED_TAGS,
   SOURCES,
@@ -94,6 +92,7 @@ export const generateEvent = (i: number): VolunteerEventData => {
     },
     phone: generatePhone(),
     email: faker.internet.email(),
+    program: tagIds[0] || null,
     requireApplication: chosenEvent.requireApplication,
     tags: tagIds,
     volunteers: [],
