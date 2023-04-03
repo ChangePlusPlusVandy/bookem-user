@@ -89,3 +89,21 @@ export const LittleText = styled.p`
   color: white;
   font-size: 13px;
 `;
+
+export const PasswordWrapper = styled.div`
+  position: relative;
+  display: flex;
+`;
+
+export const Eye = styled.i`
+  position: absolute;
+  top: 13%;
+  right: 4%;
+`;
+
+export const ForgotPassword = styled.div`
+  margin: -10px 10px 0 auto;
+  font-size: 15px;
+  line-height: 18px;
+  color: #6d6d6d;
+`;

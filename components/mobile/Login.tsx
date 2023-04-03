@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {
   ContentContainer,
+  Eye,
+  ForgotPassword,
   Input,
   LoginForm,
   LoginHeader,
+  PasswordWrapper,
   SubmitButton,
 } from '@/styles/login.styles';
 import { FieldValues, useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
+import Image from 'next/image';
+
+interface Props {
+  hover?: boolean;
+}
 
 const MobileContainer = styled(ContentContainer)`
   height: 100vh;
@@ -44,6 +52,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
+  // state for showing psasword
+  const [passwordShown, setPasswordShown] = useState(false);
+
   // Function to handle login and redirect.
   const handleLogin = async (data: FieldValues) => {
     const status = await signIn('credentials', {
@@ -66,10 +77,35 @@ const Login = () => {
           <MobileInput
             {...register('email', { required: true })}
             placeholder="Email or Username"></MobileInput>
-          <MobileInput
-            {...register('password', { required: true })}
-            type="password"
-            placeholder="Password"></MobileInput>
+
+          <PasswordWrapper>
+            <MobileInput
+              {...register('password', { required: true })}
+              type={passwordShown ? 'text' : 'password'}
+              placeholder="Password"
+            />
+
+            <Eye onClick={() => setPasswordShown(!passwordShown)}>
+              {passwordShown ? (
+                <Image
+                  src={'/login/eye.png'}
+                  width="25"
+                  height="25"
+                  alt="Eye"
+                />
+              ) : (
+                <Image
+                  src={'/login/eye-slash.png'}
+                  width="25"
+                  height="25"
+                  alt="Eye with slash"
+                />
+              )}
+            </Eye>
+          </PasswordWrapper>
+
+          <ForgotPassword>Forgot password?</ForgotPassword>
+
           {errors.email && <span>Email is required</span>}
           {errors.password && <span>Password is required</span>}
         </LoginForm>
