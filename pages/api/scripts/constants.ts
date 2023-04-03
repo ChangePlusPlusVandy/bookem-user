@@ -65,15 +65,15 @@ export const EVENTS: {
 export const INSERTED_TAGS = [
   {
     _id: new mongoose.Types.ObjectId('642a4dec74c697623278344d'),
-    tagName: 'RIF-2023',
+    tagName: 'RIF',
   },
   {
     _id: new mongoose.Types.ObjectId('642a4dfc74c697623278344e'),
-    tagName: 'RFR-2023',
+    tagName: 'RFR',
   },
   {
     _id: new mongoose.Types.ObjectId('642a4e0474c697623278344f'),
-    tagName: 'BFNK-2023',
+    tagName: 'BFNK',
   },
   {
     _id: new mongoose.Types.ObjectId('642a4e0a74c6976232783450'),
