@@ -12,15 +12,16 @@ export const Container = styled.div<RatioProp>`
 
   @media (max-width: 767px) {
     background-color: #efefef;
-    margin: 0px ${props => props.ratio * 17}px;
+    //TODO: SHOULD i DO THIS TO FIX UPCOMINGEVENTS MOBILE CSS
+    /* margin: 0px ${props => props.ratio * 17}px; */
 
-    &:first-child {
+    /* &:first-child {
       margin-left: 0px;
     }
 
     &:last-child {
       margin-right: 0px;
-    }
+    } */
   }
 `;
 

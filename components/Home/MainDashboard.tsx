@@ -14,6 +14,7 @@ import {
   StatsNumber,
 } from '@/styles/dashboard.styles';
 import { Media, MediaContextProvider } from '@/lib/media';
+import Link from 'next/link';
 
 /**
  * format main dashboard on home page
@@ -62,6 +63,9 @@ const MainDashboard = ({ userData }: any) => {
           {/**TODO: DOUBLE CHECK ALL FORMATTING, etc. */}
           <Media lessThan="sm">
             <Header>See past activity</Header>
+            <Link href="/volunteerHistory">
+              <button></button>
+            </Link>
           </Media>
           <Media greaterThanOrEqual="sm">
             {/**PastActivity is not hidden */}
