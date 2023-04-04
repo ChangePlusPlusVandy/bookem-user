@@ -10,7 +10,6 @@ export const MainContent = styled.div`
   @media (min-width: 768px) {
     width: calc(100vw - 120px);
   }
-
   @media (max-width: 767px) {
     width: calc(100vw);
   }
