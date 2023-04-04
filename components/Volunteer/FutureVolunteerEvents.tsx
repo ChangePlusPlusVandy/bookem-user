@@ -74,7 +74,7 @@ const FutureVolunteerEvents = () => {
         <Container>
           <NavHeader>
             <NavLeft>
-              <Header>Future volunteer events</Header>
+              <Header>Explore volunteer opportunities</Header>
             </NavLeft>
             {/* Container for filter icon that sorts events accordingly */}
             <NavRight>

@@ -106,7 +106,9 @@ const LogHoursPopupWindowForm = ({
             <LargeFormInput
               {...register('Comment')}
               placeholder="Comment here..."></LargeFormInput>
-            <FormLabel>Would you like to share this comment?</FormLabel>
+            <FormLabel>
+              {"May we use your comment on Book'em's website or social media?"}
+            </FormLabel>
             <FormLabel>
               <input
                 type="radio"
