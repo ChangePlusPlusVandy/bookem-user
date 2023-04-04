@@ -6,6 +6,10 @@ import styled from 'styled-components';
 export const DashboardLayout = styled.div`
   display: grid;
   grid-template-columns: 1fr 24vw;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr 0vw;
+  }
 `;
 
 /**
@@ -15,7 +19,7 @@ export const Container = styled.div`
   height: 100vh;
   width: 100%;
   padding: 20px 40px;
-  overflow-y: scroll;
+  overflow-y: auto;
   position: relative;
   font-style: normal;
   font-weight: 400;
@@ -23,7 +27,6 @@ export const Container = styled.div`
 
 export const GreetingContainer = styled.div`
   height: fit-content;
-  background-color: white;
 `;
 
 /**
@@ -32,6 +35,11 @@ export const GreetingContainer = styled.div`
 export const Greeting = styled.p`
   font-size: 40px;
   line-height: 48px;
+  padding-right: 55px;
+
+  @media (max-width: 767px) {
+    padding-right: 60px;
+  }
 `;
 
 /**
@@ -39,11 +47,15 @@ export const Greeting = styled.p`
  */
 export const InfoIcon = styled.div`
   position: absolute;
-  top: 82px;
+  top: 65px;
   right: 50px;
 
   &:hover {
     cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    right: 55px;
   }
 `;
 

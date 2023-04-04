@@ -13,6 +13,7 @@ import {
   Header,
   StatsNumber,
 } from '@/styles/dashboard.styles';
+import { Media, MediaContextProvider } from '@/lib/media';
 
 /**
  * format main dashboard on home page
@@ -56,9 +57,24 @@ const MainDashboard = ({ userData }: any) => {
         {/* TODO: add a filter icon on the right */}
 
         <UpcomingEvents />
+
+        <MediaContextProvider disableDynamicMediaQueries>
+          {/**TODO: DOUBLE CHECK ALL FORMATTING, etc. */}
+          <Media lessThan="sm">
+            <Header>See past activity</Header>
+          </Media>
+          <Media greaterThanOrEqual="sm">
+            {/**PastActivity is not hidden */}
+          </Media>
+        </MediaContextProvider>
       </Container>
 
-      <PastActivity />
+      <MediaContextProvider disableDynamicMediaQueries>
+        <Media lessThan="sm">{/**PastActivity is not shown here */}</Media>
+        <Media greaterThanOrEqual="sm">
+          <PastActivity />
+        </Media>
+      </MediaContextProvider>
     </DashboardLayout>
   );
 };
