@@ -9,6 +9,19 @@ export const Container = styled.div<RatioProp>`
   padding: ${props => props.ratio * 17}px;
   margin: ${props => props.ratio * 17}px;
   border: 1px solid black;
+
+  @media (max-width: 767px) {
+    background-color: #efefef;
+    margin: 0px ${props => props.ratio * 17}px;
+
+    &:first-child {
+      margin-left: 0px;
+    }
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
 `;
 
 export const EventImage = styled.div<RatioProp>`
@@ -18,7 +31,6 @@ export const EventImage = styled.div<RatioProp>`
 `;
 
 export const Name = styled.div<RatioProp>`
-  background-color: white;
   margin-top: ${props => props.ratio * 29}px;
   height: ${props => props.ratio * 40.45}px;
   font-style: normal;
@@ -30,7 +42,6 @@ export const Name = styled.div<RatioProp>`
 export const AddressContainer = styled.div<RatioProp>`
   height: fit-content;
   margin-top: ${props => props.ratio * 13}px;
-  background-color: white;
   font-style: normal;
   font-weight: 400;
   font-size: ${props => props.ratio * 18}px;
@@ -45,7 +56,6 @@ export const AddressIcon = styled.div`
 export const InfoContainer = styled.div<RatioProp>`
   height: fit-content;
   margin-top: ${props => props.ratio * 13}px;
-  background-color: white;
 `;
 
 export const ClockIcon = styled.div`
@@ -55,14 +65,12 @@ export const ClockIcon = styled.div`
 
 export const InfoFlex = styled.div`
   height: fit-content;
-  background-color: white;
   display: flex;
   gap: 5px;
   justify-content: space-between;
 `;
 
 export const InfoFlexChild = styled.div<RatioProp>`
-  background-color: white;
   flex: 0 1 auto;
   text-align: center;
   vertical-align: middle;

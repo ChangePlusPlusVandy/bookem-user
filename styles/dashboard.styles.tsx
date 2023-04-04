@@ -38,7 +38,7 @@ export const Greeting = styled.p`
   padding-right: 55px;
 
   @media (max-width: 767px) {
-    padding-right: 60px;
+    padding-right: 70px;
   }
 `;
 
@@ -55,7 +55,9 @@ export const InfoIcon = styled.div`
   }
 
   @media (max-width: 767px) {
-    right: 55px;
+    right: 65px;
+    // TODO: should I make it in line with the hamburger?
+    /* top: 95px; */
   }
 `;
 
