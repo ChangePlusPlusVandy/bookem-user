@@ -5,6 +5,7 @@ import {
   IconContainer,
   IconLink,
   Container,
+  IconFlexBox,
 } from '@/styles/components/Sidebar/sidebar.styles';
 import {
   SIDEBAR_ICON_HEIGHT,
@@ -12,6 +13,7 @@ import {
   SIDEBAR_ICON_WIDTH,
 } from '@/utils/constants';
 import Image from 'next/image';
+import { IconText } from '@/styles/components/Sidebar/sidebar.styles';
 
 export const DesktopSidebar = () => {
   const activeRoute = useActiveRoute();
@@ -42,12 +44,18 @@ export const DesktopSidebar = () => {
               }>
               {/* Desktop version only displays image */}
               {/* Icon image with default src */}
-              <Image
-                src={iconParam.desktopDefaultSrc}
-                alt=""
-                width={SIDEBAR_ICON_HEIGHT}
-                height={SIDEBAR_ICON_WIDTH}
-              />
+              <IconFlexBox>
+                <Image
+                  src={iconParam.desktopDefaultSrc}
+                  alt=""
+                  width={SIDEBAR_ICON_HEIGHT}
+                  height={SIDEBAR_ICON_WIDTH}
+                />
+                <IconText
+                  color={activeRoute === iconParam.linkTo ? 'black' : 'white'}>
+                  {iconParam.text}
+                </IconText>
+              </IconFlexBox>
             </IconLink>
           </IconContainer>
         );

@@ -98,6 +98,9 @@ export const IconLink = styled(Link)<{
   &:hover {
     @media (min-width: 767px) {
       background-color: #d9d9d9;
+      span {
+        color: black;
+      }
     }
 
     // Change background color and text color when hovered
@@ -119,10 +122,17 @@ export const IconLink = styled(Link)<{
  * Contains the icon image + the text
  * Flex horizontally
  */
-export const MobileIconFlexBox = styled.div`
+export const IconFlexBox = styled.div`
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  @media (max-width: 768px) {
+    justify-content: space-around;
+  }
+
+  @media (min-width: 767px) {
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 /**
@@ -134,6 +144,11 @@ export const IconText = styled.span<{ color: string }>`
   font-family: 'Inter';
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  @media (max-width: 767px) {
+    font-size: 20px;
+  }
+  @media (min-width: 768px) {
+    font-size: 15px;
+  }
   line-height: 24px;
 `;

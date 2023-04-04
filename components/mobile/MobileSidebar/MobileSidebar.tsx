@@ -7,7 +7,7 @@ import {
   Container,
   IconText,
   MobileIconsContainer,
-  MobileIconFlexBox,
+  IconFlexBox,
   Header,
   Cross,
 } from '@/styles/components/Sidebar/sidebar.styles';
@@ -62,7 +62,7 @@ export const MobileSidebar = ({
                         ? iconParam.mobileHoveredSrc
                         : iconParam.mobileDefaultSrc
                     }>
-                    <MobileIconFlexBox>
+                    <IconFlexBox>
                       {/* Mobile version displays image + text */}
                       <Image
                         src={iconParam.mobileDefaultSrc}
@@ -76,7 +76,7 @@ export const MobileSidebar = ({
                         }>
                         {iconParam.text}
                       </IconText>
-                    </MobileIconFlexBox>
+                    </IconFlexBox>
                   </IconLink>
                 </IconContainer>
               );
