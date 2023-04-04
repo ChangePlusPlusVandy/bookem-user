@@ -1,25 +1,52 @@
 import styled from 'styled-components';
 
+/**
+ * Contain event name, spots filled, and status
+ */
 export const EventNameBox = styled.div`
-  margin-left: 82px;
   height: auto;
-`;
+  margin-left: 82px;
 
-export const NameAndSpot = styled.div`
-  font-size: 30px;
-  line-height: 50px;
-`;
-
-export const SignupButton = styled.button`
-  width: 150px;
-  margin-top: 30px;
-  padding: 12px;
-  background: #5a5a5a;
-  border-radius: 10px;
-  border: none;
-  color: white;
-  font-size: 25px;
-  &:hover {
-    cursor: pointer;
+  @media (max-width: 767px) {
+    padding-top: 30px;
   }
+`;
+
+/**
+ * Contain event name and spots filled
+ */
+export const NameAndSpot = styled.div`
+  @media (min-width: 768px) {
+    font-size: 30px;
+    line-height: 50px;
+  }
+
+  @media (max-width: 767px) {
+    font-size: 25px;
+    line-height: 40px;
+  }
+`;
+
+/**
+ * Contain a bullet point and a status
+ */
+export const StatusBox = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+/**
+ * Bullet point before status
+ */
+export const StatusBullet = styled.li`
+  font-size: 40px;
+`;
+
+/**
+ * Ongoing/Complete
+ */
+export const Status = styled.span`
+  font-size: 25px;
+  line-height: 40px;
+  margin-left: 20px;
 `;
