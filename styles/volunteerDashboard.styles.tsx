@@ -36,6 +36,7 @@ export const VolunteerButton = styled.button<{ backgroundcolor: string }>`
   display: flex;
   align-items: center;
   justify-content: space-around;
+  // Prevent switching to new line
   white-space: nowrap;
 
   border-radius: 10px;

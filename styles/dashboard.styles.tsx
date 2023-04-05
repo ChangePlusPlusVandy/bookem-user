@@ -51,6 +51,8 @@ export const InfoIcon = styled.div`
  * Header for accomplishments and your events
  */
 export const Header = styled.p`
+  // Prevent switching to new line
+  white-space: nowrap;
   margin-bottom: 29px;
   font-size: 25px;
   line-height: 30px;

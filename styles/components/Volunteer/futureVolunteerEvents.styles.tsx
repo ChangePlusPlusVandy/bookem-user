@@ -9,7 +9,9 @@ export const Container = styled.div`
  * Container of Future volunteer events header
  */
 export const NavHeader = styled.div`
-  border-top: 1px solid #000000;
+  @media (min-width: 768px) {
+    border-top: 1px solid #000000;
+  }
   width: 100%;
   padding: 26px 60px;
   display: flex;
