@@ -75,8 +75,8 @@ const PastActivity = ({ userData }: any) => {
               <Image
                 src="/event/error.svg"
                 alt=""
-                width={40}
-                height={40}
+                width={32}
+                height={32}
                 onClick={() => {
                   setOnMobileHide(true);
                 }}

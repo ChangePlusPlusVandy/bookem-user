@@ -41,7 +41,7 @@ export const HeaderBox = styled.div`
 
 export const HeaderText = styled.span`
   margin-left: 38px;
-  font-size: 40px;
+  font-size: 25px;
 `;
 
 export const Line = styled(Image)`

@@ -63,8 +63,8 @@ export const InfoIcon = styled.div`
   }
 
   @media (max-width: 767px) {
-    top: 51px;
-    right: 65px;
+    top: 107px;
+    right: 90px;
   }
 `;
 
