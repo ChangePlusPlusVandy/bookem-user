@@ -42,7 +42,7 @@ export const ProgressContainer = styled.div`
 `;
 
 /**
- * Centers ProgressContainer (only necessary for use with MediaContextProvider)
+ * Centers ProgressContainer
  */
 
 export const Container = styled.div`

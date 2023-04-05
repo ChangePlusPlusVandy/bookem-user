@@ -19,7 +19,7 @@ import {
   InputText,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 
 // TODO: HAVE 1 FORMATPHONENUMBER FUNCTION
 
@@ -226,25 +226,45 @@ const RegisterPage2 = ({
           </fieldset>
         </SectionContainer>
 
-        <MediaContextProvider disableDynamicMediaQueries>
-          <Media lessThan="sm">{/** Moved to next register page */}</Media>
-          <Media greaterThanOrEqual="sm">
-            <SectionContainer>
-              <SectionHeader>
-                Why do you want to become a Book&apos;em volunteer?
-              </SectionHeader>
-              <InputContainer>
-                <InputTextarea
-                  placeholder="Start here..."
-                  {...register('volunteerReason', {
-                    required: screenSize.width > 767,
-                  })}
-                />
-              </InputContainer>
-              {errors.volunteerReason && printError('A response is required')}
-            </SectionContainer>
-          </Media>
-        </MediaContextProvider>
+        <Media lessThan="sm">{/** Moved to next register page */}</Media>
+        <Media greaterThanOrEqual="sm">
+          <SectionContainer>
+            <SectionHeader>
+              Why do you want to become a Book&apos;em volunteer?
+            </SectionHeader>
+            <InputContainer>
+              <InputTextarea
+                placeholder="Start here..."
+                {...register('volunteerReason', {
+                  required: screenSize.width > 767,
+                })}
+              />
+            </InputContainer>
+            {errors.volunteerReason && printError('A response is required')}
+          </SectionContainer>
+        </Media>
+
+        <Media lessThan="sm">
+          <SectionContainer>
+            <SectionHeader>How did you hear about us?</SectionHeader>
+
+            <InputContainer>
+              <InputText
+                {...register('sourceHeardFrom', {
+                  required: screenSize.width <= 767,
+                })}
+                onKeyDown={handleEnter}
+                placeholder="Source"
+                width="100%"
+              />
+            </InputContainer>
+
+            {errors.sourceHeardFrom && printError('A response is required')}
+          </SectionContainer>
+        </Media>
+        <Media greaterThanOrEqual="sm">
+          {/** Moved to next register page */}
+        </Media>
       </Form>
 
       <RegisterFlow

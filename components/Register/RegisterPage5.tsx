@@ -23,6 +23,7 @@ import {
   Button,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
+import { Media } from '@/lib/media';
 
 const RegisterPage5 = ({
   formFunctions: {
@@ -170,6 +171,23 @@ const RegisterPage5 = ({
             </fieldset>
           </SectionContainer>
 
+          <Media lessThan="sm">
+            <SectionContainer>
+              <SectionHeader>How did you hear about us?</SectionHeader>
+
+              <InputContainer>
+                <InputText
+                  value={formData.sourceHeardFrom}
+                  width="100%"
+                  disabled
+                />
+              </InputContainer>
+            </SectionContainer>
+          </Media>
+          <Media greaterThanOrEqual="sm">
+            {/** Moved to different location */}
+          </Media>
+
           <SectionContainer>
             <SectionHeader>
               Why do you want to become a Book&apos;em volunteer?
@@ -208,11 +226,7 @@ const RegisterPage5 = ({
             </InputContainer>
 
             <InputContainer>
-              <InputText
-                value={formData.occupationBoss}
-                width="100%"
-                disabled
-              />
+              <InputText value={formData.occupationOrg} width="100%" disabled />
             </InputContainer>
           </SectionContainer>
 
@@ -240,6 +254,21 @@ const RegisterPage5 = ({
               </LabelRadio>
             </InputContainer>
           </SectionContainer>
+
+          <Media lessThan="sm">{/** Moved to different location */}</Media>
+          <Media greaterThanOrEqual="sm">
+            <SectionContainer>
+              <SectionHeader>How did you hear about us?</SectionHeader>
+
+              <InputContainer>
+                <InputText
+                  value={formData.sourceHeardFrom}
+                  width="100%"
+                  disabled
+                />
+              </InputContainer>
+            </SectionContainer>
+          </Media>
 
           <SectionContainer>
             <SectionHeader>

@@ -21,7 +21,7 @@ import {
   JoinNewsletterContainer,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 
 const RegisterPage3 = ({
   formFunctions: {
@@ -75,27 +75,25 @@ const RegisterPage3 = ({
       <Form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <MediaContextProvider disableDynamicMediaQueries>
-          <Media lessThan="sm">
-            <SectionContainer>
-              <SectionHeader>
-                Why do you want to become a Book&apos;em volunteer?
-              </SectionHeader>
-              <InputContainer>
-                <InputTextarea
-                  placeholder="Start here..."
-                  {...register('volunteerReason', {
-                    required: screenSize.width <= 767,
-                  })}
-                />
-              </InputContainer>
-              {errors.volunteerReason && printError('A response is required')}
-            </SectionContainer>
-          </Media>
-          <Media greaterThanOrEqual="sm">
-            {/** Moved to previous register page */}
-          </Media>
-        </MediaContextProvider>
+        <Media lessThan="sm">
+          <SectionContainer>
+            <SectionHeader>
+              Why do you want to become a Book&apos;em volunteer?
+            </SectionHeader>
+            <InputContainer>
+              <InputTextarea
+                placeholder="Start here..."
+                {...register('volunteerReason', {
+                  required: screenSize.width <= 767,
+                })}
+              />
+            </InputContainer>
+            {errors.volunteerReason && printError('A response is required')}
+          </SectionContainer>
+        </Media>
+        <Media greaterThanOrEqual="sm">
+          {/** Moved to previous register page */}
+        </Media>
 
         <SectionContainer>
           <SectionHeader>Current Occupation</SectionHeader>
@@ -129,7 +127,7 @@ const RegisterPage3 = ({
 
           <InputContainer>
             <InputText
-              {...register('occupationBoss', { required: true })}
+              {...register('occupationOrg', { required: true })}
               onKeyDown={handleEnter}
               placeholder="Name of Employer or School"
               width="100%"
@@ -139,7 +137,7 @@ const RegisterPage3 = ({
           {errors.occupation && printError('A selection is required')}
           {errors.occupationTitle &&
             printError('An occupation title is required')}
-          {errors.occupationBoss &&
+          {errors.occupationOrg &&
             printError('An employer/school name is required')}
         </SectionContainer>
 
@@ -168,6 +166,26 @@ const RegisterPage3 = ({
           </JoinNewsletterContainer>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
+
+        <Media lessThan="sm">{/** Moved to previous register page */}</Media>
+        <Media greaterThanOrEqual="sm">
+          <SectionContainer>
+            <SectionHeader>How did you hear about us?</SectionHeader>
+
+            <InputContainer>
+              <InputText
+                {...register('sourceHeardFrom', {
+                  required: screenSize.width > 767,
+                })}
+                onKeyDown={handleEnter}
+                placeholder="Source"
+                width="100%"
+              />
+            </InputContainer>
+
+            {errors.sourceHeardFrom && printError('A response is required')}
+          </SectionContainer>
+        </Media>
       </Form>
 
       <RegisterFlow

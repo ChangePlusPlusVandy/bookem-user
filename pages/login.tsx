@@ -16,7 +16,7 @@ import {
 import LeftDisplay from '@/components/Register/LeftDisplay';
 import MobileLogin from '@/components/mobile/MobileLogin/MobileLogin';
 import Link from 'next/link';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 import styled from 'styled-components';
 import Image from 'next/image';
 
@@ -114,7 +114,7 @@ const LoginPage = () => {
   };
 
   return (
-    <MediaContextProvider disableDynamicMediaQueries>
+    <>
       <Media lessThan="sm">
         {onMobileLogin ? (
           <MobileLogin />
@@ -203,7 +203,7 @@ const LoginPage = () => {
           </RightContainer>
         </Container>
       </Media>
-    </MediaContextProvider>
+    </>
   );
 };
 

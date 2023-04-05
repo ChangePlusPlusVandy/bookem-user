@@ -10,7 +10,7 @@ import RegisterPage5 from '@/components/Register/RegisterPage5';
 import LastRegisterPage from '@/components/Register/LastRegisterPage';
 import { Container, Error } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 
 /**
  * format error messages
@@ -49,8 +49,9 @@ const RegisterPage = () => {
     volunteerReason: '',
     occupation: '',
     occupationTitle: '',
-    occupationBoss: '',
+    occupationOrg: '',
     joinNewsletter: '',
+    sourceHeardFrom: '',
     gender: '',
     otherGender: '',
     race: '',
@@ -106,6 +107,11 @@ const RegisterPage = () => {
   // attempt to create user in database using form data
   const onFinished = async (data: any) => {
     // put form data into correct format for the user schema
+
+    const userEthnicity = data.race === 'other' ? data.otherRace : data.race;
+    const userGender = data.gender === 'other' ? data.otherGender : data.gender;
+    const userJoinNewsletter = data.joinNewsletter === 'yes' ? true : false;
+
     const userData: UserData = {
       name: data.firstName + ' ' + data.lastName,
       email: data.email,
@@ -119,15 +125,21 @@ const RegisterPage = () => {
         data.state +
         ' ' +
         data.zip,
-      sourceHeardFrom: 'somethingrandomidkwhattoputhere',
-      ethnicity: 'somethingrandomidkwhattoputhere',
-      gender: 'somethingrandomidkwhattoputhere',
-      events: [],
-      backgroundCheck: {
-        passed: false,
-        expirationDate: new Date(),
-      },
+      birthday: data.birthday,
+      emergencyName: data.emergencyFirstName + ' ' + data.emergencyLastName,
+      emergencyPhone: data.emergencyPhone,
+      emergencyRelationship: data.emergencyRelationship,
+      members: data.members,
+      volunteerReason: data.volunteerReason,
+      occupation: data.occupation,
+      occupationTitle: data.occupationTitle,
+      occupationOrg: data.occupationOrg,
+      joinNewsletter: userJoinNewsletter,
+      sourceHeardFrom: data.sourceHeardFrom,
+      ethnicity: userEthnicity,
+      gender: userGender,
       tags: [],
+      events: [],
     };
 
     // send api request to create user
@@ -141,6 +153,7 @@ const RegisterPage = () => {
       // if request is successful, there is no error message
       if (res.status == 201) return null;
       // otherwise, there is an error message
+      // TODO: MORE DESCRIPTIVE ERROR MESSAGES?
       else return { message: 'You have entered invalid information.' };
     } catch (err) {
       return { message: 'Some error has occurred.' };
@@ -159,36 +172,34 @@ const RegisterPage = () => {
 
   // TODO: should I adjust everything's font size?
   return (
-    <MediaContextProvider disableDynamicMediaQueries>
-      <Container>
-        <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>
-        <Media greaterThanOrEqual="sm">
-          <LeftDisplay />
-        </Media>
+    <Container>
+      <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>
+      <Media greaterThanOrEqual="sm">
+        <LeftDisplay />
+      </Media>
 
-        {formData.page === 1 && (
-          <RegisterPage1 formFunctions={formFunctions} formData={formData} />
-        )}
+      {formData.page === 1 && (
+        <RegisterPage1 formFunctions={formFunctions} formData={formData} />
+      )}
 
-        {formData.page === 2 && (
-          <RegisterPage2 formFunctions={formFunctions} formData={formData} />
-        )}
+      {formData.page === 2 && (
+        <RegisterPage2 formFunctions={formFunctions} formData={formData} />
+      )}
 
-        {formData.page === 3 && (
-          <RegisterPage3 formFunctions={formFunctions} formData={formData} />
-        )}
+      {formData.page === 3 && (
+        <RegisterPage3 formFunctions={formFunctions} formData={formData} />
+      )}
 
-        {formData.page === 4 && (
-          <RegisterPage4 formFunctions={formFunctions} formData={formData} />
-        )}
+      {formData.page === 4 && (
+        <RegisterPage4 formFunctions={formFunctions} formData={formData} />
+      )}
 
-        {formData.page === 5 && (
-          <RegisterPage5 formFunctions={formFunctions} formData={formData} />
-        )}
+      {formData.page === 5 && (
+        <RegisterPage5 formFunctions={formFunctions} formData={formData} />
+      )}
 
-        {formData.page === 6 && <LastRegisterPage />}
-      </Container>
-    </MediaContextProvider>
+      {formData.page === 6 && <LastRegisterPage />}
+    </Container>
   );
 };
 

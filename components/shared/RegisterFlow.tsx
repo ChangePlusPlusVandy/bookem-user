@@ -7,7 +7,7 @@ import {
   ProgressContainer,
   Container,
 } from '@/styles/registerFlow.styles';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 
 /**
  * format the dots representing register form pages
@@ -23,7 +23,7 @@ const formatPageDots = (currentPage: number) => {
     // dot for current page is black
     if (page == currentPage)
       return (
-        <MediaContextProvider disableDynamicMediaQueries>
+        <>
           <Media lessThan="sm">
             <Image
               src="/registerFlow/black-dot.png"
@@ -42,12 +42,12 @@ const formatPageDots = (currentPage: number) => {
               key={page}
             />
           </Media>
-        </MediaContextProvider>
+        </>
       );
 
     // dot for other pages are white
     return (
-      <MediaContextProvider disableDynamicMediaQueries key={page}>
+      <>
         <Media lessThan="sm">
           <Image
             src="/registerFlow/white-dot.png"
@@ -66,7 +66,7 @@ const formatPageDots = (currentPage: number) => {
             key={page}
           />
         </Media>
-      </MediaContextProvider>
+      </>
     );
   });
 
@@ -96,7 +96,7 @@ const RegisterFlow = ({
   handleRightArrow: Function;
 }) => {
   return (
-    <MediaContextProvider disableDynamicMediaQueries>
+    <>
       <Media lessThan="sm">
         <Container>
           <ProgressContainer>
@@ -161,7 +161,7 @@ const RegisterFlow = ({
           </ProgressContainer>
         </Container>
       </Media>
-    </MediaContextProvider>
+    </>
   );
 };
 
