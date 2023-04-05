@@ -9,6 +9,16 @@ import { useState } from 'react';
 import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import { AVAILABLE_ROUTES_ARRAY } from '@/utils/constants';
+import { ThemeProvider } from 'styled-components';
+
+const BOOKEM_THEME = {
+  WHITE: '#FFFFFF',
+  BOOKEM_BLACK: '#2C2C2C',
+  BOOKEM_LIGHT_GRAY: '#F4F4F4',
+  BOOKEM_RED: '#DA4347',
+  BOOKEM_BLUE: '#83BCDA',
+  BOOKEM_YELLOW: '#F1E09A',
+};
 
 export default function App({
   Component,
@@ -16,12 +26,14 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      {session && (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      )}
-      {!session && <Component {...pageProps} />}
+      <ThemeProvider theme={BOOKEM_THEME}>
+        {session && (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
+        {!session && <Component {...pageProps} />}
+      </ThemeProvider>
     </SessionProvider>
   );
 }
