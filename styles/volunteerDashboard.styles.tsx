@@ -86,26 +86,6 @@ export const ButtonIcon = styled.div`
   }
 `;
 
-// export const HistoryButton = styled(Link)`
-//   width: 350px;
-//   height: 74px;
-//   padding: 19px;
-//   margin-top: 25px;
-//   background: #e3e3e3;
-//   border: 1.5px solid #000000;
-//   border-radius: 10px;
-//   font-style: normal;
-//   font-weight: 400;
-//   font-size: 30px;
-//   line-height: 36px;
-//   border-color: #d4d4d4;
-//   display: flex;
-//   align-items: center;
-//   &:hover {
-//     cursor: pointer;
-//   }
-// `;
-
 /**
  * Container for volunteer stats
  */
