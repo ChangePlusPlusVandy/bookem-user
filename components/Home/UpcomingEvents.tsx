@@ -24,7 +24,7 @@ const UpcomingEvents = () => {
   const [error, setError] = useState<Error>();
   // Fetch upcoming events when rendered
   useEffect(() => {
-    fetchData('/api/events/upcoming')
+    fetchData('/api/event/upcoming')
       .then(data => setEvents(data))
       .catch(err => setError(err));
   }, []);
