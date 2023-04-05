@@ -17,7 +17,7 @@ import {
   InputText,
   Fieldset,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/utils/types';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import { Media } from '@/lib/media';
 
 /**
@@ -61,7 +61,7 @@ const RegisterPage2 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any;
+  formData: RegisterFormData;
 }) => {
   // react hook form
   const {

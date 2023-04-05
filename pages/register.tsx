@@ -9,7 +9,7 @@ import RegisterPage4 from '@/components/Register/RegisterPage4';
 import RegisterPage5 from '@/components/Register/RegisterPage5';
 import LastRegisterPage from '@/components/Register/LastRegisterPage';
 import { Container, Error } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/utils/types';
+import { RegisterFormFunctions, RegisterFormData } from '@/utils/types';
 import { Media } from '@/lib/media';
 
 /**
@@ -28,7 +28,7 @@ const printError = (message: string) => {
 
 const RegisterPage = () => {
   // state for form data
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<RegisterFormData>({
     page: 1,
     firstName: '',
     lastName: '',

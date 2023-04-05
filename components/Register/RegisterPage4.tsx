@@ -9,17 +9,11 @@ import {
   SectionHeader,
   InputContainer,
   InputText,
-  ButtonContainer,
   LabelRadio,
   InputRadio,
-  Button,
-  Columns,
-  CheckboxContainer,
-  LabelCheckbox,
-  InputCheckbox,
   OtherRadio,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/utils/types';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 
 const RegisterPage4 = ({
   formFunctions: {
@@ -33,7 +27,7 @@ const RegisterPage4 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any;
+  formData: RegisterFormData;
 }) => {
   // react hook form
   const {

@@ -11,7 +11,7 @@ import {
   InputText,
   InputContainer,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/utils/types';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 
 /**
  * auto-format inputted phone number
@@ -112,7 +112,7 @@ const RegisterPage1 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any;
+  formData: RegisterFormData;
 }) => {
   // react hook form
   const {
