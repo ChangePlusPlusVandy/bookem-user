@@ -55,20 +55,31 @@ const VolunteerDashboard = ({ userData }: any) => {
                 />
               </Media>
             </ButtonIcon>
-            <ButtonText> Log Hours</ButtonText>
+            <ButtonText textcolor="white"> Log Hours</ButtonText>
           </LogButton>
           {/** Button for "See History" */}
-          <HistoryButton href="/volunteerHistory">
+          <LogButton
+            onClick={() => (window.location.href = '/volunteerHistory')}>
             <ButtonIcon>
-              <Image
-                src="/volunteer/history-clock.png"
-                alt="Clock with arrow icon"
-                width="50"
-                height="50"
-              />
+              <Media greaterThanOrEqual="sm">
+                <Image
+                  src="/volunteer/history-clock.png"
+                  alt="Clock with arrow icon"
+                  width="50"
+                  height="50"
+                />
+              </Media>
+              <Media lessThan="sm">
+                <Image
+                  src="/volunteer/history-clock-mobile.svg"
+                  alt="Clock with arrow icon"
+                  width="50"
+                  height="50"
+                />
+              </Media>
             </ButtonIcon>
-            See History
-          </HistoryButton>
+            <ButtonText textcolor="white"> See History</ButtonText>
+          </LogButton>
         </VolunteerButtonsContainer>
 
         {/** Volunteer stats */}

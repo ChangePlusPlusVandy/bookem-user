@@ -40,7 +40,7 @@ export const LogButton = styled.button`
   }
 
   @media (max-width: 767px) {
-    width: 180px;
+    width: 250px;
     height: 60px;
     font-family: 'Inter';
     font-style: normal;
@@ -50,9 +50,9 @@ export const LogButton = styled.button`
   }
 `;
 
-export const ButtonText = styled.span`
+export const ButtonText = styled.span<{ textcolor: string }>`
   display: inline-block;
-  color: #ffffff;
+  color: ${props => props.textcolor};
 `;
 
 /**
@@ -98,6 +98,7 @@ export const VolunteerButtonsContainer = styled.div`
   align-items: center;
   @media (max-width: 767px) {
     /* flex-direction: column; */
+    justify-content: space-between;
     gap: 25px;
   }
 `;
