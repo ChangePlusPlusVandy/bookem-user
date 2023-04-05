@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import PastActivity from '@/components/Home/PastActivity';
@@ -12,8 +12,9 @@ import {
   FlexChild,
   Header,
   StatsNumber,
+  MobilePastActivityContainer,
 } from '@/styles/dashboard.styles';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 import Link from 'next/link';
 
 /**
@@ -27,59 +28,97 @@ import Link from 'next/link';
  * }
  */
 const MainDashboard = ({ userData }: any) => {
+  // state for showing mobile past activities
+  const [onMobilePastActivity, setOnMobilePastActivity] = useState(false);
+
   return (
-    <DashboardLayout>
-      <Container>
-        <Greeting>Hello {userData.name}, how&apos;s your day?</Greeting>
+    <>
+      {onMobilePastActivity ? (
+        <PastActivity userData={userData} />
+      ) : (
+        <DashboardLayout>
+          <Container>
+            <Greeting>Hello {userData.name}, thanks for checking in!</Greeting>
 
-        <InfoIcon>
-          <Image src="/info.png" alt="Info icon" width="44" height="44" />
-        </InfoIcon>
+            <Media lessThan="sm">
+              <InfoIcon>
+                <Image
+                  src="/home/info.png"
+                  alt="Info icon"
+                  width="19"
+                  height="19"
+                />
+              </InfoIcon>
+            </Media>
+            <Media greaterThanOrEqual="sm">
+              <InfoIcon>
+                <Image
+                  src="/home/info.png"
+                  alt="Info icon"
+                  width="44"
+                  height="44"
+                />
+              </InfoIcon>
+            </Media>
 
-        <Header>Your accomplishments at a glance:</Header>
-        <StatsFlex>
-          <FlexChild>
-            <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-            <StatsDescription>Hours volunteered</StatsDescription>
-          </FlexChild>
+            <div>
+              <Media lessThan="sm">
+                <Header>Great work! Keep it up.</Header>
+              </Media>
+              <Media greaterThanOrEqual="sm">
+                <Header>Your accomplishments at a glance:</Header>
+              </Media>
 
-          <FlexChild>
-            <StatsNumber>{userData.booksShared}</StatsNumber>
-            <StatsDescription>Books shared (requested?)</StatsDescription>
-          </FlexChild>
+              <StatsFlex>
+                <FlexChild>
+                  <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
+                  <StatsDescription>Hours volunteered</StatsDescription>
+                </FlexChild>
 
-          <FlexChild>
-            <StatsNumber>{userData.dollarsDonated}</StatsNumber>
-            <StatsDescription>Dollars donated</StatsDescription>
-          </FlexChild>
-        </StatsFlex>
+                <FlexChild>
+                  <StatsNumber>{userData.booksShared}</StatsNumber>
+                  <StatsDescription>Books shared (requested?)</StatsDescription>
+                </FlexChild>
 
-        <Header>Your events</Header>
-        {/* TODO: add a filter icon on the right */}
+                <FlexChild>
+                  <StatsNumber>{userData.dollarsDonated}</StatsNumber>
+                  <StatsDescription>Dollars donated</StatsDescription>
+                </FlexChild>
+              </StatsFlex>
+            </div>
 
-        <UpcomingEvents />
+            <div>
+              <Header>Your upcoming events</Header>
+              {/* TODO: add a filter icon on the right */}
 
-        <MediaContextProvider disableDynamicMediaQueries>
-          {/**TODO: DOUBLE CHECK ALL FORMATTING, etc. */}
-          <Media lessThan="sm">
-            <Header>See past activity</Header>
-            <Link href="/volunteerHistory">
-              <button></button>
-            </Link>
-          </Media>
+              <UpcomingEvents />
+            </div>
+
+            {/**TODO: DOUBLE CHECK ALL FORMATTING, etc. */}
+            <Media lessThan="sm">
+              <MobilePastActivityContainer>
+                <Header>See past activity</Header>
+                <Image
+                  src="/home/arrow-right.png"
+                  alt="Right arrow"
+                  width="32"
+                  height="32"
+                  onClick={() => setOnMobilePastActivity(true)}
+                />
+              </MobilePastActivityContainer>
+            </Media>
+            <Media greaterThanOrEqual="sm">
+              {/**PastActivity is not hidden */}
+            </Media>
+          </Container>
+
+          <Media lessThan="sm">{/**PastActivity is not shown here */}</Media>
           <Media greaterThanOrEqual="sm">
-            {/**PastActivity is not hidden */}
+            <PastActivity />
           </Media>
-        </MediaContextProvider>
-      </Container>
-
-      <MediaContextProvider disableDynamicMediaQueries>
-        <Media lessThan="sm">{/**PastActivity is not shown here */}</Media>
-        <Media greaterThanOrEqual="sm">
-          <PastActivity />
-        </Media>
-      </MediaContextProvider>
-    </DashboardLayout>
+        </DashboardLayout>
+      )}
+    </>
   );
 };
 

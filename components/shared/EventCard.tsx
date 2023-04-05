@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { convertToDate, getTime } from '@/utils/utils';
 import Link from 'next/link';
@@ -24,9 +24,12 @@ const sizeMap = new Map<string, number>([
 ]);
 
 // helper method for converting size to its corresponding ratio
-const toRatio = (size: 'large' | 'medium' | 'small'): number => {
+const toRatio = (
+  size: 'large' | 'medium' | 'small',
+  windowSize: number
+): number => {
   let ratio = sizeMap.get(size);
-  if (ratio !== undefined) return ratio;
+  if (ratio !== undefined) return windowSize > 767 ? ratio : ratio * 0.8;
   else return 1;
 };
 
@@ -42,8 +45,30 @@ const EventCard = ({
   // the link to redirect to when the EventCard is clicked
   href?: string | undefined;
 }) => {
+  // state for getting window size
+  // https://www.datainfinities.com/45/get-window-width-and-height-in-react
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  function getCurrentDimension() {
+    return {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+  }
+
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener('resize', updateDimension);
+
+    return () => {
+      window.removeEventListener('resize', updateDimension);
+    };
+  }, [screenSize]);
+
   // get ratio based on size to be used in computing distances
-  const ratio = toRatio(size);
+  const ratio = toRatio(size, screenSize.width);
 
   return (
     <Container ratio={ratio}>

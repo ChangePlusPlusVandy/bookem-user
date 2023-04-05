@@ -18,11 +18,17 @@ export const DashboardLayout = styled.div`
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  padding: 20px 40px;
+  padding: 75px 40px 40px 40px;
   overflow-y: auto;
   position: relative;
   font-style: normal;
   font-weight: 400;
+
+  @media (max-width: 767px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
 `;
 
 export const GreetingContainer = styled.div`
@@ -38,6 +44,8 @@ export const Greeting = styled.p`
   padding-right: 55px;
 
   @media (max-width: 767px) {
+    font-size: 25px;
+    line-height: 30px;
     padding-right: 70px;
   }
 `;
@@ -55,9 +63,8 @@ export const InfoIcon = styled.div`
   }
 
   @media (max-width: 767px) {
+    top: 51px;
     right: 65px;
-    // TODO: should I make it in line with the hamburger?
-    /* top: 95px; */
   }
 `;
 
@@ -68,6 +75,12 @@ export const Header = styled.p`
   margin-bottom: 29px;
   font-size: 25px;
   line-height: 30px;
+
+  @media (max-width: 767px) {
+    margin-bottom: 15px;
+    font-size: 16px;
+    line-height: 19px;
+  }
 `;
 
 /**
@@ -96,6 +109,11 @@ export const StatsNumber = styled.p`
   margin: 0;
   font-size: 40px;
   line-height: 48px;
+
+  @media (max-width: 767px) {
+    font-size: 25px;
+    line-height: 30px;
+  }
 `;
 
 /**
@@ -106,4 +124,19 @@ export const StatsDescription = styled.p`
   font-size: 16px;
   line-height: 19px;
   text-align: center;
+
+  @media (max-width: 767px) {
+    font-size: 15px;
+    line-height: 18px;
+  }
+`;
+
+/**
+ * Container for mobile Past Activity header and arrow
+ */
+export const MobilePastActivityContainer = styled.div`
+  display: flex;
+  align-items: center;
+  margin-top: 25px;
+  gap: 10px;
 `;

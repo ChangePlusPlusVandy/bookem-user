@@ -1,6 +1,14 @@
 import styled from 'styled-components';
 import { RatioProp } from '@/utils/types';
 
+/**
+ * Handle text overflow
+ */
+const Overflow = `
+text-overflow: ellipsis;
+overflow: hidden;
+`;
+
 export const Container = styled.div<RatioProp>`
   background-color: white;
   max-width: ${props => props.ratio * 328}px;
@@ -12,16 +20,6 @@ export const Container = styled.div<RatioProp>`
 
   @media (max-width: 767px) {
     background-color: #efefef;
-    //TODO: SHOULD i DO THIS TO FIX UPCOMINGEVENTS MOBILE CSS
-    /* margin: 0px ${props => props.ratio * 17}px; */
-
-    /* &:first-child {
-      margin-left: 0px;
-    }
-
-    &:last-child {
-      margin-right: 0px;
-    } */
   }
 `;
 
@@ -38,6 +36,7 @@ export const Name = styled.div<RatioProp>`
   font-weight: 700;
   font-size: ${props => props.ratio * 18}px;
   line-height: ${props => props.ratio * 22}px;
+  ${Overflow};
 `;
 
 export const AddressContainer = styled.div<RatioProp>`
@@ -47,6 +46,7 @@ export const AddressContainer = styled.div<RatioProp>`
   font-weight: 400;
   font-size: ${props => props.ratio * 18}px;
   line-height: ${props => props.ratio * 22}px;
+  ${Overflow};
 `;
 
 export const AddressIcon = styled.div`
@@ -79,4 +79,5 @@ export const InfoFlexChild = styled.div<RatioProp>`
   font-weight: 400;
   font-size: ${props => props.ratio * 18}px;
   line-height: ${props => props.ratio * 22}px;
+  ${Overflow};
 `;

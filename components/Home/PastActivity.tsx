@@ -1,8 +1,18 @@
-import React, { Suspense } from 'react';
+import React, { Suspense, useState } from 'react';
 const EventCard = React.lazy(() => import('@/components/shared/EventCard')); // implement lazy loading
-import { Container, Header } from '@/styles/components/pastActivity.styles';
+import {
+  Container,
+  HeaderText,
+  Header,
+  HeaderBox,
+  Line,
+  Events,
+} from '@/styles/components/pastActivity.styles';
 import mongoose from 'mongoose';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import { Media } from '@/lib/media';
+import Image from 'next/image';
+import MainDashboard from './MainDashboard';
 
 /**
  * Dummy data for event cards
@@ -32,23 +42,63 @@ const dummyEventData: QueriedVolunteerEventData = {
 };
 
 // vertical list of sample PastEvents
-const PastActivity = () => {
+const PastActivity = ({ userData }: any) => {
+  // state for hiding/showing mobile Past Activities
+  const [onMobileHide, setOnMobileHide] = useState(false);
+
   return (
-    <Container>
-      <Header>Past activity</Header>
-      <ul>
-        {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
-        <Suspense fallback={<Header>Please Wait...</Header>}>
-          {/* TODO: integrate with backend */}
-          <EventCard eventData={dummyEventData} size="small" />
-          <EventCard eventData={dummyEventData} size="small" />
-          <EventCard eventData={dummyEventData} size="small" />
-          <EventCard eventData={dummyEventData} size="small" />
-          <EventCard eventData={dummyEventData} size="small" />
-          <EventCard eventData={dummyEventData} size="small" />
-        </Suspense>
-      </ul>
-    </Container>
+    <>
+      <Media greaterThanOrEqual="sm">
+        <Container>
+          <Header>Past activity</Header>
+          <ul>
+            {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
+            <Suspense fallback={<Header>Please Wait...</Header>}>
+              {/* TODO: integrate with backend */}
+              <EventCard eventData={dummyEventData} size="small" />
+              <EventCard eventData={dummyEventData} size="small" />
+              <EventCard eventData={dummyEventData} size="small" />
+              <EventCard eventData={dummyEventData} size="small" />
+              <EventCard eventData={dummyEventData} size="small" />
+              <EventCard eventData={dummyEventData} size="small" />
+            </Suspense>
+          </ul>
+        </Container>
+      </Media>
+      <Media lessThan="sm">
+        {onMobileHide ? (
+          <MainDashboard userData={userData} />
+        ) : (
+          <Container>
+            <HeaderBox>
+              <HeaderText>Past activity</HeaderText>
+              <Image
+                src="/event/error.svg"
+                alt=""
+                width={40}
+                height={40}
+                onClick={() => {
+                  setOnMobileHide(true);
+                }}
+              />
+            </HeaderBox>
+            <Line src="/event/line.png" alt="" width={100} height={1} />
+            <Events>
+              {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
+              <Suspense fallback={<Header>Please Wait...</Header>}>
+                {/* TODO: integrate with backend */}
+                <EventCard eventData={dummyEventData} size="small" />
+                <EventCard eventData={dummyEventData} size="small" />
+                <EventCard eventData={dummyEventData} size="small" />
+                <EventCard eventData={dummyEventData} size="small" />
+                <EventCard eventData={dummyEventData} size="small" />
+                <EventCard eventData={dummyEventData} size="small" />
+              </Suspense>
+            </Events>
+          </Container>
+        )}
+      </Media>
+    </>
   );
 };
 
