@@ -36,7 +36,7 @@ const RegisterPage3 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
+  formData: any;
 }) => {
   // react hook form
   const {
@@ -47,17 +47,20 @@ const RegisterPage3 = ({
     formState: { errors },
   } = handleForm;
 
-  //TODO FIX THE ORGANIZATION OF LOGIC HERE, this is for textarea input
-  // https://www.datainfinities.com/45/get-window-width-and-height-in-react
-  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  /* window size handling */
 
-  function getCurrentDimension() {
+  // gets current window size
+  const getCurrentDimension = () => {
     return {
       width: window.innerWidth,
       height: window.innerHeight,
     };
-  }
+  };
 
+  // state for getting window size
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  // updates window size state
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());

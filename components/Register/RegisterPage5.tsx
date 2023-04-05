@@ -38,7 +38,7 @@ const RegisterPage5 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
+  formData: any;
 }) => {
   // react hook form
   const {

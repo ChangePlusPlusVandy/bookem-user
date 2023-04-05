@@ -45,17 +45,20 @@ const EventCard = ({
   // the link to redirect to when the EventCard is clicked
   href?: string | undefined;
 }) => {
-  // state for getting window size
-  // https://www.datainfinities.com/45/get-window-width-and-height-in-react
-  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  /* window size handling */
 
-  function getCurrentDimension() {
+  // gets current window size
+  const getCurrentDimension = () => {
     return {
       width: window.innerWidth,
       height: window.innerHeight,
     };
-  }
+  };
 
+  // state for getting window size
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  // updates window size state
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());

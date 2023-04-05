@@ -8,8 +8,6 @@ import {
   SectionContainer,
   SectionHeader,
   InputFlex,
-  LabelRadio,
-  InputRadio,
   Columns,
   LabelCheckbox,
   InputCheckbox,
@@ -21,8 +19,6 @@ import {
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 import { Media } from '@/lib/media';
-
-// TODO: HAVE 1 FORMATPHONENUMBER FUNCTION
 
 /**
  * auto-format inputted phone number
@@ -65,7 +61,7 @@ const RegisterPage2 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
+  formData: any;
 }) => {
   // react hook form
   const {
@@ -86,17 +82,20 @@ const RegisterPage2 = ({
     setPhoneValue(formattedPhoneNumber);
   };
 
-  //TODO FIX THE ORGANIZATION OF LOGIC HERE, this is for textarea input
-  // https://www.datainfinities.com/45/get-window-width-and-height-in-react
-  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+  /* window size handling */
 
-  function getCurrentDimension() {
+  // gets current window size
+  const getCurrentDimension = () => {
     return {
       width: window.innerWidth,
       height: window.innerHeight,
     };
-  }
+  };
 
+  // state for getting window size
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  // updates window size state
   useEffect(() => {
     const updateDimension = () => {
       setScreenSize(getCurrentDimension());
@@ -161,41 +160,6 @@ const RegisterPage2 = ({
           {errors.emergencyRelationship &&
             printError('Relationship is required')}
         </SectionContainer>
-        {/* <SectionContainer>
-          <SectionHeader>Select age range</SectionHeader>
-
-          <InputFlex>
-            <LabelRadio>
-              <InputRadio
-                type="radio"
-                value="under18"
-                {...register('ageRange', { required: true })}
-                onKeyDown={handleEnter}
-              />
-              Under 18
-            </LabelRadio>
-            <LabelRadio>
-              <InputRadio
-                type="radio"
-                value="18to45"
-                {...register('ageRange', { required: true })}
-                onKeyDown={handleEnter}
-              />
-              18-45
-            </LabelRadio>
-            <LabelRadio>
-              <InputRadio
-                type="radio"
-                value="45plus"
-                {...register('ageRange', { required: true })}
-                onKeyDown={handleEnter}
-              />
-              45+
-            </LabelRadio>
-          </InputFlex>
-
-          {errors.ageRange && printError('A selection is required')}
-        </SectionContainer> */}
 
         <SectionContainer>
           <SectionHeader>

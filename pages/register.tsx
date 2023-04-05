@@ -28,7 +28,6 @@ const printError = (message: string) => {
 
 const RegisterPage = () => {
   // state for form data
-  // TODO: add type to formdata
   const [formData, setFormData] = useState({
     page: 1,
     firstName: '',
@@ -153,7 +152,6 @@ const RegisterPage = () => {
       // if request is successful, there is no error message
       if (res.status == 201) return null;
       // otherwise, there is an error message
-      // TODO: MORE DESCRIPTIVE ERROR MESSAGES?
       else return { message: 'You have entered invalid information.' };
     } catch (err) {
       return { message: 'Some error has occurred.' };
@@ -170,7 +168,6 @@ const RegisterPage = () => {
     handleRightArrow,
   };
 
-  // TODO: should I adjust everything's font size?
   return (
     <Container>
       <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>

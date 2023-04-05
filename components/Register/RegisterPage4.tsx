@@ -21,8 +21,6 @@ import {
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 
-// TODO: IS THIS THE RIGHT WAY TO DO THIS MOBILE RESPONSIVE THING FOR FORM COMPONENT?
-
 const RegisterPage4 = ({
   formFunctions: {
     handleForm,
@@ -35,7 +33,7 @@ const RegisterPage4 = ({
   formData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formData: any; // TODO: ADD CORRECT TYPE, MAYBE ONLY TAKE A FEW FIELDS AS PROP??
+  formData: any;
 }) => {
   // react hook form
   const {
@@ -96,7 +94,6 @@ const RegisterPage4 = ({
                 width="30%"
               />
             </OtherRadio>
-            {/**TODO should I make an error for the otherRace required field if other is selected? */}
           </InputContainer>
 
           <SectionHeader>Race</SectionHeader>
@@ -140,7 +137,6 @@ const RegisterPage4 = ({
               />
             </OtherRadio>
           </InputContainer>
-          {/**TODO should I make an error for the otherRace required field if other is selected? */}
         </SectionContainer>
       </Form>
 

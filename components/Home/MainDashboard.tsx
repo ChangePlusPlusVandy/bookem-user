@@ -94,7 +94,6 @@ const MainDashboard = ({ userData }: any) => {
               <UpcomingEvents />
             </div>
 
-            {/**TODO: DOUBLE CHECK ALL FORMATTING, etc. */}
             <Media lessThan="sm">
               <MobilePastActivityContainer>
                 <Header>See past activity</Header>
