@@ -77,9 +77,7 @@ export const Header = styled.p`
   line-height: 30px;
 
   @media (max-width: 767px) {
-    margin-bottom: 15px;
-    font-size: 16px;
-    line-height: 19px;
+    margin-bottom: 30px;
   }
 `;
 

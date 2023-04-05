@@ -8,7 +8,7 @@ import {
   Button,
 } from '@/styles/register.styles';
 
-const RegisterPage4 = () => {
+const LastRegisterPage = () => {
   return (
     <LastPageContainer>
       <LastPageTextContainer>
@@ -33,4 +33,4 @@ const RegisterPage4 = () => {
   );
 };
 
-export default RegisterPage4;
+export default LastRegisterPage;
