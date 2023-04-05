@@ -16,22 +16,43 @@ export const DashboardContainer = styled.div`
  * Button for "Log Hours"
  */
 export const LogButton = styled.button`
-  background: #6d6d6d;
-  border-radius: 10px;
-  width: 350px;
-  height: 74px;
-  padding: 19px;
-  margin-top: 25px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
-  color: #ffffff;
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  white-space: nowrap;
+
+  border-radius: 10px;
+  padding: 19px;
+  margin-top: 25px;
+
+  background: #6d6d6d;
   &:hover {
     cursor: pointer;
   }
+
+  @media (min-width: 768px) {
+    width: 350px;
+    height: 74px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+  }
+
+  @media (max-width: 767px) {
+    width: 180px;
+    height: 60px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 19px;
+  }
+`;
+
+export const ButtonText = styled.span`
+  display: inline-block;
+  color: #ffffff;
 `;
 
 /**
@@ -39,7 +60,12 @@ export const LogButton = styled.button`
  */
 export const ButtonIcon = styled.div`
   float: left;
-  margin: 5px 40px 0 0;
+  @media (min-width: 768px) {
+    margin: 5px 40px 0 0;
+  }
+  @media (max-width: 767px) {
+    margin: 5px 20px 0 0;
+  }
 `;
 
 export const HistoryButton = styled(Link)`
@@ -70,8 +96,8 @@ export const VolunteerButtonsContainer = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  @media (max-width: 960px) {
-    flex-direction: column;
+  @media (max-width: 767px) {
+    /* flex-direction: column; */
     gap: 25px;
   }
 `;

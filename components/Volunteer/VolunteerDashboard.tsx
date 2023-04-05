@@ -16,8 +16,10 @@ import {
   ButtonIcon,
   VolunteerButtonsContainer,
   VolunteerStatsContainer,
+  ButtonText,
 } from '@/styles/volunteerDashboard.styles';
 import LogHoursPopupWindowForm from '@/components/Forms/LogHoursPopupWindowForm';
+import { Media } from '@/lib/media';
 
 const VolunteerDashboard = ({ userData }: any) => {
   // set pop up window to false
@@ -36,14 +38,24 @@ const VolunteerDashboard = ({ userData }: any) => {
         <VolunteerButtonsContainer>
           <LogButton onClick={() => setShowPopup(true)}>
             <ButtonIcon>
-              <Image
-                src="/volunteer/pencil.png"
-                alt="Pencil icon"
-                width="50"
-                height="50"
-              />
+              <Media greaterThanOrEqual="sm">
+                <Image
+                  src="/volunteer/pencil.png"
+                  alt="Pencil icon"
+                  width="50"
+                  height="50"
+                />
+              </Media>
+              <Media lessThan="sm">
+                <Image
+                  src="/volunteer/pencil-mobile.svg"
+                  alt="Pencil icon"
+                  width="30"
+                  height="30"
+                />
+              </Media>
             </ButtonIcon>
-            Log Hours
+            <ButtonText> Log Hours</ButtonText>
           </LogButton>
           {/** Button for "See History" */}
           <HistoryButton href="/volunteerHistory">
