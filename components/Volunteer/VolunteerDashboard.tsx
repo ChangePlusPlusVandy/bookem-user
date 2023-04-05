@@ -11,7 +11,7 @@ import {
 } from '@/styles/dashboard.styles';
 import {
   DashboardContainer,
-  LogButton,
+  VolunteerButton,
   ButtonIcon,
   VolunteerButtonsContainer,
   VolunteerStatsContainer,
@@ -35,7 +35,7 @@ const VolunteerDashboard = ({ userData }: any) => {
 
         {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>
-          <LogButton
+          <VolunteerButton
             backgroundcolor="#6d6d6d"
             onClick={() => setShowPopup(true)}>
             <ButtonIcon>
@@ -57,9 +57,9 @@ const VolunteerDashboard = ({ userData }: any) => {
               </Media>
             </ButtonIcon>
             <ButtonText textcolor="white"> Log Hours</ButtonText>
-          </LogButton>
+          </VolunteerButton>
           {/** Button for "See History" */}
-          <LogButton
+          <VolunteerButton
             backgroundcolor="#e3e3e3;"
             onClick={() => (window.location.href = '/volunteerHistory')}>
             <ButtonIcon>
@@ -81,7 +81,7 @@ const VolunteerDashboard = ({ userData }: any) => {
               </Media>
             </ButtonIcon>
             <ButtonText textcolor="black"> See History</ButtonText>
-          </LogButton>
+          </VolunteerButton>
         </VolunteerButtonsContainer>
 
         {/** Volunteer stats */}

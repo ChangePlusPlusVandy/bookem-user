@@ -25,14 +25,14 @@ export const VolunteerButtonsContainer = styled.div`
   @media (max-width: 767px) {
     /* flex-direction: column; */
     justify-content: space-between;
-    gap: 25px;
+    gap: 50px;
   }
 `;
 
 /**
  * Button for "Log Hours"
  */
-export const LogButton = styled.button<{ backgroundcolor: string }>`
+export const VolunteerButton = styled.button<{ backgroundcolor: string }>`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -43,7 +43,6 @@ export const LogButton = styled.button<{ backgroundcolor: string }>`
   padding: 19px;
   margin-top: 25px;
 
-  /* background: #6d6d6d; */
   background-color: ${props => props.backgroundcolor};
   &:hover {
     cursor: pointer;
