@@ -12,12 +12,12 @@ import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 import { authOptions } from '../auth/[...nextauth]';
 
 /**
- * /api/VolunteerEvents/:
+ * /api/users/VolunteerHistory/:
  *  get:
- *    description: Get all volunteer logs from a certain user
+ *    description: Get all volunteer history for a user
  *      200:
  *        description: Success
- *        content: JSON object of all volunteer logs from a certain user
+ *        content: JSON object of all volunteer history from a certain user
  *      500:
  *        description: Error
  *        content: JSON object of error
@@ -39,7 +39,7 @@ export default async function handler(
         // get all volunteerEvents from collection that match the user's Id
         // sorted in descending order
         const volunteerEvents = await VolunteerEvents.find({
-          userId: session.user._id,
+          volunteers: session.user._id,
           startDate: { $lt: new Date() },
         }).sort({ startDate: -1 });
 

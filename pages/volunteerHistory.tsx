@@ -17,7 +17,7 @@ const VolunteerHistoryPage = () => {
   const [error, setError] = useState<Error>();
   // Fetch volunteer history events when rendered
   useEffect(() => {
-    fetchData('/api/events/user')
+    fetchData('/api/users/volunteerHistory')
       .then(data => setEvents(data))
       .catch(err => setError(err));
   }, []);
