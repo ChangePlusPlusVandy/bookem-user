@@ -13,19 +13,38 @@ export const DashboardContainer = styled.div`
 `;
 
 /**
+ * Container for "Log Hours" and "See History" buttons
+ */
+export const VolunteerButtonsContainer = styled.div`
+  height: fit-content;
+  display: flex;
+  align-items: center;
+  @media (min-width: 768px) {
+    justify-content: space-evenly;
+  }
+  @media (max-width: 767px) {
+    /* flex-direction: column; */
+    justify-content: space-between;
+    gap: 25px;
+  }
+`;
+
+/**
  * Button for "Log Hours"
  */
-export const LogButton = styled.button`
+export const LogButton = styled.button<{ backgroundcolor: string }>`
   display: flex;
   align-items: center;
   justify-content: space-around;
   white-space: nowrap;
 
   border-radius: 10px;
+  border: 0px solid;
   padding: 19px;
   margin-top: 25px;
 
-  background: #6d6d6d;
+  /* background: #6d6d6d; */
+  background-color: ${props => props.backgroundcolor};
   &:hover {
     cursor: pointer;
   }
@@ -68,40 +87,25 @@ export const ButtonIcon = styled.div`
   }
 `;
 
-export const HistoryButton = styled(Link)`
-  width: 350px;
-  height: 74px;
-  padding: 19px;
-  margin-top: 25px;
-  background: #e3e3e3;
-  border: 1.5px solid #000000;
-  border-radius: 10px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
-  border-color: #d4d4d4;
-  display: flex;
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-/**
- * Container for "Log Hours" and "See History" buttons
- */
-export const VolunteerButtonsContainer = styled.div`
-  height: fit-content;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  @media (max-width: 767px) {
-    /* flex-direction: column; */
-    justify-content: space-between;
-    gap: 25px;
-  }
-`;
+// export const HistoryButton = styled(Link)`
+//   width: 350px;
+//   height: 74px;
+//   padding: 19px;
+//   margin-top: 25px;
+//   background: #e3e3e3;
+//   border: 1.5px solid #000000;
+//   border-radius: 10px;
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 30px;
+//   line-height: 36px;
+//   border-color: #d4d4d4;
+//   display: flex;
+//   align-items: center;
+//   &:hover {
+//     cursor: pointer;
+//   }
+// `;
 
 /**
  * Container for volunteer stats

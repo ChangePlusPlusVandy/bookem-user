@@ -12,7 +12,6 @@ import {
 import {
   DashboardContainer,
   LogButton,
-  HistoryButton,
   ButtonIcon,
   VolunteerButtonsContainer,
   VolunteerStatsContainer,
@@ -36,7 +35,9 @@ const VolunteerDashboard = ({ userData }: any) => {
 
         {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>
-          <LogButton onClick={() => setShowPopup(true)}>
+          <LogButton
+            backgroundcolor="#6d6d6d"
+            onClick={() => setShowPopup(true)}>
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
                 <Image
@@ -50,8 +51,8 @@ const VolunteerDashboard = ({ userData }: any) => {
                 <Image
                   src="/volunteer/pencil-mobile.svg"
                   alt="Pencil icon"
-                  width="30"
-                  height="30"
+                  width="35"
+                  height="35"
                 />
               </Media>
             </ButtonIcon>
@@ -59,6 +60,7 @@ const VolunteerDashboard = ({ userData }: any) => {
           </LogButton>
           {/** Button for "See History" */}
           <LogButton
+            backgroundcolor="#e3e3e3;"
             onClick={() => (window.location.href = '/volunteerHistory')}>
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
@@ -73,12 +75,12 @@ const VolunteerDashboard = ({ userData }: any) => {
                 <Image
                   src="/volunteer/history-clock-mobile.svg"
                   alt="Clock with arrow icon"
-                  width="50"
-                  height="50"
+                  width="35"
+                  height="35"
                 />
               </Media>
             </ButtonIcon>
-            <ButtonText textcolor="white"> See History</ButtonText>
+            <ButtonText textcolor="black"> See History</ButtonText>
           </LogButton>
         </VolunteerButtonsContainer>
 
