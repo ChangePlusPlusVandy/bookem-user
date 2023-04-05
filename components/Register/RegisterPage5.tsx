@@ -21,6 +21,7 @@ import {
   FormBorder,
   ButtonContainer,
   Button,
+  Fieldset,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 import { Media } from '@/lib/media';
@@ -144,7 +145,7 @@ const RegisterPage5 = ({
               Are you a member of the following? (Optional)
             </SectionHeader>
 
-            <fieldset style={{ border: 'none' }}>
+            <Fieldset>
               <Columns>
                 {[
                   'Rotary member',
@@ -168,7 +169,7 @@ const RegisterPage5 = ({
                   </CheckboxContainer>
                 ))}
               </Columns>
-            </fieldset>
+            </Fieldset>
           </SectionContainer>
 
           <Media lessThan="sm">
@@ -200,7 +201,7 @@ const RegisterPage5 = ({
           <SectionContainer>
             <SectionHeader>Current Occupation</SectionHeader>
 
-            <fieldset style={{ border: 'none' }}>
+            <Fieldset>
               <Columns>
                 {['Employed', 'Student', 'Not employed', 'Retired'].map(
                   occupation => (
@@ -215,7 +216,7 @@ const RegisterPage5 = ({
                   )
                 )}
               </Columns>
-            </fieldset>
+            </Fieldset>
 
             <InputContainer>
               <InputText

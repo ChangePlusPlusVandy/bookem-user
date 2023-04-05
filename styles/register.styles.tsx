@@ -256,6 +256,13 @@ export const InputCheckbox = styled.input`
 `;
 
 /**
+ * Container for radio/checkbox column inputs
+ */
+export const Fieldset = styled.fieldset`
+  border: none;
+`;
+
+/**
  * Text area input
  */
 export const InputTextarea = styled.textarea`

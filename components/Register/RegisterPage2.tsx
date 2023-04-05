@@ -17,6 +17,7 @@ import {
   InputContainer,
   CheckboxContainer,
   InputText,
+  Fieldset,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 import { Media } from '@/lib/media';
@@ -201,7 +202,7 @@ const RegisterPage2 = ({
             Are you a member of the following? (Optional)
           </SectionHeader>
 
-          <fieldset style={{ border: 'none' }}>
+          <Fieldset>
             <Columns>
               {[
                 'Rotary member',
@@ -223,7 +224,7 @@ const RegisterPage2 = ({
                 </CheckboxContainer>
               ))}
             </Columns>
-          </fieldset>
+          </Fieldset>
         </SectionContainer>
 
         <Media lessThan="sm">{/** Moved to next register page */}</Media>

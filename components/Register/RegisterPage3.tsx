@@ -19,6 +19,7 @@ import {
   InputCheckbox,
   InputTextarea,
   JoinNewsletterContainer,
+  Fieldset,
 } from '@/styles/register.styles';
 import { RegisterFormFunctions } from '@/utils/types';
 import { Media } from '@/lib/media';
@@ -98,7 +99,7 @@ const RegisterPage3 = ({
         <SectionContainer>
           <SectionHeader>Current Occupation</SectionHeader>
 
-          <fieldset style={{ border: 'none' }}>
+          <Fieldset>
             <Columns>
               {['Employed', 'Student', 'Not employed', 'Retired'].map(
                 occupation => (
@@ -114,7 +115,7 @@ const RegisterPage3 = ({
                 )
               )}
             </Columns>
-          </fieldset>
+          </Fieldset>
 
           <InputContainer>
             <InputText
