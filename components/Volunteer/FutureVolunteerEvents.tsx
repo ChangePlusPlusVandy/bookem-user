@@ -133,6 +133,7 @@ const FutureVolunteerEvents = () => {
           </ImagesWrapper>
 
           <Media lessThan="sm">
+            {/* TODO: Direct to a new page */}
             <SeeAllButton href="#">
               <SeeAllText>See all</SeeAllText>
               <RightArrow
