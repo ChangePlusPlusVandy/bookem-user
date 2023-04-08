@@ -53,9 +53,16 @@ export const InfoIcon = styled.div`
 export const Header = styled.p`
   // Prevent switching to new line
   white-space: nowrap;
-  margin-bottom: 29px;
   font-size: 25px;
   line-height: 30px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 29px;
+  }
+
+  @media (max-width: 767px) {
+    margin-bottom: 0;
+  }
 `;
 
 /**

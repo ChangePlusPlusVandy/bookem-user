@@ -8,8 +8,13 @@ export const DashboardContainer = styled.div`
   height: fit-content;
   width: 100%;
   background-color: white;
-  padding: 40px;
   position: relative;
+  @media (min-width: 768px) {
+    padding: 40px;
+  }
+  @media (max-width: 767px) {
+    padding: 40px 40px 0 40px;
+  }
 `;
 
 /**
