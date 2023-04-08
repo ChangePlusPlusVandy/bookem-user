@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 /**
@@ -8,8 +7,8 @@ import styled from 'styled-components';
  */
 export const Hamburger = styled(Image)`
   position: absolute;
-  right: 0;
-  margin: 100px 40px 0 0;
+  right: 40px;
+  top: 100px;
 
   &:hover {
     cursor: pointer;
