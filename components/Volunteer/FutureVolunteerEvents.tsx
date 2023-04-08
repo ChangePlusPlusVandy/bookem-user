@@ -10,7 +10,10 @@ import {
   NavHeader,
   NavLeft,
   NavRight,
+  RightArrow,
   SearchBar,
+  SeeAllButton,
+  SeeAllText,
 } from '@/styles/components/Volunteer/futureVolunteerEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
@@ -103,13 +106,15 @@ const FutureVolunteerEvents = () => {
           </NavHeader>
 
           {/* Container for search bar that searches for events based on query input */}
-          <SearchBar>
-            <Input
-              type="text"
-              placeholder="Search events"
-              onChange={event => setQuery(event.target.value)}
-            />
-          </SearchBar>
+          <Media greaterThanOrEqual="sm">
+            <SearchBar>
+              <Input
+                type="text"
+                placeholder="Search events"
+                onChange={event => setQuery(event.target.value)}
+              />
+            </SearchBar>
+          </Media>
 
           {/* Container for events that show up based on query input */}
           <ImagesWrapper>
@@ -126,6 +131,18 @@ const FutureVolunteerEvents = () => {
                 />
               ))}
           </ImagesWrapper>
+
+          <Media lessThan="sm">
+            <SeeAllButton href="#">
+              <SeeAllText>See all</SeeAllText>
+              <RightArrow
+                src="/volunteer/arrow-right.svg"
+                alt=""
+                width={32}
+                height={32}
+              />
+            </SeeAllButton>
+          </Media>
         </Container>
       )}
     </>

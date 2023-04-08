@@ -1,3 +1,5 @@
+import Image from 'next/image';
+import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -72,6 +74,16 @@ export const Input = styled.input`
 `;
 
 /**
+ * Button for filter button
+ */
+export const FilterButton = styled.button`
+  border-radius: 100%;
+  border: none;
+  height: 40px;
+  width: 40px;
+`;
+
+/**
  * Container for event card wrapper
  */
 export const ImagesWrapper = styled.div`
@@ -87,15 +99,24 @@ export const ImagesWrapper = styled.div`
     display: flex;
     white-space: nowrap;
     overflow-x: auto;
+    margin: 0 0 0 20px;
   }
 `;
 
-/**
- * Button for filter button
- */
-export const FilterButton = styled.button`
-  border-radius: 100%;
-  border: none;
-  height: 40px;
-  width: 40px;
+export const SeeAllButton = styled(Link)`
+  display: flex;
+  margin: 50px 0 0 40px;
+  align-items: center;
+`;
+
+export const SeeAllText = styled.span`
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30px;
+`;
+
+export const RightArrow = styled(Image)`
+  margin: 0 0 0 20px;
 `;
