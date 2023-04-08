@@ -16,6 +16,7 @@ import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
+import { Media } from '@/lib/media';
 
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
@@ -88,14 +89,16 @@ const FutureVolunteerEvents = () => {
               ) : null}
 
               {/* Button for filtering events */}
-              <FilterButton onClick={showPopup}>
-                <Image
-                  src="/volunteer/filter-icon.png"
-                  alt="Filter icon"
-                  width="25"
-                  height="25"
-                />
-              </FilterButton>
+              <Media greaterThanOrEqual="sm">
+                <FilterButton onClick={showPopup}>
+                  <Image
+                    src="/volunteer/filter-icon.png"
+                    alt="Filter icon"
+                    width="25"
+                    height="25"
+                  />
+                </FilterButton>
+              </Media>
             </NavRight>
           </NavHeader>
 
