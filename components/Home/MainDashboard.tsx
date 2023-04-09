@@ -34,7 +34,10 @@ const MainDashboard = ({ userData }: any) => {
   return (
     <>
       {onMobilePastActivity ? (
-        <PastActivity userData={userData} />
+        <>
+          {/* Display PastActivity when click on arrow button */}
+          <PastActivity userData={userData} />
+        </>
       ) : (
         <DashboardLayout>
           <Container>

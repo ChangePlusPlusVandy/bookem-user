@@ -1,5 +1,10 @@
 import React, { Suspense, useState } from 'react';
+import mongoose from 'mongoose';
+import { Media } from '@/lib/media';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import Image from 'next/image';
 const EventCard = React.lazy(() => import('@/components/shared/EventCard')); // implement lazy loading
+import MainDashboard from '@/components/Home/MainDashboard';
 import {
   Container,
   HeaderText,
@@ -8,11 +13,6 @@ import {
   Line,
   Events,
 } from '@/styles/components/pastActivity.styles';
-import mongoose from 'mongoose';
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
-import { Media } from '@/lib/media';
-import Image from 'next/image';
-import MainDashboard from './MainDashboard';
 
 /**
  * Dummy data for event cards
@@ -48,9 +48,11 @@ const PastActivity = ({ userData }: any) => {
 
   return (
     <>
+      {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <Container>
           <Header>Past activity</Header>
+
           <ul>
             {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
             <Suspense fallback={<Header>Please Wait...</Header>}>
@@ -65,13 +67,19 @@ const PastActivity = ({ userData }: any) => {
           </ul>
         </Container>
       </Media>
+
+      {/* Mobile */}
       <Media lessThan="sm">
         {onMobileHide ? (
-          <MainDashboard userData={userData} />
+          <>
+            {/* Display MainDashboard when click on x button */}
+            <MainDashboard userData={userData} />
+          </>
         ) : (
           <Container>
             <HeaderBox>
               <HeaderText>Past activity</HeaderText>
+
               <Image
                 src="/event/error.svg"
                 alt=""
@@ -82,7 +90,9 @@ const PastActivity = ({ userData }: any) => {
                 }}
               />
             </HeaderBox>
+
             <Line src="/event/line.png" alt="" width={100} height={1} />
+
             <Events>
               {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
               <Suspense fallback={<Header>Please Wait...</Header>}>
