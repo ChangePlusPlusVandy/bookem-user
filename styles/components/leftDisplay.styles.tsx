@@ -5,8 +5,9 @@ export const Container = styled.div`
   flex-direction: column;
   width: 50vw;
   height: 100vh;
-  background: #dbdbdb;
-  padding: 50px 40px;
+  background-color: ${props => props.theme.colors.BOOKEM_YELLOW};
+  padding-bottom: 8%;
+  padding-top: 9%;
   overflow-y: auto;
 `;
 
@@ -19,17 +20,10 @@ export const ImgContainer = styled.div`
   margin: 0 auto;
 `;
 
-export const HeaderFont = styled.p`
-  font-size: 25px;
+export const HeaderFont = styled.div`
+  font-size: ${props => props.theme.fontSizes.MEDIUM};
   margin: 4px;
-  width: 85%;
-  font-weight: bold;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
   margin-left: auto;
   margin-right: auto;
-`;
-
-export const InfoFont = styled.p`
-  font-size: 15px;
-  width: 85%;
-  margin: 0 auto;
 `;

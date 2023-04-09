@@ -4,7 +4,6 @@ import {
   Container,
   ImgContainer,
   HeaderFont,
-  InfoFont,
 } from '@/styles/components/leftDisplay.styles';
 
 const LeftDisplay = () => {
@@ -12,29 +11,13 @@ const LeftDisplay = () => {
     <Container>
       <ImgContainer>
         <Image
-          src={'/bookemkids.png'}
+          src="/login/login.png"
           fill
-          style={{ objectFit: 'cover' }}
+          style={{ objectFit: 'contain' }}
           alt="BookEm Background"></Image>
       </ImgContainer>
-
-      <HeaderFont>Volunteer</HeaderFont>
-      <InfoFont>
-        Browser for events and activities happening in your community and log
-        volunteer hours and keep track of progress!
-      </InfoFont>
-
-      <HeaderFont>Donate</HeaderFont>
-      <InfoFont>
-        Donate books to us and we will distribute them to those in need in your
-        community!
-      </InfoFont>
-
-      <HeaderFont>Request</HeaderFont>
-      <InfoFont>
-        Request books on behalf of your school or organization and we will
-        arrange an event to distribute them!
-      </InfoFont>
+      <HeaderFont>Welcome to the</HeaderFont>{' '}
+      <HeaderFont>Book&apos;em Volunteer Portal</HeaderFont>
     </Container>
   );
 };

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 export const Container = styled.div`
   display: flex;
@@ -21,21 +22,22 @@ export const LoginForm = styled.form`
   gap: 20px;
 `;
 
-export const CreateButton = styled.button`
-  font-size: 17px;
-  background: #dbdbdb;
-  border: none;
-  padding-top: 12px;
-  padding-bottom: 12px;
+export const CreateButton = styled(Link)`
+  font-size: ${props => props.theme.fontSizes.SMALL};
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
+  color: ${props => props.theme.colors.WHITE};
+  padding: 12px 35px;
+  text-align: center;
   border-radius: 14px;
   &:hover {
-    background-color: #ededed;
+    background-color: ${props => props.theme.colors.WHITE};
+    color: ${props => props.theme.colors.BOOKEM_BLACK};
+    border: solid 1px ${props => props.theme.colors.BOOKEM_BLACK};
     cursor: pointer;
   }
-  width: 20vw;
-  min-width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  border: none;
+  width: 40%;
+  margin: 2% auto;
 `;
 
 export const Footer = styled.div`
@@ -57,34 +59,36 @@ export const ContentContainer = styled.div`
 `;
 
 export const LoginHeader = styled.div`
-  font-size: 30px;
-  font-weight: bold;
+  font-size: ${props => props.theme.fontSizes.LARGE};
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
   margin-bottom: 50px;
 `;
 
 export const Input = styled.input`
-  border: 1px solid;
-  height: 35px;
-  border-radius: 18px;
+  border: 1px solid ${props => props.theme.colors.BOOKEM_BLACK};
+  height: 45px;
+  border-radius: 10px;
   padding: 10px;
 `;
 
 export const SubmitButton = styled.input`
-  font-size: 17px;
-  background: #dbdbdb;
-  border: none;
+  font-size: ${props => props.theme.fontSizes.SMALL};
+  background: ${props => props.theme.colors.WHITE};
+  border: solid 1px ${props => props.theme.colors.BOOKEM_BLACK};
   padding: 12px 35px;
   border-radius: 14px;
   &:hover {
-    background-color: #ededed;
+    background-color: ${props => props.theme.colors.BOOKEM_BLACK};
+    color: ${props => props.theme.colors.WHITE};
     cursor: pointer;
   }
-  width: 80%;
+  width: 40%;
   margin: 10% auto;
 `;
 
 export const LittleText = styled.p`
   padding-top: 8px;
-  color: white;
+  margin: 0px auto;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
   font-size: 13px;
 `;
