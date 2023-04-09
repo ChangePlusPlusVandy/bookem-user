@@ -1,4 +1,7 @@
 import styled from 'styled-components';
+interface Props {
+  hover?: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -107,4 +110,54 @@ export const ForgotPassword = styled.div`
   font-size: 15px;
   line-height: 18px;
   color: #6d6d6d;
+`;
+
+export const MobileContainer = styled.div`
+  height: 100vh;
+  padding: 8.6% 14% 6% 14%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 30.26px;
+`;
+
+export const MobileImageContainer = styled.div`
+  position: relative;
+  width: 73vw;
+  height: 46vh;
+`;
+
+export const MobileTextContainer = styled.div`
+  margin: auto;
+`;
+
+export const MobileText = styled.p<Props>`
+  text-align: center;
+  &:last-child {
+    font-size: 16px;
+    line-height: 19.36px;
+  }
+  &:hover {
+    cursor: ${props => (props.hover ? `pointer` : `auto`)};
+  }
+`;
+
+export const MobileLoginButton = styled.button`
+  background: #6d6d6d;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  line-height: 1rem;
+  color: white;
+  width: 296px;
+  height: 53px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
