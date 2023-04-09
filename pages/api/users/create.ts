@@ -40,8 +40,7 @@ export default async function handler(
         // Hash the user's password
         const hashedPassword = await hash(password, 12);
 
-        // Create a new user in the database
-        const status = await Users.insertMany({
+        let userToInsert = {
           name,
           email,
           password: hashedPassword,
@@ -62,7 +61,19 @@ export default async function handler(
           gender: user.gender,
           tags: user.tags,
           events: user.events,
-        });
+        };
+
+        if (
+          !user.members ||
+          user.members.length === 0 ||
+          user.members.length === undefined
+        )
+          delete userToInsert.members;
+        if (!user.ethnicity) delete userToInsert.ethnicity;
+        if (!user.gender) delete userToInsert.gender;
+
+        // Create a new user in the database
+        const status = await Users.insertMany(userToInsert);
 
         // Return the status of the user creation
         res.status(201).json({ message: 'User created', ...status });
