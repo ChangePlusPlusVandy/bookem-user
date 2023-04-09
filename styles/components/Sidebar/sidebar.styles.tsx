@@ -14,7 +14,7 @@ export const Container = styled.div`
     text-align: center;
     justify-content: space-between;
     width: 120px;
-    background-color: #6d6d6d;
+    background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   }
 
   // Mobile version is not flex
@@ -22,7 +22,7 @@ export const Container = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: ${props => props.theme.colors.WHITE};
     z-index: 1;
   }
 `;
@@ -97,14 +97,14 @@ export const IconLink = styled(Link)<{
   // Change background color when hovered
   &:hover {
     @media (min-width: 767px) {
-      background-color: #d9d9d9;
+      background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
     }
 
     // Change background color and text color when hovered
     @media (max-width: 767px) {
-      background-color: #6d6d6d;
+      background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
       span {
-        color: white;
+        color: ${props => props.theme.colors.WHITE};
       }
     }
 

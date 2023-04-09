@@ -8,7 +8,7 @@ import { fetchData } from '@/utils/utils';
  * Container for all event cards
  */
 const Container = styled.div`
-  background: #d9d9d9;
+  background: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   padding: 35px;
   border-radius: 10px;
   white-space: nowrap;

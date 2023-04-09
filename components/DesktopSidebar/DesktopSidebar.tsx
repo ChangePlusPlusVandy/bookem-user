@@ -7,6 +7,7 @@ import {
   Container,
 } from '@/styles/components/Sidebar/sidebar.styles';
 import {
+  BOOKEM_THEME,
   SIDEBAR_ICON_HEIGHT,
   SIDEBAR_ICON_PARAMS,
   SIDEBAR_ICON_WIDTH,
@@ -32,13 +33,15 @@ export const DesktopSidebar = () => {
               hoveredsrc={iconParam.desktopHoveredSrc}
               // Dynamically assign the background color according to the current route
               backgroundcolor={
-                activeRoute === iconParam.linkTo ? '#d9d9d9' : '#6d6d6d'
+                activeRoute === iconParam.linkTo
+                  ? BOOKEM_THEME.colors.BOOKEM_BLACK
+                  : BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
               }
               // Dynamically assign the src of the icon according to the current route
               imgsrc={
                 activeRoute === iconParam.linkTo
-                  ? iconParam.desktopHoveredSrc
-                  : iconParam.desktopDefaultSrc
+                  ? iconParam.desktopDefaultSrc
+                  : iconParam.desktopHoveredSrc
               }>
               {/* Desktop version only displays image */}
               {/* Icon image with default src */}
@@ -48,6 +51,15 @@ export const DesktopSidebar = () => {
                 width={SIDEBAR_ICON_HEIGHT}
                 height={SIDEBAR_ICON_WIDTH}
               />
+              <div
+                style={{
+                  color:
+                    activeRoute === iconParam.linkTo
+                      ? BOOKEM_THEME.colors.WHITE
+                      : BOOKEM_THEME.colors.BOOKEM_BLACK,
+                }}>
+                {iconParam.text}
+              </div>
             </IconLink>
           </IconContainer>
         );

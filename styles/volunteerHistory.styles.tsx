@@ -30,7 +30,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  background-color: #d9d9d9;
+  background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   width: 95%;
   margin: 0 auto 20px auto;
   border-radius: 10px;
