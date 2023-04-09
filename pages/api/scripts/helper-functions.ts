@@ -34,6 +34,16 @@ export const generateUser = async ({
   password: await hash(process.env.TEST_USER_PASSWD || '', 12),
   phone: generatePhone(),
   address: faker.address.streetAddress(),
+  birthday: faker.date.past().toISOString(),
+  emergencyName: faker.name.firstName(),
+  emergencyPhone: generatePhone(),
+  emergencyRelationship: faker.name.jobTitle(),
+  members: [],
+  volunteerReason: faker.lorem.paragraph(),
+  occupation: faker.name.jobType(),
+  occupationTitle: faker.name.jobTitle(),
+  occupationOrg: faker.company.companyName(),
+  joinNewsletter: true,
   sourceHeardFrom: faker.helpers.arrayElement(SOURCES),
   ethnicity: faker.helpers.arrayElement(ETHNICITY),
   gender: faker.helpers.arrayElement(GENDERS),
@@ -46,7 +56,8 @@ export const generateUser = async ({
 });
 
 export const generateAdmin = async (): Promise<AdminData> => ({
-  name: 'Test Admin',
+  firstName: 'Test',
+  lastName: 'Admin',
   email: 'test_admin@bookem.org',
   password: await hash(process.env.TEST_USER_PASSWD || '', 12),
   phone: '(615) 555 5555',
