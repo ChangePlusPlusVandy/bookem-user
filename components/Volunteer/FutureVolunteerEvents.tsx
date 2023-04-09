@@ -30,9 +30,6 @@ const FutureVolunteerEvents = () => {
   const showPopup = () => setIsPopupOn(true);
   const hidePopup = () => setIsPopupOn(false);
 
-  // Track whether user clicked "See All" button or not
-  const [seeAll, setSeeAll] = useState(false);
-
   const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
   const [error, setError] = useState<Error>();
   // Fetch upcoming events when rendered
@@ -139,7 +136,7 @@ const FutureVolunteerEvents = () => {
 
           <Media lessThan="sm">
             {/* TODO: Direct to a new page */}
-            <SeeAllButton href="#">
+            <SeeAllButton href="/volunteer/future-events">
               <SeeAllText>See all</SeeAllText>
               <RightArrow
                 src="/volunteer/arrow-right.svg"

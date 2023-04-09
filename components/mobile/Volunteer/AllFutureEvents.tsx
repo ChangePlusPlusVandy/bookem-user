@@ -15,14 +15,6 @@ const AllFutureEvents = () => {
       <Media lessThan="sm">
         <Container>
           <Header>Explore Volunteer Opportunities </Header>
-
-          <SearchBar>
-            <Input
-              type="text"
-              placeholder="Search events"
-              onChange={event => setQuery(event.target.value)}
-            />
-          </SearchBar>
         </Container>
       </Media>
     </>
