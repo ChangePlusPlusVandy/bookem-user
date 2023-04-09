@@ -59,8 +59,8 @@ export default async function handler(
           joinNewsletter: user.joinNewsletter,
           sourceHeardFrom: user.sourceHeardFrom,
           ethnicity: user.ethnicity,
-          // gender: user.gender,
-          // tags: user.tags,
+          gender: user.gender,
+          tags: user.tags,
           events: user.events,
         });
 
