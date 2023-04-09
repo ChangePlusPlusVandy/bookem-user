@@ -124,7 +124,7 @@ const MainDashboard = ({ userData }: any) => {
 
             {/* Desktop PastActivity is not located at bottom of main dashboard */}
             <Media greaterThanOrEqual="sm">
-              <PastActivity />
+              {/* Desktop PastActivity is not located here */}
             </Media>
           </Container>
 
