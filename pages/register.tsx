@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Media } from '@/lib/media';
 import { UserData } from 'bookem-shared/src/types/database';
+import { RegisterFormFunctions, RegisterFormData } from '@/utils/types';
 import LeftDisplay from '@/components/Register/LeftDisplay';
 import RegisterPage1 from '@/components/Register/RegisterPage1';
 import RegisterPage2 from '@/components/Register/RegisterPage2';
@@ -9,8 +11,6 @@ import RegisterPage4 from '@/components/Register/RegisterPage4';
 import RegisterPage5 from '@/components/Register/RegisterPage5';
 import LastRegisterPage from '@/components/Register/LastRegisterPage';
 import { Container, Error } from '@/styles/register.styles';
-import { RegisterFormFunctions, RegisterFormData } from '@/utils/types';
-import { Media } from '@/lib/media';
 
 /**
  * format error messages
@@ -64,7 +64,6 @@ const RegisterPage = () => {
 
   // updates to the previous register page, saves data but not submit form
   const handleLeftArrow = (data: any) => {
-    console.log(data);
     setFormData({ ...formData, page: formData.page - 1, ...data });
   };
 
@@ -86,27 +85,23 @@ const RegisterPage = () => {
   // handle form data upon submission on each page
   const onSubmit = async (data: any) => {
     // update formData state with new form data and next register page number
-    console.log(data);
     setFormData({ ...formData, page: nextPage, ...data });
 
     // when user clicks on final submit button on page 5
     if (formData.page === 5 && nextPage === formData.page) {
       // check if user is registered successfully
       const error = await onFinished(formData);
-      console.log(error);
 
       // if successful, go to last register page
       if (!error) setFormData({ ...formData, page: formData.page + 1 });
       // otherwise, send alert to user with error message
       else alert(error.message);
     }
-    console.log(formData);
   };
 
   // attempt to create user in database using form data
   const onFinished = async (data: any) => {
     // put form data into correct format for the user schema
-
     const userEthnicity = data.race === 'other' ? data.otherRace : data.race;
     const userGender = data.gender === 'other' ? data.otherGender : data.gender;
     const userJoinNewsletter = data.joinNewsletter === 'yes' ? true : false;
@@ -147,7 +142,6 @@ const RegisterPage = () => {
         method: 'POST',
         body: JSON.stringify(userData),
       });
-      console.log(res);
 
       // if request is successful, there is no error message
       if (res.status == 201) return null;
@@ -170,7 +164,10 @@ const RegisterPage = () => {
 
   return (
     <Container>
+      {/* Mobile */}
       <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>
+
+      {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <LeftDisplay />
       </Media>
