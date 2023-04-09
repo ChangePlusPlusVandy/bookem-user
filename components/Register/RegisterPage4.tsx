@@ -1,5 +1,6 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
-import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
+import React, { useState } from 'react';
+import { SubmitHandler, FieldValues } from 'react-hook-form';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
@@ -13,7 +14,6 @@ import {
   InputRadio,
   OtherRadio,
 } from '@/styles/register.styles';
-import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 
 const RegisterPage4 = ({
   formFunctions: {
@@ -30,13 +30,7 @@ const RegisterPage4 = ({
   formData: RegisterFormData;
 }) => {
   // react hook form
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    getValues,
-    formState: { errors },
-  } = handleForm;
+  const { register, handleSubmit, getValues } = handleForm;
 
   // state for other gender
   const [otherGender, setOtherGender] = useState(formData.otherGender);
@@ -53,15 +47,16 @@ const RegisterPage4 = ({
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer>
           <SectionHeader>Voluntary gender & race identification</SectionHeader>
+
           <SectionHeader>Gender</SectionHeader>
           <InputContainer>
             {['Female', 'Male', 'Nonbinary', 'Prefer not to answer'].map(
               gender => (
                 <LabelRadio key={gender}>
                   <InputRadio
+                    {...register('gender')}
                     type="radio"
                     value={gender}
-                    {...register('gender')}
                     onKeyDown={handleEnter}
                   />
                   {gender}
@@ -81,11 +76,11 @@ const RegisterPage4 = ({
               </LabelRadio>
               <InputText
                 {...register('otherGender')}
-                value={otherGender}
-                onKeyDown={handleEnter}
                 placeholder="Enter text"
+                value={otherGender}
                 onChange={e => setOtherGender(e.target.value)}
                 width="30%"
+                onKeyDown={handleEnter}
               />
             </OtherRadio>
           </InputContainer>
@@ -102,9 +97,9 @@ const RegisterPage4 = ({
             ].map(race => (
               <LabelRadio key={race}>
                 <InputRadio
+                  {...register('race')}
                   type="radio"
                   value={race}
-                  {...register('race')}
                   onKeyDown={handleEnter}
                 />
                 {race}
@@ -123,11 +118,11 @@ const RegisterPage4 = ({
               </LabelRadio>
               <InputText
                 {...register('otherRace')}
-                value={otherRace}
-                onKeyDown={handleEnter}
                 placeholder="Enter text"
-                onChange={e => setOtherRace(e.target.value)}
+                value={otherRace}
                 width="30%"
+                onChange={e => setOtherRace(e.target.value)}
+                onKeyDown={handleEnter}
               />
             </OtherRadio>
           </InputContainer>
