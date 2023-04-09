@@ -5,10 +5,11 @@ import {
   LargeFormInput,
   LogHoursForm,
 } from '@/styles/components/Forms/logHoursPopupWindowForm.styles';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import PopupWindow from '@/components/shared/PopupWindow';
 import WindowFlow from '@/components/shared/WindowFlow';
+import { fetchData } from '@/utils/utils';
 
 const LogHoursPopupWindowForm = ({
   setShowPopup,
@@ -17,10 +18,18 @@ const LogHoursPopupWindowForm = ({
 }) => {
   // get functions from react hook form
   const { register, handleSubmit } = useForm();
+  // the pages of the popup window
+  const pages = ['Select', 'Numbers', 'Comments'];
+  // the list of events to log hours for
+  const [eventsAvailable, setEventseventsAvailable] = useState([]);
 
-  // TODO: combine event and program into one so users only need to select event
-  // that they signed up for (which is automatically under a program)
-  const pages = ['Event', 'Program', 'Numbers', 'Comments'];
+  useEffect(() => {
+    // TODO: implement a new endpoint
+    fetchData('/api/event').then(data => {
+      console.log('got data: ', data);
+      setEventseventsAvailable(data);
+    });
+  }, []);
 
   // handle form submission by parsing data and calling createVolunteerLog
   const onSubmit = (data: any) => {
@@ -50,30 +59,18 @@ const LogHoursPopupWindowForm = ({
         pages={pages}
         onSubmit={handleSubmit(onSubmit)}
         components={[
-          // Page 1 - Event
+          // Page 1 - Select Event
           <LogHoursForm key={pages[0]}>
-            TODO: show events volunteer signed up for
+            <FormLabel>Please pick an event to log hours for</FormLabel>
+            {eventsAvailable.length > 0 ? (
+              <>Hi</>
+            ) : (
+              // TODO: add styling
+              <>Uh oh, you don't have any events to log!</>
+            )}
           </LogHoursForm>,
 
-          // Page 2 - Program
-          // TODO: remove this
-          <LogHoursForm key={pages[1]}>
-            <FormHeader>Please select one program</FormHeader>
-            <FormLabel>
-              <input {...register('Program')} type="radio" value="RIF"></input>
-              Reading is Fundamental (RIF)
-            </FormLabel>
-            <FormLabel>
-              <input {...register('Program')} type="radio" value="RFR"></input>
-              Ready for Reading (RFR)
-            </FormLabel>
-            <FormLabel>
-              <input {...register('Program')} type="radio" value="BFNK"></input>
-              Books for Nashville Kids (BFNK)
-            </FormLabel>
-          </LogHoursForm>,
-
-          // Page 3 - Numbers
+          // Page 2 - Numbers
           <LogHoursForm key={pages[2]}>
             <FormLabel>Please log volunteer hours</FormLabel>
             <FormInput
@@ -100,7 +97,7 @@ const LogHoursPopupWindowForm = ({
               title="Input must be a whole number"></FormInput>
           </LogHoursForm>,
 
-          // Page 4 - Comments
+          // Page 3 - Comments
           <LogHoursForm key={pages[3]}>
             <FormLabel>Anything else you&apos;d like to share?</FormLabel>
             <LargeFormInput
