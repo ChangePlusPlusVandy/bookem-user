@@ -26,7 +26,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   overflow: hidden;
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
 `;
 

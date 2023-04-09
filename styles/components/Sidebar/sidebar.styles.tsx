@@ -131,7 +131,7 @@ export const MobileIconFlexBox = styled.div`
  */
 export const IconText = styled.span<{ color: string }>`
   color: ${props => props.color};
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
   font-weight: 400;
   font-size: 20px;

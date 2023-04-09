@@ -73,7 +73,7 @@ export const AboutContactButton = styled.button<{
   color: ${props => props.textcolor};
 
   // Fonts
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -114,7 +114,7 @@ export const SignupButton = styled.button`
     height: 40px;
     background: black;
 
-    font-family: 'Inter';
+    font-family: ${props => props.theme.fonts.PRIMARY};
     font-style: normal;
     font-weight: 400;
     font-size: 16px;
