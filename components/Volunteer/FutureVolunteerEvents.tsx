@@ -134,7 +134,7 @@ const FutureVolunteerEvents = () => {
 
           <Media lessThan="sm">
             {/* TODO: Direct to a new page */}
-            <SeeAllButton href="#">
+            <SeeAllButton href="/volunteer/future-events">
               <SeeAllText>See all</SeeAllText>
               <RightArrow
                 src="/volunteer/arrow-right.svg"
