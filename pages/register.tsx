@@ -180,9 +180,7 @@ const RegisterPage = () => {
         <RegisterPage2 formFunctions={formFunctions} formData={formData} />
       )}
 
-      {formData.page === 3 && (
-        <RegisterPage3 formFunctions={formFunctions} formData={formData} />
-      )}
+      {formData.page === 3 && <RegisterPage3 formFunctions={formFunctions} />}
 
       {formData.page === 4 && (
         <RegisterPage4 formFunctions={formFunctions} formData={formData} />
