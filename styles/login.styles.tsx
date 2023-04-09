@@ -80,7 +80,8 @@ export const SubmitButton = styled.input`
     background-color: #ededed;
     cursor: pointer;
   }
-  width: 80%;
+  width: 20vw;
+  min-width: 200px;
   margin: 10% auto;
 `;
 

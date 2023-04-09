@@ -44,7 +44,7 @@ interface Props {
 
 const MobileContainer = styled.div`
   height: 100vh;
-  padding: 6% 24%;
+  padding: 8.6% 14% 6% 14%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,6 +55,12 @@ const MobileContainer = styled.div`
   font-weight: 400;
   font-size: 25px;
   line-height: 30.26px;
+`;
+
+const MobileImageContainer = styled.div`
+  position: relative;
+  width: 73vw;
+  height: 46vh;
 `;
 
 const MobileTextContainer = styled.div`
@@ -120,12 +126,9 @@ const LoginPage = () => {
           <MobileLogin />
         ) : (
           <MobileContainer>
-            <Image
-              src={'/bookemkids.png'}
-              width="285"
-              height="387"
-              alt="BookEm Background"
-            />
+            <MobileImageContainer>
+              <Image src={'/bookemkids.png'} alt="BookEm Background" fill />
+            </MobileImageContainer>
 
             <MobileTextContainer>
               <MobileText>
@@ -197,7 +200,7 @@ const LoginPage = () => {
             <Footer>
               <LittleText>New here? Come join us!</LittleText>
               <Link href={'/register'}>
-                <CreateButton>Create Account</CreateButton>
+                <CreateButton>Sign up</CreateButton>
               </Link>
             </Footer>
           </RightContainer>
