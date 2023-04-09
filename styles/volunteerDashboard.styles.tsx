@@ -16,8 +16,9 @@ export const DashboardContainer = styled.div`
  * Button for "Log Hours"
  */
 export const LogButton = styled.button`
-  background: #6d6d6d;
+  background: ${props => props.theme.colors.BOOKEM_RED};
   border-radius: 10px;
+  border-width: 0px;
   width: 350px;
   height: 74px;
   padding: 19px;

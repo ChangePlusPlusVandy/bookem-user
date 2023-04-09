@@ -10,7 +10,10 @@ export const BOOKEM_THEME = {
     BOOKEM_BLUE: '#83BCDA',
     BOOKEM_YELLOW: '#F1E09A',
   },
-  fonts: ['Inter', 'sans-serif'],
+  fonts: {
+    PRIMARY: 'Inter',
+    SECONDARY: 'sans-serif',
+  },
   fontSizes: {
     SMALL: '1.2rem',
     MEDIUM: '1.6rem',
