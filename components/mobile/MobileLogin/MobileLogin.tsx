@@ -42,7 +42,7 @@ const Login = () => {
         <LoginHeader>Logging you in</LoginHeader>
 
         <LoginForm
-          id="loginForm"
+          id="loginFormMobile"
           onSubmit={handleSubmit(data => handleLogin(data))}>
           <Input
             {...register('email', { required: true })}
@@ -82,7 +82,7 @@ const Login = () => {
         </LoginForm>
       </div>
 
-      <MobileSubmitButton form="loginForm" type="submit" value="Log in" />
+      <MobileSubmitButton form="loginFormMobile" type="submit" value="Log in" />
     </MobileLoginContainer>
   );
 };
