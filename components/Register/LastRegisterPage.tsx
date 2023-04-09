@@ -1,5 +1,7 @@
 import React from 'react';
-import Link from 'next/link';
+import { FieldValues } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
+import { RegisterFormData } from '@/utils/types';
 import Image from 'next/image';
 import {
   LastPageContainer,
@@ -7,9 +9,6 @@ import {
   LastPageText,
   Button,
 } from '@/styles/register.styles';
-import { FieldValues } from 'react-hook-form';
-import { signIn } from 'next-auth/react';
-import { RegisterFormData } from '@/utils/types';
 
 const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
   // Function to handle login and redirect.
