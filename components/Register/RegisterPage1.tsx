@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
@@ -11,7 +12,6 @@ import {
   InputText,
   InputContainer,
 } from '@/styles/register.styles';
-import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 
 /**
  * auto-format inputted phone number
@@ -74,16 +74,15 @@ const formatBirthday = (value: string) => {
  */
 const dateIsValid = (dateStr: string) => {
   const regex = /^\d{2}\-\d{2}\-\d{4}$/;
-  // console.log('hi');
 
   if (dateStr.match(regex) === null) {
     return false;
   }
 
-  // 👇️ only changed the order of destructuring assignment
+  // only changed the order of destructuring assignment
   const [month, day, year] = dateStr.split('-');
 
-  // 👇️ format Date string as `yyyy-mm-dd`
+  // format Date string as `yyyy-mm-dd`
   const isoFormattedStr = `${year}-${month}-${day}`;
 
   const date = new Date(isoFormattedStr);
@@ -91,11 +90,8 @@ const dateIsValid = (dateStr: string) => {
   const timestamp = date.getTime();
 
   if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
-    console.log(timestamp);
     return false;
   }
-
-  console.log(date.toISOString().startsWith(isoFormattedStr));
 
   return date.toISOString().startsWith(isoFormattedStr);
 };
@@ -153,15 +149,15 @@ const RegisterPage1 = ({
           <InputFlex>
             <InputText
               {...register('firstName', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="First name"
               width="45%"
+              onKeyDown={handleEnter}
             />
             <InputText
               {...register('lastName', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Last name"
               width="45%"
+              onKeyDown={handleEnter}
             />
           </InputFlex>
 
@@ -169,19 +165,23 @@ const RegisterPage1 = ({
             <InputText
               {...register('birthday', {
                 required: true,
-                validate: { dateIsValid },
               })}
-              onKeyDown={handleEnter}
               placeholder="Date of birth (MM-DD-YYYY)"
-              onChange={e => handleBirthday(e)}
               value={birthdayValue}
               width="100%"
+              onChange={e => handleBirthday(e)}
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
           {errors.firstName && printError('First name is required')}
           {errors.lastName && printError('Last name is required')}
-          {errors.birthday && printError('Date of birth is invalid')}
+          {errors.birthday &&
+            birthdayValue == '' &&
+            printError('Date of birth is required')}
+          {birthdayValue.length == 10 &&
+            !dateIsValid(birthdayValue) &&
+            printError('Date of birth is invalid')}
         </SectionContainer>
 
         <SectionContainer>
@@ -190,30 +190,30 @@ const RegisterPage1 = ({
           <InputContainer>
             <InputText
               {...register('phone', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Phone number"
-              onChange={e => handlePhone(e)}
               value={phoneValue}
               width="100%"
+              onChange={e => handlePhone(e)}
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
           <InputContainer>
             <InputText
               {...register('email', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Email Address"
               width="100%"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
           <InputContainer>
             <InputText
               {...register('password', { required: true })}
-              onKeyDown={handleEnter}
+              type="password"
               placeholder="Password"
               width="45%"
-              type="password"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
@@ -230,33 +230,33 @@ const RegisterPage1 = ({
           <InputContainer>
             <InputText
               {...register('streetAddress', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Street address"
               width="100%"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
           <InputFlex>
             <InputText
               {...register('city', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="City"
               width="45%"
+              onKeyDown={handleEnter}
             />
             <InputText
               {...register('state', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="State"
               width="45%"
+              onKeyDown={handleEnter}
             />
           </InputFlex>
 
           <InputContainer>
             <InputText
               {...register('zip', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Zip code"
               width="45%"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
