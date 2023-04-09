@@ -122,7 +122,7 @@ const RegisterPage2 = ({
         id="registerPage2"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer>
-          <SectionHeader>Emergency Contact</SectionHeader>
+          <SectionHeader>Emergency contact</SectionHeader>
 
           <InputFlex>
             <InputText

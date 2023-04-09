@@ -195,7 +195,7 @@ const RegisterPage = () => {
         <RegisterPage5 formFunctions={formFunctions} formData={formData} />
       )}
 
-      {formData.page === 6 && <LastRegisterPage />}
+      {formData.page === 6 && <LastRegisterPage formData={formData} />}
     </Container>
   );
 };

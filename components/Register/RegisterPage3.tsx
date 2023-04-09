@@ -102,7 +102,7 @@ const RegisterPage3 = ({
         </Media>
 
         <SectionContainer>
-          <SectionHeader>Current Occupation</SectionHeader>
+          <SectionHeader>Current occupation</SectionHeader>
 
           <Fieldset>
             <Columns>
@@ -148,7 +148,9 @@ const RegisterPage3 = ({
         </SectionContainer>
 
         <SectionContainer>
-          <SectionHeader>Would you like to join our newsletter?</SectionHeader>
+          <SectionHeader>
+            Would you like to receive our newsletter?
+          </SectionHeader>
 
           <JoinNewsletterContainer>
             <LabelRadio>

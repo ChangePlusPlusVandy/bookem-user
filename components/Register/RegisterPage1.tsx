@@ -148,7 +148,7 @@ const RegisterPage1 = ({
         id="registerPage1"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
         <SectionContainer>
-          <SectionHeader>Basic Information</SectionHeader>
+          <SectionHeader>Basic information</SectionHeader>
 
           <InputFlex>
             <InputText

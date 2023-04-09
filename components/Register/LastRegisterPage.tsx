@@ -7,8 +7,24 @@ import {
   LastPageText,
   Button,
 } from '@/styles/register.styles';
+import { FieldValues } from 'react-hook-form';
+import { signIn } from 'next-auth/react';
+import { RegisterFormData } from '@/utils/types';
 
-const LastRegisterPage = () => {
+const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
+  // Function to handle login and redirect.
+  const handleLogin = async (data: FieldValues) => {
+    const status = await signIn('credentials', {
+      redirect: true,
+      email: data.email,
+      password: data.password,
+    });
+
+    if (!status) {
+      window.location.href = '/';
+    }
+  };
+
   return (
     <LastPageContainer>
       <LastPageTextContainer>
@@ -26,9 +42,7 @@ const LastRegisterPage = () => {
         height="226"
       />
 
-      <Button>
-        <Link href="/">Let&apos;s go</Link>
-      </Button>
+      <Button onClick={() => handleLogin(formData)}>Let&apos;s go</Button>
     </LastPageContainer>
   );
 };

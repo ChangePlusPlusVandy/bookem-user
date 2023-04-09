@@ -163,6 +163,10 @@ export const LabelRadio = styled.label`
   margin-bottom: 20px;
   align-items: center;
   ${InputGenericFont};
+
+  &:last-child {
+    margin-bottom: 0px;
+  }
 `;
 
 /**
@@ -201,7 +205,7 @@ export const OtherRadio = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 20px;
+  gap: 10px;
   height: 27px;
 `;
 
@@ -209,7 +213,7 @@ export const OtherRadio = styled.div`
  * Contain checkbox plus text associated with it
  */
 export const CheckboxContainer = styled.li`
-  margin: 15px 0px 15px 0px;
+  margin: 15px 0px;
 `;
 
 /**
@@ -329,8 +333,8 @@ export const LastPageTextContainer = styled.div`
  */
 export const LastPageText = styled.div<Props>`
   font-weight: 400;
-  font-size: 25px;
-  line-height: 30px;
+  font-size: 18px;
+  line-height: 21.78px;
 
   &:first-child {
     font-size: 30px;

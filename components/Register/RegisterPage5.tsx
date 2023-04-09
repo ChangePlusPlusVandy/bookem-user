@@ -57,7 +57,7 @@ const RegisterPage5 = ({
           id="registerPage5"
           onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
           <SectionContainer>
-            <SectionHeader>Basic Information</SectionHeader>
+            <SectionHeader>Basic information</SectionHeader>
 
             <InputFlex>
               <InputText value={formData.firstName} width="45%" disabled />
@@ -108,7 +108,7 @@ const RegisterPage5 = ({
           </SectionContainer>
 
           <SectionContainer>
-            <SectionHeader>Emergency Contact</SectionHeader>
+            <SectionHeader>Emergency contact</SectionHeader>
 
             <InputFlex>
               <InputText
@@ -199,7 +199,7 @@ const RegisterPage5 = ({
           </SectionContainer>
 
           <SectionContainer>
-            <SectionHeader>Current Occupation</SectionHeader>
+            <SectionHeader>Current occupation</SectionHeader>
 
             <Fieldset>
               <Columns>
@@ -233,7 +233,7 @@ const RegisterPage5 = ({
 
           <SectionContainer>
             <SectionHeader>
-              Would you like to join our newsletter?
+              Would you like to receive our newsletter?
             </SectionHeader>
 
             <InputContainer>
