@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import EventCard from '@/components/shared/EventCard';
 import {
+  AllEvents,
   Container,
   FilterButton,
   ImagesWrapper,
@@ -17,6 +18,7 @@ import FilterEventsPopup from './FilterEventsPopup';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
 import { Media } from '@/lib/media';
+import LongEventCard from '../shared/LongEventCard';
 
 const FutureVolunteerEvents = () => {
   // Holds text in input box
@@ -131,7 +133,38 @@ const FutureVolunteerEvents = () => {
               ))}
           </ImagesWrapper>
 
-          <Media lessThan="sm"></Media>
+          <Media lessThan="sm">
+            <AllEvents>All Events</AllEvents>
+            {isPopupOn ? (
+              <FilterEventsPopup
+                sortDescendingSpots={sortDescendingSpots}
+                sortAscendingSpots={sortAscendingSpots}
+                sortMostRecent={sortMostRecent}
+                sortLeastRecent={sortLeastRecent}
+                hidePopup={hidePopup}
+              />
+            ) : null}
+            <FilterButton onClick={showPopup}>
+              <Image
+                src="/volunteer/filter-icon.png"
+                alt="Filter icon"
+                width="25"
+                height="25"
+              />
+            </FilterButton>
+
+            <SearchBar>
+              <Input
+                type="text"
+                placeholder="Search events"
+                onChange={event => setQuery(event.target.value)}
+              />
+            </SearchBar>
+
+            {events.map(event => (
+              <LongEventCard key={event._id.toString()} eventData={event} />
+            ))}
+          </Media>
         </Container>
       )}
     </>

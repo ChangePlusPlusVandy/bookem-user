@@ -15,7 +15,7 @@ export const NavHeader = styled.div`
     border-top: 1px solid #000000;
   }
   width: 100%;
-  padding: 26px 60px;
+  padding: 26px 40px;
   display: flex;
   align-items: center;
 `;
@@ -102,3 +102,5 @@ export const ImagesWrapper = styled.div`
     margin: 0 0 0 20px;
   }
 `;
+
+export const AllEvents = styled.div``;
