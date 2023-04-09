@@ -22,8 +22,16 @@ import { fetchData } from '@/utils/utils';
 import { Media } from '@/lib/media';
 
 const FutureVolunteerEvents = () => {
+  // Holds text in input box
   const [query, setQuery] = useState('');
+
+  // Track the state of popup after clicking "filter button"
   const [isPopupOn, setIsPopupOn] = useState(false);
+  const showPopup = () => setIsPopupOn(true);
+  const hidePopup = () => setIsPopupOn(false);
+
+  // Track whether user clicked "See All" button or not
+  const [seeAll, setSeeAll] = useState(false);
 
   const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
   const [error, setError] = useState<Error>();
@@ -33,9 +41,6 @@ const FutureVolunteerEvents = () => {
       .then(data => setEvents(data))
       .catch(err => setError(err));
   }, []);
-
-  const showPopup = () => setIsPopupOn(true);
-  const hidePopup = () => setIsPopupOn(false);
 
   // Sorts events based on decreasing availability
   const sortDescendingSpots = () => {
@@ -134,7 +139,7 @@ const FutureVolunteerEvents = () => {
 
           <Media lessThan="sm">
             {/* TODO: Direct to a new page */}
-            <SeeAllButton href="/volunteer/future-events">
+            <SeeAllButton href="#">
               <SeeAllText>See all</SeeAllText>
               <RightArrow
                 src="/volunteer/arrow-right.svg"
