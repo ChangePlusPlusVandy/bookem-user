@@ -48,7 +48,7 @@ export const generateUser = async ({
 export const generateAdmin = async (): Promise<AdminData> => ({
   name: 'Test Admin',
   email: 'test_admin@bookem.org',
-  password: await hash(process.env.TEST_ADMIN_PASSWD || '', 12),
+  password: await hash(process.env.TEST_USER_PASSWD || '', 12),
   phone: '(615) 555 5555',
   status: AdminStatus.Admin,
 });
