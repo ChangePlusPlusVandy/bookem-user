@@ -5,9 +5,6 @@ import styled from 'styled-components';
  */
 interface Props {
   width?: string;
-  margin?: string;
-  page?: number;
-  fontSize?: string;
 }
 
 /**
@@ -46,40 +43,10 @@ export const RightContainer = styled.div`
   height: 100vh;
   padding: 7vh 3% 7vh 7%;
   overflow-y: auto;
+
   @media (max-width: 767px) {
     width: 100vw;
   }
-`;
-
-/**
- * Form whose formatting adjusts on screen size
- */
-export const Form = styled.form`
-  overflow: auto;
-  margin-top: -40px;
-  margin-bottom: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  @media (max-width: 767px) {
-    justify-content: space-between;
-    height: 100%;
-    gap: 7px;
-  }
-  &:last-child {
-    margin-top: 0px;
-  }
-`;
-
-/**
- * Form border on RegisterPage5 (Review Information page)
- */
-export const FormBorder = styled.div`
-  overflow: auto;
-  border: 1px solid;
-  border-radius: 10px;
-  margin: -20px -20px -20px -20px;
-  padding: 5px 20px 20px 20px;
 `;
 
 /**
@@ -99,8 +66,40 @@ export const Header = styled.div`
 `;
 
 /**
+ * Form border on RegisterPage5 (Review Information page)
+ */
+export const FormBorder = styled.div`
+  overflow: auto;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: -20px -20px -20px -20px;
+  padding: 5px 20px 20px 20px;
+`;
+
+/**
+ * Form whose formatting adjusts on screen size
+ */
+export const Form = styled.form`
+  overflow: auto;
+  margin-top: -40px;
+  margin-bottom: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &:last-child {
+    margin-top: 0px;
+  }
+
+  @media (max-width: 767px) {
+    justify-content: space-between;
+    height: 100%;
+    gap: 7px;
+  }
+`;
+
+/**
  * Container for each section of a register page
- * 'margin' is used to determine its margin-bottom
  */
 export const SectionContainer = styled.div<Props>`
   margin-top: 10px;
@@ -141,6 +140,7 @@ export const InputText = styled.input<Props>`
   width: ${props => props.width};
 
   ${InputGenericFont};
+
   ::placeholder {
     color: #a4a4a4;
   }
@@ -151,6 +151,82 @@ export const InputText = styled.input<Props>`
  */
 export const InputContainer = styled.div`
   padding: 1vh;
+`;
+
+/**
+ * Container for radio/checkbox column inputs
+ */
+export const Fieldset = styled.fieldset`
+  border: none;
+`;
+
+/**
+ * Format inputs in columns
+ */
+export const Columns = styled.ul`
+  columns: 2;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  @media (max-width: 767px) {
+    columns: 1;
+  }
+`;
+
+/**
+ * Contain checkbox plus text associated with it
+ */
+export const CheckboxContainer = styled.li`
+  @media (max-width: 767px) {
+    margin: 15px 0px;
+  }
+`;
+
+/**
+ * Checkbox input label
+ */
+export const LabelCheckbox = styled.label`
+  display: grid;
+  grid-template-columns: 18px auto;
+  gap: 18px;
+  align-items: center;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 40px;
+
+  @media (max-width: 767px) {
+    font-size: 16px;
+    line-height: 19px;
+  }
+`;
+
+/**
+ * Checkbox input button
+ */
+export const InputCheckbox = styled.input`
+  width: 21px;
+  height: 21px;
+
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+/**
+ * Text area input
+ */
+export const InputTextarea = styled.textarea`
+  border-radius: 20px;
+  resize: none;
+  width: 100%;
+  height: 160px;
+  padding: 12px 25px;
+
+  ${InputGenericFont};
+  ::placeholder {
+    color: #a4a4a4;
+  }
 `;
 
 /**
@@ -175,6 +251,7 @@ export const LabelRadio = styled.label`
 export const InputRadio = styled.input`
   width: 21px;
   height: 21px;
+
   &:hover {
     cursor: pointer;
   }
@@ -207,79 +284,6 @@ export const OtherRadio = styled.div`
   align-items: flex-start;
   gap: 10px;
   height: 27px;
-`;
-
-/**
- * Contain checkbox plus text associated with it
- */
-export const CheckboxContainer = styled.li`
-  margin: 15px 0px;
-`;
-
-/**
- * Format inputs in columns
- */
-export const Columns = styled.ul`
-  columns: 2;
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-
-  @media (max-width: 767px) {
-    columns: 1;
-  }
-`;
-
-/**
- * Checkbox input label
- */
-export const LabelCheckbox = styled.label`
-  display: grid;
-  grid-template-columns: 18px auto;
-  gap: 18px;
-  align-items: center;
-  font-weight: 400;
-  font-size: 19px;
-  line-height: 40px;
-
-  @media (max-width: 767px) {
-    font-size: 16px;
-    line-height: 19px;
-  }
-`;
-
-/**
- * Checkbox input button
- */
-export const InputCheckbox = styled.input`
-  width: 21px;
-  height: 21px;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-/**
- * Container for radio/checkbox column inputs
- */
-export const Fieldset = styled.fieldset`
-  border: none;
-`;
-
-/**
- * Text area input
- */
-export const InputTextarea = styled.textarea`
-  border-radius: 20px;
-  resize: none;
-  width: 100%;
-  height: 160px;
-  padding: 12px 25px;
-
-  ${InputGenericFont};
-  ::placeholder {
-    color: #a4a4a4;
-  }
 `;
 
 /**
@@ -332,8 +336,6 @@ export const LastPageTextContainer = styled.div`
 
 /**
  * Text on last register page
- * 'margin' determines margin-bottom
- * 'fontSize' determines font-size
  */
 export const LastPageText = styled.div<Props>`
   font-weight: 400;

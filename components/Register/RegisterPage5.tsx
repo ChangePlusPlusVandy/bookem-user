@@ -24,6 +24,7 @@ import {
   ButtonContainer,
   Button,
   Fieldset,
+  JoinNewsletterContainer,
 } from '@/styles/register.styles';
 
 const RegisterPage5 = ({
@@ -234,24 +235,26 @@ const RegisterPage5 = ({
               Would you like to receive our newsletter?
             </SectionHeader>
 
-            <InputContainer>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  checked={formData.joinNewsletter === 'yes'}
-                  disabled
-                />
-                Yes, please!
-              </LabelRadio>
-              <LabelRadio>
-                <InputRadio
-                  type="radio"
-                  checked={formData.joinNewsletter === 'no'}
-                  disabled
-                />
-                No, thanks
-              </LabelRadio>
-            </InputContainer>
+            <JoinNewsletterContainer>
+              <InputContainer>
+                <LabelRadio>
+                  <InputRadio
+                    type="radio"
+                    checked={formData.joinNewsletter === 'yes'}
+                    disabled
+                  />
+                  Yes, please!
+                </LabelRadio>
+                <LabelRadio>
+                  <InputRadio
+                    type="radio"
+                    checked={formData.joinNewsletter === 'no'}
+                    disabled
+                  />
+                  No, thanks
+                </LabelRadio>
+              </InputContainer>
+            </JoinNewsletterContainer>
           </SectionContainer>
 
           {/* Mobile */}
