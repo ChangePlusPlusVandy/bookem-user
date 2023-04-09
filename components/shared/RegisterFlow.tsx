@@ -23,14 +23,13 @@ const formatPageDots = (currentPage: number) => {
     // dot for current page is black
     if (page == currentPage)
       return (
-        <>
+        <div key={page}>
           <Media lessThan="sm">
             <Image
               src="/registerFlow/black-dot.png"
               alt="Dot for current page"
               width="10"
               height="10"
-              key={page}
             />
           </Media>
           <Media greaterThanOrEqual="sm">
@@ -39,22 +38,20 @@ const formatPageDots = (currentPage: number) => {
               alt="Dot for current page"
               width="12"
               height="12"
-              key={page}
             />
           </Media>
-        </>
+        </div>
       );
 
     // dot for other pages are white
     return (
-      <>
+      <div key={page}>
         <Media lessThan="sm">
           <Image
             src="/registerFlow/white-dot.png"
             alt="Dot for other page"
             width="10"
             height="10"
-            key={page}
           />
         </Media>
         <Media greaterThanOrEqual="sm">
@@ -63,10 +60,9 @@ const formatPageDots = (currentPage: number) => {
             alt="Dot for other page"
             width="12"
             height="12"
-            key={page}
           />
         </Media>
-      </>
+      </div>
     );
   });
 

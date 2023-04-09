@@ -19,8 +19,8 @@ export default async function handler(
 
         // Check if the user's email and password are valid
         if (!email || !email.includes('@') || !password) {
-          res.status(422).json({ message: 'Invalid input' });
-          throw new Error('Invalid input');
+          res.status(422).json({ message: 'Invalid email or password' });
+          throw new Error('Invalid email or password');
         }
 
         // Connect to the database

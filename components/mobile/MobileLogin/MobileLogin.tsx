@@ -76,7 +76,7 @@ const Login = () => {
           onSubmit={handleSubmit(data => handleLogin(data))}>
           <MobileInput
             {...register('email', { required: true })}
-            placeholder="Email or Username"></MobileInput>
+            placeholder="Email or username"></MobileInput>
 
           <PasswordWrapper>
             <MobileInput

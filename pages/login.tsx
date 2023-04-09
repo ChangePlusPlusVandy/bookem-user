@@ -158,7 +158,7 @@ const LoginPage = () => {
                 onSubmit={handleSubmit(data => handleLogin(data))}>
                 <Input
                   {...register('email', { required: true })}
-                  placeholder="Email or Username"
+                  placeholder="Email or username"
                 />
                 <PasswordWrapper>
                   <Input

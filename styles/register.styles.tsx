@@ -304,6 +304,10 @@ export const Button = styled.button`
 
   ${InputGenericFont};
   color: #ffffff;
+
+  @media (max-width: 767px) {
+    width: 128px;
+  }
 `;
 
 /**

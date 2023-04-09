@@ -18,7 +18,7 @@ export const DashboardLayout = styled.div`
 export const Container = styled.div`
   height: 100vh;
   width: 100%;
-  padding: 75px 40px 40px 40px;
+  padding: 40px;
   overflow-y: auto;
   position: relative;
   font-style: normal;
