@@ -7,7 +7,7 @@ import {
   ForgotPassword,
   LoginForm,
   LoginHeader,
-  MobileInput,
+  Input,
   MobileLoginContainer,
   MobileSubmitButton,
   PasswordWrapper,
@@ -44,13 +44,13 @@ const Login = () => {
         <LoginForm
           id="loginForm"
           onSubmit={handleSubmit(data => handleLogin(data))}>
-          <MobileInput
+          <Input
             {...register('email', { required: true })}
             placeholder="Email or username"
           />
 
           <PasswordWrapper>
-            <MobileInput
+            <Input
               {...register('password', { required: true })}
               type={passwordShown ? 'text' : 'password'}
               placeholder="Password"
