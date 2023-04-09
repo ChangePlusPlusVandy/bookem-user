@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 
+/**
+ * Container for past activities
+ */
 export const Container = styled.div`
   background-color: #d9d9d9;
   width: 24vw;
@@ -22,12 +25,18 @@ export const Container = styled.div`
   }
 `;
 
+/**
+ * Header for past activities
+ */
 export const Header = styled.p`
   font-size: 25px;
   margin-top: 50px;
   text-align: center;
 `;
 
+/**
+ * Container for the header of mobile past activities
+ */
 export const HeaderBox = styled.div`
   display: flex;
   height: 48px;
@@ -39,15 +48,24 @@ export const HeaderBox = styled.div`
   }
 `;
 
+/**
+ * Text in header of mobile past activities
+ */
 export const HeaderText = styled.span`
   margin-left: 38px;
   font-size: 25px;
 `;
 
+/**
+ * Decorative line in header of mobile past activities
+ */
 export const Line = styled(Image)`
   width: 100%;
 `;
 
+/**
+ * Container for list of past activities
+ */
 export const Events = styled.ul`
   overflow-y: auto;
 `;

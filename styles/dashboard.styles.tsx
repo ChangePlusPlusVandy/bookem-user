@@ -32,10 +32,6 @@ export const Container = styled.div`
   }
 `;
 
-export const GreetingContainer = styled.div`
-  height: fit-content;
-`;
-
 /**
  * Text that greets user
  */
