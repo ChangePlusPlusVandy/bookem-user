@@ -1,5 +1,7 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { Media } from '@/lib/media';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
@@ -23,8 +25,6 @@ import {
   Button,
   Fieldset,
 } from '@/styles/register.styles';
-import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
-import { Media } from '@/lib/media';
 
 const RegisterPage5 = ({
   formFunctions: {
@@ -41,12 +41,7 @@ const RegisterPage5 = ({
   formData: RegisterFormData;
 }) => {
   // react hook form
-  const {
-    register,
-    handleSubmit,
-    getValues,
-    formState: { errors },
-  } = handleForm;
+  const { handleSubmit, getValues } = handleForm;
 
   return (
     <RightContainer>
@@ -82,9 +77,9 @@ const RegisterPage5 = ({
 
             <InputContainer>
               <InputText
+                type="password"
                 value={formData.password}
                 width="45%"
-                type="password"
                 disabled
               />
             </InputContainer>
@@ -172,6 +167,7 @@ const RegisterPage5 = ({
             </Fieldset>
           </SectionContainer>
 
+          {/* Mobile */}
           <Media lessThan="sm">
             <SectionContainer>
               <SectionHeader>How did you hear about us?</SectionHeader>
@@ -185,6 +181,8 @@ const RegisterPage5 = ({
               </InputContainer>
             </SectionContainer>
           </Media>
+
+          {/* Desktop */}
           <Media greaterThanOrEqual="sm">
             {/** Moved to different location */}
           </Media>
@@ -256,7 +254,10 @@ const RegisterPage5 = ({
             </InputContainer>
           </SectionContainer>
 
+          {/* Mobile */}
           <Media lessThan="sm">{/** Moved to different location */}</Media>
+
+          {/* Desktop */}
           <Media greaterThanOrEqual="sm">
             <SectionContainer>
               <SectionHeader>How did you hear about us?</SectionHeader>
@@ -300,9 +301,9 @@ const RegisterPage5 = ({
                   Other:
                 </LabelRadio>
                 <InputText
+                  placeholder="Enter text"
                   value={formData.otherGender}
                   width="30%"
-                  placeholder="Enter text"
                   disabled
                 />
               </OtherRadio>
@@ -338,9 +339,9 @@ const RegisterPage5 = ({
                   Other:
                 </LabelRadio>
                 <InputText
+                  placeholder="Enter text"
                   value={formData.otherRace}
                   width="30%"
-                  placeholder="Enter text"
                   disabled
                 />
               </OtherRadio>
