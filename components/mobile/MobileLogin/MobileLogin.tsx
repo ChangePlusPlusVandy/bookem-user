@@ -1,48 +1,17 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import {
-  ContentContainer,
-  Eye,
-  ForgotPassword,
-  Input,
-  LoginForm,
-  LoginHeader,
-  PasswordWrapper,
-  SubmitButton,
-} from '@/styles/login.styles';
 import { FieldValues, useForm } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
-
-interface Props {
-  hover?: boolean;
-}
-
-const MobileContainer = styled(ContentContainer)`
-  height: 100vh;
-  padding: 20% 7% 6% 7%;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const MobileInput = styled(Input)`
-  border-radius: 10px;
-`;
-
-const MobileSubmitButton = styled(SubmitButton)`
-  background: #6d6d6d;
-  border-radius: 10px;
-  font-size: 16px;
-  line-height: 19px;
-  color: white;
-  width: 296px;
-  height: 53px;
-  margin-bottom: 71px;
-  &:hover {
-    background: #6d6d6d;
-    cursor: pointer;
-  }
-`;
+import {
+  Eye,
+  ForgotPassword,
+  LoginForm,
+  LoginHeader,
+  MobileInput,
+  MobileLoginContainer,
+  MobileSubmitButton,
+  PasswordWrapper,
+} from '@/styles/login.styles';
 
 const Login = () => {
   // React hook form.
@@ -52,7 +21,7 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  // state for showing psasword
+  // state for showing password
   const [passwordShown, setPasswordShown] = useState(false);
 
   // Function to handle login and redirect.
@@ -68,15 +37,17 @@ const Login = () => {
     }
   };
   return (
-    <MobileContainer>
+    <MobileLoginContainer>
       <div>
         <LoginHeader>Logging you in</LoginHeader>
+
         <LoginForm
           id="loginForm"
           onSubmit={handleSubmit(data => handleLogin(data))}>
           <MobileInput
             {...register('email', { required: true })}
-            placeholder="Email or username"></MobileInput>
+            placeholder="Email or username"
+          />
 
           <PasswordWrapper>
             <MobileInput
@@ -110,8 +81,9 @@ const Login = () => {
           {errors.password && <span>Password is required</span>}
         </LoginForm>
       </div>
+
       <MobileSubmitButton form="loginForm" type="submit" value="Log in" />
-    </MobileContainer>
+    </MobileLoginContainer>
   );
 };
 

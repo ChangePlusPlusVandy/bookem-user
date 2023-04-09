@@ -161,3 +161,30 @@ export const MobileLoginButton = styled.button`
     cursor: pointer;
   }
 `;
+
+export const MobileLoginContainer = styled(ContentContainer)`
+  height: 100vh;
+  padding: 20% 7% 6% 7%;
+  display: flex;
+  justify-content: space-between;
+`;
+
+export const MobileInput = styled(Input)`
+  border-radius: 10px;
+`;
+
+export const MobileSubmitButton = styled(SubmitButton)`
+  background: #6d6d6d;
+  border-radius: 10px;
+  font-size: 16px;
+  line-height: 19px;
+  color: white;
+  width: 296px;
+  height: 53px;
+  margin-bottom: 71px;
+
+  &:hover {
+    background: #6d6d6d;
+    cursor: pointer;
+  }
+`;
