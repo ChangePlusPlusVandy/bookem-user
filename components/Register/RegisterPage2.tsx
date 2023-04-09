@@ -1,5 +1,7 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { Media } from '@/lib/media';
+import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
@@ -17,8 +19,6 @@ import {
   InputText,
   Fieldset,
 } from '@/styles/register.styles';
-import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
-import { Media } from '@/lib/media';
 
 /**
  * auto-format inputted phone number
@@ -127,35 +127,35 @@ const RegisterPage2 = ({
           <InputFlex>
             <InputText
               {...register('emergencyFirstName', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="First name"
               width="45%"
+              onKeyDown={handleEnter}
             />
             <InputText
               {...register('emergencyLastName', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Last name"
               width="45%"
+              onKeyDown={handleEnter}
             />
           </InputFlex>
 
           <InputContainer>
             <InputText
               {...register('emergencyPhone', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Phone number"
-              onChange={e => handlePhone(e)}
               value={phoneValue}
               width="100%"
+              onChange={e => handlePhone(e)}
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
           <InputContainer>
             <InputText
               {...register('emergencyRelationship', { required: true })}
-              onKeyDown={handleEnter}
               placeholder="Relationship"
               width="100%"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
@@ -185,9 +185,9 @@ const RegisterPage2 = ({
                 <CheckboxContainer key={member}>
                   <LabelCheckbox>
                     <InputCheckbox
+                      {...register('members')}
                       type="checkbox"
                       value={member}
-                      {...register('members')}
                       onKeyDown={handleEnter}
                     />
                     {member}
@@ -198,7 +198,10 @@ const RegisterPage2 = ({
           </Fieldset>
         </SectionContainer>
 
+        {/* Mobile */}
         <Media lessThan="sm">{/** Moved to next register page */}</Media>
+
+        {/* Desktop */}
         <Media greaterThanOrEqual="sm">
           <SectionContainer>
             <SectionHeader>
@@ -206,16 +209,17 @@ const RegisterPage2 = ({
             </SectionHeader>
             <InputContainer>
               <InputTextarea
-                placeholder="Start here..."
                 {...register('volunteerReason', {
                   required: screenSize.width > 767,
                 })}
+                placeholder="Start here..."
               />
             </InputContainer>
             {errors.volunteerReason && printError('A response is required')}
           </SectionContainer>
         </Media>
 
+        {/* Mobile */}
         <Media lessThan="sm">
           <SectionContainer>
             <SectionHeader>How did you hear about us?</SectionHeader>
@@ -225,15 +229,17 @@ const RegisterPage2 = ({
                 {...register('sourceHeardFrom', {
                   required: screenSize.width <= 767,
                 })}
-                onKeyDown={handleEnter}
                 placeholder="Source"
                 width="100%"
+                onKeyDown={handleEnter}
               />
             </InputContainer>
 
             {errors.sourceHeardFrom && printError('A response is required')}
           </SectionContainer>
         </Media>
+
+        {/* Desktop */}
         <Media greaterThanOrEqual="sm">
           {/** Moved to next register page */}
         </Media>
