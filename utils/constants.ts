@@ -1,5 +1,23 @@
 import { SidebarIconParams } from '@/utils/types';
 
+// Color themes for the app
+export const BOOKEM_THEME = {
+  colors: {
+    WHITE: '#FFFFFF',
+    BOOKEM_BLACK: '#2C2C2C',
+    BOOKEM_LIGHT_GRAY: '#F4F4F4',
+    BOOKEM_RED: '#DA4347',
+    BOOKEM_BLUE: '#83BCDA',
+    BOOKEM_YELLOW: '#F1E09A',
+  },
+  fonts: ['Inter', 'sans-serif'],
+  fontSizes: {
+    SMALL: '1.2rem',
+    MEDIUM: '1.6rem',
+    LARGE: '2.4rem',
+  },
+};
+
 /**
  * Available routes as object
  */
