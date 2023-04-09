@@ -10,10 +10,7 @@ import {
   NavHeader,
   NavLeft,
   NavRight,
-  RightArrow,
   SearchBar,
-  SeeAllButton,
-  SeeAllText,
 } from '@/styles/components/Volunteer/futureVolunteerEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
 import FilterEventsPopup from './FilterEventsPopup';
@@ -134,18 +131,7 @@ const FutureVolunteerEvents = () => {
               ))}
           </ImagesWrapper>
 
-          <Media lessThan="sm">
-            {/* TODO: Direct to a new page */}
-            <SeeAllButton href="/volunteer/future-events">
-              <SeeAllText>See all</SeeAllText>
-              <RightArrow
-                src="/volunteer/arrow-right.svg"
-                alt=""
-                width={32}
-                height={32}
-              />
-            </SeeAllButton>
-          </Media>
+          <Media lessThan="sm"></Media>
         </Container>
       )}
     </>

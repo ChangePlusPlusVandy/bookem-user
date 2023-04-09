@@ -102,21 +102,3 @@ export const ImagesWrapper = styled.div`
     margin: 0 0 0 20px;
   }
 `;
-
-export const SeeAllButton = styled(Link)`
-  display: flex;
-  margin: 50px 0 0 40px;
-  align-items: center;
-`;
-
-export const SeeAllText = styled.span`
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 25px;
-  line-height: 30px;
-`;
-
-export const RightArrow = styled(Image)`
-  margin: 0 0 0 20px;
-`;
