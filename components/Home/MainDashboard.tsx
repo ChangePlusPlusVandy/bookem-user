@@ -13,6 +13,7 @@ import {
   Header,
   StatsNumber,
   MobilePastActivityContainer,
+  MobileHeader,
 } from '@/styles/dashboard.styles';
 import { Media } from '@/lib/media';
 import Link from 'next/link';
@@ -38,9 +39,9 @@ const MainDashboard = ({ userData }: any) => {
       ) : (
         <DashboardLayout>
           <Container>
-            <Greeting>Hello {userData.name}, thanks for checking in!</Greeting>
-
             <Media lessThan="sm">
+              <Greeting>Hello, {userData.name}</Greeting>
+
               <InfoIcon>
                 <Image
                   src="/home/info.png"
@@ -51,6 +52,10 @@ const MainDashboard = ({ userData }: any) => {
               </InfoIcon>
             </Media>
             <Media greaterThanOrEqual="sm">
+              <Greeting>
+                Hello {userData.name}, thanks for checking in!
+              </Greeting>
+
               <InfoIcon>
                 <Image
                   src="/home/info.png"
@@ -63,7 +68,7 @@ const MainDashboard = ({ userData }: any) => {
 
             <div>
               <Media lessThan="sm">
-                <Header>Great work! Keep it up.</Header>
+                <MobileHeader>Great work! Keep it up.</MobileHeader>
               </Media>
               <Media greaterThanOrEqual="sm">
                 <Header>Your accomplishments at a glance:</Header>
@@ -72,17 +77,17 @@ const MainDashboard = ({ userData }: any) => {
               <StatsFlex>
                 <FlexChild>
                   <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-                  <StatsDescription>Hours volunteered</StatsDescription>
+                  <StatsDescription>hours volunteered</StatsDescription>
                 </FlexChild>
 
                 <FlexChild>
                   <StatsNumber>{userData.booksShared}</StatsNumber>
-                  <StatsDescription>Books shared (requested?)</StatsDescription>
+                  <StatsDescription>books shared</StatsDescription>
                 </FlexChild>
 
                 <FlexChild>
                   <StatsNumber>{userData.dollarsDonated}</StatsNumber>
-                  <StatsDescription>Dollars donated</StatsDescription>
+                  <StatsDescription>dollars donated</StatsDescription>
                 </FlexChild>
               </StatsFlex>
             </div>

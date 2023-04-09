@@ -28,6 +28,7 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    padding-top: 75px;
   }
 `;
 
@@ -55,7 +56,7 @@ export const Greeting = styled.p`
  */
 export const InfoIcon = styled.div`
   position: absolute;
-  top: 65px;
+  top: 83px;
   right: 50px;
 
   &:hover {
@@ -77,8 +78,17 @@ export const Header = styled.p`
   line-height: 30px;
 
   @media (max-width: 767px) {
-    margin-bottom: 30px;
+    margin-bottom: 29px;
   }
+`;
+
+/**
+ * Mobile header for accomplishments
+ */
+export const MobileHeader = styled.p`
+  margin-bottom: 30px;
+  font-size: 16px;
+  line-height: 19px;
 `;
 
 /**
