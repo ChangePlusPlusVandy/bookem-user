@@ -41,15 +41,27 @@ export default async function handler(
         const hashedPassword = await hash(password, 12);
 
         // Create a new user in the database
-        const status = await Users.create({
+        const status = await Users.insertMany({
           name,
           email,
           password: hashedPassword,
           phone: user.phone,
           address: user.address,
+          birthday: user.birthday,
+          emergencyName: user.emergencyName,
+          emergencyPhone: user.emergencyPhone,
+          emergencyRelationship: user.emergencyRelationship,
+          members: user.members,
+          volunteerReason: user.volunteerReason,
+          occupation: user.occupation,
+          occupationTitle: user.occupationTitle,
+          occupationOrg: user.occupationOrg,
+          joinNewsletter: user.joinNewsletter,
           sourceHeardFrom: user.sourceHeardFrom,
           ethnicity: user.ethnicity,
-          gender: user.gender,
+          // gender: user.gender,
+          // tags: user.tags,
+          events: user.events,
         });
 
         // Return the status of the user creation
