@@ -86,10 +86,17 @@ const RegisterPage2 = ({
 
   // gets current window size
   const getCurrentDimension = () => {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
+    if (typeof window !== 'undefined') {
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    } else {
+      return {
+        width: 768,
+        height: 768,
+      };
+    }
   };
 
   // state for getting window size
