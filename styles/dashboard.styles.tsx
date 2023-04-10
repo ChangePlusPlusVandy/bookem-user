@@ -28,7 +28,6 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding-top: 75px;
   }
 `;
 
@@ -60,7 +59,7 @@ export const InfoIcon = styled.div`
   }
 
   @media (max-width: 767px) {
-    top: 107px;
+    top: 75px;
     right: 90px;
   }
 `;

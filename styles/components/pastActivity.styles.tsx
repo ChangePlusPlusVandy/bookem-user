@@ -18,7 +18,7 @@ export const Container = styled.div`
   }
 
   @media (max-width: 767px) {
-    background: white;
+    background-color: white;
     width: 100vw;
     padding: 30px;
     z-index: 1;
