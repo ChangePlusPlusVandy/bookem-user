@@ -12,6 +12,7 @@ import {
   Cross,
 } from '@/styles/components/Sidebar/sidebar.styles';
 import {
+  BOOKEM_THEME,
   SIDEBAR_ICON_HEIGHT,
   SIDEBAR_ICON_PARAMS,
   SIDEBAR_ICON_WIDTH,
@@ -54,7 +55,9 @@ export const MobileSidebar = ({
                     hoveredsrc={iconParam.mobileHoveredSrc}
                     // Dynamically assign the background color according to the current route
                     backgroundcolor={
-                      activeRoute === iconParam.linkTo ? '#6d6d6d' : 'white'
+                      activeRoute === iconParam.linkTo
+                        ? BOOKEM_THEME.colors.BOOKEM_BLACK
+                        : BOOKEM_THEME.colors.WHITE
                     }
                     // Dynamically assign the src of the icon according to the current route
                     imgsrc={
@@ -72,7 +75,9 @@ export const MobileSidebar = ({
                       />
                       <IconText
                         color={
-                          activeRoute === iconParam.linkTo ? 'white' : 'black'
+                          activeRoute === iconParam.linkTo
+                            ? BOOKEM_THEME.colors.WHITE
+                            : BOOKEM_THEME.colors.BOOKEM_BLACK
                         }>
                         {iconParam.text}
                       </IconText>

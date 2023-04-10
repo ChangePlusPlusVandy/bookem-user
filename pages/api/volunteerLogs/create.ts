@@ -79,7 +79,7 @@ export default async function handler(
         const usersId = user._id;
 
         // construct the object we want to insert into our database
-        await VolunteerLogs.create({
+        await VolunteerLogs.insertMany({
           ...volunteerLog,
           userId: usersId,
         });

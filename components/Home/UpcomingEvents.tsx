@@ -14,6 +14,11 @@ const Container = styled.div`
   white-space: nowrap;
   overflow-x: auto;
   display: flex;
+
+  @media (max-width: 767px) {
+    padding: 0px;
+    background: white;
+  }
 `;
 
 /**

@@ -42,7 +42,7 @@ export const generateUser = async ({
   volunteerReason: faker.lorem.paragraph(),
   occupation: faker.name.jobType(),
   occupationTitle: faker.name.jobTitle(),
-  occupationOrg: faker.company.companyName(),
+  occupationOrg: faker.company.name(),
   joinNewsletter: true,
   sourceHeardFrom: faker.helpers.arrayElement(SOURCES),
   ethnicity: faker.helpers.arrayElement(ETHNICITY),

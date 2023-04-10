@@ -41,7 +41,7 @@ const WindowFlow = ({
       if (!currPage) return;
 
       // if current page (then set background to black)
-      if (index == currentPage - 1) {
+      if (index === currentPage - 1) {
         currPage.style.backgroundColor = 'black';
         currPage.style.color = 'white';
       } else {
@@ -126,7 +126,7 @@ const WindowFlow = ({
         )}
 
         {/** Submit button appears if on last page */}
-        {currentPage == pages.length && (
+        {currentPage === pages.length && (
           <ButtonCenter>
             <SubmitButton onClick={onSubmit}>Submit</SubmitButton>
           </ButtonCenter>

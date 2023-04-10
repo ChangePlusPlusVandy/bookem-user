@@ -1,26 +1,22 @@
-import React, {
-  ChangeEvent,
-  KeyboardEventHandler,
-  useRef,
-  useState,
-} from 'react';
-import { SubmitHandler, FieldValues, UseFormReturn } from 'react-hook-form';
+import React, { useEffect, useState } from 'react';
+import { SubmitHandler, FieldValues } from 'react-hook-form';
+import { RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
+  Form,
   Header,
   SectionContainer,
   SectionHeader,
   InputContainer,
   InputText,
-  ButtonContainer,
-  ResumeButton,
-  InputRadioVertical,
   LabelRadio,
   InputRadio,
-  Button,
+  Columns,
+  InputTextarea,
+  JoinNewsletterContainer,
+  Fieldset,
 } from '@/styles/register.styles';
-import { RegisterFormFunctions } from '@/utils/types';
 
 const RegisterPage3 = ({
   formFunctions: {
@@ -31,123 +27,145 @@ const RegisterPage3 = ({
     handleLeftArrow,
     handleRightArrow,
   },
-  formResumeData,
 }: {
   formFunctions: RegisterFormFunctions;
-  formResumeData: File | undefined;
 }) => {
   // react hook form
   const {
     register,
     handleSubmit,
-    setValue,
     getValues,
     formState: { errors },
   } = handleForm;
 
-  /* resume upload handling */
-  /* based on https://codefrontend.com/file-upload-reactjs/, only works for files with <= 16 MB I think */
+  /* window size handling */
 
-  // state for uploaded resume file
-  const [resume, setResume] = useState<File | undefined>(formResumeData);
-
-  // object that helps with handling clicking on resume upload button
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  // handles clicking on resume upload button
-  const handleUploadClick = () => {
-    inputRef.current?.click();
-  };
-
-  // updates name of resume upload button to the name of the file uploaded
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
-      return;
+  // gets current window size
+  const getCurrentDimension = () => {
+    if (typeof window !== 'undefined') {
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    } else {
+      return {
+        width: 768,
+        height: 768,
+      };
     }
-    setValue('resume', e.target.files[0]);
-    setResume(e.target.files[0]);
   };
+
+  // state for getting window size
+  const [screenSize, setScreenSize] = useState(getCurrentDimension());
+
+  // updates window size state
+  useEffect(() => {
+    const updateDimension = () => {
+      setScreenSize(getCurrentDimension());
+    };
+    window.addEventListener('resize', updateDimension);
+
+    return () => {
+      window.removeEventListener('resize', updateDimension);
+    };
+  }, [screenSize]);
 
   return (
     <RightContainer>
-      <form
+      <Header>Almost there</Header>
+
+      <Form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        <Header>Almost there</Header>
-
         <SectionContainer>
-          <SectionHeader>Occupation</SectionHeader>
+          <SectionHeader>Current occupation</SectionHeader>
+
+          <Fieldset>
+            <Columns>
+              {['Employed', 'Student', 'Not employed', 'Retired'].map(
+                occupation => (
+                  <LabelRadio key={occupation}>
+                    <InputRadio
+                      {...register('occupation', { required: true })}
+                      type="radio"
+                      value={occupation}
+                      onKeyDown={handleEnter}
+                    />
+                    {occupation}
+                  </LabelRadio>
+                )
+              )}
+            </Columns>
+          </Fieldset>
 
           <InputContainer>
             <InputText
-              {...register('jobTitle1', { required: true })}
-              onKeyDown={handleEnter}
-              placeholder="Job Title 1"
+              {...register('occupationTitle', { required: true })}
+              placeholder="Occupation Title"
               width="100%"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
           <InputContainer>
             <InputText
-              {...register('jobTitle2')}
-              onKeyDown={handleEnter}
-              placeholder="Job Title 2 (Optional)"
+              {...register('occupationOrg', { required: true })}
+              placeholder="Name of Employer or School"
               width="100%"
+              onKeyDown={handleEnter}
             />
           </InputContainer>
 
-          {errors.jobTitle1 && printError('A job title is required')}
+          {errors.occupation && printError('A selection is required')}
+          {errors.occupationTitle &&
+            printError('An occupation title is required')}
+          {errors.occupationOrg &&
+            printError('An employer/school name is required')}
         </SectionContainer>
 
         <SectionContainer>
-          <SectionHeader>Please upload your resume (Optional)</SectionHeader>
+          <SectionHeader>
+            Would you like to receive our newsletter?
+          </SectionHeader>
 
-          <ButtonContainer>
-            <ResumeButton type="button" onClick={handleUploadClick}>
-              {resume ? `${resume.name}` : 'Click here to upload'}
-            </ResumeButton>
-          </ButtonContainer>
-
-          <input
-            type="file"
-            {...register('resume')}
-            onKeyDown={handleEnter}
-            ref={inputRef}
-            onChange={handleFileChange}
-            style={{ display: 'none' }}
-          />
-        </SectionContainer>
-
-        <SectionContainer>
-          <SectionHeader>Would you like to join our newsletter?</SectionHeader>
-
-          <InputRadioVertical>
+          <JoinNewsletterContainer>
             <LabelRadio>
               <InputRadio
+                {...register('joinNewsletter', { required: true })}
                 type="radio"
                 value="yes"
-                {...register('joinNewsletter', { required: true })}
                 onKeyDown={handleEnter}
               />
               Yes, please!
             </LabelRadio>
             <LabelRadio>
               <InputRadio
+                {...register('joinNewsletter', { required: true })}
                 type="radio"
                 value="no"
-                {...register('joinNewsletter', { required: true })}
                 onKeyDown={handleEnter}
               />
               No, thanks
             </LabelRadio>
-          </InputRadioVertical>
+          </JoinNewsletterContainer>
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
 
-        <ButtonContainer>
-          <Button>Submit</Button>
-        </ButtonContainer>
-      </form>
+        <SectionContainer>
+          <SectionHeader>How did you hear about us?</SectionHeader>
+
+          <InputContainer>
+            <InputText
+              {...register('sourceHeardFrom', { required: true })}
+              placeholder="Source"
+              width="100%"
+              onKeyDown={handleEnter}
+            />
+          </InputContainer>
+
+          {errors.sourceHeardFrom && printError('A response is required')}
+        </SectionContainer>
+      </Form>
 
       <RegisterFlow
         currentPage={3}
