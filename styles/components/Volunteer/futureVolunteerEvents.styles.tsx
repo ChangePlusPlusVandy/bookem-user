@@ -1,15 +1,16 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  box-sizing: content-box;
+  background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
+  border-radius: 10px;
+  margin: 0 3%;
 `;
 
 /**
  * Container of Future volunteer events header
  */
 export const NavHeader = styled.div`
-  border-top: 1px solid #000000;
   width: 100%;
   padding: 26px 60px;
   display: flex;
