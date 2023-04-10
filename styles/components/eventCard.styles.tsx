@@ -35,11 +35,10 @@ export const Name = styled.div<RatioProp>`
 `;
 
 export const AddressContainer = styled.div<RatioProp>`
-  height: fit-content;
   margin-top: ${props => props.ratio * 13}px;
   font-style: normal;
   font-weight: 400;
-  font-size: ${props => props.ratio * 18}px;
+  font-size: ${props => props.ratio * 16}px;
   line-height: ${props => props.ratio * 22}px;
   ${Overflow};
 `;
@@ -72,7 +71,7 @@ export const InfoFlexChild = styled.div<RatioProp>`
   vertical-align: middle;
   font-style: normal;
   font-weight: 400;
-  font-size: ${props => props.ratio * 18}px;
+  font-size: ${props => props.ratio * 16}px;
   line-height: ${props => props.ratio * 22}px;
   ${Overflow};
 `;
