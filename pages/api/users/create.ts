@@ -2,7 +2,7 @@ import dbConnect from '@/lib/dbConnect';
 import { hash } from 'bcrypt';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Users from 'bookem-shared/src/models/Users';
-import { QueriedUserData } from 'bookem-shared/src/types/database';
+import { QueriedUserData, UserData } from 'bookem-shared/src/types/database';
 
 export default async function handler(
   req: NextApiRequest,
@@ -40,7 +40,8 @@ export default async function handler(
         // Hash the user's password
         const hashedPassword = await hash(password, 12);
 
-        let userToInsert = {
+        // construct the user object to insert into the database
+        let userToInsert: UserData = {
           name,
           email,
           password: hashedPassword,
@@ -63,12 +64,14 @@ export default async function handler(
           events: user.events,
         };
 
+        // Delete any fields that are undefined or empty
         if (
           !user.members ||
           user.members.length === 0 ||
           user.members.length === undefined
         )
           delete userToInsert.members;
+        // delete optional fields if they are empty
         if (!user.ethnicity) delete userToInsert.ethnicity;
         if (!user.gender) delete userToInsert.gender;
 
