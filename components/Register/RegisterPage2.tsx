@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { Media } from '@/lib/media';
 import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
@@ -198,51 +197,18 @@ const RegisterPage2 = ({
           </Fieldset>
         </SectionContainer>
 
-        {/* Mobile */}
-        <Media lessThan="sm">{/** Moved to next register page */}</Media>
-
-        {/* Desktop */}
-        <Media greaterThanOrEqual="sm">
-          <SectionContainer>
-            <SectionHeader>
-              Why do you want to become a Book&apos;em volunteer?
-            </SectionHeader>
-            <InputContainer>
-              <InputTextarea
-                {...register('volunteerReason', {
-                  required: screenSize.width > 767,
-                })}
-                placeholder="Start here..."
-              />
-            </InputContainer>
-            {errors.volunteerReason && printError('A response is required')}
-          </SectionContainer>
-        </Media>
-
-        {/* Mobile */}
-        <Media lessThan="sm">
-          <SectionContainer>
-            <SectionHeader>How did you hear about us?</SectionHeader>
-
-            <InputContainer>
-              <InputText
-                {...register('sourceHeardFrom', {
-                  required: screenSize.width <= 767,
-                })}
-                placeholder="Source"
-                width="100%"
-                onKeyDown={handleEnter}
-              />
-            </InputContainer>
-
-            {errors.sourceHeardFrom && printError('A response is required')}
-          </SectionContainer>
-        </Media>
-
-        {/* Desktop */}
-        <Media greaterThanOrEqual="sm">
-          {/** Moved to next register page */}
-        </Media>
+        <SectionContainer>
+          <SectionHeader>
+            Why do you want to become a Book&apos;em volunteer?
+          </SectionHeader>
+          <InputContainer>
+            <InputTextarea
+              {...register('volunteerReason', { required: true })}
+              placeholder="Start here..."
+            />
+          </InputContainer>
+          {errors.volunteerReason && printError('A response is required')}
+        </SectionContainer>
       </Form>
 
       <RegisterFlow

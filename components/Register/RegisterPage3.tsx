@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { SubmitHandler, FieldValues } from 'react-hook-form';
-import { Media } from '@/lib/media';
-import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
+import { RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
 import {
   RightContainer,
@@ -78,29 +77,6 @@ const RegisterPage3 = ({
       <Form
         id="registerPage3"
         onSubmit={handleSubmit(onSubmit as SubmitHandler<FieldValues>)}>
-        {/* Mobile */}
-        <Media lessThan="sm">
-          <SectionContainer>
-            <SectionHeader>
-              Why do you want to become a Book&apos;em volunteer?
-            </SectionHeader>
-            <InputContainer>
-              <InputTextarea
-                {...register('volunteerReason', {
-                  required: screenSize.width <= 767,
-                })}
-                placeholder="Start here..."
-              />
-            </InputContainer>
-            {errors.volunteerReason && printError('A response is required')}
-          </SectionContainer>
-        </Media>
-
-        {/* Desktop */}
-        <Media greaterThanOrEqual="sm">
-          {/** Moved to previous register page */}
-        </Media>
-
         <SectionContainer>
           <SectionHeader>Current occupation</SectionHeader>
 
@@ -175,28 +151,20 @@ const RegisterPage3 = ({
           {errors.joinNewsletter && printError('A selection is required')}
         </SectionContainer>
 
-        {/* Mobile */}
-        <Media lessThan="sm">{/** Moved to previous register page */}</Media>
+        <SectionContainer>
+          <SectionHeader>How did you hear about us?</SectionHeader>
 
-        {/* Desktop */}
-        <Media greaterThanOrEqual="sm">
-          <SectionContainer>
-            <SectionHeader>How did you hear about us?</SectionHeader>
+          <InputContainer>
+            <InputText
+              {...register('sourceHeardFrom', { required: true })}
+              placeholder="Source"
+              width="100%"
+              onKeyDown={handleEnter}
+            />
+          </InputContainer>
 
-            <InputContainer>
-              <InputText
-                {...register('sourceHeardFrom', {
-                  required: screenSize.width > 767,
-                })}
-                placeholder="Source"
-                width="100%"
-                onKeyDown={handleEnter}
-              />
-            </InputContainer>
-
-            {errors.sourceHeardFrom && printError('A response is required')}
-          </SectionContainer>
-        </Media>
+          {errors.sourceHeardFrom && printError('A response is required')}
+        </SectionContainer>
       </Form>
 
       <RegisterFlow

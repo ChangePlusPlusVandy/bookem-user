@@ -144,7 +144,7 @@ const RegisterPage = () => {
       });
 
       // if request is successful, there is no error message
-      if (res.status == 201) return null;
+      if (res.status === 201) return null;
       // otherwise, there is an error message
       else return { message: 'You have entered invalid information.' };
     } catch (err) {
