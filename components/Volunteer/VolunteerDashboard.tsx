@@ -18,6 +18,7 @@ import {
 } from '@/styles/volunteerDashboard.styles';
 import LogHoursPopupWindowForm from '@/components/Forms/LogHoursPopupWindowForm';
 import { Media } from '@/lib/media';
+import { BOOKEM_THEME } from '@/utils/constants';
 
 const VolunteerDashboard = ({ userData }: any) => {
   // set pop up window to false
@@ -34,7 +35,7 @@ const VolunteerDashboard = ({ userData }: any) => {
         {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>
           <VolunteerButton
-            backgroundcolor="#6d6d6d"
+            backgroundcolor={BOOKEM_THEME.colors.BOOKEM_RED}
             onClick={() => setShowPopup(true)}>
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
@@ -54,11 +55,11 @@ const VolunteerDashboard = ({ userData }: any) => {
                 />
               </Media>
             </ButtonIcon>
-            <ButtonText textcolor="white"> Log Hours</ButtonText>
+            <ButtonText textcolor="white">Log hours</ButtonText>
           </VolunteerButton>
           {/** Button for "See History" */}
           <VolunteerButton
-            backgroundcolor="#e3e3e3;"
+            backgroundcolor={BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY}
             onClick={() => (window.location.href = '/volunteerHistory')}>
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
