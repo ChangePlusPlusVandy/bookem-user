@@ -13,7 +13,7 @@ import {
   SearchBar,
 } from '@/styles/components/Volunteer/futureVolunteerEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
-import FilterEventsPopup from './FilterEventsPopup';
+import FilterEventsPopup from '@/components/Volunteer/FilterEventsPopup';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
 

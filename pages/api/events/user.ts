@@ -9,7 +9,7 @@ import { getServerSession } from 'next-auth';
 
 // import the models and types we need
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
-import { authOptions } from '../auth/[...nextauth]';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 /**
  * /api/VolunteerEvents/:
