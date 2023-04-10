@@ -9,7 +9,6 @@ import {
   CreateButton,
   Container,
   ContentContainer,
-  Footer,
   Input,
   LittleText,
   LoginForm,
@@ -25,13 +24,7 @@ import {
   MobileText,
   MobileLoginButton,
 } from '@/styles/login.styles';
-import {
-  BOOKEM_THEME,
-  SIDEBAR_ICON_HEIGHT,
-  SIDEBAR_ICON_PARAMS,
-  SIDEBAR_ICON_WIDTH,
-} from '@/utils/constants';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
 
 const LoginPage = () => {
   // state for going to mobile login page
@@ -120,15 +113,10 @@ const LoginPage = () => {
               </LoginForm>
 
               <SubmitButton form="loginForm" type="submit" value="Log in" />
-            </ContentContainer>
 
-            <Footer>
               <LittleText>New here? Come join us!</LittleText>
-
-              <Link href={'/register'}>
-                <CreateButton>Sign up</CreateButton>
-              </Link>
-            </Footer>
+              <CreateButton href={'/register'}>Register</CreateButton>
+            </ContentContainer>
           </RightContainer>
         </Container>
       </Media>
@@ -140,7 +128,8 @@ const LoginPage = () => {
         ) : (
           <MobileContainer>
             <MobileImageContainer>
-              <Image src={'/bookemkids.png'} alt="BookEm Background" fill />
+              {/* TODO: add yellow circle background */}
+              <Image src={'/login/login.png'} alt="BookEm Login" fill />
             </MobileImageContainer>
 
             <MobileTextContainer>

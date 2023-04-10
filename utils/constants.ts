@@ -15,6 +15,7 @@ export const BOOKEM_THEME = {
     SECONDARY: 'sans-serif',
   },
   fontSizes: {
+    EXTRA_SMALL: '1rem',
     SMALL: '1.2rem',
     MEDIUM: '1.6rem',
     LARGE: '2.4rem',

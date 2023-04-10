@@ -14,7 +14,8 @@ const LeftDisplay = () => {
           src="/login/login.png"
           fill
           style={{ objectFit: 'contain' }}
-          alt="BookEm Background"></Image>
+          alt="BookEm Background"
+        />
       </ImgContainer>
       <HeaderFont>Welcome to the</HeaderFont>{' '}
       <HeaderFont>Book&apos;em Volunteer Portal</HeaderFont>

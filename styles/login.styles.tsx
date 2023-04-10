@@ -42,7 +42,7 @@ export const LoginHeader = styled.div`
   font-size: ${props => props.theme.fontSizes.LARGE};
   color: ${props => props.theme.colors.BOOKEM_BLACK};
   font-weight: bold;
-  margin-bottom: 50px; // TODO: need?
+  margin-bottom: 50px;
 `;
 
 /**
@@ -61,7 +61,8 @@ export const Input = styled.input`
   border: 1px solid ${props => props.theme.colors.BOOKEM_BLACK};
   height: 45px;
   border-radius: 10px;
-  padding: 10px; // TODO: need?
+  padding: 10px;
+  width: 100%;
 `;
 
 /**
@@ -77,8 +78,8 @@ export const PasswordWrapper = styled.div`
  */
 export const Eye = styled.i`
   position: absolute;
-  top: 13%;
-  right: 4%;
+  top: 10px;
+  right: 15px;
 `;
 
 /**
@@ -106,23 +107,7 @@ export const SubmitButton = styled.input`
     cursor: pointer;
   }
   width: 40%;
-  min-width: 200px; // TODO: need?
   margin: 10% auto;
-`;
-
-/**
- * Desktop footer
- */
-export const Footer = styled.div`
-  position: fixed;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  left: 50vw;
-  bottom: 0px;
-  width: 50vw;
-  height: 17vh;
-  background-color: teal;
 `;
 
 /**
@@ -132,13 +117,13 @@ export const LittleText = styled.p`
   padding-top: 8px;
   margin: 0 auto;
   color: ${props => props.theme.colors.BOOKEM_BLACK};
-  font-size: 13px;
+  font-size: ${props => props.theme.fontSizes.EXTRA_SMALL};
 `;
 
 /**
  * Sign up button for desktop
  */
-export const CreateButton = styled.button`
+export const CreateButton = styled(Link)`
   font-size: ${props => props.theme.fontSizes.SMALL};
   background: ${props => props.theme.colors.BOOKEM_BLACK};
   color: ${props => props.theme.colors.WHITE};
