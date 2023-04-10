@@ -48,7 +48,7 @@ export const BottomBox = styled.div`
  */
 export const ButtonBox = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
   margin: 0 20px 0 20px;
 `;
 
@@ -91,7 +91,7 @@ export const AboutContactButton = styled.button<{
  * Sign up Button
  */
 export const SignupButton = styled.button`
-  color: white;
+  color: ${props => props.theme.colors.WHITE};
   border: none;
   padding: 12px;
   border-radius: 10px;
@@ -104,7 +104,7 @@ export const SignupButton = styled.button`
   @media (min-width: 768px) {
     width: 150px;
     margin-top: 30px;
-    background: #5a5a5a;
+    background: ${props => props.theme.colors.BOOKEM_RED};
     font-size: 25px;
   }
 
