@@ -52,7 +52,11 @@ export const MobileSidebar = ({
                   <IconLink
                     href={iconParam.linkTo}
                     onClick={handleHideSidebar}
-                    hoveredsrc={iconParam.mobileHoveredSrc}
+                    hoveredsrc={
+                      activeRoute === iconParam.linkTo
+                        ? iconParam.mobileHoveredSrc
+                        : iconParam.mobileDefaultSrc
+                    }
                     // Dynamically assign the background color according to the current route
                     backgroundcolor={
                       activeRoute === iconParam.linkTo

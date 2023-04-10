@@ -93,26 +93,6 @@ export const IconLink = styled(Link)<{
   img {
     content: url(${props => props.imgsrc});
   }
-
-  // Change background color when hovered
-  &:hover {
-    @media (min-width: 767px) {
-      /* background-color: ${props => props.theme.colors.BOOKEM_BLACK}; */
-    }
-
-    // Change background color and text color when hovered
-    @media (max-width: 767px) {
-      background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
-      span {
-        /* color: ${props => props.theme.colors.BOOKEM_BLACK}; */
-      }
-    }
-
-    // Change image of icon when hovered
-    img {
-      content: url(${props => props.hoveredsrc});
-    }
-  }
 `;
 
 /**

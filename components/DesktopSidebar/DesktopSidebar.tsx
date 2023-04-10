@@ -30,7 +30,11 @@ export const DesktopSidebar = () => {
             {/* Link that wraps around the icon */}
             <IconLink
               href={iconParam.linkTo}
-              hoveredsrc={iconParam.desktopHoveredSrc}
+              hoveredsrc={
+                activeRoute === iconParam.linkTo
+                  ? iconParam.desktopDefaultSrc
+                  : iconParam.desktopHoveredSrc
+              }
               // Dynamically assign the background color according to the current route
               backgroundcolor={
                 activeRoute === iconParam.linkTo
