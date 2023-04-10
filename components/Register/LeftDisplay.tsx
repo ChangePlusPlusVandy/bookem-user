@@ -4,37 +4,42 @@ import {
   Container,
   ImgContainer,
   HeaderFont,
-  InfoFont,
 } from '@/styles/components/leftDisplay.styles';
+import { BOOKEM_THEME } from '@/utils/constants';
 
-const LeftDisplay = () => {
+const LeftDisplay = ({
+  // background color of the left display
+  bgColor,
+  // the image to be displayed on the left display
+  imgSrc,
+  // the text to be displayed below the image
+  texts,
+  // the color of the text
+  textColor = BOOKEM_THEME.colors.BOOKEM_BLACK,
+}: {
+  bgColor: string;
+  imgSrc: string;
+  texts: string[];
+  textColor?: string;
+}) => {
   return (
-    <Container>
+    <Container style={{ backgroundColor: bgColor }}>
       <ImgContainer>
-        <Image
-          src={'/bookemkids.png'}
-          fill
-          style={{ objectFit: 'cover' }}
-          alt="BookEm Background"></Image>
+        {imgSrc && (
+          <Image
+            src={imgSrc}
+            fill
+            style={{ objectFit: 'contain' }}
+            alt="BookEm Background"
+          />
+        )}
       </ImgContainer>
 
-      <HeaderFont>Volunteer</HeaderFont>
-      <InfoFont>
-        Browser for events and activities happening in your community and log
-        volunteer hours and keep track of progress!
-      </InfoFont>
-
-      <HeaderFont>Donate</HeaderFont>
-      <InfoFont>
-        Donate books to us and we will distribute them to those in need in your
-        community!
-      </InfoFont>
-
-      <HeaderFont>Request</HeaderFont>
-      <InfoFont>
-        Request books on behalf of your school or organization and we will
-        arrange an event to distribute them!
-      </InfoFont>
+      {texts.map((text, index) => (
+        <HeaderFont key={index} style={{ color: textColor }}>
+          {text}
+        </HeaderFont>
+      ))}
     </Container>
   );
 };

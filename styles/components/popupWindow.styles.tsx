@@ -30,7 +30,7 @@ export const Container = styled.div`
 export const CloseButton = styled.button`
   position: absolute;
   top: 5px;
-  right: 5px;
+  right: 10px;
   border-radius: 100%;
   border: none;
   height: 30px;
@@ -39,6 +39,6 @@ export const CloseButton = styled.button`
   &:hover {
     color: gray;
   }
-  color: #dbdbdb;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
   font-size: 30px;
 `;

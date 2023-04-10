@@ -19,8 +19,8 @@ export default async function handler(
 
         // Check if the user's email and password are valid
         if (!email || !email.includes('@') || !password) {
-          res.status(422).json({ message: 'Invalid input' });
-          throw new Error('Invalid input');
+          res.status(422).json({ message: 'Invalid email or password' });
+          throw new Error('Invalid email or password');
         }
 
         // Connect to the database
@@ -40,17 +40,43 @@ export default async function handler(
         // Hash the user's password
         const hashedPassword = await hash(password, 12);
 
-        // Create a new user in the database
-        const status = await Users.create({
+        // construct the user object to insert into the database
+        let userToInsert: UserData = {
           name,
           email,
           password: hashedPassword,
           phone: user.phone,
           address: user.address,
+          birthday: user.birthday,
+          emergencyName: user.emergencyName,
+          emergencyPhone: user.emergencyPhone,
+          emergencyRelationship: user.emergencyRelationship,
+          members: user.members,
+          volunteerReason: user.volunteerReason,
+          occupation: user.occupation,
+          occupationTitle: user.occupationTitle,
+          occupationOrg: user.occupationOrg,
+          joinNewsletter: user.joinNewsletter,
           sourceHeardFrom: user.sourceHeardFrom,
           ethnicity: user.ethnicity,
           gender: user.gender,
-        });
+          tags: user.tags,
+          events: user.events,
+        };
+
+        // Delete any fields that are undefined or empty
+        if (
+          !user.members ||
+          user.members.length === 0 ||
+          user.members.length === undefined
+        )
+          delete userToInsert.members;
+        // delete optional fields if they are empty
+        if (!user.ethnicity) delete userToInsert.ethnicity;
+        if (!user.gender) delete userToInsert.gender;
+
+        // Create a new user in the database
+        const status = await Users.insertMany(userToInsert);
 
         // Return the status of the user creation
         res.status(201).json({ message: 'User created', ...status });

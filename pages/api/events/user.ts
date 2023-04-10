@@ -8,11 +8,11 @@ import dbConnect from 'lib/dbConnect';
 import { getServerSession } from 'next-auth';
 
 // import the models and types we need
-import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
-import { authOptions } from '../auth/[...nextauth]';
+import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 /**
- * /api/volunteerPrograms/:
+ * /api/VolunteerEvents/:
  *  get:
  *    description: Get all volunteer logs from a certain user
  *      200:
@@ -38,16 +38,16 @@ export default async function handler(
 
         // get all volunteerEvents from collection that match the user's Id
         // sorted in descending order
-        const volunteerPrograms = await VolunteerPrograms.find({
+        const volunteerEvents = await VolunteerEvents.find({
           userId: session.user._id,
-          programDate: { $lt: new Date() },
-        }).sort({ programDate: -1 });
+          startDate: { $lt: new Date() },
+        }).sort({ startDate: -1 });
 
         // return the result
-        res.status(200).json(volunteerPrograms);
+        res.status(200).json(volunteerEvents);
       } catch (e) {
         // if there is an error, print and return the error
-        console.error('An error has occurred in volunteerPrograms index.ts', e);
+        console.error('An error has occurred in VolunteerEvents index.ts', e);
         res.status(500).json({
           error: 'Sorry, an error occurred while connecting to the database',
         });

@@ -1,7 +1,7 @@
 import LongEventCard from '@/components/shared/LongEventCard';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import {
   HeaderContainer,
   Header,
@@ -13,7 +13,7 @@ import { fetchData } from '@/utils/utils';
 import Link from 'next/link';
 
 const VolunteerHistoryPage = () => {
-  const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
+  const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
   const [error, setError] = useState<Error>();
   // Fetch volunteer history events when rendered
   useEffect(() => {
@@ -42,7 +42,7 @@ const VolunteerHistoryPage = () => {
       </HeaderContainer>
       <Description>Click on event to see specific details</Description>
       <MainContainer>
-        {/* Loop through each volunteerProgram specific to that user */}
+        {/* Loop through each VolunteerEvent specific to that user */}
         {events.map(event => (
           // for each event, create a new LongEventCard component and pass in all that event's info
           <Link key={event._id.toString()} href={'/event/' + event._id}>

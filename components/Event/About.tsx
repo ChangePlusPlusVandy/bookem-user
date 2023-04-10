@@ -4,18 +4,27 @@ import {
   AboutContent,
   AboutHeader,
 } from '@/styles/components/Event/about.styles';
+import { Media } from '@/lib/media';
 
 /**
- * Contains the program description
+ * Contains the event description
  * @param description Description of the current event
  */
 const About = ({ description }: { description: string }) => {
   return (
     <>
-      <AboutBox>
-        <AboutHeader>About</AboutHeader>
+      {/* Desktop */}
+      <Media greaterThanOrEqual="sm">
+        <AboutBox>
+          <AboutHeader>About</AboutHeader>
+          <AboutContent>{description}</AboutContent>
+        </AboutBox>
+      </Media>
+
+      {/* Mobile */}
+      <Media lessThan="sm">
         <AboutContent>{description}</AboutContent>
-      </AboutBox>
+      </Media>
     </>
   );
 };

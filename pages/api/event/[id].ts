@@ -1,11 +1,11 @@
 import dbConnect from '@/lib/dbConnect';
 import Users from 'bookem-shared/src/models/Users';
-import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
+import Tags from 'bookem-shared/src/models/Tags';
 import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
-import { authOptions } from '../auth/[...nextauth]';
+import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 export default async function handler(
   req: NextApiRequest,
@@ -23,9 +23,9 @@ export default async function handler(
   switch (method) {
     /**
      * @route GET /api/event/[id]
-     * @desc Get program by id
-     * @req program id, user in session
-     * @res QueriedVolunteerProgramData
+     * @desc Get event by id
+     * @req event id, user in session
+     * @res QueriedVolunteerEventData
      */
     case 'GET':
       try {
@@ -37,15 +37,18 @@ export default async function handler(
         if (!ObjectId.isValid(id as string))
           return res.status(400).json({ message: 'Invalid id' });
 
-        // Query program
-        const program: QueriedVolunteerProgramData =
-          (await VolunteerPrograms.findById(id)) as QueriedVolunteerProgramData;
+        // TODO: remove this after development
+        await Tags.find({});
 
-        // if program is not found
-        if (!program)
-          return res.status(400).json({ message: 'Program not found' });
+        // query event and populate fields with mongoose refs
+        const event = await VolunteerEvents.findById(id)
+          .populate({ path: 'program' })
+          .exec();
 
-        return res.status(200).json(program);
+        // if event is not found
+        if (!event) return res.status(400).json({ message: 'Event not found' });
+
+        return res.status(200).json(event);
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: error });
@@ -55,41 +58,41 @@ export default async function handler(
     /**
      * @route POST /api/event/[id]
      * @desc Signup/Unsignup the user
-     * @req program id, user in session
+     * @req event id, user in session
      * @res Success message
      */
     case 'POST':
       try {
         await dbConnect();
 
-        // Query program
-        const program = await VolunteerPrograms.findById(id);
+        // Query event
+        const event = await VolunteerEvents.findById(id);
 
         // Query logged in user
         const user = await Users.findById(session.user._id);
 
-        // Find the index of logged in user in program.volunteers
-        const userIndex = program.volunteers.indexOf(user._id);
+        // Find the index of logged in user in event.volunteers
+        const userIndex = event.volunteers.indexOf(user._id);
 
-        // Find the index of program in user.programs
-        const programIndex = user.programs.indexOf(program._id);
+        // Find the index of event in user.events
+        const eventIndex = user.events.indexOf(event._id);
 
-        if (userIndex === -1 && programIndex === -1) {
-          // Register to the program
-          program.volunteers.unshift(user._id);
-          user.programs.unshift(program._id);
-        } else if (userIndex === -1 || programIndex === -1) {
+        if (userIndex === -1 && eventIndex === -1) {
+          // Register to the event
+          event.volunteers.unshift(user._id);
+          user.events.unshift(event._id);
+        } else if (userIndex === -1 || eventIndex === -1) {
           throw new Error('Inconsistency between collections!');
         } else {
           // Unregister
-          // Remove the user and program
-          program.volunteers.splice(userIndex, 1);
-          user.programs.splice(programIndex, 1);
+          // Remove the user and event
+          event.volunteers.splice(userIndex, 1);
+          user.events.splice(eventIndex, 1);
         }
 
         // Resave both document
         await user.save();
-        await program.save();
+        await event.save();
 
         return res.status(200).json('Register Success');
       } catch (error: any) {

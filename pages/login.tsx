@@ -1,23 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { getSession, GetSessionParams, signIn } from 'next-auth/react';
+import Link from 'next/link';
+import Image from 'next/image';
+import LeftDisplay from '@/components/Register/LeftDisplay';
+import MobileLogin from '@/components/mobile/MobileLogin/MobileLogin';
 import {
   CreateButton,
   Container,
   ContentContainer,
-  Footer,
   Input,
   LittleText,
   LoginForm,
   LoginHeader,
   RightContainer,
   SubmitButton,
+  PasswordWrapper,
+  Eye,
+  ForgotPassword,
+  MobileContainer,
+  MobileImageContainer,
+  MobileTextContainer,
+  MobileText,
+  MobileLoginButton,
 } from '@/styles/login.styles';
-import LeftDisplay from '@/components/Register/LeftDisplay';
-import Link from 'next/link';
-import { Media, MediaContextProvider } from '@/lib/media';
+import { Media } from '@/lib/media';
+import { BOOKEM_THEME, LOGIN_REGISTER_IMAGES } from '@/utils/constants';
 
 const LoginPage = () => {
+  // state for going to mobile login page
+  const [onMobileLogin, setOnMobileLogin] = useState(false);
+
+  // state for showing password
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  // error message for incorrect login
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
   // React hook form.
   const {
     register,
@@ -27,55 +46,118 @@ const LoginPage = () => {
 
   // Function to handle login and redirect.
   const handleLogin = async (data: FieldValues) => {
-    const status = await signIn('credentials', {
-      redirect: true,
+    const res = await signIn('credentials', {
+      redirect: false,
       email: data.email,
       password: data.password,
     });
 
-    if (!status) {
+    if (res?.status === 401) {
+      // If login is unsuccessful, display error message.
+      setErrorMessage('Ooops! Incorrect email or password');
+    } else if (res?.status === 200) {
+      // If login is successful, redirect to home page.
       window.location.href = '/';
     }
   };
 
   return (
-    <MediaContextProvider disableDynamicMediaQueries>
-      <Media lessThan="sm">
-        {/* TODO:  */}
-        Hello Mobile!
-      </Media>
+    <>
+      {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <Container>
-          <LeftDisplay />
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.LOGIN}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_YELLOW}
+            texts={['Welcome to the', "Book'em Volunteer Portal"]}
+          />
+
           <RightContainer>
             <ContentContainer>
               <LoginHeader>Logging you in</LoginHeader>
+
               <LoginForm
                 id="loginForm"
                 onSubmit={handleSubmit(data => handleLogin(data))}>
                 <Input
                   {...register('email', { required: true })}
-                  placeholder="Email or Username"></Input>
-                <Input
-                  {...register('password', { required: true })}
-                  type="password"
-                  placeholder="Password"></Input>
+                  placeholder="Email or username"
+                />
+
+                <PasswordWrapper>
+                  <Input
+                    {...register('password', { required: true })}
+                    type={passwordShown ? 'text' : 'password'}
+                    placeholder="Password"
+                  />
+
+                  <Eye onClick={() => setPasswordShown(!passwordShown)}>
+                    {passwordShown ? (
+                      <Image
+                        src={'/login/eye.png'}
+                        width="25"
+                        height="25"
+                        alt="Eye"
+                      />
+                    ) : (
+                      <Image
+                        src={'/login/eye-slash.png'}
+                        width="25"
+                        height="25"
+                        alt="Eye with slash"
+                      />
+                    )}
+                  </Eye>
+                </PasswordWrapper>
+
+                <ForgotPassword>Forgot password?</ForgotPassword>
+
                 {errors.email && <span>Email is required</span>}
                 {errors.password && <span>Password is required</span>}
+                {errorMessage && <span>{errorMessage}</span>}
               </LoginForm>
-              <SubmitButton form="loginForm" type="submit" value="Log in" />
-            </ContentContainer>
 
-            <Footer>
+              <SubmitButton form="loginForm" type="submit" value="Log in" />
+
               <LittleText>New here? Come join us!</LittleText>
-              <Link href={'/register'}>
-                <CreateButton>Create Account</CreateButton>
-              </Link>
-            </Footer>
+              <CreateButton href={'/register'}>Register</CreateButton>
+            </ContentContainer>
           </RightContainer>
         </Container>
       </Media>
-    </MediaContextProvider>
+
+      {/* Mobile */}
+      <Media lessThan="sm">
+        {onMobileLogin ? (
+          <MobileLogin />
+        ) : (
+          <MobileContainer>
+            <MobileImageContainer>
+              {/* TODO: add yellow circle background */}
+              <Image src={'/login/login.png'} alt="BookEm Login" fill />
+            </MobileImageContainer>
+
+            <MobileTextContainer>
+              <MobileText>
+                Welcome to the Book&apos;em Volunteer Portal
+              </MobileText>
+
+              <MobileText>
+                Share the joy of reading and book ownership.
+              </MobileText>
+            </MobileTextContainer>
+
+            <MobileLoginButton onClick={() => setOnMobileLogin(true)}>
+              Log in
+            </MobileLoginButton>
+
+            <Link href={'/register'}>
+              <MobileText hover>Or sign up</MobileText>
+            </Link>
+          </MobileContainer>
+        )}
+      </Media>
+    </>
   );
 };
 

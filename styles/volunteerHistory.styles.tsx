@@ -2,14 +2,14 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Header = styled.h2`
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-size: 25px;
   margin-top: 50px;
   font-weight: 400;
 `;
 
 export const Description = styled.p`
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
@@ -30,7 +30,7 @@ export const HeaderContainer = styled.div`
 `;
 
 export const MainContainer = styled.div`
-  background-color: #d9d9d9;
+  background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   width: 95%;
   margin: 0 auto 20px auto;
   border-radius: 10px;

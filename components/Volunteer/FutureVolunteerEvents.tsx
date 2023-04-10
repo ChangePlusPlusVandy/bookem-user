@@ -13,16 +13,15 @@ import {
   SearchBar,
 } from '@/styles/components/Volunteer/futureVolunteerEvents.styles';
 import { Header } from '@/styles/dashboard.styles';
-import FilterEventsPopup from './FilterEventsPopup';
-import { QueriedVolunteerProgramData } from 'bookem-shared/src/types/database';
+import FilterEventsPopup from '@/components/Volunteer/FilterEventsPopup';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
-import Link from 'next/link';
 
 const FutureVolunteerEvents = () => {
   const [query, setQuery] = useState('');
   const [isPopupOn, setIsPopupOn] = useState(false);
 
-  const [events, setEvents] = useState<QueriedVolunteerProgramData[]>();
+  const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
   const [error, setError] = useState<Error>();
   // Fetch upcoming events when rendered
   useEffect(() => {
@@ -54,7 +53,7 @@ const FutureVolunteerEvents = () => {
   const sortMostRecent = () => {
     if (!events) return;
     const copy = [...events];
-    copy.sort((a, b) => a.programDate.valueOf() - b.programDate.valueOf());
+    copy.sort((a, b) => a.startDate.valueOf() - b.startDate.valueOf());
     setEvents(copy);
   };
 
@@ -62,7 +61,7 @@ const FutureVolunteerEvents = () => {
   const sortLeastRecent = () => {
     if (!events) return;
     const copy = [...events];
-    copy.sort((b, a) => a.programDate.valueOf() - b.programDate.valueOf());
+    copy.sort((b, a) => a.startDate.valueOf() - b.startDate.valueOf());
     setEvents(copy);
   };
 
@@ -85,7 +84,8 @@ const FutureVolunteerEvents = () => {
                   sortAscendingSpots={sortAscendingSpots}
                   sortMostRecent={sortMostRecent}
                   sortLeastRecent={sortLeastRecent}
-                  hidePopup={hidePopup}></FilterEventsPopup>
+                  hidePopup={hidePopup}
+                />
               ) : null}
 
               {/* Button for filtering events */}
