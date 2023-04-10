@@ -74,7 +74,8 @@ const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
 
         {/* Book Icon and Event name */}
         <MiddleBox>
-          <BookIcon />
+          {/* TODO: replace count with real number */}
+          <BookIcon count={event.maxSpot / 2} total={event.maxSpot} />
 
           {/* Pass states to child to manage */}
           <EventName

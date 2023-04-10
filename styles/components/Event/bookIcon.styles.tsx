@@ -9,9 +9,16 @@ export const IconContainer = styled.div`
   width: max(17vw, 150px);
   min-width: 180px;
   height: max(17vw, 150px);
-  min-height: 180px;
-  border-radius: 50%;
-  border: 10px solid #5a5a5a;
+  /* min-height: 180px; */
+  /* border-radius: 50%; */
+  /* border: 10px solid ${props => props.theme.colors.BOOKEM_BLACK}; */
+`;
+
+export const CircularProgress = styled.svg`
+  position: absolute;
+  transform: rotate(-90deg);
+  width: max(17vw, 150px);
+  height: max(17vw, 150px);
 `;
 
 export const Icon = styled(Image)``;
