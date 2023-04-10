@@ -53,7 +53,7 @@ const PastActivity = ({ userData }: any) => {
         <Container>
           <Header>Past activity</Header>
 
-          <ul>
+          <Events>
             {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
             <Suspense fallback={<Header>Please Wait...</Header>}>
               {/* TODO: integrate with backend */}
@@ -64,7 +64,7 @@ const PastActivity = ({ userData }: any) => {
               <EventCard eventData={dummyEventData} size="small" />
               <EventCard eventData={dummyEventData} size="small" />
             </Suspense>
-          </ul>
+          </Events>
         </Container>
       </Media>
 

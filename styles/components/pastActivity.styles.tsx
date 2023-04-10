@@ -8,7 +8,7 @@ export const Container = styled.div`
   background-color: #d9d9d9;
   width: 24vw;
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -67,5 +67,5 @@ export const Line = styled(Image)`
  * Container for list of past activities
  */
 export const Events = styled.ul`
-  overflow-y: auto;
+  margin: 0 auto;
 `;
