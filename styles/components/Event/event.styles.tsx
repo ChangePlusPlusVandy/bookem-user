@@ -109,7 +109,7 @@ export const SignupButton = styled.button`
   @media (max-width: 767px) {
     width: 120px;
     height: 40px;
-    background: black;
+    background: ${props => props.theme.colors.BOOKEM_BLACK};
 
     font-family: ${props => props.theme.fonts.PRIMARY};
     font-style: normal;

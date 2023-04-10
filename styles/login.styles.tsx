@@ -22,7 +22,7 @@ export const RightContainer = styled.div`
   flex-direction: column;
   width: 50vw;
   height: 100vh;
-  background: white;
+  background: ${props => props.theme.colors.WHITE};
   overflow: auto;
 `;
 
