@@ -5,8 +5,8 @@ import { RatioProp } from '@/utils/types';
  * Handle text overflow
  */
 const Overflow = `
-text-overflow: ellipsis;
-overflow: hidden;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 export const Container = styled.div<RatioProp>`
