@@ -14,7 +14,7 @@ export const Container = styled.div`
     text-align: center;
     justify-content: space-between;
     width: 120px;
-    background-color: #6d6d6d;
+    background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   }
 
   // Mobile version is not flex
@@ -22,7 +22,7 @@ export const Container = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: white;
+    background-color: ${props => props.theme.colors.WHITE};
     z-index: 1;
   }
 `;
@@ -93,29 +93,6 @@ export const IconLink = styled(Link)<{
   img {
     content: url(${props => props.imgsrc});
   }
-
-  // Change background color when hovered
-  &:hover {
-    @media (min-width: 767px) {
-      background-color: #d9d9d9;
-      span {
-        color: black;
-      }
-    }
-
-    // Change background color and text color when hovered
-    @media (max-width: 767px) {
-      background-color: #6d6d6d;
-      span {
-        color: white;
-      }
-    }
-
-    // Change image of icon when hovered
-    img {
-      content: url(${props => props.hoveredsrc});
-    }
-  }
 `;
 
 /**
@@ -141,7 +118,7 @@ export const IconFlexBox = styled.div`
  */
 export const IconText = styled.span<{ color: string }>`
   color: ${props => props.color};
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
   font-weight: 400;
   @media (max-width: 767px) {

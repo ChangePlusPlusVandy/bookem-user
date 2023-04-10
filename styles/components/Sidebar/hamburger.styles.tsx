@@ -9,7 +9,8 @@ import styled from 'styled-components';
 export const Hamburger = styled(Image)`
   position: absolute;
   right: 0;
-  margin: 100px 40px 0 0;
+  margin: 50px 40px 0 0;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;
