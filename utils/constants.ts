@@ -1,5 +1,40 @@
 import { SidebarIconParams } from '@/utils/types';
 
+// Color themes for the app
+export const BOOKEM_THEME = {
+  colors: {
+    WHITE: '#FFFFFF',
+    BOOKEM_BLACK: '#2C2C2C',
+    BOOKEM_LIGHT_GRAY: '#F4F4F4',
+    BOOKEM_RED: '#DA4347',
+    BOOKEM_BLUE: '#83BCDA',
+    BOOKEM_YELLOW: '#F1E09A',
+  },
+  fonts: {
+    PRIMARY: 'Inter',
+    SECONDARY: 'sans-serif',
+  },
+  fontSizes: {
+    EXTRA_SMALL: '1rem',
+    SMALL: '1.2rem',
+    MEDIUM: '1.6rem',
+    LARGE: '2.4rem',
+  },
+};
+
+/**
+ * The list of images used in the login and register pages
+ */
+export const LOGIN_REGISTER_IMAGES = {
+  LOGIN: '/login/login.png',
+  REGISTER_1: '/login/register-1.png',
+  REGISTER_2: '/login/register-2.png',
+  REGISTER_3: '/login/register-3.png',
+  REGISTER_4: '/login/register-4.png',
+  REGISTER_5: '/login/register-5.png',
+  REGISTER_6: '/login/register-6.png',
+};
+
 /**
  * Available routes as object
  */

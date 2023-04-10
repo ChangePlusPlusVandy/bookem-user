@@ -3,7 +3,6 @@ import Image from 'next/image';
 import FutureVolunteerEvents from '@/components/Volunteer/FutureVolunteerEvents';
 import {
   Greeting,
-  GreetingContainer,
   StatsFlex,
   FlexChild,
   StatsNumber,
@@ -29,9 +28,8 @@ const VolunteerDashboard = ({ userData }: any) => {
       <DashboardContainer>
         {/* based on whether or not hideppopup is true, displays popup */}
         {showPopup && <LogHoursPopupWindowForm setShowPopup={setShowPopup} />}
-        <GreetingContainer>
-          <Greeting>Volunteer</Greeting>
-        </GreetingContainer>
+
+        <Greeting>Volunteer</Greeting>
 
         {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>

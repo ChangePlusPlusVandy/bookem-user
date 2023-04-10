@@ -3,17 +3,16 @@ import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  width: 100%;
-  height: 100%;
+  box-sizing: content-box;
+  background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
+  border-radius: 10px;
+  margin: 0 3%;
 `;
 
 /**
  * Container of Future volunteer events header
  */
 export const NavHeader = styled.div`
-  @media (min-width: 768px) {
-    border-top: 1px solid #000000;
-  }
   width: 100%;
   padding: 26px 40px;
   display: flex;
@@ -53,24 +52,14 @@ export const SearchBar = styled.div`
  * Container for input in search bar
  */
 export const Input = styled.input`
-  font-size: 16px;
-  border: solid 1px #dbdbdb;
-  border-radius: 15px;
-  color: #262626;
-  padding: 7px 33px;
-  border-radius: 15px;
-  cursor: text;
-  font-size: 14px;
-  font-weight: 300;
-  text-align: left;
-  background: #d9d9d9;
-  width: 92%;
+  border: none;
+  border-radius: 10px;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
+  padding: 10px 33px;
+  font-size: ${props => props.theme.fontSizes.SMALL};
+  background: ${props => props.theme.colors.WHITE};
+  width: 75%;
   margin: auto;
-
-  &:active,
-  &:focus {
-    text-align: left;
-  }
 `;
 
 /**

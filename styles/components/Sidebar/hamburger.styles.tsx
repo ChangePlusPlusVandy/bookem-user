@@ -9,7 +9,9 @@ export const Hamburger = styled(Image)`
   /* TODO: Make it stop moving along with page scrolling */
   position: absolute;
   right: 40px;
-  top: 100px;
+  right: 0;
+  margin: 50px 40px 0 0;
+  z-index: 1;
 
   &:hover {
     cursor: pointer;

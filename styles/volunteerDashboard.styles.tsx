@@ -7,13 +7,48 @@ import styled from 'styled-components';
 export const DashboardContainer = styled.div`
   height: fit-content;
   width: 100%;
-  background-color: white;
+  padding: 40px;
   position: relative;
-  @media (min-width: 768px) {
-    padding: 40px;
+`;
+
+/**
+ * Button for "Log Hours"
+ */
+export const LogButton = styled.button`
+  background: ${props => props.theme.colors.BOOKEM_RED};
+  border-radius: 10px;
+  border-width: 0px;
+  width: 350px;
+  height: 74px;
+  padding: 19px;
+  margin-top: 25px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  color: ${props => props.theme.colors.WHITE};
+  display: flex;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
   }
-  @media (max-width: 767px) {
-    padding: 40px 40px 0 40px;
+`;
+
+export const HistoryButton = styled(Link)`
+  width: 350px;
+  height: 74px;
+  padding: 19px;
+  margin-top: 25px;
+  background: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
+  border-radius: 10px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 36px;
+  display: flex;
+  align-items: center;
+  &:hover {
+    cursor: pointer;
   }
 `;
 

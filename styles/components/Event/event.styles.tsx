@@ -48,7 +48,7 @@ export const BottomBox = styled.div`
  */
 export const ButtonBox = styled.div`
   display: flex;
-  align-item: center;
+  align-items: center;
   margin: 0 20px 0 20px;
 `;
 
@@ -73,17 +73,14 @@ export const AboutContactButton = styled.button<{
   color: ${props => props.textcolor};
 
   // Fonts
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
 
-  // Change background color and text color when hovered
   &:hover {
     cursor: pointer;
-    background-color: #6b6b6b;
-    color: white;
   }
 `;
 
@@ -91,7 +88,7 @@ export const AboutContactButton = styled.button<{
  * Sign up Button
  */
 export const SignupButton = styled.button`
-  color: white;
+  color: ${props => props.theme.colors.WHITE};
   border: none;
   padding: 12px;
   border-radius: 10px;
@@ -104,7 +101,7 @@ export const SignupButton = styled.button`
   @media (min-width: 768px) {
     width: 150px;
     margin-top: 30px;
-    background: #5a5a5a;
+    background: ${props => props.theme.colors.BOOKEM_RED};
     font-size: 25px;
   }
 
@@ -112,9 +109,9 @@ export const SignupButton = styled.button`
   @media (max-width: 767px) {
     width: 120px;
     height: 40px;
-    background: black;
+    background: ${props => props.theme.colors.BOOKEM_BLACK};
 
-    font-family: 'Inter';
+    font-family: ${props => props.theme.fonts.PRIMARY};
     font-style: normal;
     font-weight: 400;
     font-size: 16px;

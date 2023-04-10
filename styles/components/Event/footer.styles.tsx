@@ -25,7 +25,7 @@ export const SignupBox = styled.div`
 export const MaxSpot = styled.span`
   margin: 10px 0 0 0;
 
-  font-family: 'Inter';
+  font-family: ${props => props.theme.fonts.PRIMARY};
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
