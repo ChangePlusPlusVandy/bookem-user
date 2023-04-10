@@ -7,7 +7,6 @@ import styled from 'styled-components';
 export const DashboardContainer = styled.div`
   height: fit-content;
   width: 100%;
-  background-color: white;
   padding: 40px;
   position: relative;
 `;
