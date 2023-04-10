@@ -106,8 +106,8 @@ const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
               <AboutContactButton
                 backgroundcolor={
                   showAbout
-                    ? BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
-                    : BOOKEM_THEME.colors.BOOKEM_BLACK
+                    ? BOOKEM_THEME.colors.BOOKEM_BLACK
+                    : BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
                 }
                 textcolor={showAbout ? 'white' : 'black'}
                 onClick={handleShowAbout}>
@@ -117,8 +117,8 @@ const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
               <AboutContactButton
                 backgroundcolor={
                   showAbout
-                    ? BOOKEM_THEME.colors.BOOKEM_BLACK
-                    : BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
+                    ? BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
+                    : BOOKEM_THEME.colors.BOOKEM_BLACK
                 }
                 textcolor={showAbout ? 'black' : 'white'}
                 onClick={handleShowContact}>

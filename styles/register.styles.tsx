@@ -41,7 +41,7 @@ export const RightContainer = styled.div`
   gap: 50px;
   width: 50vw;
   height: 100vh;
-  padding: 7vh 3% 7vh 7%;
+  padding: 7vh 7%;
   overflow-y: auto;
 
   @media (max-width: 767px) {
@@ -302,12 +302,12 @@ export const Button = styled.button`
   }
   width: 215px;
   height: 47px;
-  background: #6d6d6d;
-  border: 1px solid #6d6d6d;
-  border-radius: 20px;
+  background: ${props => props.theme.colors.WHITE};
+  border: 1px solid ${props => props.theme.colors.BOOKEM_BLACK};
+  border-radius: 10px;
 
   ${InputGenericFont};
-  color: #ffffff;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
 
   @media (max-width: 767px) {
     width: 128px;

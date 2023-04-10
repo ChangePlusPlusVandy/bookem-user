@@ -79,11 +79,8 @@ export const AboutContactButton = styled.button<{
   font-size: 16px;
   line-height: 19px;
 
-  // Change background color and text color when hovered
   &:hover {
     cursor: pointer;
-    background-color: #6b6b6b;
-    color: white;
   }
 `;
 

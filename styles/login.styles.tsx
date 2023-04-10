@@ -89,7 +89,7 @@ export const ForgotPassword = styled.div`
   margin: -10px 10px 0 auto;
   font-size: 15px;
   line-height: 18px;
-  color: #6d6d6d;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
 `;
 
 /**
@@ -193,7 +193,7 @@ export const MobileText = styled.p<Props>`
  * Login button on mobile welcome page
  */
 export const MobileLoginButton = styled.button`
-  background: #6d6d6d;
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
   border: none;
   border-radius: 10px;
   font-size: 1rem;
@@ -220,7 +220,7 @@ export const MobileLoginContainer = styled(ContentContainer)`
  * Submit button on mobile login page
  */
 export const MobileSubmitButton = styled(SubmitButton)`
-  background: #6d6d6d;
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
   border-radius: 10px;
   font-size: 16px;
   line-height: 19px;
@@ -230,7 +230,6 @@ export const MobileSubmitButton = styled(SubmitButton)`
   margin-bottom: 71px;
 
   &:hover {
-    background: #6d6d6d;
     cursor: pointer;
   }
 `;

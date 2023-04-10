@@ -26,7 +26,7 @@ export const LogButton = styled.button`
   font-weight: 400;
   font-size: 30px;
   line-height: 36px;
-  color: #ffffff;
+  color: ${props => props.theme.colors.WHITE};
   display: flex;
   align-items: center;
   &:hover {
@@ -47,14 +47,12 @@ export const HistoryButton = styled(Link)`
   height: 74px;
   padding: 19px;
   margin-top: 25px;
-  background: #e3e3e3;
-  border: 1.5px solid #000000;
+  background: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   border-radius: 10px;
   font-style: normal;
   font-weight: 400;
   font-size: 30px;
   line-height: 36px;
-  border-color: #d4d4d4;
   display: flex;
   align-items: center;
   &:hover {

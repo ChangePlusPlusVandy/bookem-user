@@ -17,10 +17,6 @@ export const Container = styled.div<RatioProp>`
   padding: ${props => props.ratio * 17}px;
   margin: ${props => props.ratio * 17}px;
   border: 1px solid black;
-
-  @media (max-width: 767px) {
-    background-color: #efefef;
-  }
 `;
 
 export const EventImage = styled.div<RatioProp>`
