@@ -10,6 +10,7 @@ import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import { AVAILABLE_ROUTES_ARRAY, BOOKEM_THEME } from '@/utils/constants';
 import { ThemeProvider } from 'styled-components';
+import '@fontsource/inter';
 
 export default function App({
   Component,

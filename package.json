@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@artsy/fresnel": "^6.1.0",
+    "@fontsource/inter": "^4.5.15",
     "@next-auth/mongodb-adapter": "^1.1.1",
     "bcrypt": "^5.1.0",
     "bookem-shared": "github:ChangePlusPlusVandy/bookem-shared",
