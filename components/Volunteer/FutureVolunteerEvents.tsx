@@ -84,7 +84,8 @@ const FutureVolunteerEvents = () => {
                   sortAscendingSpots={sortAscendingSpots}
                   sortMostRecent={sortMostRecent}
                   sortLeastRecent={sortLeastRecent}
-                  hidePopup={hidePopup}></FilterEventsPopup>
+                  hidePopup={hidePopup}
+                />
               ) : null}
 
               {/* Button for filtering events */}
