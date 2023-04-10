@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { getSession, GetSessionParams, signIn } from 'next-auth/react';
-import { Media } from '@/lib/media';
 import Link from 'next/link';
 import Image from 'next/image';
 import LeftDisplay from '@/components/Register/LeftDisplay';
@@ -10,7 +9,6 @@ import {
   CreateButton,
   Container,
   ContentContainer,
-  Footer,
   Input,
   LittleText,
   LoginForm,
@@ -26,6 +24,8 @@ import {
   MobileText,
   MobileLoginButton,
 } from '@/styles/login.styles';
+import { Media } from '@/lib/media';
+import { BOOKEM_THEME, LOGIN_REGISTER_IMAGES } from '@/utils/constants';
 
 const LoginPage = () => {
   // state for going to mobile login page
@@ -66,7 +66,11 @@ const LoginPage = () => {
       {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <Container>
-          <LeftDisplay />
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.LOGIN}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_YELLOW}
+            texts={['Welcome to the', "Book'em Volunteer Portal"]}
+          />
 
           <RightContainer>
             <ContentContainer>
@@ -114,15 +118,10 @@ const LoginPage = () => {
               </LoginForm>
 
               <SubmitButton form="loginForm" type="submit" value="Log in" />
-            </ContentContainer>
 
-            <Footer>
               <LittleText>New here? Come join us!</LittleText>
-
-              <Link href={'/register'}>
-                <CreateButton>Sign up</CreateButton>
-              </Link>
-            </Footer>
+              <CreateButton href={'/register'}>Register</CreateButton>
+            </ContentContainer>
           </RightContainer>
         </Container>
       </Media>
@@ -134,7 +133,8 @@ const LoginPage = () => {
         ) : (
           <MobileContainer>
             <MobileImageContainer>
-              <Image src={'/bookemkids.png'} alt="BookEm Background" fill />
+              {/* TODO: add yellow circle background */}
+              <Image src={'/login/login.png'} alt="BookEm Login" fill />
             </MobileImageContainer>
 
             <MobileTextContainer>

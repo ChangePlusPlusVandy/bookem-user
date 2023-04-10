@@ -2,7 +2,7 @@ import { SignupButton } from '@/styles/components/Event/event.styles';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
-import { getEventLength } from './EventName';
+import { getEventLength } from '@/components/Event/EventName';
 import { MaxSpot, SignupBox } from '@/styles/components/Event/footer.styles';
 
 /**

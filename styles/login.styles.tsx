@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 
 interface Props {
   hover?: boolean;
@@ -21,7 +22,7 @@ export const RightContainer = styled.div`
   flex-direction: column;
   width: 50vw;
   height: 100vh;
-  background: white;
+  background: ${props => props.theme.colors.WHITE};
   overflow: auto;
 `;
 
@@ -38,7 +39,8 @@ export const ContentContainer = styled.div`
  * Header of login page
  */
 export const LoginHeader = styled.div`
-  font-size: 30px;
+  font-size: ${props => props.theme.fontSizes.LARGE};
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
   font-weight: bold;
   margin-bottom: 50px;
 `;
@@ -56,11 +58,11 @@ export const LoginForm = styled.form`
  * Inputs to desktop login form
  */
 export const Input = styled.input`
-  border: 1px solid;
-  height: 35px;
+  border: 1px solid ${props => props.theme.colors.BOOKEM_BLACK};
+  height: 45px;
   border-radius: 10px;
   padding: 10px;
-  flex-grow: 1;
+  width: 100%;
 `;
 
 /**
@@ -76,8 +78,8 @@ export const PasswordWrapper = styled.div`
  */
 export const Eye = styled.i`
   position: absolute;
-  top: 13%;
-  right: 4%;
+  top: 10px;
+  right: 15px;
 `;
 
 /**
@@ -87,40 +89,25 @@ export const ForgotPassword = styled.div`
   margin: -10px 10px 0 auto;
   font-size: 15px;
   line-height: 18px;
-  color: #6d6d6d;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
 `;
 
 /**
  * Login form submit button for desktop
  */
 export const SubmitButton = styled.input`
-  font-size: 17px;
-  background: #dbdbdb;
-  border: none;
+  font-size: ${props => props.theme.fontSizes.SMALL};
+  background: ${props => props.theme.colors.WHITE};
+  border: solid 1px ${props => props.theme.colors.BOOKEM_BLACK};
   padding: 12px 35px;
   border-radius: 14px;
   &:hover {
-    background-color: #ededed;
+    background-color: ${props => props.theme.colors.BOOKEM_BLACK};
+    color: ${props => props.theme.colors.WHITE};
     cursor: pointer;
   }
-  width: 20vw;
-  min-width: 200px;
+  width: 40%;
   margin: 10% auto;
-`;
-
-/**
- * Desktop footer
- */
-export const Footer = styled.div`
-  position: fixed;
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  left: 50vw;
-  bottom: 0px;
-  width: 50vw;
-  height: 17vh;
-  background-color: teal;
 `;
 
 /**
@@ -128,28 +115,30 @@ export const Footer = styled.div`
  */
 export const LittleText = styled.p`
   padding-top: 8px;
-  color: white;
-  font-size: 13px;
+  margin: 0 auto;
+  color: ${props => props.theme.colors.BOOKEM_BLACK};
+  font-size: ${props => props.theme.fontSizes.EXTRA_SMALL};
 `;
 
 /**
  * Sign up button for desktop
  */
-export const CreateButton = styled.button`
-  font-size: 17px;
-  background: #dbdbdb;
-  border: none;
-  padding-top: 12px;
-  padding-bottom: 12px;
+export const CreateButton = styled(Link)`
+  font-size: ${props => props.theme.fontSizes.SMALL};
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
+  color: ${props => props.theme.colors.WHITE};
+  padding: 12px 35px;
+  text-align: center;
   border-radius: 14px;
   &:hover {
-    background-color: #ededed;
+    background-color: ${props => props.theme.colors.WHITE};
+    color: ${props => props.theme.colors.BOOKEM_BLACK};
+    border: solid 1px ${props => props.theme.colors.BOOKEM_BLACK};
     cursor: pointer;
   }
-  width: 20vw;
-  min-width: 200px;
-  margin-left: auto;
-  margin-right: auto;
+  border: none;
+  width: 40%;
+  margin: 2% auto;
 `;
 
 /**
@@ -204,7 +193,7 @@ export const MobileText = styled.p<Props>`
  * Login button on mobile welcome page
  */
 export const MobileLoginButton = styled.button`
-  background: #6d6d6d;
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
   border: none;
   border-radius: 10px;
   font-size: 1rem;
@@ -231,7 +220,7 @@ export const MobileLoginContainer = styled(ContentContainer)`
  * Submit button on mobile login page
  */
 export const MobileSubmitButton = styled(SubmitButton)`
-  background: #6d6d6d;
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
   border-radius: 10px;
   font-size: 16px;
   line-height: 19px;
@@ -241,7 +230,6 @@ export const MobileSubmitButton = styled(SubmitButton)`
   margin-bottom: 71px;
 
   &:hover {
-    background: #6d6d6d;
     cursor: pointer;
   }
 `;

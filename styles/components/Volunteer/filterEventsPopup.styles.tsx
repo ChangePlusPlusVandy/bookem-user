@@ -17,7 +17,7 @@ export const Container = styled.div`
   align-items: center;
   width: 150px;
   height: 180px;
-  background: gray;
+  background: ${props => props.theme.colors.BOOKEM_BLACK};
   border-radius: 10px;
   z-index: 10;
   right: 0px;

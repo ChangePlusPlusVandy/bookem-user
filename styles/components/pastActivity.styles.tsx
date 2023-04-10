@@ -5,7 +5,7 @@ import Image from 'next/image';
  * Container for past activities
  */
 export const Container = styled.div`
-  background-color: #d9d9d9;
+  background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   width: 24vw;
   height: 100vh;
   overflow-y: scroll;

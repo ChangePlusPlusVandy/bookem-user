@@ -12,7 +12,7 @@ import {
   GENDERS,
   INSERTED_TAGS,
   SOURCES,
-} from './constants';
+} from '@/pages/api/scripts/constants';
 
 const generatePhone = (): string => {
   const phone = `(${faker.random.numeric(3)}) ${faker.random.numeric(

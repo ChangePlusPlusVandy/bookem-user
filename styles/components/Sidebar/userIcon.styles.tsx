@@ -32,7 +32,7 @@ export const ImageContainer = styled.div`
 
 export const Name = styled.div`
   @media (min-width: 768px) {
-    color: white;
+    color: ${props => props.theme.colors.BOOKEM_BLACK};
     font-style: normal;
     font-weight: 400;
     font-size: 20px;
