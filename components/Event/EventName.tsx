@@ -64,7 +64,7 @@ const EventName = ({
       {/* Mobile */}
       <Media lessThan="sm">
         <NameAndSpot>
-          <b>{event.name}</b> <span>({event.program.tagName}) </span>
+          <b>{event.name}</b> <span>({event.program?.tagName}) </span>
           <br />
           <StatusBox>
             <Image src="/event/dot.svg" alt="" width={10} height={10} />

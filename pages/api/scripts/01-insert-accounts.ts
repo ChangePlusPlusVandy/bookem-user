@@ -2,7 +2,10 @@ import dbConnect from '@/lib/dbConnect';
 import Admins from 'bookem-shared/src/models/Admins';
 import Users from 'bookem-shared/src/models/Users';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { generateAdmin, generateUser } from './helper-functions';
+import {
+  generateAdmin,
+  generateUser,
+} from '@/pages/api/scripts/helper-functions';
 
 export default async function handler(
   req: NextApiRequest,

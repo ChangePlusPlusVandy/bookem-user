@@ -8,7 +8,8 @@ import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 import { useState } from 'react';
 import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
 import { useActiveRoute } from '@/lib/useActiveRoute';
-import { AVAILABLE_ROUTES_ARRAY } from '@/utils/constants';
+import { AVAILABLE_ROUTES_ARRAY, BOOKEM_THEME } from '@/utils/constants';
+import { ThemeProvider } from 'styled-components';
 
 export default function App({
   Component,
@@ -16,12 +17,14 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      {session && (
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      )}
-      {!session && <Component {...pageProps} />}
+      <ThemeProvider theme={BOOKEM_THEME}>
+        {session && (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
+        {!session && <Component {...pageProps} />}
+      </ThemeProvider>
     </SessionProvider>
   );
 }

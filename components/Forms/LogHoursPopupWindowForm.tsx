@@ -66,11 +66,29 @@ const LogHoursPopupWindowForm = ({
               <>Hi</>
             ) : (
               // TODO: add styling
-              <>Uh oh, you don't have any events to log!</>
+              <>Uh oh, you do not have any events to log!</>
             )}
           </LogHoursForm>,
 
-          // Page 2 - Numbers
+          // Page 2 - Program
+          // TODO: remove this
+          <LogHoursForm key={pages[1]}>
+            <FormHeader>Please select one program</FormHeader>
+            <FormLabel>
+              <input {...register('Program')} type="radio" value="RIF" />
+              Reading is Fundamental (RIF)
+            </FormLabel>
+            <FormLabel>
+              <input {...register('Program')} type="radio" value="RFR" />
+              Ready for Reading (RFR)
+            </FormLabel>
+            <FormLabel>
+              <input {...register('Program')} type="radio" value="BFNK" />
+              Books for Nashville Kids (BFNK)
+            </FormLabel>
+          </LogHoursForm>,
+
+          // Page 3 - Numbers
           <LogHoursForm key={pages[2]}>
             <FormLabel>Please log volunteer hours</FormLabel>
             <FormInput
@@ -78,14 +96,16 @@ const LogHoursPopupWindowForm = ({
               type="text"
               placeholder="# of hours"
               pattern="^[1-9]\d*(\.\d+)?$"
-              title="Input must be a number"></FormInput>
+              title="Input must be a number"
+            />
             <FormLabel>Date of visit</FormLabel>
             <FormInput
               {...register('DateOfVisit')}
               type="text"
               placeholder="MM/DD/YYYY"
               pattern="^((0|1)\d{1})\/((0|1|2)\d{1})\/((19|20)\d{2})"
-              title="Input must be in MM/DD/YYYY format"></FormInput>
+              title="Input must be in MM/DD/YYYY format"
+            />
             <FormLabel>
               How many books did you help distribute, if any?
             </FormLabel>
@@ -94,7 +114,8 @@ const LogHoursPopupWindowForm = ({
               type="text"
               placeholder="# of books"
               pattern="^[0-9]*$"
-              title="Input must be a whole number"></FormInput>
+              title="Input must be a whole number"
+            />
           </LogHoursForm>,
 
           // Page 3 - Comments
@@ -102,27 +123,23 @@ const LogHoursPopupWindowForm = ({
             <FormLabel>Anything else you&apos;d like to share?</FormLabel>
             <LargeFormInput
               {...register('Comment')}
-              placeholder="Comment here..."></LargeFormInput>
+              placeholder="Comment here..."
+            />
             <FormLabel>Would you like to share this comment?</FormLabel>
             <FormLabel>
-              <input
-                type="radio"
-                {...register('ShareComment')}
-                value="Yes"></input>
+              <input type="radio" {...register('ShareComment')} value="Yes" />
               Yes
             </FormLabel>
             <FormLabel>
               <input
                 type="radio"
                 {...register('ShareComment')}
-                value="Anonymous"></input>
+                value="Anonymous"
+              />
               Yes, but anonymously
             </FormLabel>
             <FormLabel>
-              <input
-                type="radio"
-                {...register('ShareComment')}
-                value="No"></input>
+              <input type="radio" {...register('ShareComment')} value="No" />
               No
             </FormLabel>
           </LogHoursForm>,

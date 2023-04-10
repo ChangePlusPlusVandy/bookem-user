@@ -1,11 +1,11 @@
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import React, { useState } from 'react';
-import Header from './Header';
-import BookIcon from './BookIcon';
-import EventName from './EventName';
-import TimeAndPlace from './TimeAndPlace';
-import About from './About';
-import Contact from './Contact';
+import Header from '@/components/Event/Header';
+import BookIcon from '@/components/Event/BookIcon';
+import EventName from '@/components/Event/EventName';
+import TimeAndPlace from '@/components/Event/TimeAndPlace';
+import About from '@/components/Event/About';
+import Contact from '@/components/Event/Contact';
 import {
   EventBox,
   MiddleBox,
@@ -14,7 +14,8 @@ import {
   AboutContactButton,
 } from '@/styles/components/Event/event.styles';
 import { Media } from '@/lib/media';
-import Footer from './Footer';
+import Footer from '@/components/Event/Footer';
+import { BOOKEM_THEME } from '@/utils/constants';
 
 /**
  * Event Detail
@@ -73,7 +74,8 @@ const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
 
         {/* Book Icon and Event name */}
         <MiddleBox>
-          <BookIcon />
+          {/* TODO: replace count with real number */}
+          <BookIcon count={event.maxSpot / 2} total={event.maxSpot} />
 
           {/* Pass states to child to manage */}
           <EventName
@@ -103,14 +105,22 @@ const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
             <ButtonBox>
               {/* About Button */}
               <AboutContactButton
-                backgroundcolor={showAbout ? '#6b6b6b' : '#D9D9D9'}
+                backgroundcolor={
+                  showAbout
+                    ? BOOKEM_THEME.colors.BOOKEM_BLACK
+                    : BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
+                }
                 textcolor={showAbout ? 'white' : 'black'}
                 onClick={handleShowAbout}>
                 About
               </AboutContactButton>
               {/* Contact Button */}
               <AboutContactButton
-                backgroundcolor={showAbout ? '#D9D9D9' : '#6b6b6b'}
+                backgroundcolor={
+                  showAbout
+                    ? BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY
+                    : BOOKEM_THEME.colors.BOOKEM_BLACK
+                }
                 textcolor={showAbout ? 'black' : 'white'}
                 onClick={handleShowContact}>
                 Contact
