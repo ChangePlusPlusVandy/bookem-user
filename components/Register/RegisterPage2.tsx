@@ -161,7 +161,7 @@ const RegisterPage2 = ({
           {errors.emergencyFirstName && printError('First name is required')}
           {errors.emergencyLastName && printError('Last name is required')}
           {errors.emergencyPhone &&
-            phoneValue == '' &&
+            phoneValue === '' &&
             printError('Phone number is required')}
           {errors.emergencyRelationship &&
             printError('Relationship is required')}

@@ -93,9 +93,9 @@ const RegisterPage1 = ({
           {errors.firstName && printError('First name is required')}
           {errors.lastName && printError('Last name is required')}
           {errors.birthday &&
-            birthdayValue == '' &&
+            birthdayValue === '' &&
             printError('Date of birth is required')}
-          {birthdayValue.length == 10 &&
+          {birthdayValue.length === 10 &&
             !dateIsValid(birthdayValue) &&
             printError('Date of birth is invalid')}
         </SectionContainer>
@@ -134,7 +134,7 @@ const RegisterPage1 = ({
           </InputContainer>
 
           {errors.phone &&
-            phoneValue == '' &&
+            phoneValue === '' &&
             printError('Phone number is required')}
           {errors.email && printError('Email address is required')}
           {errors.password && printError('Password is required')}

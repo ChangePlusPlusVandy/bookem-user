@@ -9,7 +9,7 @@ export const getTime = (str: string) => {
   let hours: Number;
   let minuteStr: string = date.getMinutes().toString();
 
-  if (date.getHours() == 0) {
+  if (date.getHours() === 0) {
     hours = 12;
   } else {
     if (date.getHours() > 12) {

@@ -21,7 +21,7 @@ const formatPageDots = (currentPage: number) => {
   // maps each register page number to the correct colored dot
   const listDots = pages.map(page => {
     // dot for current page is black
-    if (page == currentPage)
+    if (page === currentPage)
       return (
         <div key={page}>
           <Media lessThan="sm">
@@ -97,7 +97,7 @@ const RegisterFlow = ({
         <Container>
           <ProgressContainer>
             {/* left arrow does not appear on register page 1 */}
-            <Arrow visible={Number(currentPage) != 1}>
+            <Arrow visible={Number(currentPage) !== 1}>
               <Image
                 src="/registerFlow/left-arrow.png"
                 height="17"
@@ -111,7 +111,7 @@ const RegisterFlow = ({
             {formatPageDots(currentPage)}
 
             {/* right arrow does not appear on register page 5 */}
-            <Arrow visible={Number(currentPage) != 5}>
+            <Arrow visible={Number(currentPage) !== 5}>
               <input
                 form={form}
                 type="image"
