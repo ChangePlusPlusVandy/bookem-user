@@ -25,6 +25,7 @@ import {
   MobileLoginButton,
 } from '@/styles/login.styles';
 import { Media } from '@/lib/media';
+import { BOOKEM_THEME, LOGIN_REGISTER_IMAGES } from '@/utils/constants';
 
 const LoginPage = () => {
   // state for going to mobile login page
@@ -65,7 +66,11 @@ const LoginPage = () => {
       {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <Container>
-          <LeftDisplay />
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.LOGIN}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_YELLOW}
+            texts={['Welcome to the', "Book'em Volunteer Portal"]}
+          />
 
           <RightContainer>
             <ContentContainer>

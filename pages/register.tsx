@@ -11,6 +11,7 @@ import RegisterPage4 from '@/components/Register/RegisterPage4';
 import RegisterPage5 from '@/components/Register/RegisterPage5';
 import LastRegisterPage from '@/components/Register/LastRegisterPage';
 import { Container, Error } from '@/styles/register.styles';
+import { BOOKEM_THEME, LOGIN_REGISTER_IMAGES } from '@/utils/constants';
 
 /**
  * format error messages
@@ -169,7 +170,58 @@ const RegisterPage = () => {
 
       {/* Desktop */}
       <Media greaterThanOrEqual="sm">
-        <LeftDisplay />
+        {formData.page === 1 && (
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.REGISTER_1}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_YELLOW}
+            texts={[
+              'Hooray! You are helping to',
+              'create a more literate Nashville',
+            ]}
+          />
+        )}
+        {formData.page === 2 && (
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.REGISTER_2}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_RED}
+            texts={["Together, let's ignite children's", 'passion for reading']}
+            textColor={BOOKEM_THEME.colors.WHITE}
+          />
+        )}
+        {formData.page === 3 && (
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.REGISTER_3}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_BLUE}
+            texts={[
+              'As a volunteer, you can browse and',
+              'contribute through a variety of events',
+            ]}
+            textColor={BOOKEM_THEME.colors.WHITE}
+          />
+        )}
+        {formData.page === 4 && (
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.REGISTER_4}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_YELLOW}
+            texts={['In recent years, nearly 200K', 'books were donated!']}
+          />
+        )}
+        {formData.page === 5 && (
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.REGISTER_5}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_RED}
+            texts={['And we are thrilled to have you join us :)']}
+            textColor={BOOKEM_THEME.colors.WHITE}
+          />
+        )}
+        {formData.page === 6 && (
+          <LeftDisplay
+            imgSrc={LOGIN_REGISTER_IMAGES.REGISTER_6}
+            bgColor={BOOKEM_THEME.colors.BOOKEM_BLUE}
+            texts={['Alright, here we go!']}
+            textColor={BOOKEM_THEME.colors.WHITE}
+          />
+        )}
       </Media>
 
       {formData.page === 1 && (

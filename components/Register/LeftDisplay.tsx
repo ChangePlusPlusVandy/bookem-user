@@ -5,20 +5,41 @@ import {
   ImgContainer,
   HeaderFont,
 } from '@/styles/components/leftDisplay.styles';
+import { BOOKEM_THEME } from '@/utils/constants';
 
-const LeftDisplay = () => {
+const LeftDisplay = ({
+  // background color of the left display
+  bgColor,
+  // the image to be displayed on the left display
+  imgSrc,
+  // the text to be displayed below the image
+  texts,
+  // the color of the text
+  textColor = BOOKEM_THEME.colors.BOOKEM_BLACK,
+}: {
+  bgColor: string;
+  imgSrc: string;
+  texts: string[];
+  textColor?: string;
+}) => {
   return (
-    <Container>
+    <Container style={{ backgroundColor: bgColor }}>
       <ImgContainer>
-        <Image
-          src="/login/login.png"
-          fill
-          style={{ objectFit: 'contain' }}
-          alt="BookEm Background"
-        />
+        {imgSrc && (
+          <Image
+            src={imgSrc}
+            fill
+            style={{ objectFit: 'contain' }}
+            alt="BookEm Background"
+          />
+        )}
       </ImgContainer>
-      <HeaderFont>Welcome to the</HeaderFont>{' '}
-      <HeaderFont>Book&apos;em Volunteer Portal</HeaderFont>
+
+      {texts.map((text, index) => (
+        <HeaderFont key={index} style={{ color: textColor }}>
+          {text}
+        </HeaderFont>
+      ))}
     </Container>
   );
 };

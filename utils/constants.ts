@@ -23,6 +23,19 @@ export const BOOKEM_THEME = {
 };
 
 /**
+ * The list of images used in the login and register pages
+ */
+export const LOGIN_REGISTER_IMAGES = {
+  LOGIN: '/login/login.png',
+  REGISTER_1: '/login/register-1.png',
+  REGISTER_2: '/login/register-2.png',
+  REGISTER_3: '/login/register-3.png',
+  REGISTER_4: '/login/register-4.png',
+  REGISTER_5: '/login/register-5.png',
+  REGISTER_6: '/login/register-6.png',
+};
+
+/**
  * Available routes as object
  */
 export const AVAILABLE_ROUTES = {
