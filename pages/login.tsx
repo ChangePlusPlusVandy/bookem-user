@@ -34,6 +34,9 @@ const LoginPage = () => {
   // state for showing password
   const [passwordShown, setPasswordShown] = useState(false);
 
+  // error message for incorrect login
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
   // React hook form.
   const {
     register,
@@ -43,13 +46,17 @@ const LoginPage = () => {
 
   // Function to handle login and redirect.
   const handleLogin = async (data: FieldValues) => {
-    const status = await signIn('credentials', {
-      redirect: true,
+    const res = await signIn('credentials', {
+      redirect: false,
       email: data.email,
       password: data.password,
     });
 
-    if (!status) {
+    if (res?.status === 401) {
+      // If login is unsuccessful, display error message.
+      setErrorMessage('Ooops! Incorrect email or password');
+    } else if (res?.status === 200) {
+      // If login is successful, redirect to home page.
       window.location.href = '/';
     }
   };
@@ -103,6 +110,7 @@ const LoginPage = () => {
 
                 {errors.email && <span>Email is required</span>}
                 {errors.password && <span>Password is required</span>}
+                {errorMessage && <span>{errorMessage}</span>}
               </LoginForm>
 
               <SubmitButton form="loginForm" type="submit" value="Log in" />
