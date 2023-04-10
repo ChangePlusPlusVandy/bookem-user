@@ -88,8 +88,8 @@ const RegisterFlow = ({
   currentPage: number;
   form: string;
   getValues: UseFormGetValues<FieldValues>;
-  handleLeftArrow: Function;
-  handleRightArrow: Function;
+  handleLeftArrow: (_: any) => void;
+  handleRightArrow: () => void;
 }) => {
   return (
     <>
@@ -119,7 +119,7 @@ const RegisterFlow = ({
                 height="17px"
                 width="px"
                 alt="Button for next page"
-                onClick={() => handleRightArrow()}
+                onClick={handleRightArrow}
               />
             </Arrow>
           </ProgressContainer>
@@ -129,7 +129,7 @@ const RegisterFlow = ({
         <Container>
           <ProgressContainer>
             {/* left arrow does not appear on register page 1 */}
-            <Arrow visible={Number(currentPage) != 1}>
+            <Arrow visible={Number(currentPage) !== 1}>
               <Image
                 src="/registerFlow/left-arrow.png"
                 height="20"
@@ -143,7 +143,7 @@ const RegisterFlow = ({
             {formatPageDots(currentPage)}
 
             {/* right arrow does not appear on register page 5 */}
-            <Arrow visible={Number(currentPage) != 5}>
+            <Arrow visible={Number(currentPage) !== 5}>
               <input
                 form={form}
                 type="image"
@@ -151,7 +151,7 @@ const RegisterFlow = ({
                 height="20px"
                 width="10px"
                 alt="Button for next page"
-                onClick={() => handleRightArrow()}
+                onClick={handleRightArrow}
               />
             </Arrow>
           </ProgressContainer>
