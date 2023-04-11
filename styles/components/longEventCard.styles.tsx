@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   padding: 15px;
   border: 1px solid black;
+  overflow-x: scroll;
 `;
 
 export const EventImage = styled.div`
