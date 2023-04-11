@@ -9,6 +9,12 @@ export const HeaderBox = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  img {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 `;
 
 export const EventDetailText = styled.span`
