@@ -36,7 +36,9 @@ export const AddressIcon = styled.div`
 
 export const Address = styled.div`
   font-size: 14px;
-  white-space: break-word;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const InfoContainer = styled.div`
