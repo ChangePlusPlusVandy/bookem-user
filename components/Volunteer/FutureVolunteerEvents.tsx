@@ -21,6 +21,7 @@ import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
 import { Media } from '@/lib/media';
 import LongEventCard from '../shared/LongEventCard';
+import Link from 'next/link';
 
 const FutureVolunteerEvents = () => {
   // Holds text in input box
@@ -168,7 +169,9 @@ const FutureVolunteerEvents = () => {
 
             <EventCardContainer>
               {events.map(event => (
-                <LongEventCard key={event._id.toString()} eventData={event} />
+                <Link href={'/event/' + event._id} key={event._id.toString()}>
+                  <LongEventCard eventData={event} />
+                </Link>
               ))}
             </EventCardContainer>
           </Media>
