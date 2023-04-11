@@ -34,24 +34,6 @@ export const LogButton = styled.button`
   }
 `;
 
-export const HistoryButton = styled(Link)`
-  width: 350px;
-  height: 74px;
-  padding: 19px;
-  margin-top: 25px;
-  background: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
-  border-radius: 10px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
 /**
  * Container for "Log Hours" and "See History" buttons
  */
@@ -70,7 +52,8 @@ export const VolunteerButtonsContainer = styled.div`
 `;
 
 /**
- * Button for "Log Hours"
+ * General Volunteer button: Either for "Log Hours" or "See History"
+ * @backgroundcolor
  */
 export const VolunteerButton = styled.button<{ backgroundcolor: string }>`
   display: flex;
@@ -92,19 +75,14 @@ export const VolunteerButton = styled.button<{ backgroundcolor: string }>`
   @media (min-width: 768px) {
     width: 350px;
     height: 74px;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 30px;
+    font-size: ${props => props.theme.fontSizes.MEDIUM};
     line-height: 36px;
   }
 
   @media (max-width: 767px) {
     width: 250px;
     height: 60px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
+    font-size: ${props => props.theme.fontSizes.SMALL};
     line-height: 19px;
   }
 `;

@@ -103,6 +103,9 @@ export const ImagesWrapper = styled.div`
   }
 `;
 
+/**
+ * Contains "All Events" + filter button
+ */
 export const AllEventsContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -112,8 +115,16 @@ export const AllEventsContainer = styled.div`
   margin: 10px 0 0 0;
 `;
 
-export const AllEvents = styled.div``;
+/**
+ * "All Events"
+ */
+export const AllEvents = styled.div`
+  font-size: ${props => props.theme.fontSizes.MEDIUM};
+`;
 
+/**
+ * Contains LongEventCards
+ */
 export const EventCardContainer = styled.div`
   margin: 30px 0 0 0;
 `;

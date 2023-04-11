@@ -137,9 +137,11 @@ const FutureVolunteerEvents = () => {
               ))}
           </ImagesWrapper>
 
+          {/* Mobile: Contains search bar and all events in the bottom */}
           <Media lessThan="sm">
             <AllEventsContainer>
               <AllEvents>All Events</AllEvents>
+
               {isPopupOn ? (
                 <FilterEventsPopup
                   sortDescendingSpots={sortDescendingSpots}
@@ -149,6 +151,8 @@ const FutureVolunteerEvents = () => {
                   hidePopup={hidePopup}
                 />
               ) : null}
+
+              {/* Filter Icon */}
               <FilterButton onClick={showPopup}>
                 <Image
                   src="/volunteer/filter-icon.png"
@@ -159,6 +163,7 @@ const FutureVolunteerEvents = () => {
               </FilterButton>
             </AllEventsContainer>
 
+            {/* Input box */}
             <SearchBar>
               <Input
                 type="text"
@@ -167,6 +172,7 @@ const FutureVolunteerEvents = () => {
               />
             </SearchBar>
 
+            {/* All event cards */}
             <EventCardContainer>
               {events.map(event => (
                 <Link href={'/event/' + event._id} key={event._id.toString()}>

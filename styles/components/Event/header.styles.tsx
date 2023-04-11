@@ -10,10 +10,9 @@ export const HeaderBox = styled.div`
     align-items: center;
   }
 
-  img {
-    &:hover {
-      cursor: pointer;
-    }
+  // Adjust the cursor for the img child element
+  img:hover {
+    cursor: pointer;
   }
 `;
 

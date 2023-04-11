@@ -14,11 +14,10 @@ import { Media } from '@/lib/media';
 const Header = () => {
   return (
     <>
-      {/* TODO: make the x button go back to the correct page */}
-
       {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <HeaderBox>
+          {/* Arrow icon */}
           <Image
             src="/event/arrow-left.png"
             alt=""
