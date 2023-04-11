@@ -92,8 +92,15 @@ export const ImagesWrapper = styled.div`
     display: flex;
     white-space: nowrap;
     overflow-x: auto;
-    margin: 0 0 0 20px;
   }
+`;
+
+export const AllEventsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 20px 0 0;
 `;
 
 export const AllEvents = styled.div``;

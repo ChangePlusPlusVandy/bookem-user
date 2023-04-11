@@ -4,6 +4,7 @@ import { useState } from 'react';
 import EventCard from '@/components/shared/EventCard';
 import {
   AllEvents,
+  AllEventsContainer,
   Container,
   FilterButton,
   ImagesWrapper,
@@ -135,24 +136,26 @@ const FutureVolunteerEvents = () => {
           </ImagesWrapper>
 
           <Media lessThan="sm">
-            <AllEvents>All Events</AllEvents>
-            {isPopupOn ? (
-              <FilterEventsPopup
-                sortDescendingSpots={sortDescendingSpots}
-                sortAscendingSpots={sortAscendingSpots}
-                sortMostRecent={sortMostRecent}
-                sortLeastRecent={sortLeastRecent}
-                hidePopup={hidePopup}
-              />
-            ) : null}
-            <FilterButton onClick={showPopup}>
-              <Image
-                src="/volunteer/filter-icon.png"
-                alt="Filter icon"
-                width="25"
-                height="25"
-              />
-            </FilterButton>
+            <AllEventsContainer>
+              <AllEvents>All Events</AllEvents>
+              {isPopupOn ? (
+                <FilterEventsPopup
+                  sortDescendingSpots={sortDescendingSpots}
+                  sortAscendingSpots={sortAscendingSpots}
+                  sortMostRecent={sortMostRecent}
+                  sortLeastRecent={sortLeastRecent}
+                  hidePopup={hidePopup}
+                />
+              ) : null}
+              <FilterButton onClick={showPopup}>
+                <Image
+                  src="/volunteer/filter-icon.png"
+                  alt="Filter icon"
+                  width="25"
+                  height="25"
+                />
+              </FilterButton>
+            </AllEventsContainer>
 
             <SearchBar>
               <Input
