@@ -6,7 +6,10 @@ import { Media, MediaContextProvider } from '@/lib/media';
 import type { AppProps } from 'next/app';
 import { MobileSidebar } from '@/components/mobile/MobileSidebar/MobileSidebar';
 import { useState } from 'react';
-import { Hamburger } from '@/styles/components/Sidebar/hamburger.styles';
+import {
+  Hamburger,
+  HamburgerContainer,
+} from '@/styles/components/Sidebar/hamburger.styles';
 import { useActiveRoute } from '@/lib/useActiveRoute';
 import { AVAILABLE_ROUTES_ARRAY, BOOKEM_THEME } from '@/utils/constants';
 import { ThemeProvider } from 'styled-components';
@@ -53,13 +56,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
           {/* Hamburger */}
           {HAMBURGER_ROUTES.includes(route) ? (
-            <Hamburger
-              src="/sidebar/hamburger.png"
-              alt=""
-              onClick={handleShowSidebar}
-              width={32}
-              height={32}
-            />
+            <HamburgerContainer>
+              <Hamburger
+                src="/sidebar/hamburger.png"
+                alt=""
+                onClick={handleShowSidebar}
+                width={32}
+                height={32}
+              />
+            </HamburgerContainer>
           ) : (
             <></>
           )}
