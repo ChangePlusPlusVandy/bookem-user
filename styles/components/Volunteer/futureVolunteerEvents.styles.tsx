@@ -44,6 +44,8 @@ export const SearchBar = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+
+  margin: 20px 0 0 0;
 `;
 
 /**
@@ -107,6 +109,11 @@ export const AllEventsContainer = styled.div`
   align-items: center;
 
   padding: 0 20px 0 0;
+  margin: 10px 0 0 0;
 `;
 
 export const AllEvents = styled.div``;
+
+export const EventCardContainer = styled.div`
+  margin: 30px 0 0 0;
+`;

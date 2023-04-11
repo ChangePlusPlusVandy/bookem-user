@@ -6,6 +6,7 @@ import {
   AllEvents,
   AllEventsContainer,
   Container,
+  EventCardContainer,
   FilterButton,
   ImagesWrapper,
   Input,
@@ -165,9 +166,11 @@ const FutureVolunteerEvents = () => {
               />
             </SearchBar>
 
-            {events.map(event => (
-              <LongEventCard key={event._id.toString()} eventData={event} />
-            ))}
+            <EventCardContainer>
+              {events.map(event => (
+                <LongEventCard key={event._id.toString()} eventData={event} />
+              ))}
+            </EventCardContainer>
           </Media>
         </Container>
       )}
