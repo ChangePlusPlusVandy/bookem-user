@@ -142,16 +142,6 @@ const FutureVolunteerEvents = () => {
             <AllEventsContainer>
               <AllEvents>All Events</AllEvents>
 
-              {isPopupOn ? (
-                <FilterEventsPopup
-                  sortDescendingSpots={sortDescendingSpots}
-                  sortAscendingSpots={sortAscendingSpots}
-                  sortMostRecent={sortMostRecent}
-                  sortLeastRecent={sortLeastRecent}
-                  hidePopup={hidePopup}
-                />
-              ) : null}
-
               {/* Filter Icon */}
               <FilterButton onClick={showPopup}>
                 <Image
@@ -174,11 +164,15 @@ const FutureVolunteerEvents = () => {
 
             {/* All event cards */}
             <EventCardContainer>
-              {events.map(event => (
-                <Link href={'/event/' + event._id} key={event._id.toString()}>
-                  <LongEventCard eventData={event} />
-                </Link>
-              ))}
+              {events
+                .filter(event =>
+                  event.name.toLowerCase().includes(query.toLowerCase())
+                )
+                .map(event => (
+                  <Link href={'/event/' + event._id} key={event._id.toString()}>
+                    <LongEventCard eventData={event} />
+                  </Link>
+                ))}
             </EventCardContainer>
           </Media>
         </Container>
