@@ -36,6 +36,8 @@ export const AddressIcon = styled.div`
 
 export const Address = styled.div`
   font-size: 14px;
+
+  // Set up overflow
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
