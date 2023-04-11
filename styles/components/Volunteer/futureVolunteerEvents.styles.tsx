@@ -1,12 +1,10 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   box-sizing: content-box;
   background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   border-radius: 10px;
-  padding: 10px 10px 0 30px;
+  padding: 10px 20px 0 30px;
   margin: 0 3%;
 `;
 
@@ -56,10 +54,18 @@ export const Input = styled.input`
   border-radius: 10px;
   color: ${props => props.theme.colors.BOOKEM_BLACK};
   padding: 10px 33px;
-  font-size: ${props => props.theme.fontSizes.SMALL};
   background: ${props => props.theme.colors.WHITE};
-  width: 75%;
   margin: auto;
+
+  @media (min-width: 768px) {
+    width: 75%;
+    font-size: ${props => props.theme.fontSizes.SMALL};
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+    font-size: ${props => props.theme.fontSizes.EXTRA_SMALL};
+  }
 `;
 
 /**
