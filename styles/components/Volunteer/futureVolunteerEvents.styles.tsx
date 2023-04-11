@@ -15,7 +15,6 @@ export const Container = styled.div`
  */
 export const NavHeader = styled.div`
   width: 100%;
-  /* padding: 26px 40px; */
   display: flex;
   align-items: center;
 `;
@@ -71,6 +70,10 @@ export const FilterButton = styled.button`
   border: none;
   height: 40px;
   width: 40px;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 /**
