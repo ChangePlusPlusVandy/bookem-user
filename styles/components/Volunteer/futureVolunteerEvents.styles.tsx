@@ -6,6 +6,7 @@ export const Container = styled.div`
   box-sizing: content-box;
   background-color: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
   border-radius: 10px;
+  padding: 10px 10px 0 30px;
   margin: 0 3%;
 `;
 
@@ -14,7 +15,7 @@ export const Container = styled.div`
  */
 export const NavHeader = styled.div`
   width: 100%;
-  padding: 26px 40px;
+  /* padding: 26px 40px; */
   display: flex;
   align-items: center;
 `;
