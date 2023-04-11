@@ -123,18 +123,14 @@ const FutureVolunteerEvents = () => {
 
           {/* Container for events that show up based on query input */}
           <ImagesWrapper>
-            {events
-              .filter(event =>
-                event.name.toLowerCase().includes(query.toLowerCase())
-              )
-              .map(event => (
-                <EventCard
-                  key={event._id.toString()}
-                  eventData={event}
-                  size="medium"
-                  href={'/event/' + event._id}
-                />
-              ))}
+            {events.map(event => (
+              <EventCard
+                key={event._id.toString()}
+                eventData={event}
+                size="medium"
+                href={'/event/' + event._id}
+              />
+            ))}
           </ImagesWrapper>
 
           {/* Mobile: Contains search bar and all events in the bottom */}
