@@ -17,17 +17,30 @@ export default async function handler(
         // Uncomment this line if mongoose complains
         // await Tags.find();
 
-        // select events where tags contains "featured"
-        const eventsDTO = await VolunteerEvents.find().populate('tags', [
-          'tagName',
+        // select events where tags contain "featured"
+        const result = await VolunteerEvents.aggregate([
+          // Multitable query: Populate the tags array as actual tag
+          // objects rather than ids
+          {
+            $lookup: {
+              from: 'tags',
+              localField: 'tags',
+              foreignField: '_id',
+              as: 'tags',
+            },
+          },
+
+          // Only keep events with featured tag
+          {
+            $match: {
+              tags: {
+                $elemMatch: {
+                  tagName: 'featured',
+                },
+              },
+            },
+          },
         ]);
-
-        // Only keep events that have a featured tags
-        const result = eventsDTO.filter(event =>
-          event.tags.some((tag: any) => 'featured' === tag.tagName)
-        );
-
-        console.log('Events: ', result);
 
         res.status(200).json(result);
       } catch (error: any) {
