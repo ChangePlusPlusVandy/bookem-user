@@ -17,4 +17,4 @@ export const config = {
 };
 
 // Comment everything and uncomment this to test
-// export function middleware() {}
+export function middleware() {}
