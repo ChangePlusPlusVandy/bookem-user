@@ -14,11 +14,10 @@ export default async function handler(
         // Connect to the database
         await dbConnect();
 
-        // select events where tags contains "featured"
-        // const eventsDTO = await VolunteerEvents.find({}).populate('tags', [
-        //   'tagName',
-        // ]);
+        // Uncomment this line if mongoose complains
+        // await Tags.find();
 
+        // select events where tags contains "featured"
         const eventsDTO = await VolunteerEvents.find().populate('tags', [
           'tagName',
         ]);
@@ -28,7 +27,7 @@ export default async function handler(
           event.tags.some((tag: any) => 'featured' === tag.tagName)
         );
 
-        console.log(result);
+        console.log('Events: ', result);
 
         res.status(200).json(result);
       } catch (error: any) {
