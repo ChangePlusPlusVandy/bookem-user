@@ -82,7 +82,7 @@ const FutureVolunteerEvents = () => {
     <>
       {/* TODO: render 404 page */}
       {error && <>404 Event not found!</>}
-      {(!events || !featuredEvents) && !error && <div>Loading...</div>}
+      {!(events && featuredEvents) && !error && <div>Loading...</div>}
       {events && featuredEvents && (
         <Container>
           <NavHeader>
