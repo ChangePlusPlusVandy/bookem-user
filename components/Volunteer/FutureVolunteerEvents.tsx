@@ -33,7 +33,8 @@ const FutureVolunteerEvents = () => {
   const hidePopup = () => setIsPopupOn(false);
 
   const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
-  const [featuredEvents, setFeaturedEvents] = useState();
+  const [featuredEvents, setFeaturedEvents] =
+    useState<QueriedVolunteerEventData[]>();
   const [error, setError] = useState<Error>();
   // Fetch upcoming events when rendered
   useEffect(() => {
@@ -86,7 +87,12 @@ const FutureVolunteerEvents = () => {
         <Container>
           <NavHeader>
             <NavLeft>
-              <Header>Explore volunteer opportunities</Header>
+              <Media greaterThanOrEqual="sm">
+                <Header>Explore volunteer opportunities</Header>
+              </Media>
+              <Media lessThan="sm">
+                <Header>Featured volunteer opportunities</Header>
+              </Media>
             </NavLeft>
             {/* Container for filter icon that sorts events accordingly */}
             <NavRight>
@@ -123,19 +129,33 @@ const FutureVolunteerEvents = () => {
                 onChange={event => setQuery(event.target.value)}
               />
             </SearchBar>
+
+            {/* Container for events that show up based on query input */}
+            <ImagesWrapper>
+              {events.map(event => (
+                <EventCard
+                  key={event._id.toString()}
+                  eventData={event}
+                  size="medium"
+                  href={'/event/' + event._id}
+                />
+              ))}
+            </ImagesWrapper>
           </Media>
 
-          {/* Container for events that show up based on query input */}
-          <ImagesWrapper>
-            {featuredEvents.map(event => (
-              <EventCard
-                key={event._id.toString()}
-                eventData={event}
-                size="medium"
-                href={'/event/' + event._id}
-              />
-            ))}
-          </ImagesWrapper>
+          <Media lessThan="sm">
+            {/* Container for featured events */}
+            <ImagesWrapper>
+              {featuredEvents.map(event => (
+                <EventCard
+                  key={event._id.toString()}
+                  eventData={event}
+                  size="medium"
+                  href={'/event/' + event._id}
+                />
+              ))}
+            </ImagesWrapper>
+          </Media>
 
           {/* Mobile: Contains search bar and all events in the bottom */}
           <Media lessThan="sm">
