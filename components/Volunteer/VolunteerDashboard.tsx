@@ -10,13 +10,15 @@ import {
 } from '@/styles/dashboard.styles';
 import {
   DashboardContainer,
-  LogButton,
-  HistoryButton,
+  VolunteerButton,
   ButtonIcon,
   VolunteerButtonsContainer,
   VolunteerStatsContainer,
+  ButtonText,
 } from '@/styles/volunteerDashboard.styles';
 import LogHoursPopupWindowForm from '@/components/Forms/LogHoursPopupWindowForm';
+import { Media } from '@/lib/media';
+import { BOOKEM_THEME } from '@/utils/constants';
 
 const VolunteerDashboard = ({ userData }: any) => {
   // set pop up window to false
@@ -32,29 +34,53 @@ const VolunteerDashboard = ({ userData }: any) => {
 
         {/** Button for "Log Hours" and opens popup if clicked */}
         <VolunteerButtonsContainer>
-          <LogButton onClick={() => setShowPopup(true)}>
+          <VolunteerButton
+            backgroundcolor={BOOKEM_THEME.colors.BOOKEM_RED}
+            onClick={() => setShowPopup(true)}>
             <ButtonIcon>
-              <Image
-                src="/volunteer/pencil.png"
-                alt="Pencil icon"
-                width="50"
-                height="50"
-              />
+              <Media greaterThanOrEqual="sm">
+                <Image
+                  src="/volunteer/pencil.png"
+                  alt="Pencil icon"
+                  width="50"
+                  height="50"
+                />
+              </Media>
+              <Media lessThan="sm">
+                <Image
+                  src="/volunteer/pencil-mobile.svg"
+                  alt="Pencil icon"
+                  width="35"
+                  height="35"
+                />
+              </Media>
             </ButtonIcon>
-            Log Hours
-          </LogButton>
+            <ButtonText textcolor="white">Log hours</ButtonText>
+          </VolunteerButton>
           {/** Button for "See History" */}
-          <HistoryButton href="/volunteerHistory">
+          <VolunteerButton
+            backgroundcolor={BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY}
+            onClick={() => (window.location.href = '/volunteerHistory')}>
             <ButtonIcon>
-              <Image
-                src="/volunteer/history-clock.png"
-                alt="Clock with arrow icon"
-                width="50"
-                height="50"
-              />
+              <Media greaterThanOrEqual="sm">
+                <Image
+                  src="/volunteer/history-clock.png"
+                  alt="Clock with arrow icon"
+                  width="50"
+                  height="50"
+                />
+              </Media>
+              <Media lessThan="sm">
+                <Image
+                  src="/volunteer/history-clock-mobile.svg"
+                  alt="Clock with arrow icon"
+                  width="35"
+                  height="35"
+                />
+              </Media>
             </ButtonIcon>
-            See History
-          </HistoryButton>
+            <ButtonText textcolor="black"> See History</ButtonText>
+          </VolunteerButton>
         </VolunteerButtonsContainer>
 
         {/** Volunteer stats */}

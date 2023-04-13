@@ -9,6 +9,11 @@ export const HeaderBox = styled.div`
     justify-content: space-between;
     align-items: center;
   }
+
+  // Adjust the cursor for the img child element
+  img:hover {
+    cursor: pointer;
+  }
 `;
 
 export const EventDetailText = styled.span`

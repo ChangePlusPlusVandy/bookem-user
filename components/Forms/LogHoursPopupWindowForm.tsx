@@ -75,7 +75,11 @@ const LogHoursPopupWindowForm = ({
 
           // Page 3 - Numbers
           <LogHoursForm key={pages[2]}>
-            <FormLabel>Please log volunteer hours</FormLabel>
+            <FormLabel>
+              {/* TODO: Add an icon here to display tool tip  */}
+              Please log your volunteer hours <br /> (rounded to the nearest
+              half hour)
+            </FormLabel>
             <FormInput
               {...register('NumberOfHours')}
               type="text"

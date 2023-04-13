@@ -35,42 +35,73 @@ export const LogButton = styled.button`
 `;
 
 /**
- * Container for log hours and history icons
- */
-export const ButtonIcon = styled.div`
-  float: left;
-  margin: 5px 40px 0 0;
-`;
-
-export const HistoryButton = styled(Link)`
-  width: 350px;
-  height: 74px;
-  padding: 19px;
-  margin-top: 25px;
-  background: ${props => props.theme.colors.BOOKEM_LIGHT_GRAY};
-  border-radius: 10px;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 36px;
-  display: flex;
-  align-items: center;
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-/**
  * Container for "Log Hours" and "See History" buttons
  */
 export const VolunteerButtonsContainer = styled.div`
   height: fit-content;
   display: flex;
-  justify-content: space-evenly;
   align-items: center;
-  @media (max-width: 960px) {
-    flex-direction: column;
-    gap: 25px;
+  @media (min-width: 768px) {
+    justify-content: space-evenly;
+  }
+  @media (max-width: 767px) {
+    /* flex-direction: column; */
+    justify-content: space-between;
+    gap: 50px;
+  }
+`;
+
+/**
+ * General Volunteer button: Either for "Log Hours" or "See History"
+ * @backgroundcolor
+ */
+export const VolunteerButton = styled.button<{ backgroundcolor: string }>`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  // Prevent switching to new line
+  white-space: nowrap;
+
+  border-radius: 10px;
+  border: 0px solid;
+  padding: 19px;
+  margin-top: 25px;
+
+  background-color: ${props => props.backgroundcolor};
+  &:hover {
+    cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    width: 350px;
+    height: 74px;
+    font-size: ${props => props.theme.fontSizes.MEDIUM};
+    line-height: 36px;
+  }
+
+  @media (max-width: 767px) {
+    width: 250px;
+    height: 60px;
+    font-size: ${props => props.theme.fontSizes.SMALL};
+    line-height: 19px;
+  }
+`;
+
+export const ButtonText = styled.span<{ textcolor: string }>`
+  display: inline-block;
+  color: ${props => props.textcolor};
+`;
+
+/**
+ * Container for log hours and history icons
+ */
+export const ButtonIcon = styled.div`
+  float: left;
+  @media (min-width: 768px) {
+    margin: 5px 40px 0 0;
+  }
+  @media (max-width: 767px) {
+    margin: 5px 20px 0 0;
   }
 `;
 

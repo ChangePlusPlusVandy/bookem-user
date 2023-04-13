@@ -8,6 +8,7 @@ export const Container = styled.div`
   display: flex;
   padding: 15px;
   border: 1px solid black;
+  overflow-x: scroll;
 `;
 
 export const EventImage = styled.div`
@@ -36,7 +37,11 @@ export const AddressIcon = styled.div`
 
 export const Address = styled.div`
   font-size: 14px;
-  white-space: break-word;
+
+  // Set up overflow
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const InfoContainer = styled.div`

@@ -14,15 +14,17 @@ import { Media } from '@/lib/media';
 const Header = () => {
   return (
     <>
-      {/* TODO: make the x button go back to the correct page */}
-
       {/* Desktop */}
       <Media greaterThanOrEqual="sm">
         <HeaderBox>
-          <Link href="/">
-            {/* Arrow icon */}
-            <Image src="/event/arrow-left.png" alt="" width={48} height={48} />
-          </Link>
+          {/* Arrow icon */}
+          <Image
+            src="/event/arrow-left.png"
+            alt=""
+            width={48}
+            height={48}
+            onClick={() => history.back()}
+          />
           <EventDetailText>Event Details</EventDetailText>
         </HeaderBox>
       </Media>
@@ -33,9 +35,13 @@ const Header = () => {
           <EventDetailText>Event Details</EventDetailText>
 
           {/* Cross icon */}
-          <Link href="/">
-            <Image src="/event/error.svg" alt="" width={40} height={40} />
-          </Link>
+          <Image
+            src="/event/error.svg"
+            alt=""
+            width={40}
+            height={40}
+            onClick={() => history.back()}
+          />
         </HeaderBox>
 
         {/* Horizontal line */}
