@@ -101,8 +101,8 @@ export default async function handler(
             event.volunteers.splice(userIndex, 1);
             user.events.splice(eventIndex, 1);
             // Remove the tag for user
-            const programIndex = user.tags.indexOf(event.program);
-            user.tags.splice(programIndex, 1);
+            // const programIndex = user.tags.indexOf(event.program);
+            // user.tags.splice(programIndex, 1);
           }
 
           // Resave both document
