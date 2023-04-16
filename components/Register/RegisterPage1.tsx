@@ -1,7 +1,8 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useRef, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
+import Image from 'next/image';
 import {
   RightContainer,
   Form,
@@ -11,8 +12,46 @@ import {
   InputFlex,
   InputText,
   InputContainer,
+  ButtonContainer,
+  Button,
+  UploadButton,
 } from '@/styles/register.styles';
 import { dateIsValid, formatBirthday, formatPhoneNumber } from '@/utils/utils';
+
+// NEW CODE STARTS HERE
+import S3 from 'aws-sdk/clients/s3';
+import axios from 'axios';
+
+const s3 = new S3({
+  region: 'us-east-2',
+  accessKeyId: process.env.NEXT_PUBLIC_ACCESS_KEY,
+  secretAccessKey: process.env.NEXT_PUBLIC_SECRET_KEY,
+  signatureVersion: 'v4',
+});
+
+const uploadS3 = async (file: File) => {
+  try {
+    const fileParams = {
+      Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
+      Key: file.name,
+      Expires: 600,
+      ContentType: file.type,
+    };
+
+    const url = await s3.getSignedUrlPromise('putObject', fileParams);
+
+    await axios.put(url, file, {
+      headers: {
+        'Content-type': String(file.type),
+      },
+    });
+
+    return 'Uploaded!';
+  } catch (e) {
+    return e;
+  }
+};
+// NEW CODE ENDS HERE
 
 const RegisterPage1 = ({
   formFunctions: {
@@ -33,6 +72,7 @@ const RegisterPage1 = ({
     register,
     handleSubmit,
     getValues,
+    setValue,
     formState: { errors },
   } = handleForm;
 
@@ -53,6 +93,68 @@ const RegisterPage1 = ({
     const formattedBirthday = formatBirthday(e.target.value);
     setBirthdayValue(formattedBirthday);
   };
+
+  // NEW CODE STARTS HERE
+  /* picture upload handling */
+  // TODO: change picture to pictureFile, change uploadedURL to pictureURL
+  // state for uploaded picture file
+  const [picture, setPicture] = useState<File | undefined>();
+
+  // state for the manually created uploaded url
+  const [uploadedURL, setUploadedURL] = useState('');
+
+  // object that helps with handling clicking on resume upload button
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // handles clicking on resume upload button
+  const handleUploadClick = () => {
+    inputRef.current?.click();
+  };
+
+  // updates name of resume upload button to the name of the file uploaded
+  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files) {
+      return;
+    }
+    setValue('resume', e.target.files[0]);
+    setPicture(e.target.files[0]);
+    console.log(e.target.files[0]);
+
+    setUploadedURL(URL.createObjectURL(e.target.files[0]));
+  };
+
+  const uploadPicture = async () => {
+    // try {
+    //   const res = await fetch('/api/users/uploadPicture', {
+    //     method: 'POST',
+    //     body: JSON.stringify(picture),
+    //   });
+
+    //   if (res.status == 201) console.log('Uploaded!!');
+    //   else {
+    //     console.log(res.status);
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
+
+    if (picture) {
+      const returnData = await uploadS3(picture);
+
+      const url = await s3.getSignedUrlPromise('getObject', {
+        Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
+        Key: picture.name,
+      });
+
+      const request = fetch(url);
+      const response = await Promise.resolve(request);
+
+      console.log(response.url);
+    } else {
+      console.log('Error');
+    }
+  };
+  // NEW CODE ENDS HERE
 
   return (
     <RightContainer>
@@ -182,6 +284,36 @@ const RegisterPage1 = ({
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
       </Form>
+
+      {/* NEW CODE STARTS HERE */}
+      <ButtonContainer>
+        <UploadButton type="button" onClick={handleUploadClick}>
+          {picture ? `${picture.name}` : 'Click here to upload'}
+        </UploadButton>
+      </ButtonContainer>
+      <input
+        type="file"
+        ref={inputRef}
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+      />
+
+      <ButtonContainer>
+        <Button type="button" onClick={uploadPicture}>
+          Upload picture
+        </Button>
+      </ButtonContainer>
+
+      {uploadedURL && (
+        <Image
+          src={uploadedURL}
+          alt="Uploaded picture"
+          width="300"
+          height="300"
+        />
+      )}
+
+      {/* NEW CODE ENDS HERE */}
 
       <RegisterFlow
         currentPage={1}
