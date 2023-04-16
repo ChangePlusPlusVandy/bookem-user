@@ -315,6 +315,13 @@ export const Button = styled.button`
 `;
 
 /**
+ * Upload picture button
+ */
+export const UploadButton = styled(Button)`
+  width: fit-content;
+`;
+
+/**
  * Container for right half of last register page
  */
 export const LastPageContainer = styled(RightContainer)`
