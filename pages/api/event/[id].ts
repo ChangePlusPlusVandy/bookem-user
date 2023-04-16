@@ -80,6 +80,7 @@ export default async function handler(
         // Find the index of event in user.events
         const eventIndex = user.events.indexOf(event._id);
 
+        // Declare the following ops to be an atomic transaction
         const mongoSession = await mongoose.startSession();
         await mongoSession.withTransaction(async () => {
           if (userIndex === -1 && eventIndex === -1) {
