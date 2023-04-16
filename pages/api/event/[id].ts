@@ -83,6 +83,9 @@ export default async function handler(
           // Register to the event
           event.volunteers.unshift(user._id);
           user.events.unshift(event._id);
+          if (!user.tags.include(event.program)) {
+            user.tags.unshift(event.program);
+          }
         } else if (userIndex === -1 || eventIndex === -1) {
           throw new Error('Inconsistency between collections!');
         } else {
@@ -90,6 +93,9 @@ export default async function handler(
           // Remove the user and event
           event.volunteers.splice(userIndex, 1);
           user.events.splice(eventIndex, 1);
+          // Remove the tag for user
+          const programIndex = user.tags.indexOf(event.program);
+          user.tags.splice(programIndex, 1);
         }
 
         // Resave both document
