@@ -47,7 +47,6 @@ export default async function handler(
           .populate('tags')
           .populate('volunteers');
 
-        console.log(event);
         // if event is not found
         if (!event) return res.status(400).json({ message: 'Event not found' });
 
@@ -85,6 +84,8 @@ export default async function handler(
         await mongoSession.withTransaction(async () => {
           if (userIndex === -1 && eventIndex === -1) {
             // Register to the event
+
+            // TODO: Speed this up!
             event.volunteers.unshift(user._id);
             user.events.unshift(event._id);
             if (!user.tags.includes(event.program)) {
@@ -95,6 +96,8 @@ export default async function handler(
           } else {
             // Unregister
             // Remove the user and event
+
+            // TODO: Speed this up!
             event.volunteers.splice(userIndex, 1);
             user.events.splice(eventIndex, 1);
             // Remove the tag for user
