@@ -116,7 +116,7 @@ const RegisterPage1 = ({
     if (!e.target.files || e.target.files[0] == undefined) {
       return;
     }
-    setValue('resume', e.target.files[0]);
+    setValue('picture', e.target.files[0]);
     setPicture(e.target.files[0]);
     setUploadedURL(URL.createObjectURL(e.target.files[0]));
   };
