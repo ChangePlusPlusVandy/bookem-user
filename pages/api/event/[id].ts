@@ -68,7 +68,7 @@ export default async function handler(
         await dbConnect();
 
         // Query event
-        const event = await VolunteerEvents.findById(id);
+        const event = await VolunteerEvents.findById(id).populate('program');
 
         // Query logged in user
         const user = await Users.findById(session.user._id);
@@ -88,8 +88,8 @@ export default async function handler(
             // TODO: Speed this up!
             event.volunteers.unshift(user._id);
             user.events.unshift(event._id);
-            if (!user.tags.includes(event.program)) {
-              user.tags.unshift(event.program);
+            if (!user.tags.includes(event.program.tagName)) {
+              user.tags.unshift(event.program.tagName);
             }
           } else if (userIndex === -1 || eventIndex === -1) {
             throw new Error('Inconsistency between collections!');
@@ -100,7 +100,8 @@ export default async function handler(
             // TODO: Speed this up!
             event.volunteers.splice(userIndex, 1);
             user.events.splice(eventIndex, 1);
-            // Remove the tag for user
+            // TODO: Remove the tag for user only if this tag has no relationship
+            // with other events this user did
             // const programIndex = user.tags.indexOf(event.program);
             // user.tags.splice(programIndex, 1);
           }
