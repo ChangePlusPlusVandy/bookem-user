@@ -113,13 +113,11 @@ const RegisterPage1 = ({
 
   // updates name of resume upload button to the name of the file uploaded
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files) {
+    if (!e.target.files || e.target.files[0] == undefined) {
       return;
     }
     setValue('resume', e.target.files[0]);
     setPicture(e.target.files[0]);
-    console.log(e.target.files[0]);
-
     setUploadedURL(URL.createObjectURL(e.target.files[0]));
   };
 
@@ -146,10 +144,9 @@ const RegisterPage1 = ({
         Key: picture.name,
       });
 
-      const request = fetch(url);
-      const response = await Promise.resolve(request);
+      const imageData = await Promise.resolve(fetch(url));
 
-      console.log(response.url);
+      console.log(imageData.url);
     } else {
       console.log('Error');
     }
