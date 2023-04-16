@@ -6,6 +6,7 @@ import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import mongoose from 'mongoose';
 
 export default async function handler(
   req: NextApiRequest,
@@ -79,28 +80,31 @@ export default async function handler(
         // Find the index of event in user.events
         const eventIndex = user.events.indexOf(event._id);
 
-        if (userIndex === -1 && eventIndex === -1) {
-          // Register to the event
-          event.volunteers.unshift(user._id);
-          user.events.unshift(event._id);
-          if (!user.tags.include(event.program)) {
-            user.tags.unshift(event.program);
+        const mongoSession = await mongoose.startSession();
+        await mongoSession.withTransaction(async () => {
+          if (userIndex === -1 && eventIndex === -1) {
+            // Register to the event
+            event.volunteers.unshift(user._id);
+            user.events.unshift(event._id);
+            if (!user.tags.includes(event.program)) {
+              user.tags.unshift(event.program);
+            }
+          } else if (userIndex === -1 || eventIndex === -1) {
+            throw new Error('Inconsistency between collections!');
+          } else {
+            // Unregister
+            // Remove the user and event
+            event.volunteers.splice(userIndex, 1);
+            user.events.splice(eventIndex, 1);
+            // Remove the tag for user
+            const programIndex = user.tags.indexOf(event.program);
+            user.tags.splice(programIndex, 1);
           }
-        } else if (userIndex === -1 || eventIndex === -1) {
-          throw new Error('Inconsistency between collections!');
-        } else {
-          // Unregister
-          // Remove the user and event
-          event.volunteers.splice(userIndex, 1);
-          user.events.splice(eventIndex, 1);
-          // Remove the tag for user
-          const programIndex = user.tags.indexOf(event.program);
-          user.tags.splice(programIndex, 1);
-        }
 
-        // Resave both document
-        await user.save();
-        await event.save();
+          // Resave both document
+          await user.save();
+          await event.save();
+        });
 
         return res.status(200).json('Register Success');
       } catch (error: any) {
