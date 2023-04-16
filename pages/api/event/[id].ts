@@ -42,9 +42,11 @@ export default async function handler(
 
         // query event and populate fields with mongoose refs
         const event = await VolunteerEvents.findById(id)
-          .populate({ path: 'program' })
-          .exec();
+          .populate('program')
+          .populate('tags')
+          .populate('volunteers');
 
+        console.log(event);
         // if event is not found
         if (!event) return res.status(400).json({ message: 'Event not found' });
 
