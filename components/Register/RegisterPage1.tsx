@@ -1,8 +1,7 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { RegisterFormData, RegisterFormFunctions } from '@/utils/types';
 import RegisterFlow from '@/components/shared/RegisterFlow';
-import Image from 'next/image';
 import {
   RightContainer,
   Form,
@@ -12,54 +11,8 @@ import {
   InputFlex,
   InputText,
   InputContainer,
-  ButtonContainer,
-  Button,
-  UploadButton,
 } from '@/styles/register.styles';
 import { dateIsValid, formatBirthday, formatPhoneNumber } from '@/utils/utils';
-
-// TODO: MOVE THIS TO BACKEND
-import S3 from 'aws-sdk/clients/s3';
-import axios from 'axios';
-
-const s3 = new S3({
-  region: 'us-east-2',
-  accessKeyId: process.env.NEXT_PUBLIC_ACCESS_KEY,
-  secretAccessKey: process.env.NEXT_PUBLIC_SECRET_KEY,
-  signatureVersion: 'v4',
-});
-
-const uploadS3 = async (file: File) => {
-  try {
-    const fileParams = {
-      Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-      Key: file.name,
-      Expires: 600,
-      ContentType: file.type,
-    };
-
-    const putURL = await s3.getSignedUrlPromise('putObject', fileParams);
-
-    await axios.put(putURL, file, {
-      headers: {
-        'Content-type': String(file.type),
-      },
-    });
-
-    const getURL = await s3.getSignedUrlPromise('getObject', {
-      Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-      Key: file.name,
-    });
-
-    const imageData = await Promise.resolve(fetch(getURL));
-
-    console.log(imageData.url);
-
-    return 'Uploaded!';
-  } catch (e) {
-    return e;
-  }
-};
 
 const RegisterPage1 = ({
   formFunctions: {
@@ -80,7 +33,6 @@ const RegisterPage1 = ({
     register,
     handleSubmit,
     getValues,
-    setValue,
     formState: { errors },
   } = handleForm;
 
@@ -89,15 +41,6 @@ const RegisterPage1 = ({
 
   // state for birthday
   const [birthdayValue, setBirthdayValue] = useState(formData.birthday);
-
-  // state for uploaded picture file
-  const [pictureFile, setPictureFile] = useState<File | undefined>();
-
-  // state for uploaded pictureURL, not the S3 url
-  const [pictureURL, setPictureURL] = useState('');
-
-  // object that helps with handling clicking on picture upload button
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
@@ -109,28 +52,6 @@ const RegisterPage1 = ({
   const handleBirthday = (e: React.ChangeEvent<HTMLInputElement>) => {
     const formattedBirthday = formatBirthday(e.target.value);
     setBirthdayValue(formattedBirthday);
-  };
-
-  // handles clicking on picture upload button
-  const handleUploadClick = () => {
-    inputRef.current?.click();
-  };
-
-  // updates name of picture upload button to the name of the file uploaded
-  const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    if (!e.target.files || e.target.files[0] == undefined) {
-      return;
-    }
-    setValue('picture', e.target.files[0]);
-    setPictureFile(e.target.files[0]);
-    setPictureURL(URL.createObjectURL(e.target.files[0]));
-  };
-
-  // uploads picture file to S3 bucket
-  const handleUpload = async () => {
-    if (pictureFile) {
-      await uploadS3(pictureFile);
-    }
   };
 
   return (
@@ -261,33 +182,6 @@ const RegisterPage1 = ({
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
       </Form>
-
-      <ButtonContainer>
-        <UploadButton type="button" onClick={handleUploadClick}>
-          {pictureFile ? `${pictureFile.name}` : 'Click here to upload'}
-        </UploadButton>
-      </ButtonContainer>
-      <input
-        type="file"
-        ref={inputRef}
-        onChange={handleFileChange}
-        style={{ display: 'none' }} // TODO: MAKE STYLED COMPONENT
-      />
-
-      <ButtonContainer>
-        <Button type="button" onClick={handleUpload}>
-          Upload picture
-        </Button>
-      </ButtonContainer>
-
-      {pictureURL && (
-        <Image
-          src={pictureURL}
-          alt="Uploaded picture"
-          width="300"
-          height="300"
-        />
-      )}
 
       <RegisterFlow
         currentPage={1}
