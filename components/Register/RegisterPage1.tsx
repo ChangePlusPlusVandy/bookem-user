@@ -38,20 +38,28 @@ const uploadS3 = async (file: File) => {
       ContentType: file.type,
     };
 
-    const url = await s3.getSignedUrlPromise('putObject', fileParams);
+    const putURL = await s3.getSignedUrlPromise('putObject', fileParams);
 
-    await axios.put(url, file, {
+    await axios.put(putURL, file, {
       headers: {
         'Content-type': String(file.type),
       },
     });
+
+    const getURL = await s3.getSignedUrlPromise('getObject', {
+      Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
+      Key: file.name,
+    });
+
+    const imageData = await Promise.resolve(fetch(getURL));
+
+    console.log(imageData.url);
 
     return 'Uploaded!';
   } catch (e) {
     return e;
   }
 };
-// NEW CODE ENDS HERE
 
 const RegisterPage1 = ({
   formFunctions: {
@@ -82,6 +90,15 @@ const RegisterPage1 = ({
   // state for birthday
   const [birthdayValue, setBirthdayValue] = useState(formData.birthday);
 
+  // state for uploaded picture file
+  const [pictureFile, setPictureFile] = useState<File | undefined>();
+
+  // state for uploaded pictureURL, not the S3 url
+  const [pictureURL, setPictureURL] = useState('');
+
+  // object that helps with handling clicking on picture upload button
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
   // updates phone number with correct format
   const handlePhone = (e: ChangeEvent<HTMLInputElement>) => {
     const formattedPhoneNumber = formatPhoneNumber(e.target.value);
@@ -94,64 +111,70 @@ const RegisterPage1 = ({
     setBirthdayValue(formattedBirthday);
   };
 
-  // NEW CODE STARTS HERE
-  /* picture upload handling */
-  // TODO: change picture to pictureFile, change uploadedURL to pictureURL
-  // state for uploaded picture file
-  const [picture, setPicture] = useState<File | undefined>();
-
-  // state for the manually created uploaded url
-  const [uploadedURL, setUploadedURL] = useState('');
-
-  // object that helps with handling clicking on resume upload button
-  const inputRef = useRef<HTMLInputElement | null>(null);
-
-  // handles clicking on resume upload button
+  // handles clicking on picture upload button
   const handleUploadClick = () => {
     inputRef.current?.click();
   };
 
-  // updates name of resume upload button to the name of the file uploaded
+  // updates name of picture upload button to the name of the file uploaded
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (!e.target.files || e.target.files[0] == undefined) {
       return;
     }
     setValue('picture', e.target.files[0]);
-    setPicture(e.target.files[0]);
-    setUploadedURL(URL.createObjectURL(e.target.files[0]));
+    setPictureFile(e.target.files[0]);
+    setPictureURL(URL.createObjectURL(e.target.files[0]));
   };
 
-  const uploadPicture = async () => {
-    // try {
-    //   const res = await fetch('/api/users/uploadPicture', {
-    //     method: 'POST',
-    //     body: JSON.stringify(picture),
-    //   });
+  // uploads picture file to S3 bucket
+  const handleUpload = async () => {
+    if (pictureFile) {
+      await uploadS3(pictureFile);
 
-    //   if (res.status == 201) console.log('Uploaded!!');
-    //   else {
-    //     console.log(res.status);
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
+      // let formData = new FormData();
+      // formData.append('file', pictureFile);
+      // console.log(formData.get('file'));
+      // try {
+      //   const res = await fetch('/api/users/uploadPicture', {
+      //     method: 'POST',
+      //     body: formData,
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //     },
+      //   });
+      // } catch (err) {
+      //   console.log(err);
+      // }
 
-    if (picture) {
-      const returnData = await uploadS3(picture);
-
-      const url = await s3.getSignedUrlPromise('getObject', {
-        Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-        Key: picture.name,
-      });
-
-      const imageData = await Promise.resolve(fetch(url));
-
-      console.log(imageData.url);
-    } else {
-      console.log('Error');
+      // const formData = new FormData();
+      // formData.append('file', pictureFile);
+      // try {
+      //   const res = await fetch('/api/users/uploadPicture', {
+      //     body: formData.toString(),
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'multipart/form-data',
+      //     },
+      //   });
+      // } catch (err) {
+      //   console.log(err);
+      // }
     }
   };
-  // NEW CODE ENDS HERE
+
+  // try {
+  //   const res = await fetch('/api/users/uploadPicture', {
+  //     method: 'POST',
+  //     body: JSON.stringify(picture),
+  //   });
+
+  //   if (res.status == 201) console.log('Uploaded!!');
+  //   else {
+  //     console.log(res.status);
+  //   }
+  // } catch (err) {
+  //   console.log(err);
+  // }
 
   return (
     <RightContainer>
@@ -282,35 +305,32 @@ const RegisterPage1 = ({
         </SectionContainer>
       </Form>
 
-      {/* NEW CODE STARTS HERE */}
       <ButtonContainer>
         <UploadButton type="button" onClick={handleUploadClick}>
-          {picture ? `${picture.name}` : 'Click here to upload'}
+          {pictureFile ? `${pictureFile.name}` : 'Click here to upload'}
         </UploadButton>
       </ButtonContainer>
       <input
         type="file"
         ref={inputRef}
         onChange={handleFileChange}
-        style={{ display: 'none' }}
+        style={{ display: 'none' }} // TODO: MAKE STYLED COMPONENT
       />
 
       <ButtonContainer>
-        <Button type="button" onClick={uploadPicture}>
+        <Button type="button" onClick={handleUpload}>
           Upload picture
         </Button>
       </ButtonContainer>
 
-      {uploadedURL && (
+      {pictureURL && (
         <Image
-          src={uploadedURL}
+          src={pictureURL}
           alt="Uploaded picture"
           width="300"
           height="300"
         />
       )}
-
-      {/* NEW CODE ENDS HERE */}
 
       <RegisterFlow
         currentPage={1}
