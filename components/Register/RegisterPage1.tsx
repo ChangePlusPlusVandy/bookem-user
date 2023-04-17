@@ -18,7 +18,7 @@ import {
 } from '@/styles/register.styles';
 import { dateIsValid, formatBirthday, formatPhoneNumber } from '@/utils/utils';
 
-// NEW CODE STARTS HERE
+// TODO: MOVE THIS TO BACKEND
 import S3 from 'aws-sdk/clients/s3';
 import axios from 'axios';
 
@@ -130,51 +130,8 @@ const RegisterPage1 = ({
   const handleUpload = async () => {
     if (pictureFile) {
       await uploadS3(pictureFile);
-
-      // let formData = new FormData();
-      // formData.append('file', pictureFile);
-      // console.log(formData.get('file'));
-      // try {
-      //   const res = await fetch('/api/users/uploadPicture', {
-      //     method: 'POST',
-      //     body: formData,
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data',
-      //     },
-      //   });
-      // } catch (err) {
-      //   console.log(err);
-      // }
-
-      // const formData = new FormData();
-      // formData.append('file', pictureFile);
-      // try {
-      //   const res = await fetch('/api/users/uploadPicture', {
-      //     body: formData.toString(),
-      //     method: 'POST',
-      //     headers: {
-      //       'Content-Type': 'multipart/form-data',
-      //     },
-      //   });
-      // } catch (err) {
-      //   console.log(err);
-      // }
     }
   };
-
-  // try {
-  //   const res = await fetch('/api/users/uploadPicture', {
-  //     method: 'POST',
-  //     body: JSON.stringify(picture),
-  //   });
-
-  //   if (res.status == 201) console.log('Uploaded!!');
-  //   else {
-  //     console.log(res.status);
-  //   }
-  // } catch (err) {
-  //   console.log(err);
-  // }
 
   return (
     <RightContainer>
