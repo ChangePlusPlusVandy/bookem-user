@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useRef, useState } from 'react';
+import React, { ChangeEvent, useRef, useState, useEffect } from 'react';
 import { FieldValues } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import { RegisterFormData } from '@/utils/types';
@@ -17,8 +17,6 @@ import {
 /* TODO: MOVE ALL OF THIS TO BACKEND API */
 import S3 from 'aws-sdk/clients/s3';
 import axios from 'axios';
-import dbConnect from '@/lib/dbConnect';
-import Users from 'bookem-shared/src/models/Users';
 
 const s3 = new S3({
   region: 'us-east-2',
@@ -56,13 +54,26 @@ const uploadS3 = async (file: File, email: string) => {
 
     console.log(imageData.url, typeof imageData.url);
 
-    // update User in mongodb
-    // await dbConnect();
+    // send PATCH request to /api/users/upload-profile to update user's profile picture
+    const res = await axios.patch(
+      '/api/users/upload-profile',
+      {
+        profileImgUrl: imageData.url,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
 
-    // const status = await Users.updateOne(
-    //   { email: email },
-    //   { picture: imageData.url }
-    // );
+    if (res.status !== 200) {
+      alert(
+        'Error uploading profile picture. Please try again or contact us if the problem persists.'
+      );
+    } else {
+      alert('Profile picture uploaded successfully!');
+    }
 
     // Return the status of the user update
     return { message: 'User updated with picture', error: null };
@@ -108,15 +119,20 @@ const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
   // Function to handle login and redirect.
   const handleLogin = async (data: FieldValues) => {
     const status = await signIn('credentials', {
-      redirect: true,
+      redirect: false,
       email: data.email,
       password: data.password,
     });
 
     if (!status) {
-      window.location.href = '/';
+      alert("Couldn't create an account. Please try again or contact us.");
     }
   };
+
+  useEffect(() => {
+    // log users in right after they register
+    handleLogin(formData);
+  }, []);
 
   return (
     <LastPageContainer>
@@ -151,7 +167,12 @@ const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
         </Button>
       </UploadContainer>
 
-      <Button onClick={() => handleLogin(formData)}>Let&apos;s go</Button>
+      <Button
+        onClick={() => {
+          window.location.href = '/';
+        }}>
+        Let&apos;s go
+      </Button>
     </LastPageContainer>
   );
 };
