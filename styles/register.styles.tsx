@@ -315,6 +315,40 @@ export const Button = styled.button`
 `;
 
 /**
+ * Container for uploading picture
+ */
+export const UploadContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+/**
+ * Upload picture button
+ */
+export const UploadButton = styled(Button)`
+  width: fit-content;
+  min-width: 215px;
+`;
+
+/**
+ * Uploaded picture container
+ */
+export const UploadPictureContainer = styled.div`
+  position: relative;
+  width: 226px;
+  height: 226px;
+`;
+
+/**
+ * Upload picture input
+ */
+export const UploadInput = styled.input`
+  display: none;
+`;
+
+/**
  * Container for right half of last register page
  */
 export const LastPageContainer = styled(RightContainer)`
