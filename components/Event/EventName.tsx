@@ -42,7 +42,9 @@ const EventName = ({
     // Initialize signedUp according to whether the current event
     // contains the user or not
     if (session?.user) {
-      setSignedUp(event.volunteers.includes(session.user._id));
+      setSignedUp(
+        event.volunteers.some(volunteer => volunteer._id === session.user._id)
+      );
     }
   }, [event.volunteers, session?.user, setSignedUp]);
 

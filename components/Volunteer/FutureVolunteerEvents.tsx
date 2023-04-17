@@ -32,15 +32,20 @@ const FutureVolunteerEvents = () => {
   const showPopup = () => setIsPopupOn(true);
   const hidePopup = () => setIsPopupOn(false);
 
+  // All events
   const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
+  const [error, setError] = useState<Error>();
+
+  // Events with featured tags
   const [featuredEvents, setFeaturedEvents] =
     useState<QueriedVolunteerEventData[]>();
-  const [error, setError] = useState<Error>();
-  // Fetch upcoming events when rendered
+
+  // Fetch upcoming events and featured events when rendered
   useEffect(() => {
     fetchData('/api/events/upcoming')
       .then(data => setEvents(data))
       .catch(err => setError(err));
+
     fetchData('/api/events/featured')
       .then(data => setFeaturedEvents(data))
       .catch(err => setError(err));
@@ -132,14 +137,16 @@ const FutureVolunteerEvents = () => {
 
             {/* Container for events that show up based on query input */}
             <ImagesWrapper>
-              {events.map(event => (
-                <EventCard
-                  key={event._id.toString()}
-                  eventData={event}
-                  size="medium"
-                  href={'/event/' + event._id}
-                />
-              ))}
+              {events
+                .filter(event => event.name.includes(query))
+                .map(event => (
+                  <EventCard
+                    key={event._id.toString()}
+                    eventData={event}
+                    size="medium"
+                    href={'/event/' + event._id}
+                  />
+                ))}
             </ImagesWrapper>
           </Media>
 

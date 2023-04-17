@@ -6,6 +6,7 @@ import { ObjectId } from 'mongodb';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import mongoose from 'mongoose';
 
 export default async function handler(
   req: NextApiRequest,
@@ -42,8 +43,9 @@ export default async function handler(
 
         // query event and populate fields with mongoose refs
         const event = await VolunteerEvents.findById(id)
-          .populate({ path: 'program' })
-          .exec();
+          .populate('program')
+          .populate('tags')
+          .populate('volunteers');
 
         // if event is not found
         if (!event) return res.status(400).json({ message: 'Event not found' });
@@ -66,7 +68,7 @@ export default async function handler(
         await dbConnect();
 
         // Query event
-        const event = await VolunteerEvents.findById(id);
+        const event = await VolunteerEvents.findById(id).populate('program');
 
         // Query logged in user
         const user = await Users.findById(session.user._id);
@@ -77,22 +79,37 @@ export default async function handler(
         // Find the index of event in user.events
         const eventIndex = user.events.indexOf(event._id);
 
-        if (userIndex === -1 && eventIndex === -1) {
-          // Register to the event
-          event.volunteers.unshift(user._id);
-          user.events.unshift(event._id);
-        } else if (userIndex === -1 || eventIndex === -1) {
-          throw new Error('Inconsistency between collections!');
-        } else {
-          // Unregister
-          // Remove the user and event
-          event.volunteers.splice(userIndex, 1);
-          user.events.splice(eventIndex, 1);
-        }
+        // Declare the following ops to be an atomic transaction
+        const mongoSession = await mongoose.startSession();
+        await mongoSession.withTransaction(async () => {
+          if (userIndex === -1 && eventIndex === -1) {
+            // Register to the event
 
-        // Resave both document
-        await user.save();
-        await event.save();
+            // TODO: Speed this up!
+            event.volunteers.unshift(user._id);
+            user.events.unshift(event._id);
+            if (!user.tags.includes(event.program.tagName)) {
+              user.tags.unshift(event.program.tagName);
+            }
+          } else if (userIndex === -1 || eventIndex === -1) {
+            throw new Error('Inconsistency between collections!');
+          } else {
+            // Unregister
+            // Remove the user and event
+
+            // TODO: Speed this up!
+            event.volunteers.splice(userIndex, 1);
+            user.events.splice(eventIndex, 1);
+            // TODO: Remove the tag for user only if this tag has no relationship
+            // with other events this user did
+            // const programIndex = user.tags.indexOf(event.program);
+            // user.tags.splice(programIndex, 1);
+          }
+
+          // Resave both document
+          await user.save();
+          await event.save();
+        });
 
         return res.status(200).json('Register Success');
       } catch (error: any) {
