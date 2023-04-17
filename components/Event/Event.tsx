@@ -41,7 +41,7 @@ const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
   const signUpEvent = async () => {
     try {
       // If the event requires application, redirect to application page
-      if (!event.requireApplication) {
+      if (event.requireApplication) {
         // TODO: redirect to event application page
         alert('Go to event application!');
         return;
