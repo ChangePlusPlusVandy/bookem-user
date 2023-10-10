@@ -88,8 +88,10 @@ export default async function handler(
             // TODO: Speed this up!
             event.volunteers.unshift(user._id);
             user.events.unshift(event._id);
-            if (!user.tags.includes(event.program.tagName)) {
-              user.tags.unshift(event.program.tagName);
+            if (event.program != null) {
+              if (!user.tags.includes(event.program.tagName)) {
+                user.tags.unshift(event.program.tagName);
+              }
             }
           } else if (userIndex === -1 || eventIndex === -1) {
             throw new Error('Inconsistency between collections!');
