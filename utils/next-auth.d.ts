@@ -1,5 +1,8 @@
 import NextAuth from 'next-auth';
 
+/**
+ * Documentation: https://next-auth.js.org/getting-started/typescript
+ */
 declare module 'next-auth' {
   /**
    * Returned by `useSession`, `getSession` and received as a prop on the `SessionProvider` React Context
