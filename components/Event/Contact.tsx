@@ -42,7 +42,10 @@ const Contact = ({ phone, email }: { phone: string; email: string }) => (
           width={EVENT_CONTACT_ICON_WIDTH}
           height={EVENT_CONTACT_ICON_HEIGHT}
         />
-        <IconText>{email}</IconText>
+        <IconText>
+          {/* TODO: Make it clickable */}
+          {email}
+        </IconText>
       </IconBox>
     </BigIconBox>
   </ContactBox>
