@@ -69,7 +69,7 @@ const FutureVolunteerEvents = () => {
   };
 
   // Sorts events in order of most to least recent
-  const sortMostRecent = () => {
+  const sortLeastRecent = () => {
     if (!events) return;
     const copy = [...events];
     copy.sort(
@@ -80,7 +80,7 @@ const FutureVolunteerEvents = () => {
   };
 
   // Sorts events in order of least to most recent
-  const sortLeastRecent = () => {
+  const sortMostRecent = () => {
     if (!events) return;
     const copy = [...events];
     copy.sort(
