@@ -132,6 +132,7 @@ export const generateProgram = (program: any): VolunteerProgramData => {
   return {
     name: program.name,
     events: [],
+    volunteers: [],
   };
 };
 
