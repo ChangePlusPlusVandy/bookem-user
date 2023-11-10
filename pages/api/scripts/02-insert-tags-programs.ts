@@ -36,7 +36,10 @@ export default async function handler(
 
         res
           .status(200)
-          .json({ success: true, message: 'This is a template endpoint' });
+          .json({
+            success: true,
+            message: 'Inserted fake tags and program data',
+          });
       } catch (error: any) {
         res.status(500).json({ success: false, error: error.message });
       }
