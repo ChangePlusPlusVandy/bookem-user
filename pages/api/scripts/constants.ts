@@ -8,55 +8,58 @@ export const GENDERS = ['male', 'female'];
 // ------------------ CONFIGURATIONS ------------------
 export const EVENTS: {
   name: string;
-  tag: string;
+  program: string;
   isMultipleDays: boolean;
   requireApplication: boolean;
+  tags?: string[];
 }[] = [
   {
     name: 'Distribute books',
-    tag: 'BFNK',
+    program: 'BFNK',
     isMultipleDays: false,
     requireApplication: false,
   },
   {
     name: 'Reading role model',
-    tag: 'RFR',
+    program: 'RFR',
     isMultipleDays: true,
     requireApplication: true,
   },
   {
     name: 'Book drive',
-    tag: '',
+    program: '',
     isMultipleDays: false,
     requireApplication: false,
   },
   {
     name: 'Special event',
-    tag: '',
+    program: '',
     isMultipleDays: false,
     requireApplication: false,
   },
   {
     name: 'Interactive reading',
-    tag: 'RIF',
+    program: 'RIF',
     isMultipleDays: true,
     requireApplication: true,
   },
   {
     name: 'Book sort, clean, process',
-    tag: '',
+    program: '',
     isMultipleDays: false,
     requireApplication: false,
   },
   {
     name: 'Office work',
-    tag: '',
+    program: '',
+    tags: ['saved'],
     isMultipleDays: false,
     requireApplication: false,
   },
   {
     name: 'Book bus',
-    tag: '',
+    program: '',
+    tags: ['hidden'],
     isMultipleDays: false,
     requireApplication: false,
   },

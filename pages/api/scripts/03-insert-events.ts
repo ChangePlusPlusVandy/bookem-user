@@ -12,6 +12,10 @@ import {
 } from '@/pages/api/scripts/constants';
 import Tags from 'bookem-shared/src/models/Tags';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
+import {
+  QueriedTagData,
+  QueriedVolunteerProgramData,
+} from 'bookem-shared/src/types/database';
 
 export default async function handler(
   req: NextApiRequest,
@@ -26,13 +30,25 @@ export default async function handler(
         // delete all events
         await VolunteerEvents.deleteMany({});
 
+        // get all tags
+        const tags = await Tags.find({});
+        console.log(tags);
+
+        // get all programs
+        const programs = await VolunteerPrograms.find({});
+        console.log(programs);
+
         // create a bulk operation to minimize the number of db calls
         const bulkEvents =
           VolunteerEvents.collection.initializeUnorderedBulkOp();
 
         // insert a bunch of equally distributed events
         for (let i = 0; i < 100; i++) {
-          const event = generateEvent(i);
+          const event = generateEvent(
+            i,
+            tags as QueriedTagData[],
+            programs as QueriedVolunteerProgramData[]
+          );
           bulkEvents.insert(event);
         }
 
