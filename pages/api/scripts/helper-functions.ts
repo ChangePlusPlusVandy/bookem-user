@@ -3,7 +3,9 @@ import { hash } from 'bcrypt';
 import {
   AdminStatus,
   QueriedTagData,
+  TagData,
   VolunteerEventData,
+  VolunteerProgramData,
 } from 'bookem-shared/src/types/database';
 import { AdminData, UserData } from 'bookem-shared/src/types/database';
 import {
@@ -52,7 +54,8 @@ export const generateUser = async ({
     expirationDate: new Date(),
   },
   events: [],
-  tags: [],
+  programs: [],
+  // tags: [],
 });
 
 export const generateAdmin = async (): Promise<AdminData> => ({
@@ -107,5 +110,18 @@ export const generateEvent = (i: number): VolunteerEventData => {
     requireApplication: chosenEvent.requireApplication,
     tags: tagIds,
     volunteers: [],
+  };
+};
+
+export const generateProgram = (program: any): VolunteerProgramData => {
+  return {
+    name: program.name,
+    events: [],
+  };
+};
+
+export const generateTag = (tag: any): TagData => {
+  return {
+    tagName: tag.tagName,
   };
 };

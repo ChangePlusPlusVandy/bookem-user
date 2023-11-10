@@ -64,24 +64,27 @@ export const EVENTS: {
 
 export const INSERTED_TAGS = [
   {
-    _id: new mongoose.Types.ObjectId('642a4dec74c697623278344d'),
-    tagName: 'RIF',
-  },
-  {
-    _id: new mongoose.Types.ObjectId('642a4dfc74c697623278344e'),
-    tagName: 'RFR',
-  },
-  {
-    _id: new mongoose.Types.ObjectId('642a4e0474c697623278344f'),
-    tagName: 'BFNK',
-  },
-  {
     _id: new mongoose.Types.ObjectId('642a4e0a74c6976232783450'),
     tagName: 'saved',
   },
   {
     _id: new mongoose.Types.ObjectId('642a4e1274c6976232783451'),
     tagName: 'hidden',
+  },
+];
+
+export const INSERTED_PROGRAMS = [
+  {
+    _id: new mongoose.Types.ObjectId('642a4dec74c697623278344d'),
+    name: 'RIF',
+  },
+  {
+    _id: new mongoose.Types.ObjectId('642a4dfc74c697623278344e'),
+    name: 'RFR',
+  },
+  {
+    _id: new mongoose.Types.ObjectId('642a4e0474c697623278344f'),
+    name: 'BFNK',
   },
 ];
 
