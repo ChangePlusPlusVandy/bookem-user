@@ -3,6 +3,7 @@ import { hash } from 'bcrypt';
 import {
   AdminStatus,
   QueriedTagData,
+  QueriedVolunteerEventData,
   QueriedVolunteerProgramData,
   TagData,
   VolunteerEventData,
@@ -132,6 +133,16 @@ export const generateProgram = (program: any): VolunteerProgramData => {
     name: program.name,
     events: [],
   };
+};
+
+export const fillProgramEvents = async (events: any) => {
+  for (const event of events) {
+    const program = await VolunteerPrograms.findById(event.program);
+    if (program) {
+      program.events.unshift(event._id);
+      await program.save();
+    }
+  }
 };
 
 export const generateTag = (tag: any): TagData => {

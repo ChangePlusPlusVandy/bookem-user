@@ -2,6 +2,7 @@ import dbConnect from '@/lib/dbConnect';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {
+  fillProgramEvents,
   generateEvent,
   generateProgram,
   generateTag,
@@ -14,6 +15,7 @@ import Tags from 'bookem-shared/src/models/Tags';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 import {
   QueriedTagData,
+  QueriedVolunteerEventData,
   QueriedVolunteerProgramData,
 } from 'bookem-shared/src/types/database';
 
@@ -32,11 +34,9 @@ export default async function handler(
 
         // get all tags
         const tags = await Tags.find({});
-        console.log(tags);
 
         // get all programs
         const programs = await VolunteerPrograms.find({});
-        console.log(programs);
 
         // create a bulk operation to minimize the number of db calls
         const bulkEvents =
@@ -54,6 +54,11 @@ export default async function handler(
 
         // execute the bulk operation
         await bulkEvents.execute();
+
+        // Query them back to update program
+        const events = await VolunteerEvents.find({ program: { $ne: null } });
+        // Update programs so that programs contain their corresponding events
+        await fillProgramEvents(events);
 
         res.status(200).json({
           success: true,
