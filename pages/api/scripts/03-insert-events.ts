@@ -1,8 +1,17 @@
 import dbConnect from '@/lib/dbConnect';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { generateEvent } from '@/pages/api/scripts/helper-functions';
-import { EventStatus } from '@/pages/api/scripts/constants';
+import {
+  generateEvent,
+  generateProgram,
+  generateTag,
+} from '@/pages/api/scripts/helper-functions';
+import {
+  INSERTED_PROGRAMS,
+  INSERTED_TAGS,
+} from '@/pages/api/scripts/constants';
+import Tags from 'bookem-shared/src/models/Tags';
+import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 
 export default async function handler(
   req: NextApiRequest,
