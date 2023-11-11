@@ -1,5 +1,5 @@
 import { SignupButton } from '@/styles/components/Event/event.styles';
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventDTO } from 'bookem-shared/src/types/database';
 import { useSession } from 'next-auth/react';
 import React, { useEffect } from 'react';
 import { getEventLength } from '@/components/Event/EventName';
@@ -20,7 +20,7 @@ const Footer = ({
 }: {
   signedUp: boolean;
   setSignedUp: (signedUp: boolean) => void;
-  event: QueriedVolunteerEventData;
+  event: QueriedVolunteerEventDTO;
   signUpEvent: () => void;
 }) => {
   // Get user id in session
