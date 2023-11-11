@@ -1,4 +1,4 @@
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventDTO } from 'bookem-shared/src/types/database';
 import React, { useState } from 'react';
 import Header from '@/components/Event/Header';
 import BookIcon from '@/components/Event/BookIcon';
@@ -21,7 +21,7 @@ import { BOOKEM_THEME } from '@/utils/constants';
  * Event Detail
  * @param event Data about the event
  */
-const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
+const Event = ({ event }: { event: QueriedVolunteerEventDTO }) => {
   /**
    * True: display About
    * False: display Contact

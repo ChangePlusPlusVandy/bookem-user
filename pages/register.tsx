@@ -133,7 +133,7 @@ const RegisterPage = () => {
       sourceHeardFrom: data.sourceHeardFrom,
       ethnicity: userEthnicity,
       gender: userGender,
-      tags: [],
+      programs: [],
       events: [],
     };
 

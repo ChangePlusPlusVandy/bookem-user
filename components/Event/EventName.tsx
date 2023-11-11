@@ -1,4 +1,4 @@
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventDTO } from 'bookem-shared/src/types/database';
 import React, { useEffect } from 'react';
 import {
   EventNameBox,
@@ -15,7 +15,7 @@ import Image from 'next/image';
  * Calculate the length of the event volunteers
  * If event.volunteers is undefined, return 0
  */
-export const getEventLength = (event: QueriedVolunteerEventData) => {
+export const getEventLength = (event: QueriedVolunteerEventDTO) => {
   if (event.volunteers && event.volunteers.length)
     return event.volunteers.length;
   else return 0;
@@ -33,7 +33,7 @@ const EventName = ({
 }: {
   signedUp: boolean;
   setSignedUp: (signedUp: boolean) => void;
-  event: QueriedVolunteerEventData;
+  event: QueriedVolunteerEventDTO;
   signUpEvent: () => void;
 }) => {
   const { data: session } = useSession();
@@ -54,7 +54,7 @@ const EventName = ({
       <Media greaterThanOrEqual="sm">
         <NameAndSpot>
           <b>{event.name}</b>
-          {event.tags.length > 0 && <p>({event.program.tagName})</p>}
+          {event.tags.length > 0 && <p>({event.program?.name})</p>}
           <br />
           {getEventLength(event)}/{event.maxSpot} spots filled
         </NameAndSpot>
@@ -66,7 +66,7 @@ const EventName = ({
       {/* Mobile */}
       <Media lessThan="sm">
         <NameAndSpot>
-          <b>{event.name}</b> <span>({event.program?.tagName}) </span>
+          <b>{event.name}</b> <span>({event.program?.name}) </span>
           <br />
           <StatusBox>
             <Image src="/event/dot.svg" alt="" width={10} height={10} />
