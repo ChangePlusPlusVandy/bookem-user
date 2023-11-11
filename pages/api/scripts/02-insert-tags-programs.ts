@@ -34,12 +34,10 @@ export default async function handler(
           await Tags.insertMany(genratedTag);
         });
 
-        res
-          .status(200)
-          .json({
-            success: true,
-            message: 'Inserted fake tags and program data',
-          });
+        res.status(200).json({
+          success: true,
+          message: 'Inserted fake tags and program data',
+        });
       } catch (error: any) {
         res.status(500).json({ success: false, error: error.message });
       }
