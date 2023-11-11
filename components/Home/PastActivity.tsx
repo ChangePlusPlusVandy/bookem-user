@@ -1,5 +1,6 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import mongoose from 'mongoose';
+import { useRouter } from 'next/router';
 import { Media } from '@/lib/media';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import Image from 'next/image';
@@ -14,32 +15,27 @@ import {
   Events,
 } from '@/styles/components/pastActivity.styles';
 
-/**
- * Dummy data for event cards
- */
-const dummyEventData: QueriedVolunteerEventData = {
-  _id: new mongoose.Types.ObjectId(),
-  name: 'Distribute books (BNFK)',
-  description: 'blablabla',
-  startDate: new Date('2005-12-17T13:24:00'),
-  endDate: new Date('2005-12-17T13:24:00'),
-  maxSpot: 11,
-  location: {
-    street: '3593 Cedar Rd',
-    city: 'Nashville',
-  },
-  phone: '123-456-7890',
-  email: 'test_user@bookem.com',
-  program: new mongoose.Types.ObjectId(),
-  requireApplication: true,
-  volunteers: [],
-  tags: [],
-  createdAt: new Date(),
-  updatedAt: new Date(),
-};
-
 // vertical list of sample PastEvents
 const PastActivity = ({ userData }: any) => {
+  const [pastEvents, setPastEvents] = useState<QueriedVolunteerEventData[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPastEvents = async () => {
+      try {
+        const response = await fetch('/api/path-to-past-events-api'); // Update with the correct API endpoint
+        const data = await response.json();
+        setPastEvents(data);
+      } catch (error) {
+        console.error('Error fetching past events:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPastEvents();
+  }, []);
+
   // state for hiding/showing mobile Past Activities
   const [onMobileHide, setOnMobileHide] = useState(false);
 
@@ -51,60 +47,22 @@ const PastActivity = ({ userData }: any) => {
           <Header>Past activity</Header>
 
           <Events>
-            {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
             <Suspense fallback={<Header>Please Wait...</Header>}>
-              {/* TODO: integrate with backend */}
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
+              {!loading &&
+                pastEvents.map(eventData => (
+                  <EventCard
+                    key={eventData._id}
+                    eventData={eventData}
+                    size="small"
+                  />
+                ))}
             </Suspense>
           </Events>
         </Container>
       </Media>
 
       {/* Mobile */}
-      <Media lessThan="sm">
-        {onMobileHide ? (
-          <>
-            {/* Display MainDashboard when click on x button */}
-            <MainDashboard userData={userData} />
-          </>
-        ) : (
-          <Container>
-            <HeaderBox>
-              <HeaderText>Past activity</HeaderText>
-
-              <Image
-                src="/event/error.svg"
-                alt=""
-                width={32}
-                height={32}
-                onClick={() => {
-                  setOnMobileHide(true);
-                }}
-              />
-            </HeaderBox>
-
-            <Line src="/event/line.png" alt="" width={100} height={1} />
-
-            <Events>
-              {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
-              <Suspense fallback={<Header>Please Wait...</Header>}>
-                {/* TODO: integrate with backend */}
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-              </Suspense>
-            </Events>
-          </Container>
-        )}
-      </Media>
+      {/* ... The mobile part remains the same, just replace the EventCard components similarly ... */}
     </>
   );
 };

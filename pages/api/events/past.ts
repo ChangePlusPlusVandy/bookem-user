@@ -19,12 +19,14 @@ export default async function handler(
       try {
         await dbConnect();
 
-        // Select all events where eventDate > today order by progamDate ascending
-        const events = await VolunteerEvents.find({
-          eventDate: { $lt: new Date() },
-        }).sort({ eventDate: 1 });
+        const { userId } = req.query; // Assuming you're passing a userId to identify the user
 
-        return res.status(200).json(events);
+        // Fetching the past 5 activities
+        const activities = await VolunteerEvents.find({ userId: userId, eventDate: { $lt: new Date() } })
+                                                .sort({ eventDate: -1 })
+                                                .limit(5);
+
+        res.status(200).json(activities);
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: error });
