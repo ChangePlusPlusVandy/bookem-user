@@ -1,9 +1,6 @@
 import Event from '@/components/Event/Event';
 import { fetchData } from '@/utils/utils';
-import {
-  QueriedVolunteerEventData,
-  QueriedVolunteerEventDTO,
-} from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventDTO } from 'bookem-shared/src/types/database';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 

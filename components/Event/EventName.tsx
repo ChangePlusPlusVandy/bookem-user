@@ -54,7 +54,7 @@ const EventName = ({
       <Media greaterThanOrEqual="sm">
         <NameAndSpot>
           <b>{event.name}</b>
-          {event.tags.length > 0 && <p>({event.program._id.toString()})</p>}
+          {event.tags.length > 0 && <p>({event.program?.name})</p>}
           <br />
           {getEventLength(event)}/{event.maxSpot} spots filled
         </NameAndSpot>
@@ -66,7 +66,7 @@ const EventName = ({
       {/* Mobile */}
       <Media lessThan="sm">
         <NameAndSpot>
-          <b>{event.name}</b> <span>({event.program?._id.toString()}) </span>
+          <b>{event.name}</b> <span>({event.program?.name}) </span>
           <br />
           <StatusBox>
             <Image src="/event/dot.svg" alt="" width={10} height={10} />

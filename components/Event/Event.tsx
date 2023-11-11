@@ -1,4 +1,4 @@
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import { QueriedVolunteerEventDTO } from 'bookem-shared/src/types/database';
 import React, { useState } from 'react';
 import Header from '@/components/Event/Header';
 import BookIcon from '@/components/Event/BookIcon';

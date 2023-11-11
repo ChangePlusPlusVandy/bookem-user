@@ -31,8 +31,6 @@ const dummyEventData: QueriedVolunteerEventData = {
   phone: '123-456-7890',
   email: 'test_user@bookem.com',
   program: new mongoose.Types.ObjectId(),
-  // name: 'BNFK',
-
   requireApplication: true,
   volunteers: [],
   tags: [],
