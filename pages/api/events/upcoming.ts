@@ -12,13 +12,12 @@ export default async function handler(
   // Get request method
   const { method } = req;
   
-
   const session = await getServerSession(req, res, authOptions);
   
   switch (method) {
     /**
      * @route GET /api/events/upcoming
-     * @desc Get all events in the future
+     * @desc Get all events in the future that the user is signed up for
      * @res QueriedVolunteerEventData[]
      */
     case 'GET':
@@ -26,6 +25,8 @@ export default async function handler(
         // const session = await getSession({ req });
         await dbConnect();
         // Fetch the user by ID to get their events array
+        // session.user._id shouldn't be null because we have the middleware to 
+        // handle unauthenticated users
         const user = await Users.findById(session.user._id);
         if (!user) {
           return res.status(404).json({ message: 'User not found' });
