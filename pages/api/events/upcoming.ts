@@ -11,9 +11,9 @@ export default async function handler(
 ) {
   // Get request method
   const { method } = req;
-  
+
   const session = await getServerSession(req, res, authOptions);
-  
+
   switch (method) {
     /**
      * @route GET /api/events/upcoming
@@ -25,7 +25,7 @@ export default async function handler(
         // const session = await getSession({ req });
         await dbConnect();
         // Fetch the user by ID to get their events array
-        // session.user._id shouldn't be null because we have the middleware to 
+        // session.user._id shouldn't be null because we have the middleware to
         // handle unauthenticated users
         const user = await Users.findById(session.user._id);
         if (!user) {
@@ -35,7 +35,7 @@ export default async function handler(
         // Use the user's events array to filter the VolunteerEvents
         const events = await VolunteerEvents.find({
           _id: { $in: user.events },
-          eventDate: { $gt: new Date() }
+          eventDate: { $gt: new Date() },
         }).sort({ eventDate: 1 });
 
         return res.status(200).json(events);
