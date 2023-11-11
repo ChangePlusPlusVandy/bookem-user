@@ -16,12 +16,13 @@ import {
 import { Media } from '@/lib/media';
 import Footer from '@/components/Event/Footer';
 import { BOOKEM_THEME } from '@/utils/constants';
+import { QueriedVolunteerEventDTO } from 'bookem-shared/src/types/database';
 
 /**
  * Event Detail
  * @param event Data about the event
  */
-const Event = ({ event }: { event: QueriedVolunteerEventData }) => {
+const Event = ({ event }: { event: QueriedVolunteerEventDTO }) => {
   /**
    * True: display About
    * False: display Contact
