@@ -7,6 +7,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import mongoose from 'mongoose';
+import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 
 export default async function handler(
   req: NextApiRequest,
@@ -40,6 +41,7 @@ export default async function handler(
 
         // TODO: remove this after development
         await Tags.find({});
+        await VolunteerPrograms.find({});
 
         // query event and populate fields with mongoose refs
         const event = await VolunteerEvents.findById(id)
