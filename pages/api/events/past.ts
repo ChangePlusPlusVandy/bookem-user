@@ -18,15 +18,11 @@ export default async function handler(
     case 'GET':
       try {
         await dbConnect();
-
-        const { userId } = req.query; // Assuming you're passing a userId to identify the user
-
-        // Fetching the past 5 activities
-        const activities = await VolunteerEvents.find({ userId: userId, eventDate: { $lt: new Date() } })
-                                                .sort({ eventDate: -1 })
-                                                .limit(5);
-
-        res.status(200).json(activities);
+        // Select all events where eventDate > today order by progamDate ascending
+        const events = await VolunteerEvents.find({
+          endDate: { $lt: new Date() },
+        }).sort({ endDate: 1 });
+        return res.status(200).json(events);
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: error });
