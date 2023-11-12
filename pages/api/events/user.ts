@@ -9,6 +9,7 @@ import { getServerSession } from 'next-auth';
 
 // import the models and types we need
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
+import Users from 'bookem-shared/src/models/Users';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 /**
@@ -38,13 +39,19 @@ export default async function handler(
 
         // get all volunteerEvents from collection that match the user's Id
         // sorted in descending order
-        const volunteerEvents = await VolunteerEvents.find({
-          userId: session.user._id,
-          startDate: { $lt: new Date() },
-        }).sort({ startDate: -1 });
+        const user = await Users.findById(session.user._id);
+        if (!user) {
+          return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Use the user's events array to filter the VolunteerEvents
+        const events = await VolunteerEvents.find({
+          _id: { $in: user.events },
+          endDate: { $lt: new Date() },
+        }).sort({ eventDate: 1 });
 
         // return the result
-        res.status(200).json(volunteerEvents);
+        res.status(200).json(events);
       } catch (e) {
         // if there is an error, print and return the error
         console.error('An error has occurred in VolunteerEvents index.ts', e);
