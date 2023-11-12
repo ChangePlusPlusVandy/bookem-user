@@ -49,7 +49,7 @@ export default async function handler(
           .populate('tags')
           .populate('volunteers');
 
-        console.log(event)
+        // console.log(event);
 
         // if event is not found
         if (!event) return res.status(400).json({ message: 'Event not found' });
