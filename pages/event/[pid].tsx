@@ -19,10 +19,7 @@ const EventDetail = () => {
   useEffect(() => {
     if (pid) {
       fetchData('/api/event/' + pid)
-        .then(data => {
-          console.log(data);
-          setEvent(data);
-        })
+        .then(data => setEvent(data))
         .catch(err => setError(err));
     } else setError(new Error('No pid found'));
   }, [pid]);
