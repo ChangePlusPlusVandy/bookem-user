@@ -9,6 +9,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import PopupWindow from '@/components/shared/PopupWindow';
 import WindowFlow from '@/components/shared/WindowFlow';
+import VolunteerSignedEvents from '../Volunteer/VolunteerSignedEvents';
 
 const LogHoursPopupWindowForm = ({
   setShowPopup,
@@ -52,7 +53,7 @@ const LogHoursPopupWindowForm = ({
         components={[
           // Page 1 - Event
           <LogHoursForm key={pages[0]}>
-            TODO: show events volunteer signed up for
+            <VolunteerSignedEvents/>
           </LogHoursForm>,
 
           // Page 2 - Program
@@ -90,7 +91,7 @@ const LogHoursPopupWindowForm = ({
             <FormLabel>Date of visit</FormLabel>
             <FormInput
               {...register('DateOfVisit')}
-              type="text"
+              type="date"
               placeholder="MM/DD/YYYY"
               pattern="^((0|1)\d{1})\/((0|1|2)\d{1})\/((19|20)\d{2})"
               title="Input must be in MM/DD/YYYY format"

@@ -40,6 +40,7 @@ export default async function handler(
         // get all volunteerEvents from collection that match the user's Id
         // sorted in descending order
         const user = await Users.findById(session.user._id);
+        
         if (!user) {
           return res.status(404).json({ message: 'User not found' });
         }
