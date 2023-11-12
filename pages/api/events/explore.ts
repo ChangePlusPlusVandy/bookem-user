@@ -19,10 +19,10 @@ export default async function handler(
       try {
         await dbConnect();
 
-        // Select all events where eventDate > today order by progamDate ascending
+        // Select all events where startDate > today order by progamDate ascending
         const events = await VolunteerEvents.find({
-          eventDate: { $gt: new Date() },
-        }).sort({ eventDate: 1 });
+          startDate: { $gt: new Date() },
+        }).sort({ startDate: 1 });
 
         return res.status(200).json(events);
       } catch (error) {

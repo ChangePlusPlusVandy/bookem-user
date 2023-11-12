@@ -35,8 +35,8 @@ export default async function handler(
         // Use the user's events array to filter the VolunteerEvents
         const events = await VolunteerEvents.find({
           _id: { $in: user.events },
-          eventDate: { $gt: new Date() },
-        }).sort({ eventDate: 1 });
+          startDate: { $gt: new Date() },
+        }).sort({ startDate: 1 });
 
         return res.status(200).json(events);
       } catch (error) {
