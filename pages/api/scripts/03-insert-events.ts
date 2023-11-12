@@ -60,6 +60,8 @@ export default async function handler(
         // Update programs so that programs contain their corresponding events
         await fillProgramEvents(events);
 
+        // TODO: Fill the tags with events as well
+
         res.status(200).json({
           success: true,
           message:
