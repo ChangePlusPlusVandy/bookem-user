@@ -99,6 +99,18 @@ const PastActivity = ({ userData }: any) => {
               {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
               <Suspense fallback={<Header>Please Wait...</Header>}>
                 {/* TODO: integrate with backend */}
+                <Container>
+                  {events &&
+                    events.map(event => (
+                      // Iterate through events to and pass data to EventCard
+                      <EventCard
+                        key={event._id.toString()}
+                        eventData={event}
+                        size={'large'}
+                        href={'/event/' + event._id}
+                      />
+                    ))}
+                </Container>
               </Suspense>
             </Events>
           </Container>
