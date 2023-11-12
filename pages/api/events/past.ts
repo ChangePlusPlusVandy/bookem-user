@@ -22,7 +22,7 @@ export default async function handler(
         const events = await VolunteerEvents.find({
           endDate: { $lt: new Date() },
         }).sort({ endDate: 1 });
-        return res.status(200).json(events);
+        return res.status(200).json(events.slice(0, 5));
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: error });

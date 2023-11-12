@@ -28,7 +28,7 @@ const PastActivity = ({ userData }: any) => {
     fetch('/api/events/past')
       .then(response => response.json())
       .then(data => {
-        setEvents(data.slice(0, 5)); // Set the activities in state
+        setEvents(data); // Set the activities in state
       })
       .catch(error => {
         console.error('Error fetching past activities:', error);
