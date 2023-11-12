@@ -30,7 +30,7 @@ const VolunteerHistoryPage = () => {
   return (
     <>
       <HeaderContainer>
-        <IconLink href="/volunteer">
+        <IconLink href="#" onClick={() => history.back()}>
           <Image
             src="/event/arrow-left.png"
             alt="Go Back"
