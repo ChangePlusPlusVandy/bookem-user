@@ -100,7 +100,10 @@ export const generateEvent = (
   // get the start and end dates
   let startDate, endDate;
   if (chosenEvent.isMultipleDays) {
-    startDate = faker.date.future(1);
+    startDate = faker.date.between(
+      '2022-01-01T00:00:00.000Z',
+      '2025-01-01T00:00:00.000Z'
+    );
     endDate = faker.date.future(1, startDate);
   } else {
     startDate = new Date();
@@ -122,7 +125,7 @@ export const generateEvent = (
     phone: generatePhone(),
     email: faker.internet.email(),
     program: programIds[0] || null,
-    requireApplication: chosenEvent.requireApplication,
+    requireApplication: false,
     tags: tagIds,
     volunteers: [],
   };
