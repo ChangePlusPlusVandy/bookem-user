@@ -41,7 +41,7 @@ export const UserIcon = () => {
           <Image src="/bookem-logo.png" width="73" height="73" alt="" />
         </Media>
       </ImageContainer>
-      <Name>{userData.name}</Name>
+      <Name>{userData !== null &&userData.name}</Name>
     </UserIconContainer>
   );
 };
