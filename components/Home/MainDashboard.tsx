@@ -31,6 +31,15 @@ const MainDashboard = ({ userData }: any) => {
   // state for showing mobile past activities
   const [onMobilePastActivity, setOnMobilePastActivity] = useState(false);
 
+  const formatDate = ({ userData }: any) => {
+    const dateObject = new Date(userData.createdAt);
+    const year = dateObject.getFullYear();
+    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(dateObject.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+  const formattedDate = formatDate({ userData });
+
   return (
     <>
       {onMobilePastActivity ? (
@@ -84,18 +93,13 @@ const MainDashboard = ({ userData }: any) => {
 
               <StatsFlex>
                 <FlexChild>
-                  <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-                  <StatsDescription>hours volunteered</StatsDescription>
+                  <StatsNumber>{userData.events.length}</StatsNumber>
+                  <StatsDescription>Events volunteered</StatsDescription>
                 </FlexChild>
 
                 <FlexChild>
-                  <StatsNumber>{userData.booksShared}</StatsNumber>
-                  <StatsDescription>books shared</StatsDescription>
-                </FlexChild>
-
-                <FlexChild>
-                  <StatsNumber>{userData.dollarsDonated}</StatsNumber>
-                  <StatsDescription>dollars donated</StatsDescription>
+                  <StatsNumber>{formattedDate}</StatsNumber>
+                  <StatsDescription>Date joined</StatsDescription>
                 </FlexChild>
               </StatsFlex>
             </div>

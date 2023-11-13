@@ -1,17 +1,30 @@
 import MainDashboard from '@/components/Home/MainDashboard';
 import React from 'react';
-
-const userData = {
-  name: 'Carol He',
-  hoursVolunteered: 10,
-  booksShared: 5,
-  dollarsDonated: 100,
-};
+import { fetchData } from '@/utils/utils';
+import { useEffect, useState } from 'react';
 
 const HomePage = () => {
+  const [userData, setUserData] = useState(null);
+  const [error, setError] = useState<Error>();
+
+  useEffect(() => {
+      try {
+        fetchData('/api/users/')
+        .then(data => {console.log('Fetched data:', data); 
+        setUserData(data)})
+        .catch(err => setError(err));
+
+      } catch (error) {
+        setError(new Error('Error fetching user data'));
+        console.error('Error fetching user data:', error);
+      }
+  }, []);
+
   return (
     <>
-      <MainDashboard userData={userData} />
+    {userData === null && <p>Loading...</p>}
+    {userData !== null && <MainDashboard userData={userData} />}
+      {/* <MainDashboard userData={userData} /> */}
     </>
   );
 };
