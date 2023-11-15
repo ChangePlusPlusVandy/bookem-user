@@ -8,27 +8,10 @@ import {
   UserIconContainer,
 } from '@/styles/components/Sidebar/userIcon.styles';
 import { Media } from '@/lib/media';
-import { QueriedUserData } from 'bookem-shared/src/types/database';
+import { useSession } from 'next-auth/react';
 
 export const UserIcon = () => {
-  const [userData, setUserData] = useState<QueriedUserData | null>(null);
-  const [error, setError] = useState<Error>();
-
-  useEffect(() => {
-    try {
-      fetchData('/api/users/')
-        .then(data => {
-          if (data != null) {
-            console.log('Fetched data:', data);
-            setUserData(data);
-          }
-        })
-        .catch(err => setError(err));
-    } catch (error) {
-      setError(new Error('Error fetching user data'));
-      console.error('Error fetching user data:', error);
-    }
-  }, []);
+  const { data: session } = useSession();
 
   return (
     <UserIconContainer>
@@ -42,7 +25,7 @@ export const UserIcon = () => {
           <Image src="/bookem-logo.png" width="73" height="73" alt="" />
         </Media>
       </ImageContainer>
-      <Name>{userData !== null && userData.name}</Name>
+      <Name>{session?.user && session.user.name}</Name>
     </UserIconContainer>
   );
 };

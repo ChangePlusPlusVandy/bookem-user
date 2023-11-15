@@ -11,7 +11,6 @@ const HomePage = () => {
     try {
       fetchData('/api/users/')
         .then(data => {
-          console.log('Fetched data:', data);
           setUserData(data);
         })
         .catch(err => setError(err));
