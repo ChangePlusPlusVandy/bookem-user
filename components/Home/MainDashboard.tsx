@@ -33,7 +33,6 @@ import { QueriedUserData } from 'bookem-shared/src/types/database';
 const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
   // state for showing mobile past activities
   const [onMobilePastActivity, setOnMobilePastActivity] = useState(false);
-  const formattedDate = formatDate(new Date(userData?.createdAt as Date));
 
   const content = (
     <div>
@@ -103,7 +102,9 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
                 </FlexChild>
 
                 <FlexChild>
-                  <StatsNumber>{formattedDate}</StatsNumber>
+                  <StatsNumber>
+                    {formatDate(new Date(userData?.createdAt as Date))}
+                  </StatsNumber>
                   <StatsDescription>Date joined</StatsDescription>
                 </FlexChild>
               </StatsFlex>
@@ -142,7 +143,7 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
 
           {/* Desktop PastActivity is shown on the right side of main dashboard*/}
           <Media greaterThanOrEqual="sm">
-            <PastActivity />
+            <PastActivity userData={userData} />
           </Media>
         </DashboardLayout>
       )}
