@@ -98,7 +98,7 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
               <StatsFlex>
                 <FlexChild>
                   <StatsNumber>{userData?.events.length}</StatsNumber>
-                  <StatsDescription>Events volunteered</StatsDescription>
+                  <StatsDescription>Events attended</StatsDescription>
                 </FlexChild>
 
                 <FlexChild>
