@@ -8,9 +8,10 @@ import {
   UserIconContainer,
 } from '@/styles/components/Sidebar/userIcon.styles';
 import { Media } from '@/lib/media';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
 
 export const UserIcon = () => {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState<QueriedUserData | null>(null);
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
