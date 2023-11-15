@@ -3,6 +3,7 @@ import { Media } from '@/lib/media';
 import Image from 'next/image';
 import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import PastActivity from '@/components/Home/PastActivity';
+import { Popover } from 'antd';
 import {
   Container,
   DashboardLayout,
@@ -40,6 +41,12 @@ const MainDashboard = ({ userData }: any) => {
   };
   const formattedDate = formatDate({ userData });
 
+  const content = (
+    <div>
+      <p>This is the main dashboard for book'em user</p>
+    </div>
+  );
+
   return (
     <>
       {onMobilePastActivity ? (
@@ -54,14 +61,16 @@ const MainDashboard = ({ userData }: any) => {
             <Media lessThan="sm">
               <Greeting>Hello, {userData.name}</Greeting>
 
-              <InfoIcon>
-                <Image
-                  src="/home/info.png"
-                  alt="Info icon"
-                  width="19"
-                  height="19"
-                />
-              </InfoIcon>
+              <Popover content={content} title="Info">
+                <InfoIcon>
+                  <Image
+                    src="/home/info.png"
+                    alt="Info icon"
+                    width="19"
+                    height="19"
+                  />
+                </InfoIcon>
+              </Popover>
             </Media>
 
             {/* Desktop Greeting and InfoIcon */}
@@ -69,15 +78,16 @@ const MainDashboard = ({ userData }: any) => {
               <Greeting>
                 Hello {userData.name}, thanks for checking in!
               </Greeting>
-
-              <InfoIcon>
-                <Image
-                  src="/home/info.png"
-                  alt="Info icon"
-                  width="44"
-                  height="44"
-                />
-              </InfoIcon>
+              <Popover content={content} title="Info">
+                <InfoIcon>
+                  <Image
+                    src="/home/info.png"
+                    alt="Info icon"
+                    width="35"
+                    height="35"
+                  />
+                </InfoIcon>
+              </Popover>
             </Media>
 
             <div>
