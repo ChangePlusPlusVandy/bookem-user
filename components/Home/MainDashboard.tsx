@@ -43,7 +43,7 @@ const MainDashboard = ({ userData }: any) => {
 
   const content = (
     <div>
-      <p>This is the main dashboard for book'em user</p>
+      <p>This is the main dashboard for book&apos;em user</p>
     </div>
   );
 

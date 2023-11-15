@@ -14,19 +14,19 @@ export const UserIcon = () => {
   const [error, setError] = useState<Error>();
 
   useEffect(() => {
-      try {
-        fetchData('/api/users/')
+    try {
+      fetchData('/api/users/')
         .then(data => {
           if (data != null) {
-            console.log('Fetched data:', data); 
-            setUserData(data)}
+            console.log('Fetched data:', data);
+            setUserData(data);
+          }
         })
         .catch(err => setError(err));
-
-      } catch (error) {
-        setError(new Error('Error fetching user data'));
-        console.error('Error fetching user data:', error);
-      }
+    } catch (error) {
+      setError(new Error('Error fetching user data'));
+      console.error('Error fetching user data:', error);
+    }
   }, []);
 
   return (
@@ -41,7 +41,7 @@ export const UserIcon = () => {
           <Image src="/bookem-logo.png" width="73" height="73" alt="" />
         </Media>
       </ImageContainer>
-      <Name>{userData !== null &&userData.name}</Name>
+      <Name>{userData !== null && userData.name}</Name>
     </UserIconContainer>
   );
 };
