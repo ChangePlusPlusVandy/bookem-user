@@ -151,6 +151,7 @@ export const fillProgramEvents = async (events: any) => {
 
 export const generateTag = (tag: any): TagData => {
   return {
+    events: [],
     tagName: tag.tagName,
   };
 };

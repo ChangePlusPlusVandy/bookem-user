@@ -2,7 +2,10 @@ import React, { Suspense, useState, useEffect } from 'react';
 import mongoose from 'mongoose';
 import { useRouter } from 'next/router';
 import { Media } from '@/lib/media';
-import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
+import {
+  QueriedUserData,
+  QueriedVolunteerEventData,
+} from 'bookem-shared/src/types/database';
 import Image from 'next/image';
 const EventCard = React.lazy(() => import('@/components/shared/EventCard')); // implement lazy loading
 import MainDashboard from '@/components/Home/MainDashboard';
@@ -16,7 +19,7 @@ import {
 } from '@/styles/components/pastActivity.styles';
 
 // vertical list of sample PastEvents
-const PastActivity = ({ userData }: any) => {
+const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
   // state for hiding/showing mobile Past Activities
   const [onMobileHide, setOnMobileHide] = useState(false);
   const [events, setEvents] = useState<QueriedVolunteerEventData[]>();

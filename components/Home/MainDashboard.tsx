@@ -3,6 +3,7 @@ import { Media } from '@/lib/media';
 import Image from 'next/image';
 import UpcomingEvents from '@/components/Home/UpcomingEvents';
 import PastActivity from '@/components/Home/PastActivity';
+import { Popover } from 'antd';
 import {
   Container,
   DashboardLayout,
@@ -16,6 +17,8 @@ import {
   MobilePastActivityContainer,
   MobileHeader,
 } from '@/styles/dashboard.styles';
+import { formatDate } from '@/utils/utils';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
 
 /**
  * format main dashboard on home page
@@ -27,48 +30,58 @@ import {
  *   dollarsDonated: number;
  * }
  */
-const MainDashboard = ({ userData }: any) => {
+const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
   // state for showing mobile past activities
   const [onMobilePastActivity, setOnMobilePastActivity] = useState(false);
 
+  const content = (
+    <div>
+      <p>This is the main dashboard for book&apos;em user</p>
+    </div>
+  );
+
   return (
     <>
-      {onMobilePastActivity ? (
+      {onMobilePastActivity && (
         <>
           {/* Display PastActivity when click on arrow button */}
           <PastActivity userData={userData} />
         </>
-      ) : (
+      )}
+      {!onMobilePastActivity && (
         <DashboardLayout>
           <Container>
             {/* Mobile Greeting and InfoIcon*/}
             <Media lessThan="sm">
-              <Greeting>Hello, {userData.name}</Greeting>
+              <Greeting>Hello, {userData?.name}</Greeting>
 
-              <InfoIcon>
-                <Image
-                  src="/home/info.png"
-                  alt="Info icon"
-                  width="19"
-                  height="19"
-                />
-              </InfoIcon>
+              <Popover content={content} title="Info">
+                <InfoIcon>
+                  <Image
+                    src="/home/info.png"
+                    alt="Info icon"
+                    width="19"
+                    height="19"
+                  />
+                </InfoIcon>
+              </Popover>
             </Media>
 
             {/* Desktop Greeting and InfoIcon */}
             <Media greaterThanOrEqual="sm">
               <Greeting>
-                Hello {userData.name}, thanks for checking in!
+                Hello {userData?.name}, thanks for checking in!
               </Greeting>
-
-              <InfoIcon>
-                <Image
-                  src="/home/info.png"
-                  alt="Info icon"
-                  width="44"
-                  height="44"
-                />
-              </InfoIcon>
+              <Popover content={content} title="Info">
+                <InfoIcon>
+                  <Image
+                    src="/home/info.png"
+                    alt="Info icon"
+                    width="35"
+                    height="35"
+                  />
+                </InfoIcon>
+              </Popover>
             </Media>
 
             <div>
@@ -84,18 +97,15 @@ const MainDashboard = ({ userData }: any) => {
 
               <StatsFlex>
                 <FlexChild>
-                  <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-                  <StatsDescription>hours volunteered</StatsDescription>
+                  <StatsNumber>{userData?.events.length}</StatsNumber>
+                  <StatsDescription>Events attended</StatsDescription>
                 </FlexChild>
 
                 <FlexChild>
-                  <StatsNumber>{userData.booksShared}</StatsNumber>
-                  <StatsDescription>books shared</StatsDescription>
-                </FlexChild>
-
-                <FlexChild>
-                  <StatsNumber>{userData.dollarsDonated}</StatsNumber>
-                  <StatsDescription>dollars donated</StatsDescription>
+                  <StatsNumber>
+                    {formatDate(new Date(userData?.createdAt as Date))}
+                  </StatsNumber>
+                  <StatsDescription>Date joined</StatsDescription>
                 </FlexChild>
               </StatsFlex>
             </div>
@@ -133,7 +143,7 @@ const MainDashboard = ({ userData }: any) => {
 
           {/* Desktop PastActivity is shown on the right side of main dashboard*/}
           <Media greaterThanOrEqual="sm">
-            <PastActivity />
+            <PastActivity userData={userData} />
           </Media>
         </DashboardLayout>
       )}

@@ -1,17 +1,19 @@
 import MainDashboard from '@/components/Home/MainDashboard';
 import React from 'react';
-
-const userData = {
-  name: 'Carol He',
-  hoursVolunteered: 10,
-  booksShared: 5,
-  dollarsDonated: 100,
-};
+import { fetchData } from '@/utils/utils';
+import { useEffect, useState } from 'react';
+import { useUserData } from '@/lib/useUserData';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
 
 const HomePage = () => {
+  const [error, setError] = useState<Error>();
+  const userData = useUserData();
+
   return (
     <>
-      <MainDashboard userData={userData} />
+      {userData === null && <p>Loading...</p>}
+      {userData !== null && <MainDashboard userData={userData} />}
+      {/* <MainDashboard userData={userData} /> */}
     </>
   );
 };
