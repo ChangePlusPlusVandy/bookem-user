@@ -12,6 +12,7 @@ import {
   EVENT_CONTACT_ICON_HEIGHT,
 } from '@/utils/constants';
 import { Media } from '@/lib/media';
+import Link from 'next/link';
 
 /**
  * Contain Contact info
@@ -42,7 +43,9 @@ const Contact = ({ phone, email }: { phone: string; email: string }) => (
           width={EVENT_CONTACT_ICON_WIDTH}
           height={EVENT_CONTACT_ICON_HEIGHT}
         />
-        <IconText>{email}</IconText>
+        <IconText>
+          <Link href={'mailto:' + email}>{email}</Link>
+        </IconText>
       </IconBox>
     </BigIconBox>
   </ContactBox>

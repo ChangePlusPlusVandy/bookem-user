@@ -3,7 +3,11 @@ import { hash } from 'bcrypt';
 import {
   AdminStatus,
   QueriedTagData,
+  QueriedVolunteerEventData,
+  QueriedVolunteerProgramData,
+  TagData,
   VolunteerEventData,
+  VolunteerProgramData,
 } from 'bookem-shared/src/types/database';
 import { AdminData, UserData } from 'bookem-shared/src/types/database';
 import {
@@ -13,6 +17,8 @@ import {
   INSERTED_TAGS,
   SOURCES,
 } from '@/pages/api/scripts/constants';
+import Tags from 'bookem-shared/src/models/Tags';
+import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 
 const generatePhone = (): string => {
   const phone = `(${faker.random.numeric(3)}) ${faker.random.numeric(
@@ -52,7 +58,8 @@ export const generateUser = async ({
     expirationDate: new Date(),
   },
   events: [],
-  tags: [],
+  programs: [],
+  // tags: [],
 });
 
 export const generateAdmin = async (): Promise<AdminData> => ({
@@ -65,7 +72,11 @@ export const generateAdmin = async (): Promise<AdminData> => ({
 });
 
 // ------------------ insert-events.ts ------------------
-export const generateEvent = (i: number): VolunteerEventData => {
+export const generateEvent = (
+  i: number,
+  tags: QueriedTagData[],
+  programs: QueriedVolunteerProgramData[]
+): VolunteerEventData => {
   // get index of event
   const indexOfEvent = i % EVENTS.length;
 
@@ -74,15 +85,25 @@ export const generateEvent = (i: number): VolunteerEventData => {
 
   // get an array containing just the tag id of this event
   const tagIds = (
-    INSERTED_TAGS.filter(tag =>
-      chosenEvent.tag.includes(tag.tagName)
+    tags.filter(
+      tag => chosenEvent.tags && chosenEvent.tags.includes(tag.tagName)
     ) as QueriedTagData[]
   ).map(tag => tag._id);
+
+  // get an array containing just the program id of this event
+  const programIds = (
+    programs.filter(
+      program => chosenEvent.program && chosenEvent.program === program.name
+    ) as QueriedVolunteerProgramData[]
+  ).map(program => program._id);
 
   // get the start and end dates
   let startDate, endDate;
   if (chosenEvent.isMultipleDays) {
-    startDate = faker.date.future(1);
+    startDate = faker.date.between(
+      '2022-01-01T00:00:00.000Z',
+      '2025-01-01T00:00:00.000Z'
+    );
     endDate = faker.date.future(1, startDate);
   } else {
     startDate = new Date();
@@ -103,9 +124,34 @@ export const generateEvent = (i: number): VolunteerEventData => {
     },
     phone: generatePhone(),
     email: faker.internet.email(),
-    program: tagIds[0] || null,
-    requireApplication: chosenEvent.requireApplication,
+    program: programIds[0] || null,
+    requireApplication: false,
     tags: tagIds,
     volunteers: [],
+  };
+};
+
+export const generateProgram = (program: any): VolunteerProgramData => {
+  return {
+    name: program.name,
+    events: [],
+    volunteers: [],
+  };
+};
+
+export const fillProgramEvents = async (events: any) => {
+  for (const event of events) {
+    const program = await VolunteerPrograms.findById(event.program);
+    if (program) {
+      program.events.unshift(event._id);
+      await program.save();
+    }
+  }
+};
+
+export const generateTag = (tag: any): TagData => {
+  return {
+    events: [],
+    tagName: tag.tagName,
   };
 };

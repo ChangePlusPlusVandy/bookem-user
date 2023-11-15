@@ -7,6 +7,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import mongoose from 'mongoose';
+import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 
 export default async function handler(
   req: NextApiRequest,
@@ -40,6 +41,7 @@ export default async function handler(
 
         // TODO: remove this after development
         await Tags.find({});
+        await VolunteerPrograms.find({});
 
         // query event and populate fields with mongoose refs
         const event = await VolunteerEvents.findById(id)
@@ -88,11 +90,6 @@ export default async function handler(
             // TODO: Speed this up!
             event.volunteers.unshift(user._id);
             user.events.unshift(event._id);
-            if (event.program != null) {
-              if (!user.tags.includes(event.program.tagName)) {
-                user.tags.unshift(event.program.tagName);
-              }
-            }
           } else if (userIndex === -1 || eventIndex === -1) {
             throw new Error('Inconsistency between collections!');
           } else {
@@ -102,10 +99,6 @@ export default async function handler(
             // TODO: Speed this up!
             event.volunteers.splice(userIndex, 1);
             user.events.splice(eventIndex, 1);
-            // TODO: Remove the tag for user only if this tag has no relationship
-            // with other events this user did
-            // const programIndex = user.tags.indexOf(event.program);
-            // user.tags.splice(programIndex, 1);
           }
 
           // Resave both document

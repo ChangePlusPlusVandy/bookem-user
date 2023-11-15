@@ -22,6 +22,7 @@ import { fetchData } from '@/utils/utils';
 import { Media } from '@/lib/media';
 import LongEventCard from '../shared/LongEventCard';
 import Link from 'next/link';
+import { start } from 'repl';
 
 const FutureVolunteerEvents = () => {
   // Holds text in input box
@@ -68,18 +69,24 @@ const FutureVolunteerEvents = () => {
   };
 
   // Sorts events in order of most to least recent
-  const sortMostRecent = () => {
+  const sortLeastRecent = () => {
     if (!events) return;
     const copy = [...events];
-    copy.sort((a, b) => a.startDate.valueOf() - b.startDate.valueOf());
+    copy.sort(
+      (a, b) =>
+        new Date(b.startDate).valueOf() - new Date(a.startDate).valueOf()
+    );
     setEvents(copy);
   };
 
   // Sorts events in order of least to most recent
-  const sortLeastRecent = () => {
+  const sortMostRecent = () => {
     if (!events) return;
     const copy = [...events];
-    copy.sort((b, a) => a.startDate.valueOf() - b.startDate.valueOf());
+    copy.sort(
+      (a, b) =>
+        new Date(a.startDate).valueOf() - new Date(b.startDate).valueOf()
+    );
     setEvents(copy);
   };
 
@@ -138,7 +145,9 @@ const FutureVolunteerEvents = () => {
             {/* Container for events that show up based on query input */}
             <ImagesWrapper>
               {events
-                .filter(event => event.name.includes(query))
+                .filter(event =>
+                  event.name.toLowerCase().includes(query.toLowerCase())
+                )
                 .map(event => (
                   <EventCard
                     key={event._id.toString()}
