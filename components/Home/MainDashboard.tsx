@@ -17,6 +17,8 @@ import {
   MobilePastActivityContainer,
   MobileHeader,
 } from '@/styles/dashboard.styles';
+import { formatDate } from '@/utils/utils';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
 
 /**
  * format main dashboard on home page
@@ -28,18 +30,10 @@ import {
  *   dollarsDonated: number;
  * }
  */
-const MainDashboard = ({ userData }: any) => {
+const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
   // state for showing mobile past activities
   const [onMobilePastActivity, setOnMobilePastActivity] = useState(false);
-
-  const formatDate = ({ userData }: any) => {
-    const dateObject = new Date(userData.createdAt);
-    const year = dateObject.getFullYear();
-    const month = String(dateObject.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
-    const day = String(dateObject.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  };
-  const formattedDate = formatDate({ userData });
+  const formattedDate = formatDate(new Date(userData?.createdAt as Date));
 
   const content = (
     <div>
@@ -49,17 +43,18 @@ const MainDashboard = ({ userData }: any) => {
 
   return (
     <>
-      {onMobilePastActivity ? (
+      {onMobilePastActivity && (
         <>
           {/* Display PastActivity when click on arrow button */}
           <PastActivity userData={userData} />
         </>
-      ) : (
+      )}
+      {!onMobilePastActivity && (
         <DashboardLayout>
           <Container>
             {/* Mobile Greeting and InfoIcon*/}
             <Media lessThan="sm">
-              <Greeting>Hello, {userData.name}</Greeting>
+              <Greeting>Hello, {userData?.name}</Greeting>
 
               <Popover content={content} title="Info">
                 <InfoIcon>
@@ -76,7 +71,7 @@ const MainDashboard = ({ userData }: any) => {
             {/* Desktop Greeting and InfoIcon */}
             <Media greaterThanOrEqual="sm">
               <Greeting>
-                Hello {userData.name}, thanks for checking in!
+                Hello {userData?.name}, thanks for checking in!
               </Greeting>
               <Popover content={content} title="Info">
                 <InfoIcon>
@@ -103,7 +98,7 @@ const MainDashboard = ({ userData }: any) => {
 
               <StatsFlex>
                 <FlexChild>
-                  <StatsNumber>{userData.events.length}</StatsNumber>
+                  <StatsNumber>{userData?.events.length}</StatsNumber>
                   <StatsDescription>Events volunteered</StatsDescription>
                 </FlexChild>
 
