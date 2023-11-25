@@ -19,8 +19,14 @@ import {
 import LogHoursPopupWindowForm from '@/components/Forms/LogHoursPopupWindowForm';
 import { Media } from '@/lib/media';
 import { BOOKEM_THEME } from '@/utils/constants';
+import { QueriedUserData } from 'bookem-shared/src/types/database';
+import { formatDate } from '@/utils/utils';
 
-const VolunteerDashboard = ({ userData }: any) => {
+const VolunteerDashboard = ({
+  userData,
+}: {
+  userData: QueriedUserData | null;
+}) => {
   // set pop up window to false
   const [showPopup, setShowPopup] = useState(false);
 
@@ -87,18 +93,15 @@ const VolunteerDashboard = ({ userData }: any) => {
         <VolunteerStatsContainer>
           <StatsFlex>
             <FlexChild>
-              <StatsNumber>{userData.hoursVolunteered}</StatsNumber>
-              <StatsDescription>Hours volunteered</StatsDescription>
+              <StatsNumber>{userData?.events.length}</StatsNumber>
+              <StatsDescription>Events attended</StatsDescription>
             </FlexChild>
 
             <FlexChild>
-              <StatsNumber>{userData.booksDistributed}</StatsNumber>
+              <StatsNumber>
+                {formatDate(new Date(userData?.createdAt as Date))}
+              </StatsNumber>
               <StatsDescription>Books distributed</StatsDescription>
-            </FlexChild>
-
-            <FlexChild>
-              <StatsNumber>{userData.eventsAssisted}</StatsNumber>
-              <StatsDescription>Events assisted</StatsDescription>
             </FlexChild>
           </StatsFlex>
         </VolunteerStatsContainer>

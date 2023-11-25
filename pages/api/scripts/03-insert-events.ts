@@ -2,20 +2,13 @@ import dbConnect from '@/lib/dbConnect';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 import { NextApiRequest, NextApiResponse } from 'next';
 import {
-  fillProgramEvents,
+  fillTagEvents,
   generateEvent,
-  generateProgram,
-  generateTag,
 } from '@/pages/api/scripts/helper-functions';
-import {
-  INSERTED_PROGRAMS,
-  INSERTED_TAGS,
-} from '@/pages/api/scripts/constants';
 import Tags from 'bookem-shared/src/models/Tags';
 import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 import {
   QueriedTagData,
-  QueriedVolunteerEventData,
   QueriedVolunteerProgramData,
 } from 'bookem-shared/src/types/database';
 
@@ -56,9 +49,11 @@ export default async function handler(
         await bulkEvents.execute();
 
         // Query them back to update program
-        const events = await VolunteerEvents.find({ program: { $ne: null } });
+        const events = await VolunteerEvents.find({});
         // Update programs so that programs contain their corresponding events
-        await fillProgramEvents(events);
+        // await fillProgramEvents(events);
+
+        await fillTagEvents(events);
 
         res.status(200).json({
           success: true,
