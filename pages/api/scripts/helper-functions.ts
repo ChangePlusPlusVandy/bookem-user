@@ -3,7 +3,6 @@ import { hash } from 'bcrypt';
 import {
   AdminStatus,
   QueriedTagData,
-  QueriedVolunteerEventData,
   QueriedVolunteerProgramData,
   TagData,
   VolunteerEventData,
@@ -14,11 +13,9 @@ import {
   ETHNICITY,
   EVENTS,
   GENDERS,
-  INSERTED_TAGS,
   SOURCES,
 } from '@/pages/api/scripts/constants';
 import Tags from 'bookem-shared/src/models/Tags';
-import VolunteerPrograms from 'bookem-shared/src/models/VolunteerPrograms';
 
 const generatePhone = (): string => {
   const phone = `(${faker.random.numeric(3)}) ${faker.random.numeric(
@@ -58,8 +55,6 @@ export const generateUser = async ({
     expirationDate: new Date(),
   },
   events: [],
-  programs: [],
-  // tags: [],
 });
 
 export const generateAdmin = async (): Promise<AdminData> => ({
@@ -135,16 +130,18 @@ export const generateProgram = (program: any): VolunteerProgramData => {
   return {
     name: program.name,
     events: [],
-    volunteers: [],
   };
 };
 
-export const fillProgramEvents = async (events: any) => {
+// Fill tag.events field with events
+export const fillTagEvents = async (events: any) => {
   for (const event of events) {
-    const program = await VolunteerPrograms.findById(event.program);
-    if (program) {
-      program.events.unshift(event._id);
-      await program.save();
+    for (const tagId of event.tags) {
+      const tag = await Tags.findById(tagId);
+      if (tag.events) {
+        tag.events.unshift(event._id);
+      }
+      await tag.save();
     }
   }
 };

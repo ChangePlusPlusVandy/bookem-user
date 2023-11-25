@@ -1,9 +1,6 @@
 import dbConnect from '@/lib/dbConnect';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
-import Users from 'bookem-shared/src/models/Users';
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getServerSession } from 'next-auth';
-import { authOptions } from '@/pages/api/auth/[...nextauth]';
 
 export default async function handler(
   req: NextApiRequest,
@@ -12,29 +9,18 @@ export default async function handler(
   // Get request method
   const { method } = req;
 
-  const session = await getServerSession(req, res, authOptions);
-
   switch (method) {
     /**
-     * @route GET /api/events/upcoming
-     * @desc Get all events in the future that the user is signed up for
+     * @route GET /api/events/explore
+     * @desc Get all future events
      * @res QueriedVolunteerEventData[]
      */
     case 'GET':
       try {
-        // const session = await getSession({ req });
         await dbConnect();
-        // Fetch the user by ID to get their events array
-        // session.user._id shouldn't be null because we have the middleware to
-        // handle unauthenticated users
-        const user = await Users.findById(session.user._id);
-        if (!user) {
-          return res.status(404).json({ message: 'User not found' });
-        }
 
-        // Use the user's events array to filter the VolunteerEvents
+        // Select all events where startDate > today order by progamDate ascending
         const events = await VolunteerEvents.find({
-          _id: { $in: user.events },
           startDate: { $gt: new Date() },
         }).sort({ startDate: 1 });
 
