@@ -94,14 +94,14 @@ const VolunteerDashboard = ({
           <StatsFlex>
             <FlexChild>
               <StatsNumber>{userData?.events.length}</StatsNumber>
-              <StatsDescription>Events attended</StatsDescription>
+              <StatsDescription>Events signed up</StatsDescription>
             </FlexChild>
 
             <FlexChild>
               <StatsNumber>
                 {formatDate(new Date(userData?.createdAt as Date))}
               </StatsNumber>
-              <StatsDescription>Books distributed</StatsDescription>
+              <StatsDescription>Date joined</StatsDescription>
             </FlexChild>
           </StatsFlex>
         </VolunteerStatsContainer>

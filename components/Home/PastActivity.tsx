@@ -2,6 +2,7 @@ import React, { Suspense, useState, useEffect } from 'react';
 import mongoose from 'mongoose';
 import { useRouter } from 'next/router';
 import { Media } from '@/lib/media';
+import { fetchData } from '@/utils/utils';
 import {
   QueriedUserData,
   QueriedVolunteerEventData,
@@ -27,14 +28,12 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
   const router = useRouter();
 
   useEffect(() => {
-    // Assuming your API endpoint for past activities is '/api/pastActivities'
-    fetch('/api/events/past')
-      .then(response => response.json())
-      .then(data => {
-        setEvents(data); // Set the activities in state
-      })
+    // Use fetchData helper function instead of direct fetch
+    fetchData('/api/events/past')
+      .then(data => setEvents(data)) // Set the activities in state
       .catch(error => {
         console.error('Error fetching past activities:', error);
+        setError(error); // Set the error in state
       });
   }, []);
 
