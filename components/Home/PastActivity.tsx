@@ -37,11 +37,6 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
       });
   }, []);
 
-  const showMoreHandler = () => {
-    // Navigate to the volunteerHistory page
-    router.push('/volunteerHistory'); // Replace with your actual path to the volunteerHistory page
-  };
-
   return (
     <>
       {/* Desktop */}
@@ -68,7 +63,9 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
               </Container>
             </Suspense>
           </Events>
-          <button onClick={showMoreHandler}>Show More</button>
+          <button onClick={() => router.push('/volunteerHistory')}>
+            Show More
+          </button>
         </Container>
       </Media>
 
