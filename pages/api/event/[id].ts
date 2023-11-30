@@ -88,6 +88,8 @@ export default async function handler(
         await mongoSession.withTransaction(async () => {
           if (userIndex === -1 && eventIndex === -1) {
             // Register to the event
+
+            // Check whether event is filled.
             if (event.maxSpot <= event.volunteers.length) {
               return res
                 .status(500)
