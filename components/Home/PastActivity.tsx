@@ -29,7 +29,7 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
 
   useEffect(() => {
     // Use fetchData helper function instead of direct fetch
-    fetchData('/api/events/past')
+    fetchData('/api/events/past-five')
       .then(data => setEvents(data)) // Set the activities in state
       .catch(error => {
         console.error('Error fetching past activities:', error);
