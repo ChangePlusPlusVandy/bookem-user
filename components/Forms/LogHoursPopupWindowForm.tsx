@@ -5,11 +5,12 @@ import {
   LargeFormInput,
   LogHoursForm,
 } from '@/styles/components/Forms/logHoursPopupWindowForm.styles';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import PopupWindow from '@/components/shared/PopupWindow';
 import WindowFlow from '@/components/shared/WindowFlow';
 import VolunteerSignedEvents from '../Volunteer/VolunteerSignedEvents';
+import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 
 const LogHoursPopupWindowForm = ({
   setShowPopup,
@@ -19,14 +20,17 @@ const LogHoursPopupWindowForm = ({
   // get functions from react hook form
   const { register, handleSubmit } = useForm();
 
+  const [selectedEvent, setSelectedEvent] =
+    useState<QueriedVolunteerEventData>();
+
   // TODO: combine event and program into one so users only need to select event
   // that they signed up for (which is automatically under a program)
-  const pages = ['Event', 'Program', 'Numbers', 'Comments'];
+  const pages = ['Event', 'Numbers', 'Comments'];
 
   // handle form submission by parsing data and calling createVolunteerLog
   const onSubmit = (data: any) => {
     const results = JSON.stringify({
-      // event: data.Event,
+      eventId: selectedEvent?._id,
       hours: parseInt(data.NumberOfHours),
       date: data.DateOfVisit,
       feedback: data.Comment,
@@ -53,29 +57,14 @@ const LogHoursPopupWindowForm = ({
         components={[
           // Page 1 - Event
           <LogHoursForm key={pages[0]}>
-            <VolunteerSignedEvents/>
+            <VolunteerSignedEvents
+              selectedEvent={selectedEvent}
+              setSelectedEvent={setSelectedEvent}
+            />
           </LogHoursForm>,
 
-          // Page 2 - Program
-          // TODO: remove this
+          // Page 2 - Numbers
           <LogHoursForm key={pages[1]}>
-            <FormHeader>Please select one program</FormHeader>
-            <FormLabel>
-              <input {...register('Program')} type="radio" value="RIF" />
-              Reading is Fundamental (RIF)
-            </FormLabel>
-            <FormLabel>
-              <input {...register('Program')} type="radio" value="RFR" />
-              Ready for Reading (RFR)
-            </FormLabel>
-            <FormLabel>
-              <input {...register('Program')} type="radio" value="BFNK" />
-              Books for Nashville Kids (BFNK)
-            </FormLabel>
-          </LogHoursForm>,
-
-          // Page 3 - Numbers
-          <LogHoursForm key={pages[2]}>
             <FormLabel>
               {/* TODO: Add an icon here to display tool tip  */}
               Please log your volunteer hours <br /> (rounded to the nearest
@@ -108,8 +97,8 @@ const LogHoursPopupWindowForm = ({
             />
           </LogHoursForm>,
 
-          // Page 4 - Comments
-          <LogHoursForm key={pages[3]}>
+          // Page 3 - Comments
+          <LogHoursForm key={pages[2]}>
             <FormLabel>Anything else you&apos;d like to share?</FormLabel>
             <LargeFormInput
               {...register('Comment')}

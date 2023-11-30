@@ -14,6 +14,8 @@ import {
   VolunteerLogData,
   QueriedUserData,
 } from 'bookem-shared/src/types/database';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
 
 /**
  * /api/volunteerLogs/create:
@@ -32,7 +34,7 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   // check that user is authenticated
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
 
   if (!session) {
     res.status(401).json({
