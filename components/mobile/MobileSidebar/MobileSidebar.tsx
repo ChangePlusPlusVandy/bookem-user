@@ -36,7 +36,7 @@ export const MobileSidebar = ({
             <UserIcon />
             <Cross
               onClick={handleHideSidebar}
-              src="/sidebar/error.png"
+              src="/event/error.svg"
               alt=""
               width={40}
               height={40}
