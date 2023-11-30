@@ -30,7 +30,6 @@
 //         res.status(500).json({ message: error });
 //       }
 //       break;
-    
 
 //     // case 'POST':
 //     // case 'PUT':
@@ -79,8 +78,8 @@ export default async function handler(
           _id: { $in: user.events },
           endDate: { $lt: new Date() },
         })
-        .sort({ endDate: 1 })
-        .limit(5);
+          .sort({ endDate: 1 })
+          .limit(5);
 
         // return the result
         res.status(200).json(events);
