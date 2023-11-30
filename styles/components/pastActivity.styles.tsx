@@ -44,7 +44,7 @@ export const HeaderBox = styled.div`
   @media (max-width: 767px) {
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin: 50px 0 15px 0;
   }
 `;
 

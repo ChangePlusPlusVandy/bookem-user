@@ -1,6 +1,8 @@
-import React, { Suspense, useState } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
 import mongoose from 'mongoose';
+import { useRouter } from 'next/router';
 import { Media } from '@/lib/media';
+import { fetchData } from '@/utils/utils';
 import {
   QueriedUserData,
   QueriedVolunteerEventData,
@@ -17,34 +19,23 @@ import {
   Events,
 } from '@/styles/components/pastActivity.styles';
 
-/**
- * Dummy data for event cards
- */
-const dummyEventData: QueriedVolunteerEventData = {
-  _id: new mongoose.Types.ObjectId(),
-  name: 'Distribute books (BNFK)',
-  description: 'blablabla',
-  startDate: new Date('2005-12-17T13:24:00'),
-  endDate: new Date('2005-12-17T13:24:00'),
-  maxSpot: 11,
-  location: {
-    street: '3593 Cedar Rd',
-    city: 'Nashville',
-  },
-  phone: '123-456-7890',
-  email: 'test_user@bookem.com',
-  program: new mongoose.Types.ObjectId(),
-  requireApplication: true,
-  volunteers: [],
-  tags: [],
-  createdAt: new Date(),
-  updatedAt: new Date(),
-};
-
 // vertical list of sample PastEvents
 const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
   // state for hiding/showing mobile Past Activities
   const [onMobileHide, setOnMobileHide] = useState(false);
+  const [events, setEvents] = useState<QueriedVolunteerEventData[]>();
+  const [error, setError] = useState<Error>();
+  const router = useRouter();
+
+  useEffect(() => {
+    // Use fetchData helper function instead of direct fetch
+    fetchData('/api/events/past-five')
+      .then(data => setEvents(data)) // Set the activities in state
+      .catch(error => {
+        console.error('Error fetching past activities:', error);
+        setError(error); // Set the error in state
+      });
+  }, []);
 
   return (
     <>
@@ -55,16 +46,26 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
 
           <Events>
             {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
+            {/* display the retrieved past*/}
             <Suspense fallback={<Header>Please Wait...</Header>}>
               {/* TODO: integrate with backend */}
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
-              <EventCard eventData={dummyEventData} size="small" />
+              <Container>
+                {events &&
+                  events.map(event => (
+                    // Iterate through events to and pass data to EventCard
+                    <EventCard
+                      key={event._id.toString()}
+                      eventData={event}
+                      size={'large'}
+                      href={'/event/' + event._id}
+                    />
+                  ))}
+              </Container>
             </Suspense>
           </Events>
+          <button onClick={() => router.push('/volunteerHistory')}>
+            Show More
+          </button>
         </Container>
       </Media>
 
@@ -97,12 +98,18 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
               {/* if PastEvents aren't loading in yet, component will display "Please Wait..." */}
               <Suspense fallback={<Header>Please Wait...</Header>}>
                 {/* TODO: integrate with backend */}
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
-                <EventCard eventData={dummyEventData} size="small" />
+                <Container>
+                  {events &&
+                    events.map(event => (
+                      // Iterate through events to and pass data to EventCard
+                      <EventCard
+                        key={event._id.toString()}
+                        eventData={event}
+                        size={'large'}
+                        href={'/event/' + event._id}
+                      />
+                    ))}
+                </Container>
               </Suspense>
             </Events>
           </Container>

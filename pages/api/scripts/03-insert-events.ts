@@ -36,7 +36,7 @@ export default async function handler(
           VolunteerEvents.collection.initializeUnorderedBulkOp();
 
         // insert a bunch of equally distributed events
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 200; i++) {
           const event = generateEvent(
             i,
             tags as QueriedTagData[],
