@@ -24,6 +24,11 @@ import LongEventCard from '../shared/LongEventCard';
 import Link from 'next/link';
 import { start } from 'repl';
 
+// TODO: for now, explore volunteer opportunities show all future events
+// in future we can add pagination
+// TODO: inconsistency between mobile and desktop for featured events
+// featured events are shown on mobile, but not on desktop
+
 const FutureVolunteerEvents = () => {
   // Holds text in input box
   const [query, setQuery] = useState('');
@@ -41,9 +46,9 @@ const FutureVolunteerEvents = () => {
   const [featuredEvents, setFeaturedEvents] =
     useState<QueriedVolunteerEventData[]>();
 
-  // Fetch upcoming events and featured events when rendered
+  // Fetch explore events and featured events when rendered
   useEffect(() => {
-    fetchData('/api/events/upcoming')
+    fetchData('/api/events/explore')
       .then(data => setEvents(data))
       .catch(err => setError(err));
 

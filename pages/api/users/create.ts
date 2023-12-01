@@ -60,7 +60,6 @@ export default async function handler(
           sourceHeardFrom: user.sourceHeardFrom,
           ethnicity: user.ethnicity,
           gender: user.gender,
-          programs: [],
           events: user.events,
         };
 

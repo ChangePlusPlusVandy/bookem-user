@@ -87,6 +87,13 @@ export default async function handler(
           if (userIndex === -1 && eventIndex === -1) {
             // Register to the event
 
+            // Check whether event is filled.
+            if (event.maxSpot <= event.volunteers.length) {
+              return res
+                .status(500)
+                .json({ message: 'Event already filled up!' });
+            }
+
             // TODO: Speed this up!
             event.volunteers.unshift(user._id);
             user.events.unshift(event._id);

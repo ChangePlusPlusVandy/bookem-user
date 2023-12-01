@@ -1,13 +1,18 @@
 import React from 'react';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { fetchData } from '@/utils/utils';
 import {
   ImageContainer,
   Name,
   UserIconContainer,
 } from '@/styles/components/Sidebar/userIcon.styles';
 import { Media } from '@/lib/media';
+import { useSession } from 'next-auth/react';
 
 export const UserIcon = () => {
+  const { data: session } = useSession();
+
   return (
     <UserIconContainer>
       <ImageContainer>
@@ -20,7 +25,7 @@ export const UserIcon = () => {
           <Image src="/bookem-logo.png" width="73" height="73" alt="" />
         </Media>
       </ImageContainer>
-      <Name>Linda S.</Name>
+      <Name>{session?.user && session.user.name}</Name>
     </UserIconContainer>
   );
 };
