@@ -5,6 +5,7 @@ import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { fetchData } from '@/utils/utils';
 import LongEventCard from '../shared/LongEventCard';
 import { MainContainer } from '@/styles/volunteerHistory.styles';
+import SelectableLongEventCard from '../shared/SelectableLongEventCard';
 
 /**
  * Container for all event cards
@@ -57,7 +58,7 @@ const VolunteerSignedEvents = ({
         <MainContainer>
           {/* Loop through each VolunteerEvent specific to that user */}
           {events.map(event => (
-            <LongEventCard
+            <SelectableLongEventCard
               eventData={event}
               key={event._id.toString()}
               isSelected={selectedEvent === event}
