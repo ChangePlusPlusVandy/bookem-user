@@ -21,7 +21,7 @@ import { Media } from '@/lib/media';
 import { BOOKEM_THEME } from '@/utils/constants';
 import { QueriedUserData } from 'bookem-shared/src/types/database';
 import { formatDate } from '@/utils/utils';
-import { Button, Space, message } from 'antd';
+import { message } from 'antd';
 
 const VolunteerDashboard = ({
   userData,

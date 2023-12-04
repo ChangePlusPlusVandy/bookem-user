@@ -60,7 +60,7 @@ const LogHoursPopupWindowForm = ({
         errorMessage(message);
       }
     } catch (err) {
-      errorMessage('Something went wrong:' + err);
+      errorMessage('Sorry an error occurred');
     }
   };
 
