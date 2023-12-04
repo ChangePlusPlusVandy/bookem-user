@@ -87,11 +87,10 @@ export default async function handler(
         });
 
         // return the result of the action
-        res
-          .status(200)
-          .json(
-            'Successfully inserted the log into the volunteerLogs collection'
-          );
+        res.status(200).json({
+          message:
+            'Successfully inserted the log into the volunteerLogs collection',
+        });
       } catch (e) {
         // if there is an error, print and return the error
         console.error('An error has occurred in volunteerLogs/create.ts', e);
@@ -105,7 +104,7 @@ export default async function handler(
 
     default:
       res.status(405).json({
-        error: 'Sorry, only POST requests are supported',
+        message: 'Sorry, only POST requests are supported',
       });
       break;
   }

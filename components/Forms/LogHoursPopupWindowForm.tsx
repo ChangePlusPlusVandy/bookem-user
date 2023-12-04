@@ -14,8 +14,12 @@ import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 
 const LogHoursPopupWindowForm = ({
   setShowPopup,
+  successMessage,
+  errorMessage,
 }: {
   setShowPopup: React.Dispatch<React.SetStateAction<boolean>>;
+  successMessage: (message: string) => void;
+  errorMessage: (message: string) => void;
 }) => {
   // get functions from react hook form
   const { register, handleSubmit } = useForm();
@@ -36,17 +40,28 @@ const LogHoursPopupWindowForm = ({
       feedback: data.Comment,
       numBooks: data.NumberOfBooks,
     });
-    console.log(results);
     createVolunteerLog(results);
   };
 
   // sends a post request to insert the volunteer form
   const createVolunteerLog = async (data: any) => {
-    // TODO: implement endpoint for VolunteerEventApplication and call it
-    await fetch('/api/volunteerLogs/create', {
-      method: 'POST',
-      body: data,
-    });
+    try {
+      // Implement endpoint for VolunteerEventApplication and call it
+      const response = await fetch('/api/volunteerLogs/create', {
+        method: 'POST',
+        body: data,
+      });
+      if (response.status === 200) {
+        const message = (await response.json()).message;
+        setShowPopup(false);
+        successMessage(message);
+      } else {
+        const message = (await response.json()).message;
+        errorMessage(message);
+      }
+    } catch (err) {
+      errorMessage('Something went wrong:' + err);
+    }
   };
 
   return (
