@@ -16,8 +16,8 @@ export default async function handler(
 
   switch (method) {
     /**
-     * @route GET /api/events/upcoming
-     * @desc Get all events in the future that the user is signed up for
+     * @route GET /api/events/upcoming-current
+     * @desc Get all events in the future and in the present that the user is signed up for
      * @res QueriedVolunteerEventData[]
      */
     case 'GET':
