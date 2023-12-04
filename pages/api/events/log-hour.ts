@@ -32,7 +32,7 @@ export default async function handler(
           return res.status(404).json({ message: 'User not found' });
         }
 
-        // Use the user's events array to filter the VolunteerEvents
+        // Get events where start date is before today
         const events = await VolunteerEvents.find({
           _id: { $in: user.events },
           startDate: { $lt: new Date() },
