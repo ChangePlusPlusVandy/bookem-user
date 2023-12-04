@@ -16,8 +16,8 @@ export default async function handler(
 
   switch (method) {
     /**
-     * @route GET /api/events/upcoming
-     * @desc Get all events in the future that the user is signed up for
+     * @route GET /api/events/upcoming-current
+     * @desc Get all events in the future and in the present that the user is signed up for
      * @res QueriedVolunteerEventData[]
      */
     case 'GET':
@@ -33,9 +33,21 @@ export default async function handler(
         }
 
         // Use the user's events array to filter the VolunteerEvents
+        // select * from events where id in user.events and (startDate > today or (startDate < today and endDate > today))
+        const currentDate = new Date();
         const events = await VolunteerEvents.find({
           _id: { $in: user.events },
-          startDate: { $gt: new Date() },
+          $or: [
+            {
+              startDate: { $gt: currentDate },
+            },
+            {
+              $and: [
+                { startDate: { $lte: currentDate } },
+                { endDate: { $gt: currentDate } },
+              ],
+            },
+          ],
         }).sort({ startDate: 1 });
 
         return res.status(200).json(events);

@@ -16,8 +16,8 @@ export default async function handler(
 
   switch (method) {
     /**
-     * @route GET /api/events/upcoming
-     * @desc Get all events in the future that the user is signed up for
+     * @route GET /api/events/log-hour
+     * @desc Get all events where start date is before today
      * @res QueriedVolunteerEventData[]
      */
     case 'GET':
