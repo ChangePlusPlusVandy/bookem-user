@@ -15,22 +15,7 @@ import {
 } from '@/styles/components/longEventCard.styles';
 import { QueriedVolunteerEventData } from 'bookem-shared/src/types/database';
 import { convertLocationToString } from 'bookem-shared/src/utils/utils';
-
-/**
- * Helper function to format the time into a readable AM/PM format.
- *
- * Takes in an unformatted time and returns a formatted one.
- */
-const formatAMPM = (date: { getHours: () => any; getMinutes: () => any }) => {
-  var hours = date.getHours();
-  var minutes = date.getMinutes();
-  var ampm = hours >= 12 ? 'PM' : 'AM';
-  hours = hours % 12;
-  hours = hours ? hours : 12; // the hour '0' should be '12'
-  minutes = minutes < 10 ? '0' + minutes : minutes;
-  var strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
-};
+import { formatAMPM } from '@/utils/utils';
 
 // this component takes in and displays all of an event's data
 const LongEventCard = ({
