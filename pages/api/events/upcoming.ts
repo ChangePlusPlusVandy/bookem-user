@@ -33,9 +33,21 @@ export default async function handler(
         }
 
         // Use the user's events array to filter the VolunteerEvents
+        // select * from events where id in user.events and (startDate > today or (startDate < today and endDate > today))
+        const currentDate = new Date();
         const events = await VolunteerEvents.find({
           _id: { $in: user.events },
-          startDate: { $gt: new Date() },
+          $or: [
+            {
+              startDate: { $gt: currentDate },
+            },
+            {
+              $and: [
+                { startDate: { $lte: currentDate } },
+                { endDate: { $gt: currentDate } },
+              ],
+            },
+          ],
         }).sort({ startDate: 1 });
 
         return res.status(200).json(events);
