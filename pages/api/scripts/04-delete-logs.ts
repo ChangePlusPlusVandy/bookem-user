@@ -15,12 +15,10 @@ export default async function handler(
         // Delete all logs
         await VolunteerLogs.deleteMany({});
 
-        res
-          .status(200)
-          .json({
-            success: true,
-            message: 'Successfully deleted all volunteer logs',
-          });
+        res.status(200).json({
+          success: true,
+          message: 'Successfully deleted all volunteer logs',
+        });
       } catch (error: any) {
         res.status(500).json({ success: false, error: error.message });
       }
