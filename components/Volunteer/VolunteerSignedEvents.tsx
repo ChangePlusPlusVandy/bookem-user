@@ -26,7 +26,7 @@ const VolunteerSignedEvents = ({
 
   // Fetch upcoming events when rendered
   useEffect(() => {
-    fetchData('/api/events/user')
+    fetchData('/api/events/log-hour')
       .then(data => setEvents(data))
       .catch(err => setError(err));
   }, []);
