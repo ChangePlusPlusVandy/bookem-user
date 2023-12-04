@@ -19,7 +19,7 @@ const Header = () => {
         <HeaderBox>
           {/* Arrow icon */}
           <Image
-            src="/event/arrow-left.png"
+            src="/event/arrow-left.svg"
             alt=""
             width={48}
             height={48}
