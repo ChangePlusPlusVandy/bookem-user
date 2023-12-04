@@ -21,6 +21,7 @@ import { Media } from '@/lib/media';
 import { BOOKEM_THEME } from '@/utils/constants';
 import { QueriedUserData } from 'bookem-shared/src/types/database';
 import { formatDate } from '@/utils/utils';
+import { message } from 'antd';
 
 const VolunteerDashboard = ({
   userData,
@@ -29,12 +30,38 @@ const VolunteerDashboard = ({
 }) => {
   // set pop up window to false
   const [showPopup, setShowPopup] = useState(false);
+  const [messageApi, contextHolder] = message.useMessage();
+
+  // Display success message
+  const successMessage = (message: string) => {
+    messageApi.open({
+      type: 'success',
+      content: message,
+    });
+  };
+
+  // Display error message
+  const errorMessage = (message: string) => {
+    messageApi.open({
+      type: 'error',
+      content: message,
+    });
+  };
 
   return (
     <>
       <DashboardContainer>
+        {/* Context for antd messages */}
+        {contextHolder}
+
         {/* based on whether or not hideppopup is true, displays popup */}
-        {showPopup && <LogHoursPopupWindowForm setShowPopup={setShowPopup} />}
+        {showPopup && (
+          <LogHoursPopupWindowForm
+            successMessage={successMessage}
+            errorMessage={errorMessage}
+            setShowPopup={setShowPopup}
+          />
+        )}
 
         <Greeting>Volunteer</Greeting>
 
