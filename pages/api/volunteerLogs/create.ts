@@ -4,16 +4,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 // dbConnect is used to connect to our mongoDB database (via mongoose)
 import dbConnect from '@/lib/dbConnect';
 
-// getSession is used to get the user's session (if they are logged in)
-import { getSession } from 'next-auth/react';
-
 // import the models and types we need
 import Users from 'bookem-shared/src/models/Users';
 import VolunteerLogs from 'bookem-shared/src/models/VolunteerLogs';
-import {
-  VolunteerLogData,
-  QueriedUserData,
-} from 'bookem-shared/src/types/database';
+import { VolunteerLogData } from 'bookem-shared/src/types/database';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '../auth/[...nextauth]';
 
 /**
  * /api/volunteerLogs/create:
@@ -32,51 +28,48 @@ export default async function handler(
   res: NextApiResponse<any>
 ) {
   // check that user is authenticated
-  const session = await getSession({ req });
+  const session = await getServerSession(req, res, authOptions);
 
-  if (!session) {
-    res.status(401).json({
-      error: 'You are unauthorized to perform this action. Please login first',
-    });
-    return;
-  }
+  const validateData = (volunteerLog: VolunteerLogData) => {
+    if (!volunteerLog.eventId) {
+      res.status(400).json({
+        message: 'You forgot to select an event.',
+      });
+      return;
+    }
 
-  // start a try catch block to catch any errors in parsing the request body
-  const volunteerLog = JSON.parse(req.body) as VolunteerLogData;
+    if (!volunteerLog.hours) {
+      res
+        .status(400)
+        .json({ message: 'You forgot to fill in number of hours.' });
+      return;
+    }
 
-  if (!volunteerLog.hours) {
-    res.status(400).json({ message: 'Missing hours in request body.' });
-    throw new Error('Invalid input. Missing hours in request body.');
-  }
+    if (!volunteerLog.numBooks) {
+      res
+        .status(400)
+        .json({ message: 'You forgot to fill in number of books donated' });
+      return;
+    }
 
-  if (!volunteerLog.numBooks) {
-    res.status(400).json({ message: 'Missing numBooks in request body.' });
-    throw new Error('Invalid input. Missing numBooks in request body.');
-  }
-
-  if (!volunteerLog.date) {
-    res.status(400).json({ message: 'Missing date in request body.' });
-    throw new Error('Invalid input. Missing date in request body.');
-  }
+    if (!volunteerLog.date) {
+      res.status(400).json({ message: 'You forgot to fill in date' });
+      return;
+    }
+  };
 
   switch (req.method) {
     case 'POST':
       try {
         // connect to our database
         await dbConnect();
-        const email = session.user?.email;
 
-        const user = (await Users.findOne({
-          email: email,
-        })) as QueriedUserData;
+        // start a try catch block to catch any errors in parsing the request body
+        const volunteerLog = JSON.parse(req.body) as VolunteerLogData;
 
-        // If the user doesn't exist, return an error
-        if (!user) {
-          res.status(422).json({ message: 'This user does not exist' });
-          throw new Error('This user does not exist');
-        }
+        validateData(volunteerLog);
 
-        const usersId = user._id;
+        const usersId = session.user._id;
 
         // construct the object we want to insert into our database
         await VolunteerLogs.insertMany({
@@ -85,11 +78,9 @@ export default async function handler(
         });
 
         // return the result of the action
-        res
-          .status(200)
-          .json(
-            'Successfully inserted the log into the volunteerLogs collection'
-          );
+        res.status(200).json({
+          message: 'Successfully Logged hours',
+        });
       } catch (e) {
         // if there is an error, print and return the error
         console.error('An error has occurred in volunteerLogs/create.ts', e);
@@ -103,7 +94,7 @@ export default async function handler(
 
     default:
       res.status(405).json({
-        error: 'Sorry, only POST requests are supported',
+        message: 'Sorry, only POST requests are supported',
       });
       break;
   }

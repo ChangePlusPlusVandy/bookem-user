@@ -18,16 +18,27 @@ import { convertLocationToString } from 'bookem-shared/src/utils/utils';
 import { formatAMPM } from '@/utils/utils';
 
 // this component takes in and displays all of an event's data
-const LongEventCard = ({
+const SelectableLongEventCard = ({
   eventData,
+  isSelected,
+  onClick,
 }: {
   eventData: QueriedVolunteerEventData;
+  isSelected: boolean;
+  onClick: () => void;
 }) => {
   // create a date object with JavaScript's Date constructor
   const date = new Date(eventData.startDate);
 
   return (
-    <Container>
+    <Container
+      style={{
+        // Add styles for selected event
+        border: isSelected ? '2px solid blue' : '1px solid #ddd',
+        padding: '10px',
+        cursor: 'pointer',
+      }}
+      onClick={onClick}>
       <EventImage>
         <Image
           src="/eventCard/event-image.png"
@@ -89,4 +100,4 @@ const LongEventCard = ({
   );
 };
 
-export default LongEventCard;
+export default SelectableLongEventCard;

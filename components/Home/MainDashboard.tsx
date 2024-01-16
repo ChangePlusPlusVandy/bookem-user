@@ -111,7 +111,7 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
             </div>
 
             <div>
-              <Header>Your upcoming events</Header>
+              <Header>Your current and upcoming events</Header>
               {/* TODO: add a filter icon on the right */}
 
               <UpcomingEvents />
