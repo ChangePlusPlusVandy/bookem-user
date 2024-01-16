@@ -23,7 +23,7 @@
       "@/utils/*": ["utils/*"]
     },
     "types": ["cypress", "@testing-library/cypress"],
-    "noImplicitAny": false,
+    "noImplicitAny": false
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
