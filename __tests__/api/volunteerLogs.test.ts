@@ -1,6 +1,6 @@
-import handleCreateVolunteerLog from '@/pages/api/volunteerLogs/create';
+import handleCreateVolunteerLog from '@/pages/api/volunteer-logs/create';
 
-describe('/volunteerLogs/create', () => {
+describe('/volunteer-logs/create', () => {
   // TODO: MOCK SESSIONS
   it('');
 });
