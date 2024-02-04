@@ -59,7 +59,6 @@ export default async function handler(
           Body: file.buffer,
           ContentType: 'image/jpeg',
           ACL: 'public-read',
-
         });
         const uploadResult = await s3.send(uploadCommand);
         if (uploadResult.$metadata.httpStatusCode === 200) {
@@ -80,6 +79,7 @@ export default async function handler(
         }
       } catch (err) {
         console.error('Error uploading file to S3:', err);
+        // throw error
         res.status(500).json({ err });
       }
   }
