@@ -75,30 +75,40 @@ export const authOptions = {
   // Callbacks doc: https://next-auth.js.org/configuration/callbacks
   callbacks: {
     /**
-     * Update session's user.id with token.uid
-     * @param session
-     * @param token Contains user id
-     * @returns session with user.id inside
-     */
-    async session({ session, token, user }: { session: any; token: any, user: any }) {
-      console.log(session, user);
-      if (session?.user) {
-        session.user._id = token.uid;
-      }
-
-      return session;
-    },
-
-    /**
      * Put user id inside JWT token
      * @param token JWT token
      * @param user Logged in user
      * @returns JWT token with user's id encrypted inside
      */
-    async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any }) {
-      if (user) token.uid = user._id;
+    async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any; }) {
+      if (user) {
+        /**
+         * any session augmentation should be done by:
+         * 1) adding it first to the token
+         * 2) then adding it to the session - see below
+         */
+        token.uid = user._id
+        token.profileImgUrl = user.profileImgUrl;
+      };
       return token;
     },
+    
+    /**
+     * Update session's user.id with token.uid
+     * @param session
+     * @param token Contains user id
+     * @returns session with user.id inside
+     */
+    async session({ session, token }: { session: any; token: any; }) {
+      if (session?.user) {
+        session.user._id = token.uid;
+        // adding more data to session (be conservative)
+        session.user.profileImgUrl = token.profileImgUrl;
+      }
+      return session;
+    },
+
+    
   },
 };
 

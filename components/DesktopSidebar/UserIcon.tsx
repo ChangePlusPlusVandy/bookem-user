@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react';
 
 export const UserIcon = () => {
   const { data: session } = useSession();
-
+  
   return (
     <UserIconContainer>
       <ImageContainer>
@@ -20,10 +20,10 @@ export const UserIcon = () => {
         {/* Bigger image size for desktop and smaller for mobile */}
         <Media greaterThanOrEqual="sm">
           {/* <Image src="/bookem-logo.png" width="100" height="100" alt="" /> */}
-          {/* <Image src={session?.user && session.user.profileImageUrl} width="100" height="100" alt="" /> */}
-          {session?.user && session.user.profileImageUrl && (
+          {/* <Image src={session?.user && session.user.profileImgUrl} width="100" height="100" alt="" /> */}
+          {session?.user && session.user.profileImgUrl && (
             <Image
-              src={session.user.profileImageUrl}
+              src={session.user.profileImgUrl}
               width="100"
               height="100"
               alt=""
@@ -36,7 +36,6 @@ export const UserIcon = () => {
         </Media>
       </ImageContainer>
       <Name>{session?.user && session.user.name}</Name>
-      {session?.user && session.user.profileImageUrl}
       
     </UserIconContainer>
   );
