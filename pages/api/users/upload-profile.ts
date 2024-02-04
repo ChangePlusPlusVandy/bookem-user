@@ -4,6 +4,7 @@ import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import Users from 'bookem-shared/src/models/Users';
 
+
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<any>

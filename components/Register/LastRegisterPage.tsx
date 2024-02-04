@@ -14,47 +14,31 @@ import {
   UploadPictureContainer,
 } from '@/styles/register.styles';
 
-/* TODO: MOVE ALL OF THIS TO BACKEND API */
-import S3 from 'aws-sdk/clients/s3';
 import axios from 'axios';
 
-const s3 = new S3({
-  region: 'us-east-2',
-  accessKeyId: process.env.NEXT_PUBLIC_ACCESS_KEY,
-  secretAccessKey: process.env.NEXT_PUBLIC_SECRET_KEY,
-  signatureVersion: 'v4',
-});
-
-// upload file to S3 Bucket
-const uploadS3 = async (file: File, email: string) => {
+const uploadS3 = async (file: File, email: String) => {
+  const formData = new FormData();
+  formData.append('file', file);
+  
+  // formData.append('email', email);
   try {
-    // put file in S3 bucket
-    const fileParams = {
-      Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-      Key: file.name,
-      Expires: 600,
-      ContentType: file.type,
-    };
-
-    const putURL = await s3.getSignedUrlPromise('putObject', fileParams);
-
-    await axios.put(putURL, file, {
-      headers: {
-        'Content-type': String(file.type),
-      },
+    const res = await fetch('/api/users/upload-s3', {
+      method: 'POST',
+      body: formData,
     });
 
-    // get file's presigned URL from S3 bucket
-    const getURL = await s3.getSignedUrlPromise('getObject', {
-      Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-      Key: file.name,
-    });
+    if (!res.ok) throw new Error(`Error: ${res.status}`);
+    const imageUrl = await res.json();
+    console.log(imageUrl, typeof imageUrl);
+    uploadDB(imageUrl);
+    return { message: 'User updated with picture', error: null };
+  } catch (err) {
+    return { message: 'An error occurred', error: err };
+  }
+};
 
-    const imageData = await Promise.resolve(fetch(getURL));
-
-    console.log(imageData.url, typeof imageData.url);
-
-    // send PATCH request to /api/users/upload-profile to update user's profile picture
+const uploadDB = async imageData => {
+  try {
     const res = await axios.patch(
       '/api/users/upload-profile',
       {
@@ -74,13 +58,69 @@ const uploadS3 = async (file: File, email: string) => {
     } else {
       alert('Profile picture uploaded successfully!');
     }
-
     // Return the status of the user update
     return { message: 'User updated with picture', error: null };
   } catch (e) {
     return { message: 'An error occurred', error: e };
   }
 };
+
+// upload file to S3 Bucket
+// const uploadS3 = async (file: File, email: string) => {
+//   try {
+//     // put file in S3 bucket
+//     const fileParams = {
+//       Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
+//       Key: file.name,
+//       Expires: 600,
+//       ContentType: file.type,
+//     };
+
+//     const putURL = await s3.getSignedUrlPromise('putObject', fileParams);
+
+//     await axios.put(putURL, file, {
+//       headers: {
+//         'Content-type': String(file.type),
+//       },
+//     });
+
+//     // get file's presigned URL from S3 bucket
+//     const getURL = await s3.getSignedUrlPromise('getObject', {
+//       Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
+//       Key: file.name,
+//     });
+
+//     const imageData = await Promise.resolve(fetch(getURL));
+
+//     console.log(imageData.url, typeof imageData.url);
+
+//     // send PATCH request to /api/users/upload-profile to update user's profile picture
+//     const res = await axios.patch(
+//       '/api/users/upload-profile',
+//       {
+//         profileImgUrl: imageData.url,
+//       },
+//       {
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//       }
+//     );
+
+//     if (res.status !== 200) {
+//       alert(
+//         'Error uploading profile picture. Please try again or contact us if the problem persists.'
+//       );
+//     } else {
+//       alert('Profile picture uploaded successfully!');
+//     }
+
+//     // Return the status of the user update
+//     return { message: 'User updated with picture', error: null };
+//   } catch (e) {
+//     return { message: 'An error occurred', error: e };
+//   }
+// };
 
 const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
   // state for uploaded picture file
@@ -102,8 +142,16 @@ const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
     if (!e.target.files || e.target.files[0] == undefined) {
       return;
     }
-    setPictureFile(e.target.files[0]);
-    setPictureURL(URL.createObjectURL(e.target.files[0]));
+    //check if file uploaded is the right type
+    const validImageTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    const file = e.target.files[0];
+    if (validImageTypes.includes(file.type)) {
+      setPictureFile(file);
+      setPictureURL(URL.createObjectURL(file));
+    } else {
+      alert('Please upload a valid image file (JPEG, PNG, JPG)');
+      //TODO: test with non-jpeg file
+    }
   };
 
   // uploads picture file to S3 bucket
@@ -113,6 +161,8 @@ const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
 
       if (res.error) console.log('Success!');
       else console.log('error:', res.error);
+    } else {
+      alert('Please upload a picture'); //TODO: maybe make this look better
     }
   };
 

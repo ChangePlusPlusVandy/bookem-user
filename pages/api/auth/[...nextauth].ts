@@ -80,8 +80,12 @@ export const authOptions = {
      * @param token Contains user id
      * @returns session with user.id inside
      */
-    async session({ session, token }: { session: any; token: any }) {
-      if (session?.user) session.user._id = token.uid;
+    async session({ session, token, user }: { session: any; token: any, user: any }) {
+      console.log(session, user);
+      if (session?.user) {
+        session.user._id = token.uid;
+      }
+
       return session;
     },
 
