@@ -53,6 +53,8 @@ export default async function handler(
         if (!file) {
           console.log('did not receive file');
         }
+
+        //upload file to s3
         const uploadCommand = new PutObjectCommand({
           Bucket: process.env.AWS_S3_BUCKET,
           Key: fileName,
@@ -61,15 +63,23 @@ export default async function handler(
           ACL: 'public-read',
         });
         const uploadResult = await s3.send(uploadCommand);
+
+        //if upload is successful, upload url to DB
         if (uploadResult.$metadata.httpStatusCode === 200) {
-          console.log('File uploaded to bucket: ', uploadCommand.input.Bucket);
-          const command = new GetObjectCommand({
-            Bucket: process.env.AWS_S3_BUCKET,
-            Key: fileName,
-          });
-          const url = await getSignedUrl(s3, command, { expiresIn: 15 * 60 });
-          console.log(url);
-          res.status(200).json({ url });
+          // console.log('File uploaded to bucket: ', uploadCommand.input.Bucket);
+
+          // //TODO: return name of file instead of URL, so can retrieve it from s3 when login?
+          // const command = new GetObjectCommand({
+          //   Bucket: process.env.AWS_S3_BUCKET,
+          //   Key: fileName,
+          // });
+          // const url = await getSignedUrl(s3, command, {
+          //   expiresIn: 24 * 3600,
+          // });
+          // console.log(url);
+          // res.status(200).json({ url });
+          console.log(fileName);
+          res.status(200).json({ fileName });
         } else {
           console.error(
             'Error uploading file to S3. HTTP Status Code:',

@@ -80,26 +80,26 @@ export const authOptions = {
      * @param user Logged in user
      * @returns JWT token with user's id encrypted inside
      */
-    async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any; }) {
+    async jwt({ token, user }: { token: JWT; user?: QueriedUserData | any }) {
       if (user) {
         /**
          * any session augmentation should be done by:
          * 1) adding it first to the token
          * 2) then adding it to the session - see below
          */
-        token.uid = user._id
+        token.uid = user._id;
         token.profileImgUrl = user.profileImgUrl;
-      };
+      }
       return token;
     },
-    
+
     /**
      * Update session's user.id with token.uid
      * @param session
      * @param token Contains user id
      * @returns session with user.id inside
      */
-    async session({ session, token }: { session: any; token: any; }) {
+    async session({ session, token }: { session: any; token: any }) {
       if (session?.user) {
         session.user._id = token.uid;
         // adding more data to session (be conservative)
@@ -107,8 +107,6 @@ export const authOptions = {
       }
       return session;
     },
-
-    
   },
 };
 

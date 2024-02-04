@@ -19,7 +19,7 @@ import axios from 'axios';
 const uploadS3 = async (file: File, email: String) => {
   const formData = new FormData();
   formData.append('file', file);
-  
+
   // formData.append('email', email);
   try {
     const res = await fetch('/api/users/upload-s3', {
@@ -30,19 +30,22 @@ const uploadS3 = async (file: File, email: String) => {
     if (!res.ok) throw new Error(`Error: ${res.status}`);
     const imageUrl = await res.json();
     console.log(imageUrl, typeof imageUrl);
-    uploadDB(imageUrl);
+    uploadDB(imageUrl.fileName);
     return { message: 'User updated with picture', error: null };
   } catch (err) {
     return { message: 'An error occurred', error: err };
   }
 };
 
-const uploadDB = async imageData => {
+// const uploadDB = async imageData => {
+const uploadDB = async (fileName: String) => {
   try {
+    console.log(fileName);
     const res = await axios.patch(
       '/api/users/upload-profile',
       {
-        profileImgUrl: imageData.url,
+        // profileImgUrl: imageData.url,
+        profileImgUrl: fileName,
       },
       {
         headers: {
@@ -64,63 +67,6 @@ const uploadDB = async imageData => {
     return { message: 'An error occurred', error: e };
   }
 };
-
-// upload file to S3 Bucket
-// const uploadS3 = async (file: File, email: string) => {
-//   try {
-//     // put file in S3 bucket
-//     const fileParams = {
-//       Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-//       Key: file.name,
-//       Expires: 600,
-//       ContentType: file.type,
-//     };
-
-//     const putURL = await s3.getSignedUrlPromise('putObject', fileParams);
-
-//     await axios.put(putURL, file, {
-//       headers: {
-//         'Content-type': String(file.type),
-//       },
-//     });
-
-//     // get file's presigned URL from S3 bucket
-//     const getURL = await s3.getSignedUrlPromise('getObject', {
-//       Bucket: process.env.NEXT_PUBLIC_BUCKET_NAME,
-//       Key: file.name,
-//     });
-
-//     const imageData = await Promise.resolve(fetch(getURL));
-
-//     console.log(imageData.url, typeof imageData.url);
-
-//     // send PATCH request to /api/users/upload-profile to update user's profile picture
-//     const res = await axios.patch(
-//       '/api/users/upload-profile',
-//       {
-//         profileImgUrl: imageData.url,
-//       },
-//       {
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       }
-//     );
-
-//     if (res.status !== 200) {
-//       alert(
-//         'Error uploading profile picture. Please try again or contact us if the problem persists.'
-//       );
-//     } else {
-//       alert('Profile picture uploaded successfully!');
-//     }
-
-//     // Return the status of the user update
-//     return { message: 'User updated with picture', error: null };
-//   } catch (e) {
-//     return { message: 'An error occurred', error: e };
-//   }
-// };
 
 const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
   // state for uploaded picture file
