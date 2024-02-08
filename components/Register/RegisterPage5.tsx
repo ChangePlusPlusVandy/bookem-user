@@ -183,11 +183,6 @@ const RegisterPage5 = ({
             </SectionContainer>
           </Media>
 
-          {/* Desktop */}
-          <Media greaterThanOrEqual="sm">
-            {/** Moved to different location */}
-          </Media>
-
           <SectionContainer>
             <SectionHeader>
               Why do you want to become a Book&apos;em volunteer?
@@ -256,9 +251,6 @@ const RegisterPage5 = ({
               </InputContainer>
             </JoinNewsletterContainer>
           </SectionContainer>
-
-          {/* Mobile */}
-          <Media lessThan="sm">{/** Moved to different location */}</Media>
 
           {/* Desktop */}
           <Media greaterThanOrEqual="sm">

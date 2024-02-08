@@ -164,10 +164,8 @@ const RegisterPage = () => {
 
   return (
     <Container>
-      {/* Mobile */}
-      <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>
-
-      {/* Desktop */}
+      {/* Mobile: LeftDisplay is not visible */}
+      {/* Desktop left display */}
       <Media greaterThanOrEqual="sm">
         {formData.page === 1 && (
           <LeftDisplay
