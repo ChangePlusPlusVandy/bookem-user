@@ -93,7 +93,7 @@ const VolunteerDashboard = ({
           {/** Button for "See History" */}
           <VolunteerButton
             backgroundcolor={BOOKEM_THEME.colors.BOOKEM_LIGHT_GRAY}
-            onClick={() => (window.location.href = '/volunteerHistory')}>
+            onClick={() => (window.location.href = '/volunteer-history')}>
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
                 <Image

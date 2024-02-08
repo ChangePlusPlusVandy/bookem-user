@@ -63,7 +63,7 @@ const PastActivity = ({ userData }: { userData: QueriedUserData | null }) => {
               </Container>
             </Suspense>
           </Events>
-          <button onClick={() => router.push('/volunteerHistory')}>
+          <button onClick={() => router.push('/volunteer-history')}>
             Show More
           </button>
         </Container>
