@@ -58,10 +58,12 @@ const RegisterPage = () => {
     otherRace: '',
   });
 
+  const [nextPage, setNextPage] = useState<number>(formData.page);
+
   /* page number handling */
 
   // variable for storing the page that user wants to go to
-  let nextPage = formData.page;
+  // let nextPage = formData.page;
 
   // updates to the previous register page, saves data but not submit form
   const handleLeftArrow = (data: any) => {
@@ -70,7 +72,7 @@ const RegisterPage = () => {
 
   // updates nextPage to be the upcoming register page
   const handleRightArrow = () => {
-    nextPage = formData.page + 1;
+    setNextPage(formData.page + 1);
   };
 
   /* form handling */
