@@ -17,59 +17,29 @@ export const UserIcon = () => {
   return (
     <UserIconContainer>
       <ImageContainer>
-        {/* Bigger image size for desktop and smaller for mobile */}
         {session?.user && (
           <>
+            {/* Choose image size based on screen size */}
             <Media greaterThanOrEqual="sm">
-              {/* User Profile Picture */}
-              {session.user.profileImgUrl && (
-                <Image
-                  src={session.user.profileImgUrl}
-                  width="100"
-                  height="100"
-                  alt="user-profile"
-                />
-              )}
-
-              {/* Default Profile Picture */}
-              {!session.user.profileImgUrl && (
-                <Image src="/bookem-logo.png" width="100" height="100" alt="" />
-              )}
+              <Image
+                src={session.user.profileImgUrl || '/bookem-logo.png'}
+                width="100"
+                height="100"
+                alt="user-profile"
+              />
             </Media>
-
             <Media lessThan="sm">
-              {/* User Profile Picture */}
-              {session.user.profileImgUrl && (
-                <Image
-                  src={session.user.profileImgUrl}
-                  width="73"
-                  height="73"
-                  alt="user-profile"
-                />
-              )}
-
-              {/* Default Profile Picture */}
-              {!session.user.profileImgUrl && (
-                <Image src="/bookem-logo.png" width="73" height="73" alt="" />
-              )}
+              <Image
+                src={session.user.profileImgUrl || '/bookem-logo.png'}
+                width="73"
+                height="73"
+                alt="user-profile"
+              />
             </Media>
           </>
         )}
-        {/* <Media greaterThanOrEqual="sm">
-          {session?.user && session.user.profileImgUrl && (
-            <Image
-              src={session.user.profileImgUrl}
-              width="100"
-              height="100"
-              alt="user-profile"
-            />
-          )}
-        </Media>
-        <Media lessThan="sm">
-          <Image src="/bookem-logo.png" width="73" height="73" alt="" />
-        </Media> */}
       </ImageContainer>
-      <Name>{session?.user && session.user.name}</Name>
+      <Name>{session?.user?.name}</Name>
     </UserIconContainer>
   );
 };
