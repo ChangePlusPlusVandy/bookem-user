@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled from 'styled-components';
 
 /**
@@ -74,6 +75,10 @@ export const FormBorder = styled.div`
   border-radius: 10px;
   margin: -20px -20px -20px -20px;
   padding: 5px 20px 20px 20px;
+`;
+
+export const LoginLink = styled(Link)`
+  text-decoration: underline;
 `;
 
 /**

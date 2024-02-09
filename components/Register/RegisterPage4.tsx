@@ -13,6 +13,7 @@ import {
   LabelRadio,
   InputRadio,
   OtherRadio,
+  LoginLink,
 } from '@/styles/register.styles';
 
 const RegisterPage4 = ({
@@ -127,6 +128,7 @@ const RegisterPage4 = ({
             </OtherRadio>
           </InputContainer>
         </SectionContainer>
+        <LoginLink href="/login">Already have an account? Login here</LoginLink>
       </Form>
 
       <RegisterFlow

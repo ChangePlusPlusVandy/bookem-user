@@ -25,6 +25,7 @@ import {
   Button,
   Fieldset,
   JoinNewsletterContainer,
+  LoginLink,
 } from '@/styles/register.styles';
 
 const RegisterPage5 = ({
@@ -344,6 +345,8 @@ const RegisterPage5 = ({
           </SectionContainer>
         </Form>
       </FormBorder>
+
+      <LoginLink href="/login">Already have an account? Login here</LoginLink>
 
       <ButtonContainer>
         <Button form="registerPage5">Submit</Button>

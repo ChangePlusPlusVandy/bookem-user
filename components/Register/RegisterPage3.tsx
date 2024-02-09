@@ -16,6 +16,7 @@ import {
   InputTextarea,
   JoinNewsletterContainer,
   Fieldset,
+  LoginLink,
 } from '@/styles/register.styles';
 
 const RegisterPage3 = ({
@@ -165,6 +166,7 @@ const RegisterPage3 = ({
 
           {errors.sourceHeardFrom && printError('A response is required')}
         </SectionContainer>
+        <LoginLink href="/login">Already have an account? Login here</LoginLink>
       </Form>
 
       <RegisterFlow

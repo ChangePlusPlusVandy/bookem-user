@@ -17,6 +17,7 @@ import {
   CheckboxContainer,
   InputText,
   Fieldset,
+  LoginLink,
 } from '@/styles/register.styles';
 
 /**
@@ -209,6 +210,7 @@ const RegisterPage2 = ({
           </InputContainer>
           {errors.volunteerReason && printError('A response is required')}
         </SectionContainer>
+        <LoginLink href="/login">Already have an account? Login here</LoginLink>
       </Form>
 
       <RegisterFlow
