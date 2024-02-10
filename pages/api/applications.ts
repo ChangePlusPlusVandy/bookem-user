@@ -40,9 +40,9 @@ export default async function handler(
         const applicationResponses = await ApplicationResponse.find({
           userId: session.user.id,
         }).populate('eventId');
-        
+
         // get all the events that the user has applied to
-        const events = applicationResponses.map((response) => {
+        const events = applicationResponses.map(response => {
           return response.eventId;
         });
 
