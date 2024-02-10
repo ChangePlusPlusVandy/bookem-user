@@ -53,7 +53,7 @@ export default async function handler(
         return res.status(200).json({ message: applicationResponses });
       } catch (error) {
         console.error(error);
-        res.status(500).json({ message: error });
+        res.status(500).json({ message: error.message });
       }
       break;
   }
