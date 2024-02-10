@@ -7,20 +7,15 @@ import { ApplicationResponseData } from 'bookem-shared/src/types/database';
 import ApplicationResponse from 'bookem-shared/src/models/ApplicationResponse';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
+import { makeSessionForAPITest } from '@/utils/api-testing';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   // Get session user
-  const session = await getServerSession(req, res, authOptions);
-  // for API testing only
-  // TODO extract this logic
-  // const session = {
-  //   user: {
-  //     id: '60f3f5f8f0f6f6f6f6f6f6f6',
-  //   },
-  // }
+  let session =
+    (await getServerSession(req, res, authOptions)) || makeSessionForAPITest();
 
   // Get request parameter
   const {
@@ -39,7 +34,6 @@ export default async function handler(
       try {
         await dbConnect();
 
-        // TODO - refactor common id checking to a common util
         if (!id) return res.status(400).json({ message: 'Missing id' });
 
         // check if id is a valid mongoose id
@@ -51,7 +45,6 @@ export default async function handler(
           eventId: id,
         });
 
-        // TODO - refactor a common util for when something is not found
         if (!volunteerApplication) {
           return res
             .status(404)
@@ -77,12 +70,8 @@ export default async function handler(
       try {
         await dbConnect();
 
-        // start a try catch block to catch any errors in parsing the request body
-        // TODO maybe define a DTO for this
-        console.log(req.body);
         const response = req.body as ApplicationResponseData;
         const { answers } = response;
-
 
         // Declare the following ops to be an atomic transaction
         const mongoSession = await mongoose.startSession();
@@ -95,7 +84,7 @@ export default async function handler(
             answers,
           });
 
-          await newResponse.save()
+          await newResponse.save();
 
           // use the id of the saved response to update the volunteerApplications data
           await VolunteerApplications.updateOne(

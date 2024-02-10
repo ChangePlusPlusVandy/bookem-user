@@ -8,20 +8,15 @@ import ApplicationResponse from 'bookem-shared/src/models/ApplicationResponse';
 import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { getServerSession } from 'next-auth';
+import { makeSessionForAPITest } from '@/utils/api-testing';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   // Get session user
-  const session = await getServerSession(req, res, authOptions);
-  // for API testing only
-  // TODO extract this logic
-  // const session = {
-  //   user: {
-  //     id: '60f3f5f8f0f6f6f6f6f6f6f6',
-  //   },
-  // };
+  const session =
+    (await getServerSession(req, res, authOptions)) || makeSessionForAPITest();
 
   // Get request parameter
   const {
@@ -45,10 +40,6 @@ export default async function handler(
         const applicationResponses = await ApplicationResponse.find({
           userId: session.user.id,
         }).populate('eventId');
-
-        // const appliedEvents = applicationResponses.map((applicationResponse) => {
-        //     return applicationResponse.eventId;
-        // };
 
         return res.status(200).json({ message: applicationResponses });
       } catch (error) {

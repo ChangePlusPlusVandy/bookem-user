@@ -4,19 +4,15 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import ApplicationResponse from 'bookem-shared/src/models/ApplicationResponse';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
+import { makeSessionForAPITest } from '@/utils/api-testing';
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
   // Get session user
-  const session = await getServerSession(req, res, authOptions);
-  // for API testing only
-  // const session = {
-  //   user: {
-  //     id: '60f3f5f8f0f6f6f6f6f6f6f6',
-  //   },
-  // };
+  let session =
+    (await getServerSession(req, res, authOptions)) || makeSessionForAPITest();
 
   // Get request parameter
   const {
@@ -35,7 +31,6 @@ export default async function handler(
       try {
         await dbConnect();
 
-        // TODO - refactor common id checking to a common util
         if (!id) return res.status(400).json({ message: 'Missing id' });
 
         // check if id is a valid mongoose id
