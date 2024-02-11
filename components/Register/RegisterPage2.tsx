@@ -17,6 +17,7 @@ import {
   CheckboxContainer,
   InputText,
   Fieldset,
+  LoginLink,
 } from '@/styles/register.styles';
 
 /**

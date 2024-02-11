@@ -25,6 +25,7 @@ import {
   Button,
   Fieldset,
   JoinNewsletterContainer,
+  LoginLink,
 } from '@/styles/register.styles';
 
 const RegisterPage5 = ({
@@ -183,11 +184,6 @@ const RegisterPage5 = ({
             </SectionContainer>
           </Media>
 
-          {/* Desktop */}
-          <Media greaterThanOrEqual="sm">
-            {/** Moved to different location */}
-          </Media>
-
           <SectionContainer>
             <SectionHeader>
               Why do you want to become a Book&apos;em volunteer?
@@ -256,9 +252,6 @@ const RegisterPage5 = ({
               </InputContainer>
             </JoinNewsletterContainer>
           </SectionContainer>
-
-          {/* Mobile */}
-          <Media lessThan="sm">{/** Moved to different location */}</Media>
 
           {/* Desktop */}
           <Media greaterThanOrEqual="sm">
@@ -352,7 +345,6 @@ const RegisterPage5 = ({
           </SectionContainer>
         </Form>
       </FormBorder>
-
       <ButtonContainer>
         <Button form="registerPage5">Submit</Button>
       </ButtonContainer>

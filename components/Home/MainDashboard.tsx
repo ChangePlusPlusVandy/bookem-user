@@ -133,13 +133,9 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
             </Media>
 
             {/* Desktop PastActivity is not located at bottom of main dashboard */}
-            <Media greaterThanOrEqual="sm">
-              {/* Desktop PastActivity is not located here */}
-            </Media>
           </Container>
 
           {/* Mobile PastActivity is hidden */}
-          <Media lessThan="sm">{/**PastActivity is not shown here */}</Media>
 
           {/* Desktop PastActivity is shown on the right side of main dashboard*/}
           <Media greaterThanOrEqual="sm">

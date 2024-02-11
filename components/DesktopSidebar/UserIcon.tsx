@@ -9,23 +9,38 @@ import {
 } from '@/styles/components/Sidebar/userIcon.styles';
 import { Media } from '@/lib/media';
 import { useSession } from 'next-auth/react';
+import { useUserData } from '@/lib/useUserData';
+require('dotenv').config(); // Load environment variables from .env file
 
 export const UserIcon = () => {
-  const { data: session } = useSession();
+  const userData = useUserData();
 
   return (
     <UserIconContainer>
       <ImageContainer>
-        {/* TODO: add user profile image */}
-        {/* Bigger image size for desktop and smaller for mobile */}
-        <Media greaterThanOrEqual="sm">
-          <Image src="/bookem-logo.png" width="100" height="100" alt="" />
-        </Media>
-        <Media lessThan="sm">
-          <Image src="/bookem-logo.png" width="73" height="73" alt="" />
-        </Media>
+        {userData && (
+          <>
+            {/* Choose image size based on screen size */}
+            <Media greaterThanOrEqual="sm">
+              <Image
+                src={userData.profileImgUrl || '/bookem-logo.png'}
+                width="100"
+                height="100"
+                alt="user-profile"
+              />
+            </Media>
+            <Media lessThan="sm">
+              <Image
+                src={userData.profileImgUrl || '/bookem-logo.png'}
+                width="73"
+                height="73"
+                alt="user-profile"
+              />
+            </Media>
+          </>
+        )}
       </ImageContainer>
-      <Name>{session?.user && session.user.name}</Name>
+      <Name>{userData?.name}</Name>
     </UserIconContainer>
   );
 };

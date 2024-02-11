@@ -58,10 +58,12 @@ const RegisterPage = () => {
     otherRace: '',
   });
 
+  const [nextPage, setNextPage] = useState<number>(formData.page);
+
   /* page number handling */
 
   // variable for storing the page that user wants to go to
-  let nextPage = formData.page;
+  // let nextPage = formData.page;
 
   // updates to the previous register page, saves data but not submit form
   const handleLeftArrow = (data: any) => {
@@ -70,7 +72,7 @@ const RegisterPage = () => {
 
   // updates nextPage to be the upcoming register page
   const handleRightArrow = () => {
-    nextPage = formData.page + 1;
+    setNextPage(formData.page + 1);
   };
 
   /* form handling */
@@ -146,7 +148,10 @@ const RegisterPage = () => {
       // if request is successful, there is no error message
       if (res.status === 201) return null;
       // otherwise, there is an error message
-      else return { message: 'You have entered invalid information.' };
+      else {
+        // console.log(await res.json());
+        return await res.json();
+      }
     } catch (err) {
       return { message: 'Some error has occurred.' };
     }
@@ -164,10 +169,8 @@ const RegisterPage = () => {
 
   return (
     <Container>
-      {/* Mobile */}
-      <Media lessThan="sm">{/*LeftDisplay is not visible*/}</Media>
-
-      {/* Desktop */}
+      {/* Mobile: LeftDisplay is not visible */}
+      {/* Desktop left display */}
       <Media greaterThanOrEqual="sm">
         {formData.page === 1 && (
           <LeftDisplay

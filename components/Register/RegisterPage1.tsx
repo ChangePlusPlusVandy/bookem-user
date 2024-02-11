@@ -11,6 +11,7 @@ import {
   InputFlex,
   InputText,
   InputContainer,
+  LoginLink,
 } from '@/styles/register.styles';
 import { dateIsValid, formatBirthday, formatPhoneNumber } from '@/utils/utils';
 
@@ -181,6 +182,7 @@ const RegisterPage1 = ({
           {errors.state && printError('State is required')}
           {errors.zip && printError('Zip code is required')}
         </SectionContainer>
+        <LoginLink href="/login">Already have an account? Login here</LoginLink>
       </Form>
 
       <RegisterFlow

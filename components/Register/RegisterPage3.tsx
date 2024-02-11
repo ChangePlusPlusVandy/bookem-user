@@ -16,6 +16,7 @@ import {
   InputTextarea,
   JoinNewsletterContainer,
   Fieldset,
+  LoginLink,
 } from '@/styles/register.styles';
 
 const RegisterPage3 = ({

@@ -13,6 +13,7 @@ import {
   LabelRadio,
   InputRadio,
   OtherRadio,
+  LoginLink,
 } from '@/styles/register.styles';
 
 const RegisterPage4 = ({

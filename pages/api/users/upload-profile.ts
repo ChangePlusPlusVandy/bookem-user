@@ -25,6 +25,8 @@ export default async function handler(
 
         // get profile img url from req.body
         const { profileImgUrl } = req.body;
+        const modifiedProfileImgUrl =
+          process.env.AWS_S3_BUCKET_URL + profileImgUrl;
 
         // get user id from session
         const userId = session.user._id;
@@ -32,7 +34,7 @@ export default async function handler(
         // update user's profile picture
         const updatedUser = await Users.findByIdAndUpdate(
           userId,
-          { profileImgUrl: profileImgUrl },
+          { profileImgUrl: modifiedProfileImgUrl },
           { new: true }
         );
 

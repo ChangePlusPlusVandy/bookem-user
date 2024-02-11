@@ -10,11 +10,11 @@ declare module 'next-auth' {
   interface Session {
     user: {
       /** The user's mongodb id. */
-      _id: mongoose.Types.ObjectId;
+      _id: mongoose.SeTypes.ObjectId;
       /** The user's email. */
       email: string;
       /** The user's image */
-      image: string;
+      profileImgUrl: string;
       /** The user's name. */
       name: string;
     };
