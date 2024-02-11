@@ -12,14 +12,12 @@ export { default } from 'next-auth/middleware';
  * Configure which api routes to authenticate
  */
 // when in development, export an empty config
-export const config = testingAPI
-  ? {} // Don't use authentication for tests
-  : {
-      // match all routes in /api except for the route /api/users/create
-      // the ?!(...) means match everything except for (...)
-      // adapted from: https://nextjs.org/docs/messages/invalid-route-source
-      matcher: ['/api/((?!users/create).*)'],
-    };
+export const config = {
+  // match all routes in /api except for the route /api/users/create
+  // the ?!(...) means match everything except for (...)
+  // adapted from: https://nextjs.org/docs/messages/invalid-route-source
+  matcher: testingAPI ? [] : ['/api/((?!users/create).*)'],
+};
 
 function middleware() {}
 // when in development, export the empty middleware function
