@@ -3,6 +3,7 @@ import { FieldValues } from 'react-hook-form';
 import { signIn } from 'next-auth/react';
 import { RegisterFormData } from '@/utils/types';
 import Image from 'next/image';
+import { message } from 'antd';
 import {
   LastPageContainer,
   LastPageTextContainer,
@@ -16,58 +17,6 @@ import {
 
 import axios from 'axios';
 
-const uploadS3 = async (file: File, email: String) => {
-  const formData = new FormData();
-  formData.append('file', file);
-
-  // formData.append('email', email);
-  try {
-    const res = await fetch('/api/users/upload-s3', {
-      method: 'POST',
-      body: formData,
-    });
-
-    if (!res.ok) throw new Error(`Error: ${res.status}`);
-    const imageUrl = await res.json();
-    console.log(imageUrl, typeof imageUrl);
-    uploadDB(imageUrl.fileName);
-    return { message: 'User updated with picture', error: null };
-  } catch (err) {
-    return { message: 'An error occurred', error: err };
-  }
-};
-
-// const uploadDB = async imageData => {
-const uploadDB = async (fileName: String) => {
-  try {
-    console.log(fileName);
-    const res = await axios.patch(
-      '/api/users/upload-profile',
-      {
-        // profileImgUrl: imageData.url,
-        profileImgUrl: fileName,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-
-    if (res.status !== 200) {
-      alert(
-        'Error uploading profile picture. Please try again or contact us if the problem persists.'
-      );
-    } else {
-      alert('Profile picture uploaded successfully!');
-    }
-    // Return the status of the user update
-    return { message: 'User updated with picture', error: null };
-  } catch (e) {
-    return { message: 'An error occurred', error: e };
-  }
-};
-
 const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
   // state for uploaded picture file
   const [pictureFile, setPictureFile] = useState<File | undefined>();
@@ -78,9 +27,66 @@ const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
   // object that helps with handling clicking on picture upload button
   const inputRef = useRef<HTMLInputElement | null>(null);
 
+  const [messageApi, contextHolder] = message.useMessage();
+
   // handles clicking on picture upload button
   const handleUploadClick = () => {
     inputRef.current?.click();
+  };
+
+  const uploadS3 = async (file: File, email: String) => {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    // formData.append('email', email);
+    try {
+      const res = await fetch('/api/users/upload-s3', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error(`Error: ${res.status}`);
+      const imageUrl = await res.json();
+      console.log(imageUrl, typeof imageUrl);
+      uploadDB(imageUrl.fileName);
+      return { message: 'User updated with picture', error: null };
+    } catch (err) {
+      return { message: 'An error occurred', error: err };
+    }
+  };
+
+  const uploadDB = async (fileName: String) => {
+    try {
+      console.log(fileName);
+      const res = await axios.patch(
+        '/api/users/upload-profile',
+        {
+          // profileImgUrl: imageData.url,
+          profileImgUrl: fileName,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      if (res.status !== 200) {
+        messageApi.open({
+          type: 'error',
+          content: 'Sorry, an error occurred',
+        });
+      } else {
+        messageApi.open({
+          type: 'success',
+          content: 'Profile image uploaded successfully',
+        });
+      }
+      // Return the status of the user update
+      return { message: 'User updated with picture', error: null };
+    } catch (e) {
+      return { message: 'An error occurred', error: e };
+    }
   };
 
   // updates name of picture upload button to the name of the file uploaded
@@ -132,6 +138,8 @@ const LastRegisterPage = ({ formData }: { formData: RegisterFormData }) => {
 
   return (
     <LastPageContainer>
+      {/* Context holder for message API */}
+      {contextHolder}
       <LastPageTextContainer>
         <LastPageText>Thank you!</LastPageText>
         <LastPageText>

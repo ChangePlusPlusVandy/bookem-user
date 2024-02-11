@@ -148,7 +148,10 @@ const RegisterPage = () => {
       // if request is successful, there is no error message
       if (res.status === 201) return null;
       // otherwise, there is an error message
-      else return { message: 'You have entered invalid information.' };
+      else {
+        // console.log(await res.json());
+        return await res.json();
+      }
     } catch (err) {
       return { message: 'Some error has occurred.' };
     }
