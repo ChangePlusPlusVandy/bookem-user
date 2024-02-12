@@ -1,3 +1,5 @@
+import { testingAPI } from './utils/api-testing';
+
 /**
  * THIS FILE HAS TO STAY HERE!
  * Use the default next-auth middleware pattern from https://next-auth.js.org/configuration/nextjs
@@ -16,5 +18,8 @@ export const config = {
   matcher: ['/api/((?!users/create).*)'],
 };
 
-// Comment everything and uncomment this to test
-// export function middleware() {}
+function middleware() {}
+// when in development, export the empty middleware function
+if (testingAPI) {
+  module.exports = { ...module.exports, middleware };
+}
