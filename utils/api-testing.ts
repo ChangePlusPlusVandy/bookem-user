@@ -5,7 +5,7 @@ export const testingAPI = false;
 
 const fakeUserSession = {
   user: {
-    id: '65ae7bbd24dc37492f2581c0',
+    _id: '65ae7bbd24dc37492f2581c0',
   },
 };
 
