@@ -38,7 +38,7 @@ export default async function handler(
 
         // query volunteerApplication by event id attributes
         const applicationResponses = await ApplicationResponse.find({
-          userId: session.user.id,
+          userId: session.user._id,
         }).populate('eventId');
 
         // get all the events that the user has applied to

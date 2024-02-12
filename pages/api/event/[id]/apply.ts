@@ -78,7 +78,7 @@ export default async function handler(
         await mongoSession.withTransaction(async () => {
           // insert the response to applicationResponses data
           const newResponse = new ApplicationResponse({
-            userId: session.user.id,
+            userId: session.user._id,
             status: 'pending',
             eventId: id,
             answers,

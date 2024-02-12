@@ -40,7 +40,7 @@ export default async function handler(
         // query volunteerApplication by event id attributes
         // using findOne - assuming there is only one application per event per user
         const volunteerApplication = await ApplicationResponse.findOne({
-          userId: session.user.id,
+          userId: session.user._id,
           eventId: id,
         });
 
