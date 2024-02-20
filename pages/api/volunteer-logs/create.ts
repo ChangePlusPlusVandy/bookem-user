@@ -30,32 +30,33 @@ export default async function handler(
   // check that user is authenticated
   const session = await getServerSession(req, res, authOptions);
 
-  const validateData = (volunteerLog: VolunteerLogData) => {
+  const validateData = (volunteerLog: VolunteerLogData): boolean => {
     if (!volunteerLog.eventId) {
       res.status(400).json({
         message: 'You forgot to select an event.',
       });
-      return;
+      return false;
     }
 
     if (!volunteerLog.hours) {
       res
         .status(400)
         .json({ message: 'You forgot to fill in number of hours.' });
-      return;
+      return false;
     }
 
     if (!volunteerLog.numBooks) {
       res
         .status(400)
         .json({ message: 'You forgot to fill in number of books donated' });
-      return;
+      return false;
     }
 
     if (!volunteerLog.date) {
       res.status(400).json({ message: 'You forgot to fill in date' });
-      return;
+      return false;
     }
+    return true;
   };
 
   switch (req.method) {
@@ -67,7 +68,7 @@ export default async function handler(
         // start a try catch block to catch any errors in parsing the request body
         const volunteerLog = JSON.parse(req.body) as VolunteerLogData;
 
-        validateData(volunteerLog);
+        if (!validateData(volunteerLog)) return;
 
         const usersId = session.user._id;
 
