@@ -27,7 +27,7 @@ const Contact = ({ phone, email }: { phone: string; email: string }) => (
       {/* Phone */}
       <IconBox>
         <Image
-          src={'/event/phone.png'}
+          src={'/event/phone.svg'}
           alt=""
           width={EVENT_CONTACT_ICON_WIDTH}
           height={EVENT_CONTACT_ICON_HEIGHT}
@@ -38,7 +38,7 @@ const Contact = ({ phone, email }: { phone: string; email: string }) => (
       {/* Email */}
       <IconBox>
         <Image
-          src={'/event/mail.png'}
+          src={'/event/mail.svg'}
           alt=""
           width={EVENT_CONTACT_ICON_WIDTH}
           height={EVENT_CONTACT_ICON_HEIGHT}

@@ -27,19 +27,19 @@ const TimeAndPlace = ({
         <TimeAndPlaceBox>
           {/* Calendar */}
           <IconBox>
-            <Image src={'/event/calendar.png'} alt="" width={50} height={50} />
+            <Image src={'/event/calendar.svg'} alt="" width={50} height={50} />
             <IconText>{convertToDate(eventDate.toString())}</IconText>
           </IconBox>
 
           {/* Clock */}
           <IconBox>
-            <Image src={'/event/clock.png'} alt="" width={50} height={50} />
+            <Image src={'/event/clock.svg'} alt="" width={50} height={50} />
             <IconText>{getTime(eventDate.toString())}</IconText>
           </IconBox>
 
           {/* Location */}
           <IconBox>
-            <Image src={'/event/map-pin.png'} alt="" width={50} height={50} />
+            <Image src={'/event/map-pin.svg'} alt="" width={50} height={50} />
             <IconText>{location.street}</IconText>
           </IconBox>
         </TimeAndPlaceBox>
@@ -48,19 +48,19 @@ const TimeAndPlace = ({
         <TimeAndPlaceBox>
           {/* Calendar */}
           <IconBox>
-            <Image src={'/event/calendar.png'} alt="" width={40} height={40} />
+            <Image src={'/event/calendar.svg'} alt="" width={40} height={40} />
             <IconText>{convertToDate(eventDate.toString())}</IconText>
           </IconBox>
 
           {/* Clock */}
           <IconBox>
-            <Image src={'/event/clock.png'} alt="" width={40} height={40} />
+            <Image src={'/event/clock.svg'} alt="" width={40} height={40} />
             <IconText>{getTime(eventDate.toString())}</IconText>
           </IconBox>
         </TimeAndPlaceBox>
         {/* Location */}
         <IconBox>
-          <Image src={'/event/map-pin.png'} alt="" width={40} height={40} />
+          <Image src={'/event/map-pin.svg'} alt="" width={40} height={40} />
           <IconText>{convertLocationToString(location)}</IconText>
         </IconBox>
       </Media>
