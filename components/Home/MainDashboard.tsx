@@ -58,7 +58,7 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
               <Popover content={content} title="Info">
                 <InfoIcon>
                   <Image
-                    src="/home/info.png"
+                    src="/home/info.svg"
                     alt="Info icon"
                     width="19"
                     height="19"
@@ -75,7 +75,7 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
               <Popover content={content} title="Info">
                 <InfoIcon>
                   <Image
-                    src="/home/info.png"
+                    src="/home/info.svg"
                     alt="Info icon"
                     width="35"
                     height="35"
@@ -123,7 +123,7 @@ const MainDashboard = ({ userData }: { userData: QueriedUserData | null }) => {
                 <Header>See past activity</Header>
 
                 <Image
-                  src="/home/arrow-right.png"
+                  src="/home/arrow-right.svg"
                   alt="Right arrow"
                   width="32"
                   height="32"

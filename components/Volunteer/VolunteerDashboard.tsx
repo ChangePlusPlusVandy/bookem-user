@@ -73,7 +73,7 @@ const VolunteerDashboard = ({
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
                 <Image
-                  src="/volunteer/pencil.png"
+                  src="/volunteer/pencil.svg"
                   alt="Pencil icon"
                   width="50"
                   height="50"
@@ -97,7 +97,7 @@ const VolunteerDashboard = ({
             <ButtonIcon>
               <Media greaterThanOrEqual="sm">
                 <Image
-                  src="/volunteer/history-clock.png"
+                  src="/volunteer/history-clock.svg"
                   alt="Clock with arrow icon"
                   width="50"
                   height="50"

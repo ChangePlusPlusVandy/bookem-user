@@ -56,38 +56,38 @@ export const AVAILABLE_ROUTES_ARRAY: string[] = Object.entries(
 /**
  * Default width of icons
  */
-export const SIDEBAR_ICON_WIDTH = 41.25;
+export const SIDEBAR_ICON_WIDTH = 50;
 
 /**
  * Default height of icons
  */
-export const SIDEBAR_ICON_HEIGHT = 42.47;
+export const SIDEBAR_ICON_HEIGHT = 50;
 
 /**
  * List of IconParams
  */
 export const SIDEBAR_ICON_PARAMS: SidebarIconParams[] = [
   {
-    desktopDefaultSrc: '/sidebar/home-white.png',
-    mobileDefaultSrc: '/sidebar/home-black.png',
-    desktopHoveredSrc: '/sidebar/home-black.png',
-    mobileHoveredSrc: '/sidebar/home-white.png',
+    desktopDefaultSrc: '/sidebar/home-white.svg',
+    mobileDefaultSrc: '/sidebar/home-black.svg',
+    desktopHoveredSrc: '/sidebar/home-black.svg',
+    mobileHoveredSrc: '/sidebar/home-white.svg',
     linkTo: AVAILABLE_ROUTES.HOME,
     text: 'Home',
   },
   {
-    desktopDefaultSrc: '/sidebar/volunteer-white.png',
-    mobileDefaultSrc: '/sidebar/volunteer-black.png',
-    desktopHoveredSrc: '/sidebar/volunteer-black.png',
-    mobileHoveredSrc: '/sidebar/volunteer-white.png',
+    desktopDefaultSrc: '/sidebar/volunteer-white.svg',
+    mobileDefaultSrc: '/sidebar/volunteer-black.svg',
+    desktopHoveredSrc: '/sidebar/volunteer-black.svg',
+    mobileHoveredSrc: '/sidebar/volunteer-white.svgs',
     linkTo: AVAILABLE_ROUTES.VOLUNTEER,
     text: 'Volunteer',
   },
   {
-    desktopDefaultSrc: '/sidebar/setting-white.png',
-    mobileDefaultSrc: '/sidebar/setting-black.png',
-    desktopHoveredSrc: '/sidebar/setting-black.png',
-    mobileHoveredSrc: '/sidebar/setting-white.png',
+    desktopDefaultSrc: '/sidebar/setting-white.svg',
+    mobileDefaultSrc: '/sidebar/setting-black.svg',
+    desktopHoveredSrc: '/sidebar/setting-black.svg',
+    mobileHoveredSrc: '/sidebar/setting-white.svg',
     linkTo: AVAILABLE_ROUTES.SETTINGS,
     text: 'Settings',
   },
