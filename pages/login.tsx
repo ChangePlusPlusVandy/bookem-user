@@ -94,14 +94,14 @@ const LoginPage = () => {
                   <Eye onClick={() => setPasswordShown(!passwordShown)}>
                     {passwordShown ? (
                       <Image
-                        src={'/login/eye.png'}
+                        src={'/login/eye.svg'}
                         width="25"
                         height="25"
                         alt="Eye"
                       />
                     ) : (
                       <Image
-                        src={'/login/eye-slash.png'}
+                        src={'/login/eye-slash.svg'}
                         width="25"
                         height="25"
                         alt="Eye with slash"
