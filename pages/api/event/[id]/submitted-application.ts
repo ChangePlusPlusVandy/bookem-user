@@ -5,6 +5,7 @@ import ApplicationResponse from 'bookem-shared/src/models/ApplicationResponse';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { makeSessionForAPITest } from '@/utils/api-testing';
+import VolunteerApplications from 'bookem-shared/src/models/VolunteerApplications';
 
 export default async function handler(
   req: NextApiRequest,
@@ -39,19 +40,32 @@ export default async function handler(
 
         // query volunteerApplication by event id attributes
         // using findOne - assuming there is only one application per event per user
-        const volunteerApplication = await ApplicationResponse.findOne({
-          userId: session.user._id,
-          eventId: id,
+        const application = await VolunteerApplications.findOne({
+          event: id,
         });
 
         // TODO - refactor a common util for when something is not found
-        if (!volunteerApplication) {
+        if (!application) {
           return res
             .status(404)
             .json({ message: 'No application for the event found' });
         }
 
-        return res.status(200).json({ message: volunteerApplication });
+        const response = await ApplicationResponse.findOne({
+          user: session.user._id,
+          event: id,
+        });
+
+        if (!response) {
+          return res.status(400).json({
+            message: 'You have not submitted any application to this event',
+          });
+        }
+
+        return res.status(200).json({
+          application: application,
+          response,
+        });
       } catch (error: any) {
         console.error(error);
         res.status(500).json({ message: error });
