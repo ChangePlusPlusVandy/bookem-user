@@ -5,13 +5,6 @@ import ApplicationResponse from 'bookem-shared/src/models/ApplicationResponse';
 import { getServerSession } from 'next-auth';
 import { authOptions } from '@/pages/api/auth/[...nextauth]';
 import { makeSessionForAPITest } from '@/utils/api-testing';
-import VolunteerEvents from 'bookem-shared/src/models/VolunteerEvents';
-import {
-  LimitedVolunteerApplicationData,
-  QueriedVolunteerApplicationData,
-  QueriedVolunteerEventData,
-  SingleApplicationResponse,
-} from 'bookem-shared/src/types/database';
 import VolunteerApplications from 'bookem-shared/src/models/VolunteerApplications';
 
 export default async function handler(
@@ -64,11 +57,9 @@ export default async function handler(
         });
 
         if (!response) {
-          return res
-            .status(400)
-            .json({
-              message: 'You have not submitted any application to this event',
-            });
+          return res.status(400).json({
+            message: 'You have not submitted any application to this event',
+          });
         }
 
         return res.status(200).json({
